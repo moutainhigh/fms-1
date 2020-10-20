@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.TgInfoDAO">
+   		<sql id = "Base_Column_List">
+			 ID,TG_NO,TG_NAME,TG_TYPE,ADDRESS,CREATE_DATE,REMARK,STATUS,COMMON_TRANS_CLASS
+		</sql>
+
+    <select id="findByKey" parameterType="TgInfoDomain" resultType="TgInfoDomain" useCache="true">
+        select
+        	<include refid="Base_Column_List" />
+ 		from TG_INFO
+        <where>
+            and ID = #{id}
+
+        </where>
+    </select>
+
+    <select id="findByNo" parameterType="TgInfoDomain" resultType="TgInfoDomain" useCache="true">
+        select
+        <include refid="Base_Column_List" />
+        from TG_INFO
+        <where>
+            and TG_NO = #{tgNo}
+
+        </where>
+    </select>
+
+    <select id="findByWhere" parameterType="TgInfoDomain" resultType="TgInfoDomain" useCache="true">
+        select <include refid="Base_Column_List" /> from TG_INFO
+        <where>
+            <if test="id !=null">
+                and ID = #{id}
+            </if>
+            <if test="tgNo !=null">
+                and TG_NO like CONCAT('%',#{tgNo},'%')
+            </if>
+            <if test="tgName !=null">
+                and TG_NAME like CONCAT('%',#{tgName},'%')
+            </if>
+            <if test="tgType !=null">
+                and TG_TYPE = #{tgType}
+            </if>
+            <if test="address !=null">
+                and ADDRESS = #{address}
+            </if>
+            <if test="createDate !=null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="remark !=null">
+                and REMARK = #{remark}
+            </if>
+            <if test="status !=null">
+                and STATUS = #{status}
+            </if>
+             <if test="commonTransClass !=null">
+                and COMMON_TRANS_CLASS = #{commonTransClass}
+            </if>
+        </where>
+        ORDER BY ID DESC 
+    </select>
+    <insert id="insert" parameterType="TgInfoDomain" flushCache="true">
+		insert into TG_INFO(
+		<include refid="Base_Column_List" />
+		) values
+		(#{id},#{tgNo},#{tgName},#{tgType},#{address},#{createDate},#{remark},#{status},#{commonTransClass})
+	</insert>
+    <update id="update" parameterType="TgInfoDomain" flushCache="true">
+        update TG_INFO
+        <set>
+            <if test="tgNo !=null">
+                TG_NO = #{tgNo},
+            </if>
+            <if test="tgName !=null">
+                TG_NAME = #{tgName},
+            </if>
+            <if test="tgType !=null">
+                TG_TYPE = #{tgType},
+            </if>
+            <if test="address !=null">
+                ADDRESS = #{address},
+            </if>
+            <if test="createDate !=null">
+                CREATE_DATE = #{createDate},
+            </if>
+            <if test="remark !=null">
+                REMARK = #{remark},
+            </if>
+            <if test="status !=null">
+                STATUS = #{status},
+            </if>
+             <if test="commonTransClass !=null">
+                COMMON_TRANS_CLASS = #{commonTransClass}
+            </if>
+        </set>
+        <where>
+            and ID = #{id}
+
+        </where>
+    </update>
+    <delete id="delete" parameterType="TgInfoDomain" flushCache="true">
+        delete from TG_INFO
+        <where>
+            and ID = #{id}
+        </where>
+    </delete>
+</mapper>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.assets.dao.InductorAssetsUseRecordDAO">
+<select id="findByKey" parameterType="InductorAssetsUseRecordDomain" resultType="InductorAssetsUseRecordDomain" useCache="true">
+select ID,INDUCTOR_ASSETS_ID,INDUCTOR_ASSETS_NO,REQUISITION_MAN,REQUISITION_DEPT,REQUISITION_DATE,INSTALL_SITE,ISSUER,CREATE_DATE,REMARK,STATUS from INDUCTOR_ASSETS_USE_RECORD<where>
+ and ID = #{id}
+
+</where>
+</select>
+<select id="findByWhere" parameterType="InductorAssetsUseRecordDomain" resultType="InductorAssetsUseRecordDomain" useCache="true">
+select ID,INDUCTOR_ASSETS_ID,INDUCTOR_ASSETS_NO,REQUISITION_MAN,REQUISITION_DEPT,REQUISITION_DATE,INSTALL_SITE,ISSUER,CREATE_DATE,REMARK,STATUS from INDUCTOR_ASSETS_USE_RECORD
+<where>
+<if test="id !=null"> 
+ and ID = #{id}
+</if>
+<if test="inductorAssetsId !=null"> 
+ and INDUCTOR_ASSETS_ID = #{inductorAssetsId}
+</if>
+<if test="inductorAssetsNo !=null"> 
+ and INDUCTOR_ASSETS_NO = #{inductorAssetsNo}
+</if>
+<if test="requisitionMan !=null"> 
+ and REQUISITION_MAN = #{requisitionMan}
+</if>
+<if test="requisitionDept !=null"> 
+ and REQUISITION_DEPT = #{requisitionDept}
+</if>
+<if test="requisitionDate !=null"> 
+ and REQUISITION_DATE = #{requisitionDate}
+</if>
+<if test="installSite !=null"> 
+ and INSTALL_SITE = #{installSite}
+</if>
+<if test="issuer !=null"> 
+ and ISSUER = #{issuer}
+</if>
+<if test="createDate !=null"> 
+ and CREATE_DATE = #{createDate}
+</if>
+<if test="remark !=null"> 
+ and REMARK = #{remark}
+</if>
+<if test="status !=null"> 
+ and STATUS = #{status}
+</if>
+</where>
+</select>
+<insert id="insert" parameterType="InductorAssetsUseRecordDomain" flushCache="true">
+insert into INDUCTOR_ASSETS_USE_RECORD(ID,INDUCTOR_ASSETS_ID,INDUCTOR_ASSETS_NO,REQUISITION_MAN,REQUISITION_DEPT,REQUISITION_DATE,INSTALL_SITE,ISSUER,CREATE_DATE,REMARK,STATUS) values (#{id},#{inductorAssetsId},#{inductorAssetsNo},#{requisitionMan},#{requisitionDept},#{requisitionDate},#{installSite},#{issuer},#{createDate},#{remark},#{status})
+</insert>
+<update id="update" parameterType="InductorAssetsUseRecordDomain" flushCache="true">
+update INDUCTOR_ASSETS_USE_RECORD
+<set>
+<if test="inductorAssetsId !=null">
+INDUCTOR_ASSETS_ID = #{inductorAssetsId},
+</if>
+<if test="inductorAssetsNo !=null">
+INDUCTOR_ASSETS_NO = #{inductorAssetsNo},
+</if>
+<if test="requisitionMan !=null">
+REQUISITION_MAN = #{requisitionMan},
+</if>
+<if test="requisitionDept !=null">
+REQUISITION_DEPT = #{requisitionDept},
+</if>
+<if test="requisitionDate !=null">
+REQUISITION_DATE = #{requisitionDate},
+</if>
+<if test="installSite !=null">
+INSTALL_SITE = #{installSite},
+</if>
+<if test="issuer !=null">
+ISSUER = #{issuer},
+</if>
+<if test="createDate !=null">
+CREATE_DATE = #{createDate},
+</if>
+<if test="remark !=null">
+REMARK = #{remark},
+</if>
+<if test="status !=null">
+STATUS = #{status},
+</if>
+</set>
+<where>
+ and ID = #{id}
+
+</where>
+</update>
+<delete id="delete" parameterType="InductorAssetsUseRecordDomain" flushCache="true">
+delete from INDUCTOR_ASSETS_USE_RECORD
+<where>
+ and ID = #{id}
+
+</where>
+</delete>
+</mapper>

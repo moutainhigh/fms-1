@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.SubsDAO">
+
+	<sql id="Base_Column_List">
+		ID,SUBS_NO,SUBS_NAME,SHORT_NAME,VOLT_TYPE,ADDRESS,SUBS_TYPE,
+		SUBS_PROP,MT_NUM,MT_CAP,CREATE_DATE,STATUS,BUSINESS_PLACE_CODE
+	</sql>
+
+	<select id="findByKey" parameterType="SubsDomain"
+		resultType="SubsDomain" useCache="true">
+		select
+		<include refid="Base_Column_List" />
+		from SUBS_INFO
+		<where>
+			and ID = #{id}
+		</where>
+	</select>
+	
+	<select id="findByWhere" parameterType="SubsDomain"
+		resultType="SubsDomain" useCache="true">
+		select
+		 <include refid="Base_Column_List" />
+		from SUBS_INFO
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+			<if test="subsNo !=null">
+				and SUBS_NO like CONCAT('%',#{subsNo},'%')
+			</if>
+			<if test="subsName !=null">
+				and SUBS_NAME like CONCAT('%',#{subsName},'%')
+			</if>
+			<if test="shortName !=null">
+				and SHORT_NAME like CONCAT('%',#{shortName},'%')
+			</if>
+			<if test="voltType !=null">
+				and VOLT_TYPE = #{voltType}
+			</if>
+			<if test="address !=null">
+				and ADDRESS like CONCAT('%',#{address},'%')
+			</if>
+			<if test="subsType !=null">
+				and SUBS_TYPE = #{subsType}
+			</if>
+			<if test="subsProp !=null">
+				and SUBS_PROP = #{subsProp}
+			</if>
+			<if test="mtNum !=null">
+				and MT_NUM = #{mtNum}
+			</if>
+			<if test="mtCap !=null">
+				and MT_CAP = #{mtCap}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+			<if test="businessPlaceCode !=null">
+				and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+			</if>
+
+			<if test="businessPlaceCodes != null and businessPlaceCodes.size > 0">
+				and BUSINESS_PLACE_CODE in
+				<foreach item="item" index="index" collection="businessPlaceCodes" open="("
+						 separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+
+		</where>
+		order by CREATE_DATE,ID
+	</select>
+	<select id="findByNo" parameterType="SubsDomain"
+			resultType="SubsDomain" useCache="true">
+		select
+		 <include refid="Base_Column_List" />
+		from SUBS_INFO
+		<where>
+			and SUBS_NO = #{subsNo}
+		</where>
+	</select>
+	<insert id="insert" parameterType="SubsDomain" flushCache="true">
+		insert into
+		SUBS_INFO(		 
+		<include refid="Base_Column_List" />
+		)
+		values
+		(#{id},#{subsNo},#{subsName},#{shortName},#{voltType},#{address},#{subsType},#{subsProp},#{mtNum},#{mtCap},#{createDate},#{status})
+	</insert>
+	<update id="update" parameterType="SubsDomain" flushCache="true">
+		update SUBS_INFO
+		<set>
+			<if test="subsNo !=null">
+				SUBS_NO = #{subsNo},
+			</if>
+			<if test="subsName !=null">
+				SUBS_NAME = #{subsName},
+			</if>
+			<if test="shortName !=null">
+				SHORT_NAME = #{shortName},
+			</if>
+			<if test="voltType !=null">
+				VOLT_TYPE = #{voltType},
+			</if>
+			<if test="address !=null">
+				ADDRESS = #{address},
+			</if>
+			<if test="subsType !=null">
+				SUBS_TYPE = #{subsType},
+			</if>
+			<if test="subsProp !=null">
+				SUBS_PROP = #{subsProp},
+			</if>
+			<if test="mtNum !=null">
+				MT_NUM = #{mtNum},
+			</if>
+			<if test="mtCap !=null">
+				MT_CAP = #{mtCap},
+			</if>			
+			<if test="createDate !=null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status},
+			</if>
+
+		</set>
+		<where>
+			and ID = #{id}
+
+		</where>
+	</update>
+	<delete id="delete" parameterType="SubsDomain" flushCache="true">
+		delete from SUBS_INFO
+		<where>
+			and ID = #{id}
+
+		</where>
+	</delete>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.riozenc.cim.webapp.assets.dao.InductorAssetsLogDAO">
+	<select id="findByKey" parameterType="InductorAssetsLogDomain"
+		resultType="InductorAssetsLogDomain" useCache="true">
+		select
+		ID,INDUCTOR_ASSETS_NO,INDUCTOR_TYPE,CT_CURNT_CODE,CT_VOLT_CODE,PT_CURNT_CODE,PT_VOLT_CODE,RATED_CT_CODE,RATED_PT_CODE,ACCU_LEVEL_CODE,PT_ACCU_LEVEL_CODE,DEPT_ID,CREATE_DATE,REMARK,STATUS,OPERATION,OPERATOR,OPERATION_DATE
+		from INDUCTOR_ASSETS_LOG
+		<where>
+			and ID = #{id}
+
+		</where>
+	</select>
+	<select id="findByWhere" parameterType="InductorAssetsLogDomain"
+		resultType="InductorAssetsLogDomain" useCache="true">
+		select
+		ID,INDUCTOR_ASSETS_NO,INDUCTOR_TYPE,CT_CURNT_CODE,CT_VOLT_CODE,PT_CURNT_CODE,PT_VOLT_CODE,RATED_CT_CODE,RATED_PT_CODE,ACCU_LEVEL_CODE,PT_ACCU_LEVEL_CODE,DEPT_ID,CREATE_DATE,REMARK,STATUS,OPERATION,OPERATOR,OPERATION_DATE
+		from INDUCTOR_ASSETS_LOG
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+			<if test="inductorAssetsNo !=null">
+				and INDUCTOR_ASSETS_NO = #{inductorAssetsNo}
+			</if>
+			<if test="inductorType !=null">
+				and INDUCTOR_TYPE = #{inductorType}
+			</if>
+			<if test="ctCurntCode !=null">
+				and CT_CURNT_CODE = #{ctCurntCode}
+			</if>
+			<if test="ctVoltCode !=null">
+				and CT_VOLT_CODE = #{ctVoltCode}
+			</if>
+			<if test="ptCurntCode !=null">
+				and PT_CURNT_CODE = #{ptCurntCode}
+			</if>
+			<if test="ptVoltCode !=null">
+				and PT_VOLT_CODE = #{ptVoltCode}
+			</if>
+			<if test="ratedCtCode !=null">
+				and RATED_CT_CODE = #{ratedCtCode}
+			</if>
+			<if test="ratedPtCode !=null">
+				and RATED_PT_CODE = #{ratedPtCode}
+			</if>
+			<if test="accuLevelCode !=null">
+				and ACCU_LEVEL_CODE = #{accuLevelCode}
+			</if>
+			<if test="ptAccuLevelCode !=null">
+				and PT_ACCU_LEVEL_CODE = #{ptAccuLevelCode}
+			</if>
+			<if test="deptId !=null">
+				and DEPT_ID = #{deptId}
+			</if>
+			<if test="createDate !=null">
+				and CREATE_DATE = #{createDate}
+			</if>
+			<if test="remark !=null">
+				and REMARK = #{remark}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+			<if test="operation !=null">
+				and OPERATION = #{operation}
+			</if>
+			<if test="operator !=null">
+				and OPERATOR = #{operator}
+			</if>
+			<if test="operationDate !=null">
+				and OPERATION_DATE = #{operationDate}
+			</if>
+		</where>
+	</select>
+	<insert id="insert" parameterType="InductorAssetsLogDomain" useGeneratedKeys="true" keyProperty="id"
+		flushCache="true">
+		insert into
+		INDUCTOR_ASSETS_LOG(INDUCTOR_ASSETS_NO,INDUCTOR_TYPE,CT_CURNT_CODE,CT_VOLT_CODE,PT_CURNT_CODE,PT_VOLT_CODE,RATED_CT_CODE,RATED_PT_CODE,ACCU_LEVEL_CODE,PT_ACCU_LEVEL_CODE,DEPT_ID,CREATE_DATE,REMARK,STATUS,OPERATION,OPERATOR,OPERATION_DATE)
+		values
+		(#{inductorAssetsNo},#{inductorType},#{ctCurntCode},#{ctVoltCode},#{ptCurntCode},#{ptVoltCode},#{ratedCtCode},#{ratedPtCode},#{accuLevelCode},#{ptAccuLevelCode},#{deptId},#{createDate},#{remark},#{status},#{operation},#{operator},#{operationDate})
+	</insert>
+	<update id="update" parameterType="InductorAssetsLogDomain"
+		flushCache="true">
+		update INDUCTOR_ASSETS_LOG
+		<set>
+			<if test="inductorAssetsNo !=null">
+				INDUCTOR_ASSETS_NO = #{inductorAssetsNo},
+			</if>
+			<if test="inductorType !=null">
+				INDUCTOR_TYPE = #{inductorType},
+			</if>
+			<if test="ctCurntCode !=null">
+				CT_CURNT_CODE = #{ctCurntCode},
+			</if>
+			<if test="ctVoltCode !=null">
+				CT_VOLT_CODE = #{ctVoltCode},
+			</if>
+			<if test="ptCurntCode !=null">
+				PT_CURNT_CODE = #{ptCurntCode},
+			</if>
+			<if test="ptVoltCode !=null">
+				PT_VOLT_CODE = #{ptVoltCode},
+			</if>
+			<if test="ratedCtCode !=null">
+				RATED_CT_CODE = #{ratedCtCode},
+			</if>
+			<if test="ratedPtCode !=null">
+				RATED_PT_CODE = #{ratedPtCode},
+			</if>
+			<if test="accuLevelCode !=null">
+				ACCU_LEVEL_CODE = #{accuLevelCode},
+			</if>
+			<if test="ptAccuLevelCode !=null">
+				PT_ACCU_LEVEL_CODE = #{ptAccuLevelCode},
+			</if>
+			<if test="deptId !=null">
+				DEPT_ID = #{deptId},
+			</if>
+			<if test="createDate !=null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="remark !=null">
+				REMARK = #{remark},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status},
+			</if>
+			<if test="operation !=null">
+				OPERATION = #{operation},
+			</if>
+			<if test="operator !=null">
+				OPERATOR = #{operator},
+			</if>
+			<if test="operationDate !=null">
+				OPERATION_DATE = #{operationDate},
+			</if>
+		</set>
+		<where>
+			and ID = #{id}
+
+		</where>
+	</update>
+	<delete id="delete" parameterType="InductorAssetsLogDomain"
+		flushCache="true">
+		delete from INDUCTOR_ASSETS_LOG
+		<where>
+			and ID = #{id}
+
+		</where>
+	</delete>
+</mapper>

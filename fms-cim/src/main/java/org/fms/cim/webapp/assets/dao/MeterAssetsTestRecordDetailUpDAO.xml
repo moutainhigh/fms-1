@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.assets.dao.MeterAssetsTestRecordDetailUpDAO">
+<select id="findByKey" parameterType="MeterAssetsTestRecordDetailUpDomain" resultType="MeterAssetsTestRecordDetailUpDomain" useCache="true">
+select ID,RECORD_ID,METER_ASSETS_ID,UP_AA,UP_AB,UP_AC,UP_AD,UP_AE,UP_AF,UP_AG,UP_BA,UP_BB,UP_BC,UP_BD,UP_BE,UP_BF,UP_BG,UP_CA,UP_CB,UP_CC,UP_CD,UP_CE,UP_CF,UP_CG,REMARK from METER_ASSETS_TEST_RECORD_DETAIL_UP<where>
+ and ID = #{id}
+
+</where>
+</select>
+<select id="findByWhere" parameterType="MeterAssetsTestRecordDetailUpDomain" resultType="MeterAssetsTestRecordDetailUpDomain" useCache="true">
+select ID,RECORD_ID,METER_ASSETS_ID,UP_AA,UP_AB,UP_AC,UP_AD,UP_AE,UP_AF,UP_AG,UP_BA,UP_BB,UP_BC,UP_BD,UP_BE,UP_BF,UP_BG,UP_CA,UP_CB,UP_CC,UP_CD,UP_CE,UP_CF,UP_CG,REMARK from METER_ASSETS_TEST_RECORD_DETAIL_UP
+<where>
+<if test="id !=null"> 
+ and ID = #{id}
+</if>
+<if test="recordId !=null"> 
+ and RECORD_ID = #{recordId}
+</if>
+<if test="meterAssetsId !=null"> 
+ and METER_ASSETS_ID = #{meterAssetsId}
+</if>
+<if test="upAa !=null"> 
+ and UP_AA = #{upAa}
+</if>
+<if test="upAb !=null"> 
+ and UP_AB = #{upAb}
+</if>
+<if test="upAc !=null"> 
+ and UP_AC = #{upAc}
+</if>
+<if test="upAd !=null"> 
+ and UP_AD = #{upAd}
+</if>
+<if test="upAe !=null"> 
+ and UP_AE = #{upAe}
+</if>
+<if test="upAf !=null"> 
+ and UP_AF = #{upAf}
+</if>
+<if test="upAg !=null"> 
+ and UP_AG = #{upAg}
+</if>
+<if test="upBa !=null"> 
+ and UP_BA = #{upBa}
+</if>
+<if test="upBb !=null"> 
+ and UP_BB = #{upBb}
+</if>
+<if test="upBc !=null"> 
+ and UP_BC = #{upBc}
+</if>
+<if test="upBd !=null"> 
+ and UP_BD = #{upBd}
+</if>
+<if test="upBe !=null"> 
+ and UP_BE = #{upBe}
+</if>
+<if test="upBf !=null"> 
+ and UP_BF = #{upBf}
+</if>
+<if test="upBg !=null"> 
+ and UP_BG = #{upBg}
+</if>
+<if test="upCa !=null"> 
+ and UP_CA = #{upCa}
+</if>
+<if test="upCb !=null"> 
+ and UP_CB = #{upCb}
+</if>
+<if test="upCc !=null"> 
+ and UP_CC = #{upCc}
+</if>
+<if test="upCd !=null"> 
+ and UP_CD = #{upCd}
+</if>
+<if test="upCe !=null"> 
+ and UP_CE = #{upCe}
+</if>
+<if test="upCf !=null"> 
+ and UP_CF = #{upCf}
+</if>
+<if test="upCg !=null"> 
+ and UP_CG = #{upCg}
+</if>
+<if test="remark !=null"> 
+ and REMARK = #{remark}
+</if>
+</where>
+</select>
+<insert id="insert" parameterType="MeterAssetsTestRecordDetailUpDomain" flushCache="true">
+insert into METER_ASSETS_TEST_RECORD_DETAIL_UP(ID,RECORD_ID,METER_ASSETS_ID,UP_AA,UP_AB,UP_AC,UP_AD,UP_AE,UP_AF,UP_AG,UP_BA,UP_BB,UP_BC,UP_BD,UP_BE,UP_BF,UP_BG,UP_CA,UP_CB,UP_CC,UP_CD,UP_CE,UP_CF,UP_CG,REMARK) values (#{id},#{recordId},#{meterAssetsId},#{upAa},#{upAb},#{upAc},#{upAd},#{upAe},#{upAf},#{upAg},#{upBa},#{upBb},#{upBc},#{upBd},#{upBe},#{upBf},#{upBg},#{upCa},#{upCb},#{upCc},#{upCd},#{upCe},#{upCf},#{upCg},#{remark})
+</insert>
+<update id="update" parameterType="MeterAssetsTestRecordDetailUpDomain" flushCache="true">
+update METER_ASSETS_TEST_RECORD_DETAIL_UP
+<set>
+<if test="recordId !=null">
+RECORD_ID = #{recordId},
+</if>
+<if test="meterAssetsId !=null">
+METER_ASSETS_ID = #{meterAssetsId},
+</if>
+<if test="upAa !=null">
+UP_AA = #{upAa},
+</if>
+<if test="upAb !=null">
+UP_AB = #{upAb},
+</if>
+<if test="upAc !=null">
+UP_AC = #{upAc},
+</if>
+<if test="upAd !=null">
+UP_AD = #{upAd},
+</if>
+<if test="upAe !=null">
+UP_AE = #{upAe},
+</if>
+<if test="upAf !=null">
+UP_AF = #{upAf},
+</if>
+<if test="upAg !=null">
+UP_AG = #{upAg},
+</if>
+<if test="upBa !=null">
+UP_BA = #{upBa},
+</if>
+<if test="upBb !=null">
+UP_BB = #{upBb},
+</if>
+<if test="upBc !=null">
+UP_BC = #{upBc},
+</if>
+<if test="upBd !=null">
+UP_BD = #{upBd},
+</if>
+<if test="upBe !=null">
+UP_BE = #{upBe},
+</if>
+<if test="upBf !=null">
+UP_BF = #{upBf},
+</if>
+<if test="upBg !=null">
+UP_BG = #{upBg},
+</if>
+<if test="upCa !=null">
+UP_CA = #{upCa},
+</if>
+<if test="upCb !=null">
+UP_CB = #{upCb},
+</if>
+<if test="upCc !=null">
+UP_CC = #{upCc},
+</if>
+<if test="upCd !=null">
+UP_CD = #{upCd},
+</if>
+<if test="upCe !=null">
+UP_CE = #{upCe},
+</if>
+<if test="upCf !=null">
+UP_CF = #{upCf},
+</if>
+<if test="upCg !=null">
+UP_CG = #{upCg},
+</if>
+<if test="remark !=null">
+REMARK = #{remark},
+</if>
+</set>
+<where>
+ and ID = #{id}
+
+</where>
+</update>
+<delete id="delete" parameterType="MeterAssetsTestRecordDetailUpDomain" flushCache="true">
+delete from METER_ASSETS_TEST_RECORD_DETAIL_UP
+<where>
+ and ID = #{id}
+
+</where>
+</delete>
+</mapper>

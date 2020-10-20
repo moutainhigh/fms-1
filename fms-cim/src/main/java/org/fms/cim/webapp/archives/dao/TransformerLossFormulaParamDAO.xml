@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.riozenc.cim.webapp.archives.dao.TransformerLossFormulaParamDAO">
+	<select id="findByKey"
+		parameterType="TransformerLossFormulaParamDomain"
+		resultType="TransformerLossFormulaParamDomain" useCache="true">
+		select
+		ID,TRANSFORMER_TYPE,CAPACITY,EMPTY_LOSE,EMPTY_CURRENT,LOAD_VOLTAGE,LOAD_LOSS,REMARK,STATUS,OPERATION_DATE,OPERATOR
+		from TRANSFORMER_LOSS_FORMULA_PARAM
+		<where>
+			and ID = #{id}
+
+		</where>
+	</select>
+	<select id="findByWhere"
+		parameterType="TransformerLossFormulaParamDomain"
+		resultType="TransformerLossFormulaParamDomain" useCache="true">
+		select
+		ID,TRANSFORMER_TYPE,CAPACITY,EMPTY_LOSE,EMPTY_CURRENT,LOAD_VOLTAGE,LOAD_LOSS,REMARK,STATUS,OPERATION_DATE,OPERATOR
+		from TRANSFORMER_LOSS_FORMULA_PARAM
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+			<if test="transformerType !=null">
+				and TRANSFORMER_TYPE = #{transformerType}
+			</if>
+			<if test="capacity !=null">
+				and CAPACITY = #{capacity}
+			</if>
+			<if test="emptyLose !=null">
+				and EMPTY_LOSE = #{emptyLose}
+			</if>
+			<if test="emptyCurrent !=null">
+				and EMPTY_CURRENT = #{emptyCurrent}
+			</if>
+			<if test="loadVoltage !=null">
+				and LOAD_VOLTAGE = #{loadVoltage}
+			</if>
+			<if test="loadLoss !=null">
+				and LOAD_LOSS = #{loadLoss}
+			</if>
+			<if test="remark !=null">
+				and REMARK = #{remark}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+			<if test="operationDate !=null">
+				and OPERATION_DATE = #{operationDate}
+			</if>
+			<if test="operator !=null">
+				and OPERATOR = #{operator}
+			</if>
+		</where>
+	</select>
+	<insert id="insert"
+		parameterType="TransformerLossFormulaParamDomain" flushCache="true">
+		insert into
+		TRANSFORMER_LOSS_FORMULA_PARAM(ID,TRANSFORMER_TYPE,CAPACITY,EMPTY_LOSE,EMPTY_CURRENT,LOAD_VOLTAGE,LOAD_LOSS,REMARK,STATUS,OPERATION_DATE,OPERATOR)
+		values
+		(#{id},#{transformerType},#{capacity},#{emptyLose},#{emptyCurrent},#{loadVoltage},#{loadLoss},#{remark},#{status},#{operationDate},#{operator})
+	</insert>
+	<update id="update"
+		parameterType="TransformerLossFormulaParamDomain" flushCache="true">
+		update TRANSFORMER_LOSS_FORMULA_PARAM
+		<set>
+			<if test="transformerType !=null">
+				TRANSFORMER_TYPE = #{transformerType},
+			</if>
+			<if test="capacity !=null">
+				CAPACITY = #{capacity},
+			</if>
+			<if test="emptyLose !=null">
+				EMPTY_LOSE = #{emptyLose},
+			</if>
+			<if test="emptyCurrent !=null">
+				EMPTY_CURRENT = #{emptyCurrent},
+			</if>
+			<if test="loadVoltage !=null">
+				LOAD_VOLTAGE = #{loadVoltage},
+			</if>
+			<if test="loadLoss !=null">
+				LOAD_LOSS = #{loadLoss},
+			</if>
+			<if test="remark !=null">
+				REMARK = #{remark},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status},
+			</if>
+			<if test="operationDate !=null">
+				OPERATION_DATE = #{operationDate},
+			</if>
+			<if test="operator !=null">
+				OPERATOR = #{operator},
+			</if>
+		</set>
+		<where>
+			and ID = #{id}
+
+		</where>
+	</update>
+	<delete id="delete"
+		parameterType="TransformerLossFormulaParamDomain" flushCache="true">
+		delete from TRANSFORMER_LOSS_FORMULA_PARAM
+		<where>
+			and ID = #{id}
+
+		</where>
+	</delete>
+</mapper>

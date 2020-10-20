@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.CustomerDAO">
+		<sql id = "Base_Column_List">
+				ID,CUSTOMER_NO,CUSTOMER_NAME,CUSTOMER_NAME_SPELL,ADDRESS,ADDRESS_SPELL,CARD_TYPE,CARD_NO,LINK_MAN,CONTACT_INFORMATION,
+				CREATE_DATE,CANCEL_DATE,REMARK,STATUS,SPARE_LINK_MAN,SPARE_CONTACT_INFORMATION,BUSINESS_PLACE_CODE,WE_CHAT_FLAG,INSIDE_FLAG
+		</sql>
+
+	
+	<select id="findByKey" parameterType="CustomerDomain"
+		resultType="CustomerDomain" useCache="true">
+		select
+			<include refid="Base_Column_List" />
+		from CUSTOMER_INFO
+		<where>
+			and ID = #{id}
+
+		</where>
+	</select>
+	<select id="findByWhere" parameterType="CustomerDomain"
+		resultType="CustomerDomain" useCache="false">
+		select
+			<include refid="Base_Column_List" />
+		from CUSTOMER_INFO
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+			<if test="customerNo !=null">
+				and CUSTOMER_NO = #{customerNo}
+			</if>
+			<if test="customerName !=null">
+				and CUSTOMER_NAME like CONCAT('%',#{customerName},'%')
+			</if>
+			<if test="customerNameSpell !=null">
+				and CUSTOMER_NAME_SPELL like CONCAT('%',#{customerNameSpell},'%')
+			</if>
+			<if test="address !=null">
+				and ADDRESS like CONCAT('%',#{address},'%')
+			</if>
+			<if test="addressSpell !=null">
+				and ADDRESS_SPELL = #{addressSpell}
+			</if>
+			<if test="cardType !=null">
+				and CARD_TYPE = #{cardType}
+			</if>
+			<if test="cardNo !=null">
+				and CARD_NO = #{cardNo}
+			</if>
+			<if test="linkMan !=null">
+				and LINK_MAN = #{linkMan}
+			</if>
+			<if test="contactInformation !=null">
+				and CONTACT_INFORMATION = #{contactInformation}
+			</if>
+			<if test="createDate !=null">
+				and CREATE_DATE = #{createDate}
+			</if>
+			<if test="cancelDate !=null">
+				and CANCEL_DATE = #{cancelDate}
+			</if>
+			<if test="remark !=null">
+				and REMARK = #{remark}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+			<if test="businessPlaceCode !=null">
+				and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+			</if>
+			<if test="weChatFlag !=null">
+				and WE_CHAT_FLAG = #{weChatFlag}
+			</if>
+			<if test="insideFlag !=null">
+				and INSIDE_FLAG = #{insideFlag}
+			</if>
+		</where>
+		ORDER BY ID DESC 
+	</select>
+	
+	
+	<select id="getCustomerByNo" parameterType="CustomerDomain"
+		resultType="CustomerDomain" useCache="false">
+		select
+			<include refid="Base_Column_List" />
+		from CUSTOMER_INFO
+		<where>
+			<if test="customerNo !=null">
+				and CUSTOMER_NO = #{customerNo}
+			</if>
+			<if test="customerName !=null">
+				and CUSTOMER_NAME = #{customerName}
+			</if>
+		</where>
+	</select>
+	
+	
+	
+	<insert id="insert" parameterType="CustomerDomain" useGeneratedKeys="true" keyProperty="id"
+		flushCache="true">
+		insert into
+		CUSTOMER_INFO(
+			<include refid="Base_Column_List" />	
+		)
+		values
+		(#{id},#{customerNo},#{customerName},#{customerNameSpell},#{address},#{addressSpell},#{cardType},#{cardNo},#{linkMan},#{contactInformation},#{createDate},#{cancelDate},#{remark},#{status},#{spareLinkMan},#{spareContactInformation},#{businessPlaceCode},#{weChatFlag},#{insideFlag})
+	</insert>
+	<update id="update" parameterType="CustomerDomain"
+		flushCache="true">
+		update CUSTOMER_INFO
+		<set>
+			<if test="customerNo !=null">
+				CUSTOMER_NO = #{customerNo},
+			</if>
+			<if test="customerName !=null">
+				CUSTOMER_NAME = #{customerName},
+			</if>
+			<if test="customerNameSpell !=null">
+				CUSTOMER_NAME_SPELL = #{customerNameSpell},
+			</if>
+			<if test="address !=null">
+				ADDRESS = #{address},
+			</if>
+			<if test="addressSpell !=null">
+				ADDRESS_SPELL = #{addressSpell},
+			</if>
+			<if test="cardType !=null">
+				CARD_TYPE = #{cardType},
+			</if>
+			<if test="cardNo !=null">
+				CARD_NO = #{cardNo},
+			</if>
+			<if test="linkMan !=null">
+				LINK_MAN = #{linkMan},
+			</if>
+			<if test="contactInformation !=null">
+				CONTACT_INFORMATION = #{contactInformation},
+			</if>
+			<if test="createDate !=null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="cancelDate !=null">
+				CANCEL_DATE = #{cancelDate},
+			</if>
+			<if test="remark !=null">
+				REMARK = #{remark},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status},
+			</if>
+			<if test="businessPlaceCode !=null">
+				BUSINESS_PLACE_CODE = #{businessPlaceCode},
+			</if>
+			<if test="weChatFlag !=null">
+				WE_CHAT_FLAG = #{weChatFlag},
+			</if>
+			<if test="spareLinkMan !=null">
+				SPARE_LINK_MAN = #{spareLinkMan},
+			</if>
+			<if test="spareContactInformation !=null">
+				SPARE_CONTACT_INFORMATION = #{spareContactInformation},
+			</if>
+			<if test="insideFlag !=null">
+				INSIDE_FLAG = #{insideFlag}
+			</if>
+		</set>
+		<where>
+			and ID = #{id}
+
+		</where>
+	</update>
+	<delete id="delete" parameterType="CustomerDomain"
+		flushCache="true">
+		delete from CUSTOMER_INFO
+		<where>
+			and ID = #{id}
+
+		</where>
+	</delete>
+
+	<select id="getCustomerByIds" resultType="CustomerDomain" useCache="true">
+		
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM	CUSTOMER_INFO	WHERE ID IN 		
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+	</select>
+
+
+<select id="customerNoDC" parameterType="CustomerDomain"
+		resultType="CustomerDomain" useCache="true">
+		select
+			<include refid="Base_Column_List" />
+		from CUSTOMER_INFO
+		<where>
+			<if test="id !=null">
+				and ID != #{id}
+			</if>
+			<if test="customerNo !=null">
+				and CUSTOMER_NO =#{customerNo}
+	
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+	
+		</where>
+	</select>
+	
+</mapper>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.assets.dao.InductorAssetsTestRecordDAO">
+<select id="findByKey" parameterType="InductorAssetsTestRecordDomain" resultType="InductorAssetsTestRecordDomain" useCache="true">
+select ID,REPORT_NO,INDUCTOR_ASSETS_I_D1,INDUCTOR_ASSETS_I_D2,INDUCTOR_ASSETS_I_D3,INSPECTION_DEPT,DEVICE_NAME,SPECS,MADE_NAME,RATIFIER,VERIFIER,CHECKER,TEST_DATE,VALIDITY,TEMPERATURE,HUMIDITY,PRIMARY_CURRENT,SECONDARY_CURRENT,PRIMARY_VOLT,SECONDARY_VOLT,COS,POLARITY,INSULATION,PFVWT,VERIFICATION_CONCLUSION,CREATE_DATE,REMARK from INDUCTOR_ASSETS_TEST_RECORD<where>
+ and ID = #{id}
+
+</where>
+</select>
+<select id="findByWhere" parameterType="InductorAssetsTestRecordDomain" resultType="InductorAssetsTestRecordDomain" useCache="true">
+select ID,REPORT_NO,INDUCTOR_ASSETS_I_D1,INDUCTOR_ASSETS_I_D2,INDUCTOR_ASSETS_I_D3,INSPECTION_DEPT,DEVICE_NAME,SPECS,MADE_NAME,RATIFIER,VERIFIER,CHECKER,TEST_DATE,VALIDITY,TEMPERATURE,HUMIDITY,PRIMARY_CURRENT,SECONDARY_CURRENT,PRIMARY_VOLT,SECONDARY_VOLT,COS,POLARITY,INSULATION,PFVWT,VERIFICATION_CONCLUSION,CREATE_DATE,REMARK from INDUCTOR_ASSETS_TEST_RECORD
+<where>
+<if test="id !=null"> 
+ and ID = #{id}
+</if>
+<if test="reportNo !=null"> 
+ and REPORT_NO = #{reportNo}
+</if>
+<if test="inductorAssetsID1 !=null"> 
+ and INDUCTOR_ASSETS_I_D1 = #{inductorAssetsID1}
+</if>
+<if test="inductorAssetsID2 !=null"> 
+ and INDUCTOR_ASSETS_I_D2 = #{inductorAssetsID2}
+</if>
+<if test="inductorAssetsID3 !=null"> 
+ and INDUCTOR_ASSETS_I_D3 = #{inductorAssetsID3}
+</if>
+<if test="inspectionDept !=null"> 
+ and INSPECTION_DEPT = #{inspectionDept}
+</if>
+<if test="deviceName !=null"> 
+ and DEVICE_NAME = #{deviceName}
+</if>
+<if test="specs !=null"> 
+ and SPECS = #{specs}
+</if>
+<if test="madeName !=null"> 
+ and MADE_NAME = #{madeName}
+</if>
+<if test="ratifier !=null"> 
+ and RATIFIER = #{ratifier}
+</if>
+<if test="verifier !=null"> 
+ and VERIFIER = #{verifier}
+</if>
+<if test="checker !=null"> 
+ and CHECKER = #{checker}
+</if>
+<if test="testDate !=null"> 
+ and TEST_DATE = #{testDate}
+</if>
+<if test="validity !=null"> 
+ and VALIDITY = #{validity}
+</if>
+<if test="temperature !=null"> 
+ and TEMPERATURE = #{temperature}
+</if>
+<if test="humidity !=null"> 
+ and HUMIDITY = #{humidity}
+</if>
+<if test="primaryCurrent !=null"> 
+ and PRIMARY_CURRENT = #{primaryCurrent}
+</if>
+<if test="secondaryCurrent !=null"> 
+ and SECONDARY_CURRENT = #{secondaryCurrent}
+</if>
+<if test="primaryVolt !=null"> 
+ and PRIMARY_VOLT = #{primaryVolt}
+</if>
+<if test="secondaryVolt !=null"> 
+ and SECONDARY_VOLT = #{secondaryVolt}
+</if>
+<if test="cos !=null"> 
+ and COS = #{cos}
+</if>
+<if test="polarity !=null"> 
+ and POLARITY = #{polarity}
+</if>
+<if test="insulation !=null"> 
+ and INSULATION = #{insulation}
+</if>
+<if test="pfvwt !=null"> 
+ and PFVWT = #{pfvwt}
+</if>
+<if test="verificationConclusion !=null"> 
+ and VERIFICATION_CONCLUSION = #{verificationConclusion}
+</if>
+<if test="createDate !=null"> 
+ and CREATE_DATE = #{createDate}
+</if>
+<if test="remark !=null"> 
+ and REMARK = #{remark}
+</if>
+</where>
+</select>
+<insert id="insert" parameterType="InductorAssetsTestRecordDomain" flushCache="true">
+insert into INDUCTOR_ASSETS_TEST_RECORD(ID,REPORT_NO,INDUCTOR_ASSETS_I_D1,INDUCTOR_ASSETS_I_D2,INDUCTOR_ASSETS_I_D3,INSPECTION_DEPT,DEVICE_NAME,SPECS,MADE_NAME,RATIFIER,VERIFIER,CHECKER,TEST_DATE,VALIDITY,TEMPERATURE,HUMIDITY,PRIMARY_CURRENT,SECONDARY_CURRENT,PRIMARY_VOLT,SECONDARY_VOLT,COS,POLARITY,INSULATION,PFVWT,VERIFICATION_CONCLUSION,CREATE_DATE,REMARK) values (#{id},#{reportNo},#{inductorAssetsID1},#{inductorAssetsID2},#{inductorAssetsID3},#{inspectionDept},#{deviceName},#{specs},#{madeName},#{ratifier},#{verifier},#{checker},#{testDate},#{validity},#{temperature},#{humidity},#{primaryCurrent},#{secondaryCurrent},#{primaryVolt},#{secondaryVolt},#{cos},#{polarity},#{insulation},#{pfvwt},#{verificationConclusion},#{createDate},#{remark})
+</insert>
+<update id="update" parameterType="InductorAssetsTestRecordDomain" flushCache="true">
+update INDUCTOR_ASSETS_TEST_RECORD
+<set>
+<if test="reportNo !=null">
+REPORT_NO = #{reportNo},
+</if>
+<if test="inductorAssetsID1 !=null">
+INDUCTOR_ASSETS_I_D1 = #{inductorAssetsID1},
+</if>
+<if test="inductorAssetsID2 !=null">
+INDUCTOR_ASSETS_I_D2 = #{inductorAssetsID2},
+</if>
+<if test="inductorAssetsID3 !=null">
+INDUCTOR_ASSETS_I_D3 = #{inductorAssetsID3},
+</if>
+<if test="inspectionDept !=null">
+INSPECTION_DEPT = #{inspectionDept},
+</if>
+<if test="deviceName !=null">
+DEVICE_NAME = #{deviceName},
+</if>
+<if test="specs !=null">
+SPECS = #{specs},
+</if>
+<if test="madeName !=null">
+MADE_NAME = #{madeName},
+</if>
+<if test="ratifier !=null">
+RATIFIER = #{ratifier},
+</if>
+<if test="verifier !=null">
+VERIFIER = #{verifier},
+</if>
+<if test="checker !=null">
+CHECKER = #{checker},
+</if>
+<if test="testDate !=null">
+TEST_DATE = #{testDate},
+</if>
+<if test="validity !=null">
+VALIDITY = #{validity},
+</if>
+<if test="temperature !=null">
+TEMPERATURE = #{temperature},
+</if>
+<if test="humidity !=null">
+HUMIDITY = #{humidity},
+</if>
+<if test="primaryCurrent !=null">
+PRIMARY_CURRENT = #{primaryCurrent},
+</if>
+<if test="secondaryCurrent !=null">
+SECONDARY_CURRENT = #{secondaryCurrent},
+</if>
+<if test="primaryVolt !=null">
+PRIMARY_VOLT = #{primaryVolt},
+</if>
+<if test="secondaryVolt !=null">
+SECONDARY_VOLT = #{secondaryVolt},
+</if>
+<if test="cos !=null">
+COS = #{cos},
+</if>
+<if test="polarity !=null">
+POLARITY = #{polarity},
+</if>
+<if test="insulation !=null">
+INSULATION = #{insulation},
+</if>
+<if test="pfvwt !=null">
+PFVWT = #{pfvwt},
+</if>
+<if test="verificationConclusion !=null">
+VERIFICATION_CONCLUSION = #{verificationConclusion},
+</if>
+<if test="createDate !=null">
+CREATE_DATE = #{createDate},
+</if>
+<if test="remark !=null">
+REMARK = #{remark},
+</if>
+</set>
+<where>
+ and ID = #{id}
+
+</where>
+</update>
+<delete id="delete" parameterType="InductorAssetsTestRecordDomain" flushCache="true">
+delete from INDUCTOR_ASSETS_TEST_RECORD
+<where>
+ and ID = #{id}
+
+</where>
+</delete>
+</mapper>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.riozenc.cim.webapp.assets.dao.MeterAssetsLogDAO">
+	<select id="findByKey" parameterType="MeterAssetsLogDomain"
+		resultType="MeterAssetsLogDomain" useCache="true">
+		select
+		ID,METER_ASSETS_NO,MADE_NO,FUNC_KIND_CODE,POWER_KIND_CODE,FIXED_ASSETS_FLAG,FAC_CODE,MODEL_CODE,RATED_VOLT_CODE,RATED_CURNT_CODE,ACCU_LEVEL_CODE,PHASE_LINE,IS_TS_METER,STRUCT_CODE,METER_CONST,CONST_UNIT,FACTOR,MADE_STDARD,AXE_STRUCT_CODE,METERYARD_TYPE,NO_RETURN_FLAG,IS_CARD,CONNECT_MODE,MADE_DATE,BAY_DATE,LIFE_SPAN,MAN_ID,STATE_FLAG,STATUS_CHG_DATE,STATUS_CHG_REASON,LAST_DET_DATE,DET_PERIOD,RIGHT_ATTACH,SIM_NO,NUM_DIGIT,BAR_CODE,DEPT_ID,CREATE_DATE,REMARK,STATUS,OPERATION,OPERATOR,OPERATION_DATE
+		from METER_ASSETS_LOG
+		<where>
+			and ID = #{id}
+
+		</where>
+	</select>
+	<select id="findByWhere" parameterType="MeterAssetsLogDomain"
+		resultType="MeterAssetsLogDomain" useCache="true">
+		select
+		ID,METER_ASSETS_NO,MADE_NO,FUNC_KIND_CODE,POWER_KIND_CODE,FIXED_ASSETS_FLAG,FAC_CODE,MODEL_CODE,RATED_VOLT_CODE,RATED_CURNT_CODE,ACCU_LEVEL_CODE,PHASE_LINE,IS_TS_METER,STRUCT_CODE,METER_CONST,CONST_UNIT,FACTOR,MADE_STDARD,AXE_STRUCT_CODE,METERYARD_TYPE,NO_RETURN_FLAG,IS_CARD,CONNECT_MODE,MADE_DATE,BAY_DATE,LIFE_SPAN,MAN_ID,STATE_FLAG,STATUS_CHG_DATE,STATUS_CHG_REASON,LAST_DET_DATE,DET_PERIOD,RIGHT_ATTACH,SIM_NO,NUM_DIGIT,BAR_CODE,DEPT_ID,CREATE_DATE,REMARK,STATUS,OPERATION,OPERATOR,OPERATION_DATE
+		from METER_ASSETS_LOG
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+			<if test="meterAssetsNo !=null">
+				and METER_ASSETS_NO = #{meterAssetsNo}
+			</if>
+			<if test="madeNo !=null">
+				and MADE_NO = #{madeNo}
+			</if>
+			<if test="funcKindCode !=null">
+				and FUNC_KIND_CODE = #{funcKindCode}
+			</if>
+			<if test="powerKindCode !=null">
+				and POWER_KIND_CODE = #{powerKindCode}
+			</if>
+			<if test="fixedAssetsFlag !=null">
+				and FIXED_ASSETS_FLAG = #{fixedAssetsFlag}
+			</if>
+			<if test="facCode !=null">
+				and FAC_CODE = #{facCode}
+			</if>
+			<if test="modelCode !=null">
+				and MODEL_CODE = #{modelCode}
+			</if>
+			<if test="ratedVoltCode !=null">
+				and RATED_VOLT_CODE = #{ratedVoltCode}
+			</if>
+			<if test="ratedCurntCode !=null">
+				and RATED_CURNT_CODE = #{ratedCurntCode}
+			</if>
+			<if test="accuLevelCode !=null">
+				and ACCU_LEVEL_CODE = #{accuLevelCode}
+			</if>
+			<if test="phaseLine !=null">
+				and PHASE_LINE = #{phaseLine}
+			</if>
+			<if test="isTsMeter !=null">
+				and IS_TS_METER = #{isTsMeter}
+			</if>
+			<if test="structCode !=null">
+				and STRUCT_CODE = #{structCode}
+			</if>
+			<if test="meterConst !=null">
+				and METER_CONST = #{meterConst}
+			</if>
+			<if test="constUnit !=null">
+				and CONST_UNIT = #{constUnit}
+			</if>
+			<if test="factor !=null">
+				and FACTOR = #{factor}
+			</if>
+			<if test="madeStdard !=null">
+				and MADE_STDARD = #{madeStdard}
+			</if>
+			<if test="axeStructCode !=null">
+				and AXE_STRUCT_CODE = #{axeStructCode}
+			</if>
+			<if test="meteryardType !=null">
+				and METERYARD_TYPE = #{meteryardType}
+			</if>
+			<if test="noReturnFlag !=null">
+				and NO_RETURN_FLAG = #{noReturnFlag}
+			</if>
+			<if test="isCard !=null">
+				and IS_CARD = #{isCard}
+			</if>
+			<if test="connectMode !=null">
+				and CONNECT_MODE = #{connectMode}
+			</if>
+			<if test="madeDate !=null">
+				and MADE_DATE = #{madeDate}
+			</if>
+			<if test="bayDate !=null">
+				and BAY_DATE = #{bayDate}
+			</if>
+			<if test="lifeSpan !=null">
+				and LIFE_SPAN = #{lifeSpan}
+			</if>
+			<if test="manId !=null">
+				and MAN_ID = #{manId}
+			</if>
+			<if test="stateFlag !=null">
+				and STATE_FLAG = #{stateFlag}
+			</if>
+			<if test="statusChgDate !=null">
+				and STATUS_CHG_DATE = #{statusChgDate}
+			</if>
+			<if test="statusChgReason !=null">
+				and STATUS_CHG_REASON = #{statusChgReason}
+			</if>
+			<if test="lastDetDate !=null">
+				and LAST_DET_DATE = #{lastDetDate}
+			</if>
+			<if test="detPeriod !=null">
+				and DET_PERIOD = #{detPeriod}
+			</if>
+			<if test="rightAttach !=null">
+				and RIGHT_ATTACH = #{rightAttach}
+			</if>
+			<if test="simNo !=null">
+				and SIM_NO = #{simNo}
+			</if>
+			<if test="numDigit !=null">
+				and NUM_DIGIT = #{numDigit}
+			</if>
+			<if test="barCode !=null">
+				and BAR_CODE = #{barCode}
+			</if>
+			<if test="deptId !=null">
+				and DEPT_ID = #{deptId}
+			</if>
+			<if test="createDate !=null">
+				and CREATE_DATE = #{createDate}
+			</if>
+			<if test="remark !=null">
+				and REMARK = #{remark}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+			<if test="operation !=null">
+				and OPERATION = #{operation}
+			</if>
+			<if test="operator !=null">
+				and OPERATOR = #{operator}
+			</if>
+			<if test="operationDate !=null">
+				and OPERATION_DATE = #{operationDate}
+			</if>
+		</where>
+	</select>
+	<insert id="insert" parameterType="MeterAssetsLogDomain"
+		flushCache="true">
+		insert into
+		METER_ASSETS_LOG(METER_ASSETS_NO,MADE_NO,FUNC_KIND_CODE,POWER_KIND_CODE,FIXED_ASSETS_FLAG,FAC_CODE,MODEL_CODE,RATED_VOLT_CODE,RATED_CURNT_CODE,ACCU_LEVEL_CODE,PHASE_LINE,IS_TS_METER,STRUCT_CODE,METER_CONST,CONST_UNIT,FACTOR,MADE_STDARD,AXE_STRUCT_CODE,METERYARD_TYPE,NO_RETURN_FLAG,IS_CARD,CONNECT_MODE,MADE_DATE,BAY_DATE,LIFE_SPAN,MAN_ID,STATE_FLAG,STATUS_CHG_DATE,STATUS_CHG_REASON,LAST_DET_DATE,DET_PERIOD,RIGHT_ATTACH,SIM_NO,NUM_DIGIT,BAR_CODE,DEPT_ID,CREATE_DATE,REMARK,STATUS,OPERATION,OPERATOR,OPERATION_DATE)
+		values
+		(#{meterAssetsNo},#{madeNo},#{funcKindCode},#{powerKindCode},#{fixedAssetsFlag},#{facCode},#{modelCode},#{ratedVoltCode},#{ratedCurntCode},#{accuLevelCode},#{phaseLine},#{isTsMeter},#{structCode},#{meterConst},#{constUnit},#{factor},#{madeStdard},#{axeStructCode},#{meteryardType},#{noReturnFlag},#{isCard},#{connectMode},#{madeDate},#{bayDate},#{lifeSpan},#{manId},#{stateFlag},#{statusChgDate},#{statusChgReason},#{lastDetDate},#{detPeriod},#{rightAttach},#{simNo},#{numDigit},#{barCode},#{deptId},#{createDate},#{remark},#{status},#{operation},#{operator},#{operationDate})
+	</insert>
+	<update id="update" parameterType="MeterAssetsLogDomain"
+		flushCache="true">
+		update METER_ASSETS_LOG
+		<set>
+			<if test="meterAssetsNo !=null">
+				METER_ASSETS_NO = #{meterAssetsNo},
+			</if>
+			<if test="madeNo !=null">
+				MADE_NO = #{madeNo},
+			</if>
+			<if test="funcKindCode !=null">
+				FUNC_KIND_CODE = #{funcKindCode},
+			</if>
+			<if test="powerKindCode !=null">
+				POWER_KIND_CODE = #{powerKindCode},
+			</if>
+			<if test="fixedAssetsFlag !=null">
+				FIXED_ASSETS_FLAG = #{fixedAssetsFlag},
+			</if>
+			<if test="facCode !=null">
+				FAC_CODE = #{facCode},
+			</if>
+			<if test="modelCode !=null">
+				MODEL_CODE = #{modelCode},
+			</if>
+			<if test="ratedVoltCode !=null">
+				RATED_VOLT_CODE = #{ratedVoltCode},
+			</if>
+			<if test="ratedCurntCode !=null">
+				RATED_CURNT_CODE = #{ratedCurntCode},
+			</if>
+			<if test="accuLevelCode !=null">
+				ACCU_LEVEL_CODE = #{accuLevelCode},
+			</if>
+			<if test="phaseLine !=null">
+				PHASE_LINE = #{phaseLine},
+			</if>
+			<if test="isTsMeter !=null">
+				IS_TS_METER = #{isTsMeter},
+			</if>
+			<if test="structCode !=null">
+				STRUCT_CODE = #{structCode},
+			</if>
+			<if test="meterConst !=null">
+				METER_CONST = #{meterConst},
+			</if>
+			<if test="constUnit !=null">
+				CONST_UNIT = #{constUnit},
+			</if>
+			<if test="factor !=null">
+				FACTOR = #{factor},
+			</if>
+			<if test="madeStdard !=null">
+				MADE_STDARD = #{madeStdard},
+			</if>
+			<if test="axeStructCode !=null">
+				AXE_STRUCT_CODE = #{axeStructCode},
+			</if>
+			<if test="meteryardType !=null">
+				METERYARD_TYPE = #{meteryardType},
+			</if>
+			<if test="noReturnFlag !=null">
+				NO_RETURN_FLAG = #{noReturnFlag},
+			</if>
+			<if test="isCard !=null">
+				IS_CARD = #{isCard},
+			</if>
+			<if test="connectMode !=null">
+				CONNECT_MODE = #{connectMode},
+			</if>
+			<if test="madeDate !=null">
+				MADE_DATE = #{madeDate},
+			</if>
+			<if test="bayDate !=null">
+				BAY_DATE = #{bayDate},
+			</if>
+			<if test="lifeSpan !=null">
+				LIFE_SPAN = #{lifeSpan},
+			</if>
+			<if test="manId !=null">
+				MAN_ID = #{manId},
+			</if>
+			<if test="stateFlag !=null">
+				STATE_FLAG = #{stateFlag},
+			</if>
+			<if test="statusChgDate !=null">
+				STATUS_CHG_DATE = #{statusChgDate},
+			</if>
+			<if test="statusChgReason !=null">
+				STATUS_CHG_REASON = #{statusChgReason},
+			</if>
+			<if test="lastDetDate !=null">
+				LAST_DET_DATE = #{lastDetDate},
+			</if>
+			<if test="detPeriod !=null">
+				DET_PERIOD = #{detPeriod},
+			</if>
+			<if test="rightAttach !=null">
+				RIGHT_ATTACH = #{rightAttach},
+			</if>
+			<if test="simNo !=null">
+				SIM_NO = #{simNo},
+			</if>
+			<if test="numDigit !=null">
+				NUM_DIGIT = #{numDigit},
+			</if>
+			<if test="barCode !=null">
+				BAR_CODE = #{barCode},
+			</if>
+			<if test="deptId !=null">
+				DEPT_ID = #{deptId},
+			</if>
+			<if test="createDate !=null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="remark !=null">
+				REMARK = #{remark},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status},
+			</if>
+			<if test="operation !=null">
+				OPERATION = #{operation},
+			</if>
+			<if test="operator !=null">
+				OPERATOR = #{operator},
+			</if>
+			<if test="operationDate !=null">
+				OPERATION_DATE = #{operationDate},
+			</if>
+		</set>
+		<where>
+			and ID = #{id}
+
+		</where>
+	</update>
+	<delete id="delete" parameterType="MeterAssetsLogDomain"
+		flushCache="true">
+		delete from METER_ASSETS_LOG
+		<where>
+			and ID = #{id}
+
+		</where>
+	</delete>
+</mapper>

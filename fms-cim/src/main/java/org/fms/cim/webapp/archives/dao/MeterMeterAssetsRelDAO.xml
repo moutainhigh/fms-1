@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.MeterMeterAssetsRelDAO">
+    
+    <sql id="Base_Column_List">
+       ID,METER_ID,METER_ASSETS_ID,PHASE_SEQ,FUNCTION_CODE,POWER_DIRECTION,METER_ORDER,TS_FLAG,CREATE_DATE,MULTIPLYING_POWER,STATUS,WRITE_SN,FACTOR_NUM,METER_SN
+    </sql>
+    <select id="findByKey" parameterType="MeterMeterAssetsRelDomain"
+            resultType="MeterMeterAssetsRelDomain" useCache="true">
+        select
+		<include refid="Base_Column_List" />
+        from METER_METER_ASSETS_REL
+        <where>
+            and ID = #{id}
+
+        </where>
+    </select>
+    <select id="findByWhere" parameterType="MeterMeterAssetsRelDomain"
+            resultType="MeterMeterAssetsRelDomain" useCache="true">
+        select
+		<include refid="Base_Column_List" />
+        from METER_METER_ASSETS_REL
+        <where>
+            <if test="id !=null">
+                and ID = #{id}
+            </if>
+            <if test="meterId !=null">
+                and METER_ID = #{meterId}
+            </if>
+            <if test="meterAssetsId !=null">
+                and METER_ASSETS_ID = #{meterAssetsId}
+            </if>
+            <if test="phaseSeq !=null">
+                and PHASE_SEQ = #{phaseSeq}
+            </if>
+            <if test="functionCode !=null">
+                and FUNCTION_CODE = #{functionCode}
+            </if>
+            <if test="powerDirection !=null">
+                and POWER_DIRECTION = #{powerDirection}
+            </if>
+            <if test="meterOrder !=null">
+                and METER_ORDER = #{meterOrder}
+            </if>
+            <if test="tsFlag !=null">
+                and TS_FLAG = #{tsFlag}
+            </if>
+            <if test="createDate !=null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="multiplyingPower !=null">
+                and MULTIPLYING_POWER = #{multiplyingPower}
+            </if>
+            <if test="status !=null">
+                and STATUS = #{status}
+            </if>
+            <if test="writeSn !=null">
+                and WRITE_SN = #{writeSn}
+            </if>
+            <if test="factorNum !=null">
+                and FACTOR_NUM = #{factorNum}
+            </if>
+            <if test="meterSn !=null">
+                and METER_SN = #{meterSn}
+            </if>
+            <if test="meterAssetsIds != null and meterAssetsIds.size > 0">
+                and METER_ASSETS_ID in
+                <foreach item="item" index="index" collection="meterAssetsIds" open="("
+                         separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    <insert id="insert" parameterType="MeterMeterAssetsRelDomain"
+            flushCache="true">
+		insert into
+		METER_METER_ASSETS_REL(ID,METER_ID,METER_ASSETS_ID,PHASE_SEQ,FUNCTION_CODE,
+		POWER_DIRECTION,METER_ORDER,TS_FLAG,CREATE_DATE,MULTIPLYING_POWER,STATUS,WRITE_SN,FACTOR_NUM,METER_SN) 
+		values (#{id},#{meterId},#{meterAssetsId},#{phaseSeq},#{functionCode},#{powerDirection},#{meterOrder},
+		#{tsFlag},#{createDate},#{multiplyingPower},#{status},#{writeSn},#{factorNum},#{meterSn})
+	</insert>
+    <update id="update" parameterType="MeterMeterAssetsRelDomain"
+            flushCache="true">
+        update METER_METER_ASSETS_REL
+        <set>
+            <if test="meterId !=null">
+                METER_ID = #{meterId},
+            </if>
+            <if test="meterAssetsId !=null">
+                METER_ASSETS_ID = #{meterAssetsId},
+            </if>
+            <if test="phaseSeq !=null">
+                PHASE_SEQ = #{phaseSeq},
+            </if>
+            <if test="functionCode !=null">
+                FUNCTION_CODE = #{functionCode},
+            </if>
+            <if test="powerDirection !=null">
+                POWER_DIRECTION = #{powerDirection},
+            </if>
+            <if test="meterOrder !=null">
+                METER_ORDER = #{meterOrder},
+            </if>
+            <if test="tsFlag !=null">
+                TS_FLAG = #{tsFlag},
+            </if>
+            <if test="createDate !=null">
+                CREATE_DATE = #{createDate},
+            </if>
+            <if test="multiplyingPower !=null">
+                MULTIPLYING_POWER = #{multiplyingPower},
+            </if>
+            <if test="status !=null">
+                STATUS = #{status},
+            </if>
+            <if test="writeSn !=null">
+                WRITE_SN = #{writeSn},
+            </if>
+            <if test="factorNum !=null">
+                FACTOR_NUM = #{factorNum},
+            </if>
+        </set>
+        <where>
+            and ID = #{id}
+
+        </where>
+    </update>
+    
+    <update id="updateList" parameterType="MeterMeterAssetsRelDomain"
+            flushCache="true">
+        update METER_METER_ASSETS_REL
+        <set>
+           
+            <if test="phaseSeq !=null">
+                PHASE_SEQ = #{phaseSeq},
+            </if>
+            <if test="functionCode !=null">
+                FUNCTION_CODE = #{functionCode},
+            </if>
+            <if test="powerDirection !=null">
+                POWER_DIRECTION = #{powerDirection},
+            </if>
+            <if test="writeSn !=null">
+                WRITE_SN = #{writeSn},
+            </if>
+           
+        </set>
+        <where>
+            <if test="id !=null">
+                and ID = #{id}
+            </if>
+            <if test="meterId !=null">
+                and METER_ID = #{meterId}
+            </if>
+
+        </where>
+    </update>
+    
+    <delete id="delete" parameterType="MeterMeterAssetsRelDomain"
+            flushCache="true">
+        delete from METER_METER_ASSETS_REL
+        <where>
+            <if test="id !=null">
+                and ID = #{id}
+            </if>
+            <if test="meterId !=null">
+                and METER_ID = #{meterId}
+            </if>
+            <if test="meterAssetsId !=null">
+                and METER_ASSETS_ID = #{meterAssetsId}
+            </if>
+            <if test="phaseSeq !=null">
+                and PHASE_SEQ = #{phaseSeq}
+            </if>
+            <if test="functionCode !=null">
+                and FUNCTION_CODE = #{functionCode}
+            </if>
+            <if test="powerDirection !=null">
+                and POWER_DIRECTION = #{powerDirection}
+            </if>
+            <if test="meterOrder !=null">
+                and METER_ORDER = #{meterOrder}
+            </if>
+            <if test="tsFlag !=null">
+                and TS_FLAG = #{tsFlag}
+            </if>
+            <if test="createDate !=null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="multiplyingPower !=null">
+                and MULTIPLYING_POWER = #{multiplyingPower}
+            </if>
+            <if test="status !=null">
+                and STATUS = #{status}
+            </if>
+            <if test="writeSn !=null">
+                and WRITE_SN = #{writeSn}
+            </if>
+            <if test="factorNum !=null">
+                and FACTOR_NUM = #{factorNum}
+            </if>
+        </where>
+    </delete>
+    
+    <update id="deleteByMeterIds" parameterType="MeterDomain"  flushCache="true">
+        update METER_METER_ASSETS_REL  
+        <set> 
+        status = 0 
+        </set>
+        
+        <where>
+        	METER_ID IN  (${idList})
+        
+        </where>
+    </update>
+    
+
+    <select id="getMeterAssetsByMeterIds" parameterType="String"
+            resultType="MeterMeterAssetsRelDomain" useCache="false">
+        SELECT
+		R.*,A.METER_ASSETS_NO
+        FROM
+        METER_METER_ASSETS_REL R LEFT JOIN METER_ASSETS_INFO A ON R.METER_ASSETS_ID = A.ID
+        <where>
+            R.METER_ID IN
+            <foreach item="item" index="index" collection="list" open="("
+                     separator="," close=")">
+                ${item}
+            </foreach>
+            and status =1 
+        </where>
+        ORDER BY METER_ID
+    </select>
+
+
+    <select id="getMeterAssetsByWriteSectIds" parameterType="String"
+            resultType="MeterMeterAssetsRelDomain" useCache="false">
+		 SELECT
+			R.*, A.METER_ASSETS_NO
+		FROM
+			METER_METER_ASSETS_REL R
+		LEFT JOIN METER_ASSETS_INFO A ON R.METER_ASSETS_ID = A.ID
+		LEFT JOIN METER_INFO M ON R.METER_ID=M.ID 
+        <where>
+			M.WRITE_SECTION_ID IN 
+            <foreach item="item" index="index" collection="list" open="("
+                     separator="," close=")">
+                ${item}
+            </foreach>
+            and m.status >0 
+            and r.status =1
+        </where>
+    </select>
+    
+    <select id="getMeterEntityByMeterIds" parameterType="String"
+            resultType="MeterMeterAssetsRelDomain" useCache="false">
+        select
+		<include refid="Base_Column_List" />
+        from METER_METER_ASSETS_REL
+        <where>
+            and METER_ID = ${_parameter}
+            and status =1
+        </where>
+    </select>
+
+    <select id="getNextMeterOrder" parameterType="Long"
+            resultType="Byte" useCache="false">
+        select
+        IFNULL(MAX(METER_ORDER)+1,1)
+        from METER_METER_ASSETS_REL
+        <where>
+            and METER_ID = ${_parameter}
+        </where>
+    </select>
+
+
+    <select id="getMeterOrderByWriteSect" parameterType="WriteSectDomain"
+            resultType="MeterWriteSnEntity" useCache="false">
+        SELECT
+        WRITE_SECTION_INFO.WRITE_SECT_NO,
+        WRITE_SECTION_INFO.WRITE_SECT_NAME,
+        USER_INFO.USER_NO,
+        USER_INFO.USER_NAME,
+        USER_INFO.ADDRESS,
+        USER_INFO.WRITE_SECT_ID,
+        METER_INFO.USER_ID,
+        METER_INFO.METER_NO,
+        METER_INFO.METER_NAME,
+        METER_INFO.SET_ADDRESS,
+        METER_INFO.METER_TYPE,
+        METER_METER_ASSETS_REL.ID,
+        METER_METER_ASSETS_REL.FUNCTION_CODE,
+        METER_METER_ASSETS_REL.FACTOR_NUM,
+        METER_METER_ASSETS_REL.WRITE_SN,
+        METER_METER_ASSETS_REL.TS_FLAG,
+        METER_METER_ASSETS_REL.POWER_DIRECTION,
+        METER_METER_ASSETS_REL.PHASE_SEQ,
+        METER_METER_ASSETS_REL.METER_ASSETS_ID,
+        METER_METER_ASSETS_REL.METER_ID,
+        METER_ASSETS_INFO.METER_ASSETS_NO,
+        METER_ASSETS_INFO.MADE_NO,
+        METER_METER_ASSETS_REL.METER_SN
+        FROM
+        METER_METER_ASSETS_REL
+        LEFT JOIN METER_INFO ON METER_METER_ASSETS_REL.METER_ID = METER_INFO.ID
+        LEFT JOIN USER_INFO ON METER_INFO.USER_ID = USER_INFO.ID
+        LEFT JOIN WRITE_SECTION_INFO ON METER_INFO.WRITE_SECTION_ID =  WRITE_SECTION_INFO.ID
+        LEFT JOIN METER_ASSETS_INFO ON METER_ASSETS_INFO.ID = METER_METER_ASSETS_REL.METER_ASSETS_ID
+        <where>
+            and METER_METER_ASSETS_REL.FUNCTION_CODE =1
+            <if test="id !=null">
+                and WRITE_SECTION_INFO.ID =#{id}
+            </if>
+            <if test="writeSectionIds != null and writeSectionIds.size > 0">
+                and WRITE_SECTION_INFO.ID in
+                <foreach item="item" index="index" collection="writeSectionIds" open="("
+                         separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="writeSectNo !=null">
+                and WRITE_SECTION_INFO.WRITE_SECT_NO =#{writeSectNo}
+            </if>
+            <if test="writeSectName !=null">
+                and WRITE_SECTION_INFO.WRITE_SECT_NAME =#{writeSectName}
+            </if>
+            <if test="writorId !=null">
+                and WRITE_SECTION_INFO = #{writorId}
+            </if>
+            <if test="calculatorId !=null">
+                and WRITE_SECTION_INFO = #{calculatorId}
+            </if>
+            ORDER BY METER_METER_ASSETS_REL.WRITE_SN,USER_INFO.USER_NO,METER_INFO.METER_NO
+        </where>
+    </select>
+
+    <select id="generateWriteOrderAuto" parameterType="WriteSectDomain"
+            resultType="MeterWriteSnEntity" useCache="true">
+        SELECT
+        @rownum := @rownum + 1 AS ROW_NUM,
+        WRITE_SECTION_INFO.WRITE_SECT_NO,
+        WRITE_SECTION_INFO.WRITE_SECT_NAME,
+        USER_INFO.USER_NO,
+        USER_INFO.USER_NAME,
+        USER_INFO.ADDRESS,
+        USER_INFO.WRITE_SECT_ID,
+        METER_INFO.USER_ID,
+        METER_INFO.METER_NO,
+        METER_INFO.METER_NAME,
+        METER_INFO.SET_ADDRESS,
+        METER_INFO.METER_TYPE,
+        METER_METER_ASSETS_REL.ID,
+        METER_METER_ASSETS_REL.FUNCTION_CODE,
+        METER_METER_ASSETS_REL.FACTOR_NUM,
+        METER_METER_ASSETS_REL.WRITE_SN,
+        METER_METER_ASSETS_REL.TS_FLAG,
+        METER_METER_ASSETS_REL.POWER_DIRECTION,
+        METER_METER_ASSETS_REL.PHASE_SEQ,
+        METER_METER_ASSETS_REL.METER_ASSETS_ID,
+        METER_METER_ASSETS_REL.METER_ID
+        FROM
+        METER_METER_ASSETS_REL
+        LEFT JOIN METER_INFO ON METER_METER_ASSETS_REL.METER_ID = METER_INFO.ID
+        LEFT JOIN USER_INFO ON METER_INFO.USER_ID = USER_INFO.ID
+        LEFT JOIN WRITE_SECTION_INFO ON METER_INFO.WRITE_SECTION_ID = WRITE_SECTION_INFO.ID,
+        ( SELECT @rownum := 0 ) r
+        <where>
+            and METER_METER_ASSETS_REL.FUNCTION_CODE =1
+            <if test="id !=null">
+                and WRITE_SECTION_INFO.ID =#{id}
+            </if>
+            <if test="writeSectNo !=null">
+                and WRITE_SECTION_INFO.WRITE_SECT_NO =#{writeSectNo}
+            </if>
+            <if test="writeSectName !=null">
+                and WRITE_SECTION_INFO.WRITE_SECT_NAME =#{writeSectName}
+            </if>
+            <if test="writorId !=null">
+                and WRITE_SECTION_INFO = #{writorId}
+            </if>
+            <if test="calculatorId !=null">
+                and WRITE_SECTION_INFO = #{calculatorId}
+            </if>
+            order by USER_INFO.ADDRESS,USER_INFO.USER_NO,METER_INFO.METER_NO
+        </where>
+    </select>
+    
+      <update id="updateByMeterAssetsId" parameterType="MeterMeterAssetsRelDomain"
+            flushCache="true">
+        update METER_METER_ASSETS_REL SET TS_FLAG = #{tsFlag}
+        WHERE METER_ASSETS_ID = #{meterAssetsId}
+
+    </update>
+    
+    
+    
+    
+</mapper>

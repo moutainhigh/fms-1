@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.assets.dao.InductorAssetsDAO">
+	<sql id="Base_Column_List">
+		ID,INDUCTOR_ASSETS_NO,INDUCTOR_TYPE,TURNS,CT_CURNT_CODE,CT_VOLT_CODE,PT_CURNT_CODE,PT_VOLT_CODE,RATED_CT_CODE,
+		RATED_PT_CODE,MADE_DATE,LIFE_SPAN,DET_PERIOD,LAST_DET_DATE,ACCU_LEVEL_CODE,PT_ACCU_LEVEL_CODE,DEPT_ID,CREATE_DATE,
+		REMARK,STATUS,BATCH_NO,RIGHT_ATTACH,MAN_ID,MADE_NO,MODEL_CODE
+	</sql>
+
+
+	<select id="findByKey" parameterType="InductorAssetsDomain"
+		resultType="InductorAssetsDomain" useCache="true">
+		select
+			<include refid="Base_Column_List" />
+		from INDUCTOR_ASSETS_INFO
+		<where>
+			and ID = #{id}
+
+		</where>
+	</select>
+	<select id="findByWhere" parameterType="InductorAssetsDomain"
+		resultType="InductorAssetsDomain" useCache="true">
+		select
+			<include refid="Base_Column_List" />
+		from INDUCTOR_ASSETS_INFO
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+			<if test="inductorAssetsNo !=null">
+				and INDUCTOR_ASSETS_NO like CONCAT('%',#{inductorAssetsNo},'%')
+			</if>
+			<if test="inductorType !=null">
+				AND INDUCTOR_TYPE = #{inductorType}
+			</if>
+			<if test="turns !=null">
+				AND TURNS = #{turns}
+			</if>
+			<if test="ctCurntCode !=null">
+				AND CT_CURNT_CODE = #{ctCurntCode}
+			</if>
+			<if test="ctVoltCode !=null">
+				AND CT_VOLT_CODE = #{ctVoltCode}
+			</if>
+			<if test="ptCurntCode !=null">
+				AND PT_CURNT_CODE = #{ptCurntCode}
+			</if>
+			<if test="ptVoltCode !=null">
+				AND PT_VOLT_CODE = #{ptVoltCode}
+			</if>
+			<if test="ratedCtCode !=null">
+				AND RATED_CT_CODE = #{ratedCtCode}
+			</if>
+			<if test="ratedPtCode !=null">
+				AND RATED_PT_CODE = #{ratedPtCode}
+			</if>
+			<if test="madeDate !=null">
+				AND MADE_DATE = #{madeDate}
+			</if>
+			<if test="lifeSpan !=null">
+				AND LIFE_SPAN = #{lifeSpan}
+			</if>
+			<if test="detPeriod !=null">
+				AND DET_PERIOD = #{detPeriod}
+			</if>
+			<if test="lastDetDate !=null">
+				AND LAST_DET_DATE = #{lastDetDate}
+			</if>
+			<if test="accuLevelCode !=null">
+				AND ACCU_LEVEL_CODE = #{accuLevelCode}
+			</if>
+			<if test="ptAccuLevelCode !=null">
+				AND PT_ACCU_LEVEL_CODE = #{ptAccuLevelCode}
+			</if>
+			<if test="deptIds !=null">
+				AND DEPT_ID in (${deptIds})
+			</if>
+			<if test="createDate !=null">
+				AND CREATE_DATE = #{createDate}
+			</if>
+			<if test="remark !=null">
+				AND REMARK = #{remark}
+			</if>
+			<if test="status !=null">
+				AND STATUS = #{status}
+			</if>
+			<if test="batchNo !=null">
+				AND BATCH_NO = #{batchNo}
+			</if>
+			<if test="rightAttach !=null">
+				AND RIGHT_ATTACH = #{rightAttach}
+			</if>
+			<if test="manID !=null">
+				AND MAN_ID = #{manID}
+			</if>
+			<if test="madeNo !=null">
+				and MADE_NO like CONCAT('%',#{madeNo},'%')
+			</if>
+		</where>
+		order by CREATE_date desc
+	</select>
+
+	<select id="getInductorAssetsByUser" parameterType="UserDomain"
+		resultType="InductorAssetsDomain" useCache="true">
+		select
+			<include refid="Base_Column_List" />
+		from INDUCTOR_ASSETS_INFO
+		<where>
+			ID IN (	SELECT ID FROM METER_INFO WHERE ID IN (SELECT METER_ID FROM USER_METER_REL WHERE USER_ID = #{id}))
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="InductorAssetsDomain" useGeneratedKeys="true" keyProperty="id"
+		flushCache="true">
+		insert into
+			INDUCTOR_ASSETS_INFO
+			(
+				<include refid="Base_Column_List" />
+			)
+		values
+		(#{id},#{inductorAssetsNo},#{inductorType},#{turns},#{ctCurntCode},#{ctVoltCode},#{ptCurntCode},#{ptVoltCode},#{ratedCtCode},
+		#{ratedPtCode},#{madeDate},#{lifeSpan},#{detPeriod},#{lastDetDate},#{accuLevelCode},#{ptAccuLevelCode},#{deptId},
+		#{createDate},#{remark},#{status},#{batchNo},#{rightAttach},#{manID},#{madeNo},#{modelCode})
+	</insert>
+
+	<update id="update" parameterType="InductorAssetsDomain"
+		flushCache="true">
+		update INDUCTOR_ASSETS_INFO
+		<set>
+			<if test="inductorAssetsNo !=null">
+				INDUCTOR_ASSETS_NO = #{inductorAssetsNo},
+			</if>
+			<if test="inductorType !=null">
+				INDUCTOR_TYPE = #{inductorType},
+			</if>
+			<if test="turns !=null">
+				TURNS = #{turns},
+			</if>
+			<if test="ctCurntCode !=null">
+				CT_CURNT_CODE = #{ctCurntCode},
+			</if>
+			<if test="ctVoltCode !=null">
+				CT_VOLT_CODE = #{ctVoltCode},
+			</if>
+			<if test="ptCurntCode !=null">
+				PT_CURNT_CODE = #{ptCurntCode},
+			</if>
+			<if test="ptVoltCode !=null">
+				PT_VOLT_CODE = #{ptVoltCode},
+			</if>
+			<if test="ratedCtCode !=null">
+				RATED_CT_CODE = #{ratedCtCode},
+			</if>
+			<if test="ratedPtCode !=null">
+				RATED_PT_CODE = #{ratedPtCode},
+			</if>
+			<if test="madeDate !=null">
+				MADE_DATE = #{madeDate},
+			</if>
+			<if test="lifeSpan !=null">
+				LIFE_SPAN = #{lifeSpan},
+			</if>
+			<if test="detPeriod !=null">
+				DET_PERIOD = #{detPeriod},
+			</if>
+			<if test="lastDetDate !=null">
+				LAST_DET_DATE = #{lastDetDate},
+			</if>
+			<if test="accuLevelCode !=null">
+				ACCU_LEVEL_CODE = #{accuLevelCode},
+			</if>
+			<if test="ptAccuLevelCode !=null">
+				PT_ACCU_LEVEL_CODE = #{ptAccuLevelCode},
+			</if>
+			<if test="deptId !=null">
+				DEPT_ID = #{deptId},
+			</if>
+			<if test="createDate !=null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="remark !=null">
+				REMARK = #{remark},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status},
+			</if>
+			<if test="batchNo !=null">
+				BATCH_NO = #{batchNo},
+			</if>
+			<if test="rightAttach !=null">
+				RIGHT_ATTACH = #{rightAttach},
+			</if>
+			<if test="manID !=null">
+				MAN_ID = #{manID},
+			</if>
+			<if test="madeNo !=null">
+				MADE_NO = #{madeNo}
+			</if>
+			<if test="modelCode !=null">
+				MODEL_CODE = #{modelCode}
+			</if>
+		</set>
+		<where>
+			and ID = #{id}
+
+		</where>
+	</update>
+	<delete id="delete" parameterType="InductorAssetsDomain"
+		flushCache="true">
+		delete from INDUCTOR_ASSETS_INFO
+		<where>
+			and ID = #{id}
+
+		</where>
+	</delete>
+
+	<select id="assetsNoDC" parameterType="InductorAssetsDomain"
+		resultType="InductorAssetsDomain" useCache="true">
+		select
+			<include refid="Base_Column_List" />
+		from INDUCTOR_ASSETS_INFO
+		<where>
+			<if test="id !=null">
+				and ID != #{id}
+			</if>
+			<if test="inductorAssetsNo !=null">
+				and INDUCTOR_ASSETS_NO = #{inductorAssetsNo}
+			</if>
+
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+		</where>
+	</select>
+
+	<select id="findInductEntityByWhere" parameterType="String"
+			resultType="InductorAssetsEntity" useCache="true">
+		select
+		<include refid="Base_Column_List" />,1 PARENT
+		from INDUCTOR_ASSETS_INFO
+		<where>
+			and ID = ${_parameter}
+		</where>
+	</select>
+
+</mapper>

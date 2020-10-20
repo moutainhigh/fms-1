@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.WriteSectDAO">
+	<select id="findByKey" parameterType="WriteSectDomain"
+		resultType="WriteSectDomain" useCache="true">
+		select
+		ID,WRITE_SECT_NO,WRITE_SECT_NAME,WRITOR_ID,CALCULATOR_ID,BUSINESS_PLACE_CODE,DEPT_CODE,WRITE_TYPE,SHOULD_WRITE_DAYS,STANDARD_WRITE_DAYS,SHOULD_CAL_DAYS,SECT_USER_TYPE,PUNISH_DAYS,CREATE_DATE,REMARK,STATUS
+		from WRITE_SECTION_INFO
+		<where>
+			and ID = #{id}
+
+		</where>
+	</select>
+	<select id="findByWhere" parameterType="WriteSectDomain"
+		resultType="WriteSectDomain" useCache="false">
+		select
+		ID,WRITE_SECT_NO,WRITE_SECT_NAME,WRITOR_ID,CALCULATOR_ID,BUSINESS_PLACE_CODE,DEPT_CODE,WRITE_TYPE,SHOULD_WRITE_DAYS,STANDARD_WRITE_DAYS,SHOULD_CAL_DAYS,SECT_USER_TYPE,PUNISH_DAYS,CREATE_DATE,REMARK,STATUS
+		from WRITE_SECTION_INFO
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+			<if test="writeSectNo !=null">
+				and WRITE_SECT_NO like CONCAT('%',#{writeSectNo},'%')
+			</if>
+			<if test="writeSectName !=null">
+				and WRITE_SECT_NAME like CONCAT('%',#{writeSectName},'%')
+			</if>
+			<if test="writorId !=null">
+				and WRITOR_ID = #{writorId}
+			</if>
+			<if test="calculatorId !=null">
+				and CALCULATOR_ID = #{calculatorId}
+			</if>
+			<choose>
+				<when test="businessPlaceCodes != null and businessPlaceCodes.size > 0">
+					and BUSINESS_PLACE_CODE in
+					<foreach item="item" index="index"
+							 collection="businessPlaceCodes" open="("
+							 separator="," close=")">
+						#{item}
+					</foreach>
+				</when>
+				<otherwise>
+					<if test="businessPlaceCode !=null">
+						and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+					</if>
+				</otherwise>
+			</choose>
+			<if test="deptCode !=null">
+				and DEPT_CODE = #{deptCode}
+			</if>
+			<if test="writeType !=null">
+				and WRITE_TYPE = #{writeType}
+			</if>
+			<if test="shouldWriteDays !=null">
+				and SHOULD_WRITE_DAYS = #{shouldWriteDays}
+			</if>
+			<if test="standardWriteDays !=null">
+				and STANDARD_WRITE_DAYS = #{standardWriteDays}
+			</if>
+			<if test="shouldCalDays !=null">
+				and SHOULD_CAL_DAYS = #{shouldCalDays}
+			</if>
+			<if test="sectUserType !=null">
+				and SECT_USER_TYPE = #{sectUserType}
+			</if>
+			<if test="punishDays !=null">
+				and PUNISH_DAYS = #{punishDays}
+			</if>
+			<if test="createDate !=null">
+				and CREATE_DATE = #{createDate}
+			</if>
+			<if test="remark !=null">
+				and REMARK = #{remark}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+
+			<if test="writeSectionIds != null and writeSectionIds.size > 0">
+				and ID in
+				<foreach item="item" index="index" collection="writeSectionIds" open="("
+						 separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			
+		</where>
+		ORDER BY ID DESC 
+	</select>
+	<insert id="insert" parameterType="WriteSectDomain"
+		flushCache="true">
+		insert into
+		WRITE_SECTION_INFO(ID,WRITE_SECT_NO,WRITE_SECT_NAME,WRITOR_ID,CALCULATOR_ID,BUSINESS_PLACE_CODE,DEPT_CODE,WRITE_TYPE,SHOULD_WRITE_DAYS,STANDARD_WRITE_DAYS,SHOULD_CAL_DAYS,SECT_USER_TYPE,PUNISH_DAYS,CREATE_DATE,REMARK,STATUS)
+		values
+		(#{id},#{writeSectNo},#{writeSectName},#{writorId},#{calculatorId},#{businessPlaceCode},#{deptCode},#{writeType},#{shouldWriteDays},#{standardWriteDays},#{shouldCalDays},#{sectUserType},#{punishDays},#{createDate},#{remark},#{status})
+	</insert>
+	<update id="update" parameterType="WriteSectDomain"
+		flushCache="true">
+		update WRITE_SECTION_INFO
+		<set>
+			<if test="writeSectNo !=null">
+				WRITE_SECT_NO = #{writeSectNo},
+			</if>
+			<if test="writeSectName !=null">
+				WRITE_SECT_NAME = #{writeSectName},
+			</if>
+			<if test="writorId !=null">
+				WRITOR_ID = #{writorId},
+			</if>
+			<if test="calculatorId !=null">
+				CALCULATOR_ID = #{calculatorId},
+			</if>
+			<if test="businessPlaceCode !=null">
+				BUSINESS_PLACE_CODE = #{businessPlaceCode},
+			</if>
+			<if test="deptCode !=null">
+				DEPT_CODE = #{deptCode},
+			</if>
+			<if test="writeType !=null">
+				WRITE_TYPE = #{writeType},
+			</if>
+			<if test="shouldWriteDays !=null">
+				SHOULD_WRITE_DAYS = #{shouldWriteDays},
+			</if>
+			<if test="standardWriteDays !=null">
+				STANDARD_WRITE_DAYS = #{standardWriteDays},
+			</if>
+			<if test="shouldCalDays !=null">
+				SHOULD_CAL_DAYS = #{shouldCalDays},
+			</if>
+			<if test="sectUserType !=null">
+				SECT_USER_TYPE = #{sectUserType},
+			</if>
+			<if test="punishDays !=null">
+				PUNISH_DAYS = #{punishDays},
+			</if>
+			<if test="createDate !=null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="remark !=null">
+				REMARK = #{remark},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status},
+			</if>
+			
+		</set>
+		<where>
+			and ID = #{id}
+
+		</where>
+	</update>
+	<delete id="delete" parameterType="WriteSectDomain"
+		flushCache="true">
+		delete from WRITE_SECTION_INFO
+		<where>
+			and ID = #{id}
+
+		</where>
+	</delete>
+	
+	<select id="getDeptIdsByWriteSectIds" resultType="Long" useCache="true">
+		
+		SELECT DISTINCT(BUSINESS_PLACE_CODE) FROM WRITE_SECTION_INFO
+				<where>
+				ID IN
+				<foreach item="item" index = "index" collection="list" open="(" separator="," close =")">
+					 ${item}
+				</foreach>
+			</where> 
+	</select>
+</mapper>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.assets.dao.MeterAssetsTestRecordDAO">
+<select id="findByKey" parameterType="MeterAssetsTestRecordDomain" resultType="MeterAssetsTestRecordDomain" useCache="true">
+select ID,METER_ASSETS_ID,REPORT_NO,INSPECTION_DEPT,DEVICE_NAME,SPECS,MADE_NO,MADE_NAME,TEST_BASIS,RATIFIER,VERIFIER,CHECKER,TEST_DATE,VALIDITY,TEMPERATURE,HUMIDITY,DETECTION_DEVICE_NAME,DETECTION_DEVICE_MODEL,DETECTION_DEVICE_ACC_LEVEL,DETECTION_DEVICE_VALIDITY,CALIBRATION_CONSTANT,STARTING_TEST,CREEPING_TEST,PFVWT,P1R0S,P1R0E,P1R1S,P1R1E,P1R2S,P1R2E,P1R3S,P1R3E,P1R4S,P1R4E,P3R0S,P3R0E,CHECK_CONSTANT,MAX_STANDARD_DEV,VERIFICATION_CONCLUSION,CREATE_DATE,REMARK,STATUS from METER_ASSETS_TEST_RECORD<where>
+ and ID = #{id}
+
+</where>
+</select>
+<select id="findByWhere" parameterType="MeterAssetsTestRecordDomain" resultType="MeterAssetsTestRecordDomain" useCache="true">
+select ID,METER_ASSETS_ID,REPORT_NO,INSPECTION_DEPT,DEVICE_NAME,SPECS,MADE_NO,MADE_NAME,TEST_BASIS,RATIFIER,VERIFIER,CHECKER,TEST_DATE,VALIDITY,TEMPERATURE,HUMIDITY,DETECTION_DEVICE_NAME,DETECTION_DEVICE_MODEL,DETECTION_DEVICE_ACC_LEVEL,DETECTION_DEVICE_VALIDITY,CALIBRATION_CONSTANT,STARTING_TEST,CREEPING_TEST,PFVWT,P1R0S,P1R0E,P1R1S,P1R1E,P1R2S,P1R2E,P1R3S,P1R3E,P1R4S,P1R4E,P3R0S,P3R0E,CHECK_CONSTANT,MAX_STANDARD_DEV,VERIFICATION_CONCLUSION,CREATE_DATE,REMARK,STATUS from METER_ASSETS_TEST_RECORD
+<where>
+<if test="id !=null"> 
+ and ID = #{id}
+</if>
+<if test="meterAssetsId !=null"> 
+ and METER_ASSETS_ID = #{meterAssetsId}
+</if>
+<if test="reportNo !=null"> 
+ and REPORT_NO = #{reportNo}
+</if>
+<if test="inspectionDept !=null"> 
+ and INSPECTION_DEPT = #{inspectionDept}
+</if>
+<if test="deviceName !=null"> 
+ and DEVICE_NAME = #{deviceName}
+</if>
+<if test="specs !=null"> 
+ and SPECS = #{specs}
+</if>
+<if test="madeNo !=null"> 
+ and MADE_NO = #{madeNo}
+</if>
+<if test="madeName !=null"> 
+ and MADE_NAME = #{madeName}
+</if>
+<if test="testBasis !=null"> 
+ and TEST_BASIS = #{testBasis}
+</if>
+<if test="ratifier !=null"> 
+ and RATIFIER = #{ratifier}
+</if>
+<if test="verifier !=null"> 
+ and VERIFIER = #{verifier}
+</if>
+<if test="checker !=null"> 
+ and CHECKER = #{checker}
+</if>
+<if test="testDate !=null"> 
+ and TEST_DATE = #{testDate}
+</if>
+<if test="validity !=null"> 
+ and VALIDITY = #{validity}
+</if>
+<if test="temperature !=null"> 
+ and TEMPERATURE = #{temperature}
+</if>
+<if test="humidity !=null"> 
+ and HUMIDITY = #{humidity}
+</if>
+<if test="detectionDeviceName !=null"> 
+ and DETECTION_DEVICE_NAME = #{detectionDeviceName}
+</if>
+<if test="detectionDeviceModel !=null"> 
+ and DETECTION_DEVICE_MODEL = #{detectionDeviceModel}
+</if>
+<if test="detectionDeviceAccLevel !=null"> 
+ and DETECTION_DEVICE_ACC_LEVEL = #{detectionDeviceAccLevel}
+</if>
+<if test="detectionDeviceValidity !=null"> 
+ and DETECTION_DEVICE_VALIDITY = #{detectionDeviceValidity}
+</if>
+<if test="calibrationConstant !=null"> 
+ and CALIBRATION_CONSTANT = #{calibrationConstant}
+</if>
+<if test="startingTest !=null"> 
+ and STARTING_TEST = #{startingTest}
+</if>
+<if test="creepingTest !=null"> 
+ and CREEPING_TEST = #{creepingTest}
+</if>
+<if test="pfvwt !=null"> 
+ and PFVWT = #{pfvwt}
+</if>
+<if test="p1r0s !=null"> 
+ and P1R0S = #{p1r0s}
+</if>
+<if test="p1r0e !=null"> 
+ and P1R0E = #{p1r0e}
+</if>
+<if test="p1r1s !=null"> 
+ and P1R1S = #{p1r1s}
+</if>
+<if test="p1r1e !=null"> 
+ and P1R1E = #{p1r1e}
+</if>
+<if test="p1r2s !=null"> 
+ and P1R2S = #{p1r2s}
+</if>
+<if test="p1r2e !=null"> 
+ and P1R2E = #{p1r2e}
+</if>
+<if test="p1r3s !=null"> 
+ and P1R3S = #{p1r3s}
+</if>
+<if test="p1r3e !=null"> 
+ and P1R3E = #{p1r3e}
+</if>
+<if test="p1r4s !=null"> 
+ and P1R4S = #{p1r4s}
+</if>
+<if test="p1r4e !=null"> 
+ and P1R4E = #{p1r4e}
+</if>
+<if test="p3r0s !=null"> 
+ and P3R0S = #{p3r0s}
+</if>
+<if test="p3r0e !=null"> 
+ and P3R0E = #{p3r0e}
+</if>
+<if test="checkConstant !=null"> 
+ and CHECK_CONSTANT = #{checkConstant}
+</if>
+<if test="maxStandardDev !=null"> 
+ and MAX_STANDARD_DEV = #{maxStandardDev}
+</if>
+<if test="verificationConclusion !=null"> 
+ and VERIFICATION_CONCLUSION = #{verificationConclusion}
+</if>
+<if test="createDate !=null"> 
+ and CREATE_DATE = #{createDate}
+</if>
+<if test="remark !=null"> 
+ and REMARK = #{remark}
+</if>
+<if test="status !=null"> 
+ and STATUS = #{status}
+</if>
+</where>
+</select>
+<insert id="insert" parameterType="MeterAssetsTestRecordDomain" flushCache="true">
+insert into METER_ASSETS_TEST_RECORD(ID,METER_ASSETS_ID,REPORT_NO,INSPECTION_DEPT,DEVICE_NAME,SPECS,MADE_NO,MADE_NAME,TEST_BASIS,RATIFIER,VERIFIER,CHECKER,TEST_DATE,VALIDITY,TEMPERATURE,HUMIDITY,DETECTION_DEVICE_NAME,DETECTION_DEVICE_MODEL,DETECTION_DEVICE_ACC_LEVEL,DETECTION_DEVICE_VALIDITY,CALIBRATION_CONSTANT,STARTING_TEST,CREEPING_TEST,PFVWT,P1R0S,P1R0E,P1R1S,P1R1E,P1R2S,P1R2E,P1R3S,P1R3E,P1R4S,P1R4E,P3R0S,P3R0E,CHECK_CONSTANT,MAX_STANDARD_DEV,VERIFICATION_CONCLUSION,CREATE_DATE,REMARK,STATUS) values (#{id},#{meterAssetsId},#{reportNo},#{inspectionDept},#{deviceName},#{specs},#{madeNo},#{madeName},#{testBasis},#{ratifier},#{verifier},#{checker},#{testDate},#{validity},#{temperature},#{humidity},#{detectionDeviceName},#{detectionDeviceModel},#{detectionDeviceAccLevel},#{detectionDeviceValidity},#{calibrationConstant},#{startingTest},#{creepingTest},#{pfvwt},#{p1r0s},#{p1r0e},#{p1r1s},#{p1r1e},#{p1r2s},#{p1r2e},#{p1r3s},#{p1r3e},#{p1r4s},#{p1r4e},#{p3r0s},#{p3r0e},#{checkConstant},#{maxStandardDev},#{verificationConclusion},#{createDate},#{remark},#{status})
+</insert>
+<update id="update" parameterType="MeterAssetsTestRecordDomain" flushCache="true">
+update METER_ASSETS_TEST_RECORD
+<set>
+<if test="meterAssetsId !=null">
+METER_ASSETS_ID = #{meterAssetsId},
+</if>
+<if test="reportNo !=null">
+REPORT_NO = #{reportNo},
+</if>
+<if test="inspectionDept !=null">
+INSPECTION_DEPT = #{inspectionDept},
+</if>
+<if test="deviceName !=null">
+DEVICE_NAME = #{deviceName},
+</if>
+<if test="specs !=null">
+SPECS = #{specs},
+</if>
+<if test="madeNo !=null">
+MADE_NO = #{madeNo},
+</if>
+<if test="madeName !=null">
+MADE_NAME = #{madeName},
+</if>
+<if test="testBasis !=null">
+TEST_BASIS = #{testBasis},
+</if>
+<if test="ratifier !=null">
+RATIFIER = #{ratifier},
+</if>
+<if test="verifier !=null">
+VERIFIER = #{verifier},
+</if>
+<if test="checker !=null">
+CHECKER = #{checker},
+</if>
+<if test="testDate !=null">
+TEST_DATE = #{testDate},
+</if>
+<if test="validity !=null">
+VALIDITY = #{validity},
+</if>
+<if test="temperature !=null">
+TEMPERATURE = #{temperature},
+</if>
+<if test="humidity !=null">
+HUMIDITY = #{humidity},
+</if>
+<if test="detectionDeviceName !=null">
+DETECTION_DEVICE_NAME = #{detectionDeviceName},
+</if>
+<if test="detectionDeviceModel !=null">
+DETECTION_DEVICE_MODEL = #{detectionDeviceModel},
+</if>
+<if test="detectionDeviceAccLevel !=null">
+DETECTION_DEVICE_ACC_LEVEL = #{detectionDeviceAccLevel},
+</if>
+<if test="detectionDeviceValidity !=null">
+DETECTION_DEVICE_VALIDITY = #{detectionDeviceValidity},
+</if>
+<if test="calibrationConstant !=null">
+CALIBRATION_CONSTANT = #{calibrationConstant},
+</if>
+<if test="startingTest !=null">
+STARTING_TEST = #{startingTest},
+</if>
+<if test="creepingTest !=null">
+CREEPING_TEST = #{creepingTest},
+</if>
+<if test="pfvwt !=null">
+PFVWT = #{pfvwt},
+</if>
+<if test="p1r0s !=null">
+P1R0S = #{p1r0s},
+</if>
+<if test="p1r0e !=null">
+P1R0E = #{p1r0e},
+</if>
+<if test="p1r1s !=null">
+P1R1S = #{p1r1s},
+</if>
+<if test="p1r1e !=null">
+P1R1E = #{p1r1e},
+</if>
+<if test="p1r2s !=null">
+P1R2S = #{p1r2s},
+</if>
+<if test="p1r2e !=null">
+P1R2E = #{p1r2e},
+</if>
+<if test="p1r3s !=null">
+P1R3S = #{p1r3s},
+</if>
+<if test="p1r3e !=null">
+P1R3E = #{p1r3e},
+</if>
+<if test="p1r4s !=null">
+P1R4S = #{p1r4s},
+</if>
+<if test="p1r4e !=null">
+P1R4E = #{p1r4e},
+</if>
+<if test="p3r0s !=null">
+P3R0S = #{p3r0s},
+</if>
+<if test="p3r0e !=null">
+P3R0E = #{p3r0e},
+</if>
+<if test="checkConstant !=null">
+CHECK_CONSTANT = #{checkConstant},
+</if>
+<if test="maxStandardDev !=null">
+MAX_STANDARD_DEV = #{maxStandardDev},
+</if>
+<if test="verificationConclusion !=null">
+VERIFICATION_CONCLUSION = #{verificationConclusion},
+</if>
+<if test="createDate !=null">
+CREATE_DATE = #{createDate},
+</if>
+<if test="remark !=null">
+REMARK = #{remark},
+</if>
+<if test="status !=null">
+STATUS = #{status},
+</if>
+</set>
+<where>
+ and ID = #{id}
+
+</where>
+</update>
+<delete id="delete" parameterType="MeterAssetsTestRecordDomain" flushCache="true">
+delete from METER_ASSETS_TEST_RECORD
+<where>
+ and ID = #{id}
+
+</where>
+</delete>
+</mapper>

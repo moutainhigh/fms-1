@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.BankDAO">
+<select id="findByKey" parameterType="BankDomain" resultType="BankDomain" useCache="true">
+select ID,BANK_CODE,BANK_NAME,BANK_ADDRESS,IN_TOUCH,TEL,BANK_HEAD_OFFICE,IS_BANK_HEAD,BUSINESS_PLACE_CODE,IS_YDLW,REMARK,STATUS from BANK<where>
+ and ID = #{id}
+
+</where>
+</select>
+<select id="findByWhere" parameterType="BankDomain" resultType="BankDomain" useCache="true">
+select ID,BANK_CODE,BANK_NAME,BANK_ADDRESS,IN_TOUCH,TEL,BANK_HEAD_OFFICE,IS_BANK_HEAD,BUSINESS_PLACE_CODE,IS_YDLW,REMARK,STATUS from BANK
+<where>
+<if test="id !=null"> 
+ and ID = #{id}
+</if>
+<if test="bankCode !=null"> 
+ and BANK_CODE = #{bankCode}
+</if>
+<if test="bankName !=null"> 
+ and BANK_NAME = #{bankName}
+</if>
+<if test="bankAddress !=null"> 
+ and BANK_ADDRESS = #{bankAddress}
+</if>
+<if test="inTouch !=null"> 
+ and IN_TOUCH = #{inTouch}
+</if>
+<if test="tel !=null"> 
+ and TEL = #{tel}
+</if>
+<if test="bankHeadOffice !=null"> 
+ and BANK_HEAD_OFFICE = #{bankHeadOffice}
+</if>
+<if test="isBankHead !=null"> 
+ and IS_BANK_HEAD = #{isBankHead}
+</if>
+<if test="businessPlaceCode !=null"> 
+ and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+</if>
+<if test="isYdlw !=null"> 
+ and IS_YDLW = #{isYdlw}
+</if>
+<if test="remark !=null"> 
+ and REMARK = #{remark}
+</if>
+<if test="status !=null"> 
+ and STATUS = #{status}
+</if>
+</where>
+</select>
+<insert id="insert" parameterType="BankDomain" flushCache="true">
+insert into BANK(ID,BANK_CODE,BANK_NAME,BANK_ADDRESS,IN_TOUCH,TEL,BANK_HEAD_OFFICE,IS_BANK_HEAD,BUSINESS_PLACE_CODE,IS_YDLW,REMARK,STATUS) values (#{id},#{bankCode},#{bankName},#{bankAddress},#{inTouch},#{tel},#{bankHeadOffice},#{isBankHead},#{businessPlaceCode},#{isYdlw},#{remark},#{status})
+</insert>
+<update id="update" parameterType="BankDomain" flushCache="true">
+update BANK
+<set>
+<if test="bankCode !=null">
+BANK_CODE = #{bankCode},
+</if>
+<if test="bankName !=null">
+BANK_NAME = #{bankName},
+</if>
+<if test="bankAddress !=null">
+BANK_ADDRESS = #{bankAddress},
+</if>
+<if test="inTouch !=null">
+IN_TOUCH = #{inTouch},
+</if>
+<if test="tel !=null">
+TEL = #{tel},
+</if>
+<if test="bankHeadOffice !=null">
+BANK_HEAD_OFFICE = #{bankHeadOffice},
+</if>
+<if test="isBankHead !=null">
+IS_BANK_HEAD = #{isBankHead},
+</if>
+<if test="businessPlaceCode !=null">
+BUSINESS_PLACE_CODE = #{businessPlaceCode},
+</if>
+<if test="isYdlw !=null">
+IS_YDLW = #{isYdlw},
+</if>
+<if test="remark !=null">
+REMARK = #{remark},
+</if>
+<if test="status !=null">
+STATUS = #{status},
+</if>
+</set>
+<where>
+ and ID = #{id}
+
+</where>
+</update>
+<delete id="delete" parameterType="BankDomain" flushCache="true">
+delete from BANK
+<where>
+ and ID = #{id}
+
+</where>
+</delete>
+</mapper>

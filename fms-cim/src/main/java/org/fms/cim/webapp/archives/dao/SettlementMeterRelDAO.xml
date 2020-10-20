@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+        namespace="com.riozenc.cim.webapp.archives.dao.SettlementMeterRelDAO">
+
+    <sql id="Base_Column_List">
+        ID,SETTLEMENT_ID,METER_ID,DEDUCTION_ORDER,CREATE_DATE,REMARK,STATUS
+    </sql>
+
+    <select id="findByKey" parameterType="SettlementMeterRelDomain"
+            resultType="SettlementMeterRelDomain" useCache="true">
+        select
+        <include refid="Base_Column_List"/>
+        from SETTLEMENT_METER_REL
+        <where>
+            and ID = #{id}
+        </where>
+    </select>
+    <select id="findByWhere"
+            parameterType="SettlementMeterRelDomain"
+            resultType="SettlementMeterRelDomain" useCache="true">
+        select
+        <include refid="Base_Column_List"/>
+        from SETTLEMENT_METER_REL
+        <where>
+
+            <if test="settlementId !=null">
+                and SETTLEMENT_ID = #{settlementId}
+            </if>
+            <if test="meterId !=null">
+                and METER_ID = #{meterId}
+            </if>
+            <if test="deductionOrder !=null">
+                and DEDUCTION_ORDER = #{deductionOrder}
+            </if>
+            <if test="remark !=null">
+                and REMARK = #{remark}
+            </if>
+            <if test="createDate !=null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="status !=null">
+                and STATUS = #{status}
+            </if>
+
+        </where>
+
+        ORDER BY ID DESC
+
+    </select>
+
+    <insert id="insert" parameterType="SettlementMeterRelDomain"
+            flushCache="true">
+        insert into SETTLEMENT_METER_REL(SETTLEMENT_ID, METER_ID, DEDUCTION_ORDER, CREATE_DATE, REMARK, STATUS)
+        values (#{settlementId}, #{meterId}, #{deductionOrder}, #{createDate}, #{remark}, #{status})
+    </insert>
+    <update id="update" parameterType="SettlementMeterRelDomain"
+            flushCache="true">
+        update SETTLEMENT_METER_REL
+        <set>
+            <if test="settlementId !=null">
+                SETTLEMENT_ID = #{settlementId},
+            </if>
+            <if test="meterId !=null">
+                METER_ID = #{meterId},
+            </if>
+            <if test="deductionOrder !=null">
+                DEDUCTION_ORDER = #{deductionOrder},
+            </if>
+            <if test="status !=null">
+                STATUS = #{status}
+            </if>
+
+        </set>
+        <where>
+            and ID = #{id}
+
+        </where>
+    </update>
+    <delete id="delete" parameterType="SettlementMeterRelDomain"
+            flushCache="true">
+        delete from SETTLEMENT_METER_REL
+        <where>
+            and ID = #{id}
+
+        </where>
+    </delete>
+
+    <select id="getSettlementByMeterIds"
+            parameterType="SettlementMeterRelDomain" resultType="Long"
+            useCache="true">
+        select
+        DISTINCT(SETTLEMENT_ID)
+        from SETTLEMENT_METER_REL
+        <where>
+
+            METER_ID IN
+            <foreach item="item" index="index" collection="list" open="("
+                     separator="," close=")">
+                ${item}
+            </foreach>
+        </where>
+
+    </select>
+
+    <select id="findSettlementByMeterIds" parameterType="String"
+            resultType="SettlementMeterRelDomain" useCache="true">
+        select
+        ID,SETTLEMENT_ID,METER_ID,DEDUCTION_ORDER,CREATE_DATE,REMARK,STATUS
+        from SETTLEMENT_METER_REL
+        <where>
+            <if test="list != null and list.size>0">
+                and METER_ID IN
+                <foreach item="item" index="index" collection="list" open="("
+                         separator="," close=")">
+                    ${item}
+                </foreach>
+            </if>
+            <if test="list!=null and list.size==0">
+                and 1=0
+            </if>
+
+        </where>
+        ORDER BY SETTLEMENT_ID,DEDUCTION_ORDER,METER_ID
+    </select>
+
+
+    <select id="getMeterIdsBySettlementId"
+            parameterType="SettlementMeterRelDomain" resultType="Long"
+            useCache="true">
+        select
+        DISTINCT(METER_ID)
+        from SETTLEMENT_METER_REL
+        <where>
+
+            SETTLEMENT_ID =#{settlementId}
+        </where>
+
+    </select>
+
+    <select id="getMeterIdsBySettlementIds" resultType="SettlementMeterRelDomain" useCache="true">
+        select
+        DISTINCT METER_ID, SETTLEMENT_ID
+        from SETTLEMENT_METER_REL
+        <where>
+            <if test="list != null and list.size>0">
+                and SETTLEMENT_ID IN
+                <foreach item="item" index="index" collection="list" open="("
+                         separator="," close=")">
+                    ${item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+
+    <select id="getMeterIdsBySettlementInfo" resultType="Long" useCache="true">
+        select
+        DISTINCT SETTLEMENT_METER_REL.METER_ID
+        from SETTLEMENT_METER_REL  left join SETTLEMENT_INFO on SETTLEMENT_METER_REL.SETTLEMENT_ID=SETTLEMENT_INFO.ID
+        <where>
+            <if test="settlementNo !=null">
+                and SETTLEMENT_INFO.SETTLEMENT_NO = #{settlementNo}
+            </if>
+            <if test="settlementName !=null">
+                and SETTLEMENT_INFO.SETTLEMENT_NAME = #{settlementName}
+            </if>
+            <if test="bankNo !=null">
+                and SETTLEMENT_INFO.BANK_NO = #{bankNo}
+            </if>
+            <if test="businessPlaceCode !=null">
+                and SETTLEMENT_INFO.BUSINESS_PLACE_CODE = #{businessPlaceCode}
+            </if>
+            <if test="chargeModeType !=null">
+                and SETTLEMENT_INFO.CHARGE_MODE_TYPE = #{chargeModeType}
+            </if>
+        </where>
+    </select>
+
+</mapper>

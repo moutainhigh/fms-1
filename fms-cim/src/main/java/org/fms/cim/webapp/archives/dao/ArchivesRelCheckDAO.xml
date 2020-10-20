@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.ArchivesRelCheckDAO">
+
+	<select id="meterCheck" parameterType="String"	resultType="Map" useCache="false">
+		
+		SELECT
+			M.ID,M.METER_NO,M.METER_NAME,
+			M.WRITE_SECTION_ID,
+			U.WRITE_SECT_ID,
+			S.SETTLEMENT_NO,
+			S.SETTLEMENT_NAME,
+			T.TRANSFORMER_NO,
+			T.TRANSFORMER_ASSETS_ID 
+		FROM
+			METER_INFO M
+			LEFT JOIN USER_INFO U ON M.USER_ID = U.ID
+			LEFT JOIN SETTLEMENT_METER_REL SMR ON M.ID = SMR.METER_ID
+			LEFT JOIN SETTLEMENT_INFO S ON SMR.SETTLEMENT_ID = S.ID
+			LEFT JOIN TRANSFORMER_METER_REL TMR ON M.ID = TMR.METER_ID
+			LEFT JOIN TRANSFORMER_INFO T ON T.ID = TMR.TRANSFORMER_ID 
+		WHERE
+			M.ID IN 
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+
+	</select>
+	
+	
+</mapper>

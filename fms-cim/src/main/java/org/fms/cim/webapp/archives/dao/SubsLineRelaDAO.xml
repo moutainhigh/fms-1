@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.SubsLineRelaDAO">
+<select id="findByKey" parameterType="LineDomain" resultType="LineDomain" useCache="true">
+	select
+		ID,
+		LINE_CODE,
+		LINE_NAME,
+		VOLT_TYPE,
+		LINE_TYPE,
+		RUN_DATE,
+		SWITCH_NO,
+		LINE_MODEL,
+		LINE_LENGHT,
+		RATING_CURNT,
+		RATING_VOL,
+		CREATE_DATE,
+		REMARK,
+		STATUS
+	from
+		LINE_INFO
+	<where>
+ 		and ID = #{id}
+	</where>
+</select>
+<select id="findByWhere" parameterType="SubsLineRelaDomain" resultType="SubsLineRelaDomain" useCache="true">
+	select
+		ID,BEGIN_SUBS_ID,END_SUBS_ID,LINE_ID,CREATE_DATE,OPERATOR,STATUS
+	from
+		SUBS_LINE_REL
+	<where>
+
+		<if test="beginSubsId !=null">
+			 and BEGIN_SUBS_ID = #{beginSubsId}
+		</if>
+		<if test="endSubsId !=null">
+			 and END_SUBS_ID = #{endSubsId}
+		</if>
+		<if test="lineId !=null">
+			 and LINE_ID = #{lineId}
+		</if>
+		<if test="createDate !=null">
+			 and CREATE_DATE = #{createDate}
+		</if>
+		<if test="operator !=null">
+			 and OPERATOR = #{operator}
+		</if>
+		<if test="status !=null">
+			 and STATUS = #{status}
+		</if>
+		<if test="beginSubsIds != null and beginSubsIds.size>0">
+			and BEGIN_SUBS_ID IN
+			<foreach item="item" index="index" collection="beginSubsIds" open="("
+					 separator="," close=")">
+				${item}
+			</foreach>
+		</if>
+
+	</where>
+</select>
+
+<select id="findByLineId" parameterType="SubsLineRelaDomain" resultType="SubsLineRelaDomain" useCache="true">
+	select
+		ID,BEGIN_SUBS_ID,END_SUBS_ID,LINE_ID,CREATE_DATE,OPERATOR,STATUS
+	from
+		SUBS_LINE_REL
+	<where>
+
+		<if test="id !=null">
+			 and LINE_ID = #{id}
+		</if>
+
+	</where>
+</select>
+
+<insert id="insert" parameterType="subsLineRelaDomain" flushCache="true"  keyProperty="Id" >
+insert into SUBS_LINE_REL
+	(BEGIN_SUBS_ID,END_SUBS_ID,LINE_ID,CREATE_DATE,OPERATOR	)
+values
+	(#{beginSubsId},#{endSubsId},#{lineId},#{createDate},#{operator})
+</insert>
+
+<update id="update" parameterType="subsLineRelaDomain" flushCache="true">
+	update SUBS_LINE_REL
+	<set>
+
+		<if test="beginSubsId !=null">
+			BEGIN_SUBS_ID = #{beginSubsId},
+		</if>
+		<if test="endSubsId !=null">
+			END_SUBS_ID = #{endSubsId},
+		</if>
+
+	</set>
+	<where>
+ 		and LINE_ID = #{lineId}
+
+	</where>
+</update>
+<delete id="delete" parameterType="LineDomain" flushCache="true">
+	delete from LINE_INFO
+	<where>
+		 and ID = #{id}
+
+	</where>
+</delete>
+
+
+
+</mapper>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+        namespace="com.riozenc.cim.webapp.archives.dao.TransformerMeterRelationDAO">
+    <select id="findByKey"
+            parameterType="TransformerMeterRelationDomain"
+            resultType="TransformerMeterRelationDomain" useCache="false">
+        select
+        ID,TRANSFORMER_ID,METER_ID,MS_TYPE,TRANSFORMER_GROUP_NO,CREATE_DATE,REMARK,STATUS
+        from TRANSFORMER_METER_REL
+        <where>
+            and ID = #{id}
+
+        </where>
+    </select>
+    <select id="findByWhere"
+            parameterType="TransformerMeterRelationDomain"
+            resultType="TransformerMeterRelationDomain" useCache="false">
+        select
+        ID,TRANSFORMER_ID,METER_ID,MS_TYPE,TRANSFORMER_GROUP_NO,CREATE_DATE,REMARK,STATUS
+        from TRANSFORMER_METER_REL
+        <where>
+            <if test="id !=null">
+                and ID = #{id}
+            </if>
+            <if test="transformerId !=null">
+                and TRANSFORMER_ID = #{transformerId}
+            </if>
+            <if test="meterId !=null">
+                and METER_ID = #{meterId}
+            </if>
+            <if test="msType !=null">
+                and MS_TYPE = #{msType}
+            </if>
+            <if test="transformerGroupNo !=null">
+                and TRANSFORMER_GROUP_NO = #{transformerGroupNo}
+            </if>
+            <if test="createDate !=null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="remark !=null">
+                and REMARK = #{remark}
+            </if>
+            <if test="status !=null">
+                and STATUS = #{status}
+            </if>
+        </where>
+    </select>
+    <insert id="insert"
+            parameterType="TransformerMeterRelationDomain" flushCache="false">
+		insert into
+		TRANSFORMER_METER_REL(ID,TRANSFORMER_ID,METER_ID,MS_TYPE,TRANSFORMER_GROUP_NO,CREATE_DATE,REMARK,STATUS)
+		values
+		(#{id},#{transformerId},#{meterId},#{msType},#{transformerGroupNo},#{createDate},#{remark},#{status})
+	</insert>
+    <update id="update"
+            parameterType="TransformerMeterRelationDomain" flushCache="false">
+        update TRANSFORMER_METER_REL
+        <set>
+            <if test="transformerId !=null">
+                TRANSFORMER_ID = #{transformerId},
+            </if>
+            <if test="meterId !=null">
+                METER_ID = #{meterId},
+            </if>
+            <if test="msType !=null">
+                MS_TYPE = #{msType},
+            </if>
+            <if test="transformerGroupNo !=null">
+                TRANSFORMER_GROUP_NO = #{transformerGroupNo},
+            </if>
+            <if test="createDate !=null">
+                CREATE_DATE = #{createDate},
+            </if>
+            <if test="remark !=null">
+                REMARK = #{remark},
+            </if>
+            <if test="status !=null">
+                STATUS = #{status},
+            </if>
+        </set>
+        <where>
+            and ID = #{id}
+
+        </where>
+    </update>
+    <delete id="delete"
+            parameterType="TransformerMeterRelationDomain" flushCache="true">
+        delete from TRANSFORMER_METER_REL
+        <where>
+            and ID = #{id}
+
+        </where>
+    </delete>
+
+    <select id="getTransformerMeterRelationByWriteSectId"
+            parameterType="String" resultType="TransformerMeterRelationDomain"
+            useCache="false">
+        select b.* from TRANSFORMER_METER_REL b LEFT JOIN METER_INFO a on a.ID
+        = b.METER_ID
+        <where>
+            a.WRITE_SECTION_ID in
+            <foreach item="item" index="index" collection="list" open="("
+                     separator="," close=")">
+                ${item}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="getTransformerMeterRelationByMeterIds"
+            parameterType="String" resultType="TransformerMeterRelationDomain"
+            useCache="false">
+        select * FROM TRANSFORMER_METER_REL T
+
+        <where>
+            T.METER_ID IN
+            <foreach item="item" index="index" collection="list" open="("
+                     separator="," close=")">
+                ${item}
+            </foreach>
+            and status =1
+        </where>
+    </select>
+
+    <select id="getDistinctTransGroupNo"
+            parameterType="TransformerMeterRelationDomain"
+            resultType="TransformerMeterRelationDomain"
+            useCache="false">
+        select T.id FROM TRANSFORMER_METER_REL T
+
+        <where>
+            T.TRANSFORMER_GROUP_NO = #{transformerGroupNo}
+            AND T.METER_ID!=#{meterId}
+        </where>
+    </select>
+
+    <select id="getMeterByTransformer"
+            parameterType="TransformerDomain" resultType="MeterDomain"
+            useCache="false">
+        SELECT * FROM TRANSFORMER_METER_REL R
+        LEFT JOIN METER_INFO M ON R.METER_ID = M.ID
+        WHERE R.STATUS =1 AND R.TRANSFORMER_ID IN (
+        select ID from TRANSFORMER_INFO
+        <where>
+            <if test="transformerAssetsNo !=null">
+                and TRANSFORMER_ASSETS_NO like
+                CONCAT('%',#{transformerAssetsNo},'%')
+            </if>
+            <if test="transformerNo !=null">
+                and TRANSFORMER_NO like CONCAT('%',#{transformerNo},'%')
+            </if>
+            <if test="deskName !=null">
+                and DESK_NAME like CONCAT('%',#{deskName},'%')
+            </if>
+        </where>
+        )
+
+    </select>
+
+
+    <select id="findDeleteList"
+            parameterType="TransformerMeterRelationDomain"
+            resultType="TransformerMeterRelationDomain" useCache="true">
+		select * from TRANSFORMER_METER_REL where (TRANSFORMER_ID,meter_id) in(
+			select TRANSFORMER_ID,meter_id from TRANSFORMER_METER_REL GROUP BY TRANSFORMER_ID,meter_id
+			having sum(1) >1)
+			ORDER BY TRANSFORMER_ID,meter_id
+
+	</select>
+
+
+    <select id="findTransformerLineByMeterIds"
+            parameterType="Long"
+            resultType="TransformerLineRelDomain" useCache="true">
+        select
+        TRANSFORMER_METER_REL.METER_ID,TRANSFORMER_METER_REL.TRANSFORMER_ID,TRANSFORMER_LINE_REL.LINE_ID
+        from TRANSFORMER_METER_REL left join TRANSFORMER_LINE_REL on
+        TRANSFORMER_LINE_REL.TRANSFORMER_ID = TRANSFORMER_METER_REL.TRANSFORMER_ID
+        <where>
+            <if test="list!=null and list.size>0">
+                TRANSFORMER_METER_REL.METER_ID in
+                <foreach item="item" index="index" collection="list" open="("
+                         separator="," close=")">
+                    ${item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

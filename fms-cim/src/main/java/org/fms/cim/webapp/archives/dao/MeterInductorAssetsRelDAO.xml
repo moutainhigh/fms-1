@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.MeterInductorAssetsRelDAO">
+<select id="findByKey" parameterType="MeterInductorAssetsRelDomain" resultType="MeterInductorAssetsRelDomain" useCache="true">
+select ID,METER_ID,INDUCTOR_ASSETS_ID,PHASE_SEQ,INDUCTOR_ORDER,INDUCTOR_TYPE,CREATE_DATE,STATUS from METER_INDUCTOR_ASSETS_REL<where>
+ and ID = #{id}
+
+</where>
+</select>
+<select id="findByWhere" parameterType="MeterInductorAssetsRelDomain" resultType="MeterInductorAssetsRelDomain" useCache="true">
+select ID,METER_ID,INDUCTOR_ASSETS_ID,PHASE_SEQ,INDUCTOR_ORDER,INDUCTOR_TYPE,CREATE_DATE,STATUS from METER_INDUCTOR_ASSETS_REL
+<where>
+<if test="id !=null"> 
+ and ID = #{id}
+</if>
+<if test="meterId !=null"> 
+ and METER_ID = #{meterId}
+</if>
+<if test="inductorAssetsId !=null"> 
+ and INDUCTOR_ASSETS_ID = #{inductorAssetsId}
+</if>
+<if test="phaseSeq !=null"> 
+ and PHASE_SEQ = #{phaseSeq}
+</if>
+<if test="inductorOrder !=null"> 
+ and INDUCTOR_ORDER = #{inductorOrder}
+</if>
+<if test="inductorType !=null"> 
+ and INDUCTOR_TYPE = #{inductorType}
+</if>
+<if test="createDate !=null"> 
+ and CREATE_DATE = #{createDate}
+</if>
+<if test="status !=null"> 
+ and STATUS = #{status}
+</if>
+</where>
+</select>
+<insert id="insert" parameterType="MeterInductorAssetsRelDomain" flushCache="true">
+insert into METER_INDUCTOR_ASSETS_REL(ID,METER_ID,INDUCTOR_ASSETS_ID,PHASE_SEQ,INDUCTOR_ORDER,INDUCTOR_TYPE,CREATE_DATE,STATUS) values (#{id},#{meterId},#{inductorAssetsId},#{phaseSeq},#{inductorOrder},#{inductorType},#{createDate},#{status})
+</insert>
+<update id="update" parameterType="MeterInductorAssetsRelDomain" flushCache="true">
+update METER_INDUCTOR_ASSETS_REL
+<set>
+<if test="meterId !=null">
+METER_ID = #{meterId},
+</if>
+<if test="inductorAssetsId !=null">
+INDUCTOR_ASSETS_ID = #{inductorAssetsId},
+</if>
+<if test="phaseSeq !=null">
+PHASE_SEQ = #{phaseSeq},
+</if>
+<if test="inductorOrder !=null">
+INDUCTOR_ORDER = #{inductorOrder},
+</if>
+<if test="inductorType !=null">
+INDUCTOR_TYPE = #{inductorType},
+</if>
+<if test="createDate !=null">
+CREATE_DATE = #{createDate},
+</if>
+<if test="status !=null">
+STATUS = #{status},
+</if>
+</set>
+<where>
+ and ID = #{id}
+
+</where>
+</update>
+<delete id="delete" parameterType="MeterInductorAssetsRelDomain" flushCache="true">
+delete from METER_INDUCTOR_ASSETS_REL
+<where>
+ <if test="id !=null">
+  and ID = #{id}
+ </if>
+ <if test="meterId !=null">
+  and METER_ID = #{meterId}
+ </if>
+ <if test="inductorAssetsId !=null">
+  and INDUCTOR_ASSETS_ID = #{inductorAssetsId}
+ </if>
+ <if test="phaseSeq !=null">
+  and PHASE_SEQ = #{phaseSeq}
+ </if>
+ <if test="inductorOrder !=null">
+  and INDUCTOR_ORDER = #{inductorOrder}
+ </if>
+ <if test="inductorType !=null">
+  and INDUCTOR_TYPE = #{inductorType}
+ </if>
+ <if test="createDate !=null">
+  and CREATE_DATE = #{createDate}
+ </if>
+ <if test="status !=null">
+  and STATUS = #{status}
+ </if>
+
+</where>
+</delete>
+ <select id="getMeterInductorByMeterIds" parameterType="String"
+         resultType="MeterInductorAssetsRelDomain" useCache="true">
+  select
+  ID,METER_ID,INDUCTOR_ASSETS_ID,PHASE_SEQ,INDUCTOR_ORDER,INDUCTOR_TYPE,CREATE_DATE,STATUS from METER_INDUCTOR_ASSETS_REL
+  <where>
+   METER_ID IN
+   <foreach item="item" index="index" collection="list" open="("
+            separator="," close=")">
+    ${item}
+   </foreach>
+  </where>
+ </select>
+
+ <select id="getMeterInductorByWriteSectIds" parameterType="String"
+         resultType="MeterInductorAssetsRelDomain" useCache="false">
+	  select
+	  MAI.ID,MAI.METER_ID,MAI.INDUCTOR_ASSETS_ID,MAI.PHASE_SEQ,MAI.INDUCTOR_ORDER,MAI.INDUCTOR_TYPE,MAI.CREATE_DATE,MAI.STATUS from 
+	  METER_INDUCTOR_ASSETS_REL MAI
+	  LEFT JOIN METER_INFO M ON MAI.METER_ID = M.ID
+	  <where>
+	   M.WRITE_SECTION_ID IN
+	   <foreach item="item" index="index" collection="list" open="("
+	            separator="," close=")">
+	    ${item}
+	   </foreach>
+  </where>
+ </select>
+ 
+ <select id="getInductorEntityByMeterIds" parameterType="String"
+         resultType="MeterInductorAssetsRelDomain" useCache="true">
+ select
+  ID,METER_ID,INDUCTOR_ASSETS_ID,PHASE_SEQ,INDUCTOR_ORDER,INDUCTOR_TYPE,
+  CREATE_DATE,STATUS from METER_INDUCTOR_ASSETS_REL
+ <where>
+   and METER_ID = ${_parameter}
+ </where>
+ </select>
+
+ <select id="getNextInductorOrder" parameterType="Long"
+         resultType="Byte" useCache="true">
+  select
+  IFNULL(MAX(INDUCTOR_ORDER)+1,1)
+  from METER_INDUCTOR_ASSETS_REL
+  <where>
+   and METER_ID = ${_parameter}
+  </where>
+ </select>
+</mapper>

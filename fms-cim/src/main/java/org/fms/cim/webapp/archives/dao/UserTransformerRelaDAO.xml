@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.UserTransformerRelaDAO">
+	<select id="findByKey" parameterType="TransformerDomain"
+		resultType="UserTransformerRelaDomain" useCache="true">
+		select * from USER_TRANSFORMER_REL
+		<where>
+			and ID = #{id}
+		</where>
+	</select>
+	<select id="findByWhere" parameterType="UserTransformerRelaDomain"
+		resultType="UserTransformerRelaDomain" useCache="true">
+		select * from USER_TRANSFORMER_REL
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+			<if test="userId !=null">
+				and USER_ID = #{userId}
+			</if>		
+			<if test="transformerId !=null">
+				and TRANSFORMER_ID = #{transformerId}
+			</if>
+			<if test="createDate !=null">
+				and CREATE_DATE = #{createDate}
+			</if>
+			<if test="remark !=null">
+				and REMARK = #{remark}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+			
+		</where>
+	</select>
+
+
+	<insert id="insert" parameterType="UserTransformerRelaDomain" useGeneratedKeys="true" keyProperty="id"	flushCache="true">
+		insert into
+		USER_TRANSFORMER_REL(USER_ID,TRANSFORMER_ID,CREATE_DATE,REMARK,STATUS)
+		values
+		(#{userId},#{transformerId},#{createDate},#{remark},#{status})
+	</insert>
+	
+	
+	<update id="update" parameterType="UserTransformerRelaDomain"	flushCache="true">
+		update USER_TRANSFORMER_REL
+		<set>
+			<if test="userId !=null">
+				USER_ID = #{userId},
+			</if>
+			<if test="transformerId !=null">
+				TRANSFORMER_ID = #{transformerId},
+			</if>
+			<if test="createDate !=null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="remark !=null">
+				REMARK = #{remark},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status},
+			</if>
+			
+		</set>
+		<where>
+			and ID = #{id}
+
+		</where>
+	</update>
+	
+	<delete id="delete" parameterType="UserTransformerRelaDomain"
+		flushCache="true">
+		delete from USER_TRANSFORMER_REL
+		<where>
+			and ID = #{id}
+		</where>
+	</delete>
+
+	<select id="getUserTransformerRelaByUser" parameterType="UserDomain" resultType="UserTransformerRelaDomain" useCache="true">
+		
+		select * from USER_TRANSFORMER_REL 
+			where USER_ID = 
+				(select * from USER_INFO where USER_NO = #{userNo})
+	
+	</select>
+	
+	<insert id="saveUserTransformerRela" parameterType="UserTransformerRelaDomain" useGeneratedKeys="true" keyProperty="id"	flushCache="true">
+		insert into
+		USER_TRANSFORMER_REL
+		(USER_ID,TRANSFORMER_ID,CREATE_DATE,REMARK,STATUS)
+		values
+		(#{userId},#{transformerId},#{createDate},#{remark},#{status})
+	</insert>
+	
+	
+</mapper>

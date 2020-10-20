@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.assets.dao.InductorAssetsTestRecordDetailDAO">
+<select id="findByKey" parameterType="InductorAssetsTestRecordDetailDomain" resultType="InductorAssetsTestRecordDetailDomain" useCache="true">
+select ID,RECORD_ID,INDUCTOR_ASSETS_I_D,VOL_RATIO80,VOL_RATIO100,VOL_RATIO120,VOL_PHASE80,VOL_PHASE100,VOL_PHASE120,CURRENT_RATIO5,CURRENT_RATIO20,CURRENT_RATIO100,CURRENT_RATIO120,CURRENT_PHASE5,CURRENT_PHASE20,CURRENT_PHASE100,CURRENT_PHASE120,CREATE_DATE,REMARK,MANAGER_ID,ROLE_IDS,DEPT_IDS,TOTAL_ROW,PAGE_CURRENT,PAGE_SIZE,DB_NAME from INDUCTOR_ASSETS_TEST_RECORD_DETAIL<where>
+ and ID = #{id}
+
+</where>
+</select>
+<select id="findByWhere" parameterType="InductorAssetsTestRecordDetailDomain" resultType="InductorAssetsTestRecordDetailDomain" useCache="true">
+select ID,RECORD_ID,INDUCTOR_ASSETS_I_D,VOL_RATIO80,VOL_RATIO100,VOL_RATIO120,VOL_PHASE80,VOL_PHASE100,VOL_PHASE120,CURRENT_RATIO5,CURRENT_RATIO20,CURRENT_RATIO100,CURRENT_RATIO120,CURRENT_PHASE5,CURRENT_PHASE20,CURRENT_PHASE100,CURRENT_PHASE120,CREATE_DATE,REMARK,MANAGER_ID,ROLE_IDS,DEPT_IDS,TOTAL_ROW,PAGE_CURRENT,PAGE_SIZE,DB_NAME from INDUCTOR_ASSETS_TEST_RECORD_DETAIL
+<where>
+<if test="id !=null"> 
+ and ID = #{id}
+</if>
+<if test="recordId !=null"> 
+ and RECORD_ID = #{recordId}
+</if>
+<if test="inductorAssetsID !=null"> 
+ and INDUCTOR_ASSETS_I_D = #{inductorAssetsID}
+</if>
+<if test="volRatio80 !=null"> 
+ and VOL_RATIO80 = #{volRatio80}
+</if>
+<if test="volRatio100 !=null"> 
+ and VOL_RATIO100 = #{volRatio100}
+</if>
+<if test="volRatio120 !=null"> 
+ and VOL_RATIO120 = #{volRatio120}
+</if>
+<if test="volPhase80 !=null"> 
+ and VOL_PHASE80 = #{volPhase80}
+</if>
+<if test="volPhase100 !=null"> 
+ and VOL_PHASE100 = #{volPhase100}
+</if>
+<if test="volPhase120 !=null"> 
+ and VOL_PHASE120 = #{volPhase120}
+</if>
+<if test="currentRatio5 !=null"> 
+ and CURRENT_RATIO5 = #{currentRatio5}
+</if>
+<if test="currentRatio20 !=null"> 
+ and CURRENT_RATIO20 = #{currentRatio20}
+</if>
+<if test="currentRatio100 !=null"> 
+ and CURRENT_RATIO100 = #{currentRatio100}
+</if>
+<if test="currentRatio120 !=null"> 
+ and CURRENT_RATIO120 = #{currentRatio120}
+</if>
+<if test="currentPhase5 !=null"> 
+ and CURRENT_PHASE5 = #{currentPhase5}
+</if>
+<if test="currentPhase20 !=null"> 
+ and CURRENT_PHASE20 = #{currentPhase20}
+</if>
+<if test="currentPhase100 !=null"> 
+ and CURRENT_PHASE100 = #{currentPhase100}
+</if>
+<if test="currentPhase120 !=null"> 
+ and CURRENT_PHASE120 = #{currentPhase120}
+</if>
+<if test="createDate !=null"> 
+ and CREATE_DATE = #{createDate}
+</if>
+<if test="remark !=null"> 
+ and REMARK = #{remark}
+</if>
+<if test="managerId !=null"> 
+ and MANAGER_ID = #{managerId}
+</if>
+<if test="roleIds !=null"> 
+ and ROLE_IDS = #{roleIds}
+</if>
+<if test="deptIds !=null"> 
+ and DEPT_IDS = #{deptIds}
+</if>
+<if test="totalRow !=null"> 
+ and TOTAL_ROW = #{totalRow}
+</if>
+<if test="pageCurrent !=null"> 
+ and PAGE_CURRENT = #{pageCurrent}
+</if>
+<if test="pageSize !=null"> 
+ and PAGE_SIZE = #{pageSize}
+</if>
+<if test="dbName !=null"> 
+ and DB_NAME = #{dbName}
+</if>
+</where>
+</select>
+<insert id="insert" parameterType="InductorAssetsTestRecordDetailDomain" flushCache="true">
+insert into INDUCTOR_ASSETS_TEST_RECORD_DETAIL(ID,RECORD_ID,INDUCTOR_ASSETS_I_D,VOL_RATIO80,VOL_RATIO100,VOL_RATIO120,VOL_PHASE80,VOL_PHASE100,VOL_PHASE120,CURRENT_RATIO5,CURRENT_RATIO20,CURRENT_RATIO100,CURRENT_RATIO120,CURRENT_PHASE5,CURRENT_PHASE20,CURRENT_PHASE100,CURRENT_PHASE120,CREATE_DATE,REMARK,MANAGER_ID,ROLE_IDS,DEPT_IDS,TOTAL_ROW,PAGE_CURRENT,PAGE_SIZE,DB_NAME) values (#{id},#{recordId},#{inductorAssetsID},#{volRatio80},#{volRatio100},#{volRatio120},#{volPhase80},#{volPhase100},#{volPhase120},#{currentRatio5},#{currentRatio20},#{currentRatio100},#{currentRatio120},#{currentPhase5},#{currentPhase20},#{currentPhase100},#{currentPhase120},#{createDate},#{remark},#{managerId},#{roleIds},#{deptIds},#{totalRow},#{pageCurrent},#{pageSize},#{dbName})
+</insert>
+<update id="update" parameterType="InductorAssetsTestRecordDetailDomain" flushCache="true">
+update INDUCTOR_ASSETS_TEST_RECORD_DETAIL
+<set>
+<if test="recordId !=null">
+RECORD_ID = #{recordId},
+</if>
+<if test="inductorAssetsID !=null">
+INDUCTOR_ASSETS_I_D = #{inductorAssetsID},
+</if>
+<if test="volRatio80 !=null">
+VOL_RATIO80 = #{volRatio80},
+</if>
+<if test="volRatio100 !=null">
+VOL_RATIO100 = #{volRatio100},
+</if>
+<if test="volRatio120 !=null">
+VOL_RATIO120 = #{volRatio120},
+</if>
+<if test="volPhase80 !=null">
+VOL_PHASE80 = #{volPhase80},
+</if>
+<if test="volPhase100 !=null">
+VOL_PHASE100 = #{volPhase100},
+</if>
+<if test="volPhase120 !=null">
+VOL_PHASE120 = #{volPhase120},
+</if>
+<if test="currentRatio5 !=null">
+CURRENT_RATIO5 = #{currentRatio5},
+</if>
+<if test="currentRatio20 !=null">
+CURRENT_RATIO20 = #{currentRatio20},
+</if>
+<if test="currentRatio100 !=null">
+CURRENT_RATIO100 = #{currentRatio100},
+</if>
+<if test="currentRatio120 !=null">
+CURRENT_RATIO120 = #{currentRatio120},
+</if>
+<if test="currentPhase5 !=null">
+CURRENT_PHASE5 = #{currentPhase5},
+</if>
+<if test="currentPhase20 !=null">
+CURRENT_PHASE20 = #{currentPhase20},
+</if>
+<if test="currentPhase100 !=null">
+CURRENT_PHASE100 = #{currentPhase100},
+</if>
+<if test="currentPhase120 !=null">
+CURRENT_PHASE120 = #{currentPhase120},
+</if>
+<if test="createDate !=null">
+CREATE_DATE = #{createDate},
+</if>
+<if test="remark !=null">
+REMARK = #{remark},
+</if>
+<if test="managerId !=null">
+MANAGER_ID = #{managerId},
+</if>
+<if test="roleIds !=null">
+ROLE_IDS = #{roleIds},
+</if>
+<if test="deptIds !=null">
+DEPT_IDS = #{deptIds},
+</if>
+<if test="totalRow !=null">
+TOTAL_ROW = #{totalRow},
+</if>
+<if test="pageCurrent !=null">
+PAGE_CURRENT = #{pageCurrent},
+</if>
+<if test="pageSize !=null">
+PAGE_SIZE = #{pageSize},
+</if>
+<if test="dbName !=null">
+DB_NAME = #{dbName},
+</if>
+</set>
+<where>
+ and ID = #{id}
+
+</where>
+</update>
+<delete id="delete" parameterType="InductorAssetsTestRecordDetailDomain" flushCache="true">
+delete from INDUCTOR_ASSETS_TEST_RECORD_DETAIL
+<where>
+ and ID = #{id}
+
+</where>
+</delete>
+</mapper>

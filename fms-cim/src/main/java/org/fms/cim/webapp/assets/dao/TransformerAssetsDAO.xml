@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="com.riozenc.cim.webapp.assets.dao.TransformerAssetsDAO">
+
+	<sql id="Base_Column_List">
+			ID,TRANSFORMER_ASSETS_NO,VOLTAGE_RATIO,CURRENT_RATIO,TRANSFORMER_MODEL_TYPE,FACTORY_TYPE,MADE_NO,MADE_DATE,
+			RATED_VOLTAGE,RATED_CURRENT,SHORT_VOLTAGE,CONNECT_TYPE,NUM_PHASE_TYPE,EMPTY_LOSE,EMPTY_CURRENT,SHORT_LOSE,
+			RT,OIL_NO,VOLT_ATTACH,HV_LIMIT,THEROEM,FIRST_VOLT,SECOND_VOLT,LIFE_SPAN,DET_PERIOD,LAST_DET_DATE,DEPT_ID,
+			CREATE_DATE,REMARK,STATUS,BATCH_NO,LOAD_LOSE,MAN_ID,RIGHT_ATTACH,FIRST_CURRENT,SECOND_CURRENT,COMPANY_ASSETS_NO,
+			PROPERTY_NO ,RATED_CAPACITY
+
+	</sql>
+
+	<select id="findByKey" parameterType="TransformerAssetsDomain"
+		resultType="TransformerAssetsDomain" useCache="true">
+		select
+			<include refid="Base_Column_List" />
+		from TRANSFORMER_ASSETS_INFO
+		<where>
+			and ID = #{id}
+
+		</where>
+	</select>
+
+	<select id="findByWhere" parameterType="TransformerAssetsDomain"
+		resultType="TransformerAssetsDomain" useCache="false">
+		select
+			<include refid="Base_Column_List" />
+		from TRANSFORMER_ASSETS_INFO
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+			<if test="transformerAssetsNo !=null">
+				and TRANSFORMER_ASSETS_NO like CONCAT('%',#{transformerAssetsNo},'%')
+			</if>
+			<if test="voltageRatio !=null">
+				and VOLTAGE_RATIO = #{voltageRatio}
+			</if>
+			<if test="currentRatio !=null">
+				and CURRENT_RATIO = #{currentRatio}
+			</if>
+			<if test="transformerModelType !=null">
+				and TRANSFORMER_MODEL_TYPE = #{transformerModelType}
+			</if>
+			<if test="factoryType !=null">
+				and FACTORY_TYPE = #{factoryType}
+			</if>
+			<if test="madeNo !=null">
+                and MADE_NO like CONCAT('%',#{madeNo},'%')
+			</if>
+			<if test="madeDate !=null">
+				and MADE_DATE = #{madeDate}
+			</if>
+			<if test="ratedVoltage !=null">
+				and RATED_VOLTAGE = #{ratedVoltage}
+			</if>
+			<if test="ratedCurrent !=null">
+				and RATED_CURRENT = #{ratedCurrent}
+			</if>
+			<if test="shortVoltage !=null">
+				and SHORT_VOLTAGE = #{shortVoltage}
+			</if>
+			<if test="connectType !=null">
+				and CONNECT_TYPE = #{connectType}
+			</if>
+			<if test="numPhaseType !=null">
+				and NUM_PHASE_TYPE = #{numPhaseType}
+			</if>
+			<if test="emptyLose !=null">
+				and EMPTY_LOSE = #{emptyLose}
+			</if>
+			<if test="emptyCurrent !=null">
+				and EMPTY_CURRENT = #{emptyCurrent}
+			</if>
+			<if test="shortLose !=null">
+				and SHORT_LOSE = #{shortLose}
+			</if>
+			<if test="rt !=null">
+				and RT = #{rt}
+			</if>
+			<if test="oilNo !=null">
+				and OIL_NO = #{oilNo}
+			</if>
+			<if test="voltAttach !=null">
+				and VOLT_ATTACH = #{voltAttach}
+			</if>
+			<if test="hvLimit !=null">
+				and HV_LIMIT = #{hvLimit}
+			</if>
+			<if test="theroem !=null">
+				and THEROEM = #{theroem}
+			</if>
+			<if test="firstVolt !=null">
+				and FIRST_VOLT = #{firstVolt}
+			</if>
+			<if test="secondVolt !=null">
+				and SECOND_VOLT = #{secondVolt}
+			</if>
+			<if test="deptId !=null">
+				and DEPT_ID = #{deptId}
+			</if>
+			<if test="createDate !=null">
+				and CREATE_DATE = #{createDate}
+			</if>
+			<if test="remark !=null">
+				and REMARK = #{remark}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+			<if test="batchNo !=null">
+				and BATCH_NO = #{batchNo}
+			</if>
+			<if test="manId !=null">
+				and MAN_ID = #{manId}
+			</if>
+			<if test="rightAttach !=null">
+				and RIGHT_ATTACH = #{rightAttach}
+			</if>
+			<if test="firstCurrent !=null">
+				and FIRST_CURRENT = #{firstCurrent}
+			</if>
+			<if test="secondCurrent !=null">
+				and SECOND_CURRENT = #{secondCurrent}
+			</if>
+			<if test="companyAssetsNo !=null">
+				and COMPANY_ASSETS_NO = #{companyAssetsNo}
+			</if>
+			<if test="propertyNo !=null">
+				and PROPERTY_NO = #{propertyNo}
+			</if>
+		</where>
+		order by CREATE_DATE desc 
+	</select>
+	<insert id="insert" parameterType="TransformerAssetsDomain" useGeneratedKeys="true" keyProperty="id"
+		flushCache="true">
+		insert into
+			TRANSFORMER_ASSETS_INFO
+			(
+				<include refid="Base_Column_List" />
+			)
+		values
+		(#{id},#{transformerAssetsNo},#{voltageRatio},#{currentRatio},#{transformerModelType},#{factoryType},#{madeNo},#{madeDate},
+		#{ratedVoltage},#{ratedCurrent},#{shortVoltage},#{connectType},#{numPhaseType},#{emptyLose},#{emptyCurrent},
+		#{shortLose},#{rt},#{oilNo},#{voltAttach},#{hvLimit},#{theroem},#{firstVolt},#{secondVolt},#{lifeSpan},
+		#{detPeriod},#{lastDetDate},#{deptId},#{createDate},#{remark},#{status},#{batchNo},#{loadLose},#{manId},#{rightAttach},
+		#{firstCurrent},#{secondCurrent},#{companyAssetsNo},#{propertyNo},#{ratedCapacity})
+	</insert>
+	<insert id="insertList" parameterType="TransformerAssetsDomain"	flushCache="true">
+		insert into
+			TRANSFORMER_ASSETS_INFO
+			(
+				<include refid="Base_Column_List" />
+			)
+		values
+		(#{id},#{transformerAssetsNo},#{voltageRatio},#{currentRatio},#{transformerModelType},#{factoryType},#{madeNo},#{madeDate},
+		#{ratedVoltage},#{ratedCurrent},#{shortVoltage},#{connectType},#{numPhaseType},#{emptyLose},#{emptyCurrent},
+		#{shortLose},#{rt},#{oilNo},#{voltAttach},#{hvLimit},#{theroem},#{firstVolt},#{secondVolt},#{lifeSpan},
+		#{detPeriod},#{lastDetDate},#{deptId},#{createDate},#{remark},#{status},#{batchNo},#{loadLose},#{manId},#{rightAttach},
+		#{firstCurrent},#{secondCurrent},#{companyAssetsNo},#{propertyNo},#{ratedCapacity})
+	</insert>
+	
+	<update id="update" parameterType="TransformerAssetsDomain"
+		flushCache="true">
+		update TRANSFORMER_ASSETS_INFO
+		<set>
+			<if test="transformerAssetsNo !=null">
+				TRANSFORMER_ASSETS_NO = #{transformerAssetsNo},
+			</if>
+			<if test="voltageRatio !=null">
+				VOLTAGE_RATIO = #{voltageRatio},
+			</if>
+			<if test="currentRatio !=null">
+				CURRENT_RATIO = #{currentRatio},
+			</if>
+			<if test="transformerModelType !=null">
+				TRANSFORMER_MODEL_TYPE = #{transformerModelType},
+			</if>
+			<if test="factoryType !=null">
+				FACTORY_TYPE = #{factoryType},
+			</if>
+			<if test="madeNo !=null">
+				MADE_NO = #{madeNo},
+			</if>
+			<if test="madeDate !=null">
+				MADE_DATE = #{madeDate},
+			</if>
+			<if test="ratedVoltage !=null">
+				RATED_VOLTAGE = #{ratedVoltage},
+			</if>
+			<if test="ratedCurrent !=null">
+				RATED_CURRENT = #{ratedCurrent},
+			</if>
+			<if test="shortVoltage !=null">
+				SHORT_VOLTAGE = #{shortVoltage},
+			</if>
+			<if test="connectType !=null">
+				CONNECT_TYPE = #{connectType},
+			</if>
+			<if test="numPhaseType !=null">
+				NUM_PHASE_TYPE = #{numPhaseType},
+			</if>
+			<if test="emptyLose !=null">
+				EMPTY_LOSE = #{emptyLose},
+			</if>
+			<if test="emptyCurrent !=null">
+				EMPTY_CURRENT = #{emptyCurrent},
+			</if>
+			<if test="shortLose !=null">
+				SHORT_LOSE = #{shortLose},
+			</if>
+			<if test="rt !=null">
+				RT = #{rt},
+			</if>
+			<if test="oilNo !=null">
+				OIL_NO = #{oilNo},
+			</if>
+			<if test="voltAttach !=null">
+				VOLT_ATTACH = #{voltAttach},
+			</if>
+			<if test="hvLimit !=null">
+				HV_LIMIT = #{hvLimit},
+			</if>
+			<if test="theroem !=null">
+				THEROEM = #{theroem},
+			</if>
+			<if test="firstVolt !=null">
+				FIRST_VOLT = #{firstVolt},
+			</if>
+			<if test="secondVolt !=null">
+				SECOND_VOLT = #{secondVolt},
+			</if>
+			<if test="lifeSpan !=null">
+				LIFE_SPAN = #{lifeSpan},
+			</if>
+			<if test="detPeriod !=null">
+				DET_PERIOD = #{detPeriod},
+			</if>
+			<if test="lastDetDate !=null">
+				LAST_DET_DATE = #{lastDetDate},
+			</if>
+			<if test="deptId !=null">
+				DEPT_ID = #{deptId},
+			</if>
+			<if test="createDate !=null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="remark !=null">
+				REMARK = #{remark},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status},
+			</if>
+			<if test="batchNo !=null">
+				BATCH_NO = #{batchNo},
+			</if>
+			<if test="loadLose !=null">
+				LOAD_LOSE = #{loadLose},
+			</if>
+			<if test="manId !=null">
+				MAN_ID = #{manId},
+			</if>
+			<if test="rightAttach !=null">
+				RIGHT_ATTACH = #{rightAttach},
+			</if>
+			<if test="firstCurrent !=null">
+				FIRST_CURRENT = #{firstCurrent},
+			</if>
+			<if test="secondCurrent !=null">
+				SECOND_CURRENT = #{secondCurrent},
+			</if>
+			<if test="companyAssetsNo !=null">
+				COMPANY_ASSETS_NO = #{companyAssetsNo},
+			</if>
+			<if test="propertyNo !=null">
+				PROPERTY_NO = #{propertyNo},
+			</if>
+			<if test="ratedCapacity !=null">
+				RATED_CAPACITY = #{ratedCapacity}
+			</if>
+		</set>
+		<where>
+			and ID = #{id}
+
+		</where>
+	</update>
+	<delete id="delete" parameterType="TransformerAssetsDomain"
+		flushCache="true">
+		delete from TRANSFORMER_ASSETS_INFO
+		<where>
+			and ID = #{id}
+
+		</where>
+	</delete>
+
+	<select id="findByNoId" parameterType="TransformerAssetsDomain"
+		resultType="TransformerAssetsDomain" useCache="true">
+		select
+			<include refid="Base_Column_List" />
+		from TRANSFORMER_ASSETS_INFO
+		where ID != #{id} and TRANSFORMER_ASSETS_NO = #{transformerAssetsNo}
+
+	</select>
+	
+	<select id="getTransformerAssetsByWhere" parameterType="TransformerAssetsDomain"
+		resultType="TransformerAssetsDomain" useCache="false">
+		select
+			<include refid="Base_Column_List" />
+		from TRANSFORMER_ASSETS_INFO
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+			<if test="transformerAssetsNo !=null">
+				and TRANSFORMER_ASSETS_NO = #{transformerAssetsNo}
+			</if>
+			<if test="voltageRatio !=null">
+				and VOLTAGE_RATIO = #{voltageRatio}
+			</if>
+			<if test="currentRatio !=null">
+				and CURRENT_RATIO = #{currentRatio}
+			</if>
+			<if test="transformerModelType !=null">
+				and TRANSFORMER_MODEL_TYPE = #{transformerModelType}
+			</if>
+			<if test="factoryType !=null">
+				and FACTORY_TYPE = #{factoryType}
+			</if>
+			<if test="madeNo !=null">
+                and MADE_NO like CONCAT('%',#{madeNo},'%')
+			</if>
+			<if test="madeDate !=null">
+				and MADE_DATE = #{madeDate}
+			</if>
+			<if test="ratedVoltage !=null">
+				and RATED_VOLTAGE = #{ratedVoltage}
+			</if>
+			<if test="ratedCurrent !=null">
+				and RATED_CURRENT = #{ratedCurrent}
+			</if>
+			<if test="shortVoltage !=null">
+				and SHORT_VOLTAGE = #{shortVoltage}
+			</if>
+			<if test="connectType !=null">
+				and CONNECT_TYPE = #{connectType}
+			</if>
+			<if test="numPhaseType !=null">
+				and NUM_PHASE_TYPE = #{numPhaseType}
+			</if>
+			<if test="emptyLose !=null">
+				and EMPTY_LOSE = #{emptyLose}
+			</if>
+			<if test="emptyCurrent !=null">
+				and EMPTY_CURRENT = #{emptyCurrent}
+			</if>
+			<if test="shortLose !=null">
+				and SHORT_LOSE = #{shortLose}
+			</if>
+			<if test="rt !=null">
+				and RT = #{rt}
+			</if>
+			<if test="oilNo !=null">
+				and OIL_NO = #{oilNo}
+			</if>
+			<if test="voltAttach !=null">
+				and VOLT_ATTACH = #{voltAttach}
+			</if>
+			<if test="hvLimit !=null">
+				and HV_LIMIT = #{hvLimit}
+			</if>
+			<if test="theroem !=null">
+				and THEROEM = #{theroem}
+			</if>
+			<if test="firstVolt !=null">
+				and FIRST_VOLT = #{firstVolt}
+			</if>
+			<if test="secondVolt !=null">
+				and SECOND_VOLT = #{secondVolt}
+			</if>
+			<if test="deptIds !=null">
+				and DEPT_ID in (${deptIds})
+			</if>
+			<if test="createDate !=null">
+				and CREATE_DATE = #{createDate}
+			</if>
+			<if test="remark !=null">
+				and REMARK = #{remark}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+			<if test="batchNo !=null">
+				and BATCH_NO = #{batchNo}
+			</if>
+			<if test="loadLose !=null">
+				and LOAD_LOSE = #{loadLose}
+			</if>
+			<if test="manId !=null">
+				and MAN_ID = #{manId}
+			</if>
+			<if test="rightAttach !=null">
+				and RIGHT_ATTACH = #{rightAttach}
+			</if>
+			<if test="firstCurrent !=null">
+				and FIRST_CURRENT = #{firstCurrent}
+			</if>
+			<if test="secondCurrent !=null">
+				and SECOND_CURRENT = #{secondCurrent}
+			</if>
+			<if test="companyAssetsNo !=null">
+				and COMPANY_ASSETS_NO = #{companyAssetsNo}
+			</if>
+			<if test="propertyNo !=null">
+				and PROPERTY_NO = #{propertyNo}
+			</if>
+		</where>
+				order by CREATE_DATE desc 
+	</select>
+
+</mapper>

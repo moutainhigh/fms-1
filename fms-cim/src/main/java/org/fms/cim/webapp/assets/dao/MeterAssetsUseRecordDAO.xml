@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.assets.dao.MeterAssetsUseRecordDAO">
+<select id="findByKey" parameterType="MeterAssetsUseRecordDomain" resultType="MeterAssetsUseRecordDomain" useCache="true">
+select ID,METER_ASSETS_ID,METER_ASSETS_NO,REQUISITION_MAN,REQUISITION_DEPT,REQUISITION_DATE,INSTALL_SITE,ISSUER,CREATE_DATE,REMARK,STATUS from METER_ASSETS_USE_RECORD<where>
+ and ID = #{id}
+
+</where>
+</select>
+<select id="findByWhere" parameterType="MeterAssetsUseRecordDomain" resultType="MeterAssetsUseRecordDomain" useCache="true">
+select ID,METER_ASSETS_ID,METER_ASSETS_NO,REQUISITION_MAN,REQUISITION_DEPT,REQUISITION_DATE,INSTALL_SITE,ISSUER,CREATE_DATE,REMARK,STATUS from METER_ASSETS_USE_RECORD
+<where>
+<if test="id !=null"> 
+ and ID = #{id}
+</if>
+<if test="meterAssetsId !=null"> 
+ and METER_ASSETS_ID = #{meterAssetsId}
+</if>
+<if test="meterAssetsNo !=null"> 
+ and METER_ASSETS_NO = #{meterAssetsNo}
+</if>
+<if test="requisitionMan !=null"> 
+ and REQUISITION_MAN = #{requisitionMan}
+</if>
+<if test="requisitionDept !=null"> 
+ and REQUISITION_DEPT = #{requisitionDept}
+</if>
+<if test="requisitionDate !=null"> 
+ and REQUISITION_DATE = #{requisitionDate}
+</if>
+<if test="installSite !=null"> 
+ and INSTALL_SITE = #{installSite}
+</if>
+<if test="issuer !=null"> 
+ and ISSUER = #{issuer}
+</if>
+<if test="createDate !=null"> 
+ and CREATE_DATE = #{createDate}
+</if>
+<if test="remark !=null"> 
+ and REMARK = #{remark}
+</if>
+<if test="status !=null"> 
+ and STATUS = #{status}
+</if>
+</where>
+</select>
+<insert id="insert" parameterType="MeterAssetsUseRecordDomain" flushCache="true">
+insert into METER_ASSETS_USE_RECORD(ID,METER_ASSETS_ID,METER_ASSETS_NO,REQUISITION_MAN,REQUISITION_DEPT,REQUISITION_DATE,INSTALL_SITE,ISSUER,CREATE_DATE,REMARK,STATUS) values (#{id},#{meterAssetsId},#{meterAssetsNo},#{requisitionMan},#{requisitionDept},#{requisitionDate},#{installSite},#{issuer},#{createDate},#{remark},#{status})
+</insert>
+<update id="update" parameterType="MeterAssetsUseRecordDomain" flushCache="true">
+update METER_ASSETS_USE_RECORD
+<set>
+<if test="meterAssetsId !=null">
+METER_ASSETS_ID = #{meterAssetsId},
+</if>
+<if test="meterAssetsNo !=null">
+METER_ASSETS_NO = #{meterAssetsNo},
+</if>
+<if test="requisitionMan !=null">
+REQUISITION_MAN = #{requisitionMan},
+</if>
+<if test="requisitionDept !=null">
+REQUISITION_DEPT = #{requisitionDept},
+</if>
+<if test="requisitionDate !=null">
+REQUISITION_DATE = #{requisitionDate},
+</if>
+<if test="installSite !=null">
+INSTALL_SITE = #{installSite},
+</if>
+<if test="issuer !=null">
+ISSUER = #{issuer},
+</if>
+<if test="createDate !=null">
+CREATE_DATE = #{createDate},
+</if>
+<if test="remark !=null">
+REMARK = #{remark},
+</if>
+<if test="status !=null">
+STATUS = #{status},
+</if>
+</set>
+<where>
+ and ID = #{id}
+
+</where>
+</update>
+<delete id="delete" parameterType="MeterAssetsUseRecordDomain" flushCache="true">
+delete from METER_ASSETS_USE_RECORD
+<where>
+ and ID = #{id}
+
+</where>
+</delete>
+</mapper>

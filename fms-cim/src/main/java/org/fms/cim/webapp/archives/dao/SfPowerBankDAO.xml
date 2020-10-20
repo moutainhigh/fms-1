@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.SfPowerBankDAO">
+<select id="findByKey" parameterType="SfPowerBankDomain" resultType="SfPowerBankDomain" useCache="true">
+select ID,BUSINESS_PLACE_CODE,BANK_NAME,ACCOUNT,DW_NAME,BANK_CODE,CREATE_DATE,ADDRESS,TEL,REMARK,STATUS from SF_POWER_BANK<where>
+ and ID = #{id}
+
+</where>
+</select>
+<select id="findByWhere" parameterType="SfPowerBankDomain" resultType="SfPowerBankDomain" useCache="true">
+select ID,BUSINESS_PLACE_CODE,BANK_NAME,ACCOUNT,DW_NAME,BANK_CODE,CREATE_DATE,ADDRESS,TEL,REMARK,STATUS from SF_POWER_BANK
+<where>
+<if test="id !=null"> 
+ and ID = #{id}
+</if>
+<if test="businessPlaceCode !=null"> 
+ and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+</if>
+<if test="bankName !=null"> 
+ and BANK_NAME = #{bankName}
+</if>
+<if test="account !=null"> 
+ and ACCOUNT = #{account}
+</if>
+<if test="dwName !=null"> 
+ and DW_NAME = #{dwName}
+</if>
+<if test="bankCode !=null"> 
+ and BANK_CODE = #{bankCode}
+</if>
+<if test="createDate !=null"> 
+ and CREATE_DATE = #{createDate}
+</if>
+<if test="address !=null"> 
+ and ADDRESS = #{address}
+</if>
+<if test="tel !=null"> 
+ and TEL = #{tel}
+</if>
+<if test="remark !=null"> 
+ and REMARK = #{remark}
+</if>
+<if test="status !=null"> 
+ and STATUS = #{status}
+</if>
+</where>
+</select>
+<insert id="insert" parameterType="SfPowerBankDomain" flushCache="true">
+insert into SF_POWER_BANK(ID,BUSINESS_PLACE_CODE,BANK_NAME,ACCOUNT,DW_NAME,BANK_CODE,CREATE_DATE,ADDRESS,TEL,REMARK,STATUS) values (#{id},#{businessPlaceCode},#{bankName},#{account},#{dwName},#{bankCode},#{createDate},#{address},#{tel},#{remark},#{status})
+</insert>
+<update id="update" parameterType="SfPowerBankDomain" flushCache="true">
+update SF_POWER_BANK
+<set>
+<if test="businessPlaceCode !=null">
+BUSINESS_PLACE_CODE = #{businessPlaceCode},
+</if>
+<if test="bankName !=null">
+BANK_NAME = #{bankName},
+</if>
+<if test="account !=null">
+ACCOUNT = #{account},
+</if>
+<if test="dwName !=null">
+DW_NAME = #{dwName},
+</if>
+<if test="bankCode !=null">
+BANK_CODE = #{bankCode},
+</if>
+<if test="createDate !=null">
+CREATE_DATE = #{createDate},
+</if>
+<if test="address !=null">
+ADDRESS = #{address},
+</if>
+<if test="tel !=null">
+TEL = #{tel},
+</if>
+<if test="remark !=null">
+REMARK = #{remark},
+</if>
+<if test="status !=null">
+STATUS = #{status},
+</if>
+</set>
+<where>
+ and ID = #{id}
+
+</where>
+</update>
+<delete id="delete" parameterType="SfPowerBankDomain" flushCache="true">
+delete from SF_POWER_BANK
+<where>
+ and ID = #{id}
+
+</where>
+</delete>
+</mapper>

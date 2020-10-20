@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.MeterTransRelDAO">
+    <sql id="Base_Column_List">
+		ID,METER_NO,METER_ORDER,METER_NAME,METER_ASSETS_ID,SET_ADDRESS,CT_ASSETS_ID,PT_ASSETS_ID,CT_VALUE,PT_VALUE,PRICE_TYPE,
+		NEED_INDEX,VOLT_LEVEL_TYPE,METER_TYPE,METER_CLASS_TYPE,MS_TYPE,ELEC_TYPE_CODE,BASE_MONEY_FLAG,COS_TYPE,TRADE_TYPE,
+		TS_TYPE,TRANS_LOST_TYPE,TRANS_LOST_NUM,Q_TRANS_LOST_NUM,LINE_LOST_TYPE,LINE_LOST_NUM,Q_LINE_LOST_NUM,CREATE_DATE,
+		REMARK,STATUS,TG_ID,LINE_ID,SUBS_ID,USER_ID,TRANSFORMER_ID,SETTLEMENT_ID,WRITE_SECTION_ID,KEEP_POWER_FLAG,
+		BILL_FLAG,OVERDUE_FINE_FLAG,TIERED_PRICE_FLAG,WRITE_METHOD,RATE_FLAG,
+		POWER_CUT_FLAG,PHASE_SEQ,COUNT_TIMES,CHARGING_CAPACITY
+	</sql>
+    <select id="getTransformerByNoMeterRel" parameterType="MeterDomain"
+            resultType="TransformerDomain" useCache="false">
+        select
+        T.ID,T.TRANSFORMER_NO,T.DESK_NAME,T.CAPACITY,TA.TRANSFORMER_ASSETS_NO,TA.TRANSFORMER_MODEL_TYPE
+        from TRANSFORMER_INFO T LEFT JOIN TRANSFORMER_ASSETS_INFO TA ON T.TRANSFORMER_ASSETS_ID = TA.ID
+        <where>
+            <if test="transformerAssetsNo !=null">
+                and TRANSFORMER_ASSETS_NO like CONCAT('%',#{transformerAssetsNo},'%')
+            </if>
+            <if test="transformerNo !=null">
+                and TRANSFORMER_NO like CONCAT('%',#{transformerNo},'%')
+            </if>
+            <if test="deskName !=null">
+                and DESK_NAME like CONCAT('%',#{deskName},'%')
+            </if>
+            and T.ID NOT IN (SELECT DISTINCT(TRANSFORMER_ID) FROM TRANSFORMER_METER_REL TM  where METER_ID in (${idList} ))
+
+        </where>
+    </select>
+    <select id="getTransformerByMeterRel" parameterType="MeterDomain" resultType="MeterDomain" >
+        select
+        T.ID,T.TRANSFORMER_NO,T.DESK_NAME,T.CAPACITY,
+        TA.TRANSFORMER_ASSETS_NO,TA.TRANSFORMER_MODEL_TYPE,
+        TM.TRANSFORMER_GROUP_NO,TM.MS_TYPE
+
+        from TRANSFORMER_METER_REL TM LEFT JOIN TRANSFORMER_INFO T ON TM.TRANSFORMER_ID = T.ID
+        LEFT JOIN TRANSFORMER_ASSETS_INFO TA ON T.TRANSFORMER_ASSETS_ID = TA.ID
+        LEFT JOIN METER_INFO M ON TM.METER_ID = M.ID
+        where TM.METER_ID in ( ${idList} )
+
+    </select>
+
+
+    <select id="getMeterByTransRel" parameterType="MeterDomain"
+            resultType="TransformerMeterRelationDomain" useCache="false">
+	       select TMR.ID,M.METER_NO,M.METER_NAME,U.USER_NAME,M.METER_TYPE,
+			TMR.TRANS_LOST_TYPE,TMR.TRANS_LOST_NUM,TMR.MS_TYPE,
+			T.TRANSFORMER_NO,T.DESK_NAME
+			from TRANSFORMER_METER_REL TMR
+			LEFT JOIN METER_INFO M ON TMR.METER_ID = M.ID
+			LEFT JOIN TRANSFORMER_INFO T ON TMR.TRANSFORMER_ID = T.ID
+			LEFT JOIN USER_INFO U ON M.USER_ID = U.ID
+        <where>
+        	<if test="transformerId !=null">
+                and TMR.TRANSFORMER_ID = #{transformerId}
+            </if>
+          
+        </where>
+    </select>
+    
+    <insert id="addTransformerByMeterRel" parameterType="TransformerMeterRelationDomain"	flushCache="true">
+		insert into
+		TRANSFORMER_METER_REL(TRANSFORMER_ID,METER_ID,MS_TYPE,TRANSFORMER_GROUP_NO,CREATE_DATE,REMARK,STATUS,TRANS_LOST_TYPE,TRANS_LOST_NUM)
+		values
+		(#{transformerId},#{meterId},#{msType},#{transformerGroupNo},#{createDate},#{remark},#{status},#{transLostType},#{transLostNum})
+	</insert>
+
+    <delete id="deleteTransformerByMeterRel" parameterType="MeterDomain"
+            flushCache="true">
+        delete from TRANSFORMER_METER_REL
+        <where>
+            and METER_ID in ( ${idList})
+        </where>
+    </delete>
+
+    <select id="findTransformerGroupNo"
+            parameterType="TransformerMeterRelationDomain"
+            resultType="TransformerMeterRelationDomain" useCache="false">
+        select
+        TM.*
+        from TRANSFORMER_METER_REL TM
+        <where>
+            and TM.TRANSFORMER_GROUP_NO = #{transformerGroupNo}
+        </where>
+    </select>
+
+	<update id="updateTransLoss" parameterType="TransformerMeterRelationDomain" flushCache="false">
+		update TRANSFORMER_METER_REL
+		<set>
+
+			<if test="transLostType !=null">
+				TRANS_LOST_TYPE = #{transLostType},
+			</if>
+			<if test="transLostNum !=null">
+				TRANS_LOST_NUM = #{transLostNum}
+			</if>
+			
+		</set>
+		<where>
+	 		and ID = #{id}
+	
+		</where>
+	</update>
+    
+    
+</mapper>

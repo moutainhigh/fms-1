@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.assets.dao.TransformerAssetsLogDAO">
+<select id="findByKey" parameterType="TransformerAssetsLogDomain" resultType="TransformerAssetsLogDomain" useCache="true">
+select ID,TRANSFORMER_ASSETS_NO,VOLTAGE_RATIO,CURRENT_RATIO,TRANSFORMER_MODEL_TYPE,FACTORY_TYPE,MADE_NO,MADE_DATE,RATED_VOLTAGE,RATED_CURRENT,SHORT_VOLTAGE,CONNECT_TYPE,NUM_PHASE_TYPE,EMPTY_LOOSE,EMPTY_CURRENT,SHORT_LOOSE,RT,OIL_NO,VOLT_ATTACH,HV_LIMIT,THEROEM,FIRST_VOLT,SECOND_VOLT,DEPT_ID,CREATE_DATE,REMARK,STATUS,OPERATION,OPERATOR,OPERATION_DATE from TRANSFORMER_ASSETS_LOG<where>
+ and ID = #{id}
+
+</where>
+</select>
+<select id="findByWhere" parameterType="TransformerAssetsLogDomain" resultType="TransformerAssetsLogDomain" useCache="true">
+select ID,TRANSFORMER_ASSETS_NO,VOLTAGE_RATIO,CURRENT_RATIO,TRANSFORMER_MODEL_TYPE,FACTORY_TYPE,MADE_NO,MADE_DATE,RATED_VOLTAGE,RATED_CURRENT,SHORT_VOLTAGE,CONNECT_TYPE,NUM_PHASE_TYPE,EMPTY_LOOSE,EMPTY_CURRENT,SHORT_LOOSE,RT,OIL_NO,VOLT_ATTACH,HV_LIMIT,THEROEM,FIRST_VOLT,SECOND_VOLT,DEPT_ID,CREATE_DATE,REMARK,STATUS,OPERATION,OPERATOR,OPERATION_DATE from TRANSFORMER_ASSETS_LOG
+<where>
+<if test="id !=null"> 
+ and ID = #{id}
+</if>
+<if test="transformerAssetsNo !=null"> 
+ and TRANSFORMER_ASSETS_NO = #{transformerAssetsNo}
+</if>
+<if test="voltageRatio !=null"> 
+ and VOLTAGE_RATIO = #{voltageRatio}
+</if>
+<if test="currentRatio !=null"> 
+ and CURRENT_RATIO = #{currentRatio}
+</if>
+<if test="transformerModelType !=null"> 
+ and TRANSFORMER_MODEL_TYPE = #{transformerModelType}
+</if>
+<if test="factoryType !=null"> 
+ and FACTORY_TYPE = #{factoryType}
+</if>
+<if test="madeNo !=null"> 
+ and MADE_NO = #{madeNo}
+</if>
+<if test="madeDate !=null"> 
+ and MADE_DATE = #{madeDate}
+</if>
+<if test="ratedVoltage !=null"> 
+ and RATED_VOLTAGE = #{ratedVoltage}
+</if>
+<if test="ratedCurrent !=null"> 
+ and RATED_CURRENT = #{ratedCurrent}
+</if>
+<if test="shortVoltage !=null"> 
+ and SHORT_VOLTAGE = #{shortVoltage}
+</if>
+<if test="connectType !=null"> 
+ and CONNECT_TYPE = #{connectType}
+</if>
+<if test="numPhaseType !=null"> 
+ and NUM_PHASE_TYPE = #{numPhaseType}
+</if>
+<if test="emptyLoose !=null"> 
+ and EMPTY_LOOSE = #{emptyLoose}
+</if>
+<if test="emptyCurrent !=null"> 
+ and EMPTY_CURRENT = #{emptyCurrent}
+</if>
+<if test="shortLoose !=null"> 
+ and SHORT_LOOSE = #{shortLoose}
+</if>
+<if test="rt !=null"> 
+ and RT = #{rt}
+</if>
+<if test="oilNo !=null"> 
+ and OIL_NO = #{oilNo}
+</if>
+<if test="voltAttach !=null"> 
+ and VOLT_ATTACH = #{voltAttach}
+</if>
+<if test="hvLimit !=null"> 
+ and HV_LIMIT = #{hvLimit}
+</if>
+<if test="theroem !=null"> 
+ and THEROEM = #{theroem}
+</if>
+<if test="firstVolt !=null"> 
+ and FIRST_VOLT = #{firstVolt}
+</if>
+<if test="secondVolt !=null"> 
+ and SECOND_VOLT = #{secondVolt}
+</if>
+<if test="deptId !=null"> 
+ and DEPT_ID = #{deptId}
+</if>
+<if test="createDate !=null"> 
+ and CREATE_DATE = #{createDate}
+</if>
+<if test="remark !=null"> 
+ and REMARK = #{remark}
+</if>
+<if test="status !=null"> 
+ and STATUS = #{status}
+</if>
+<if test="operation !=null"> 
+ and OPERATION = #{operation}
+</if>
+<if test="operator !=null"> 
+ and OPERATOR = #{operator}
+</if>
+<if test="operationDate !=null"> 
+ and OPERATION_DATE = #{operationDate}
+</if>
+</where>
+</select>
+<insert id="insert" parameterType="TransformerAssetsLogDomain" flushCache="true">
+insert into TRANSFORMER_ASSETS_LOG(TRANSFORMER_ASSETS_NO,VOLTAGE_RATIO,CURRENT_RATIO,TRANSFORMER_MODEL_TYPE,FACTORY_TYPE,MADE_NO,MADE_DATE,RATED_VOLTAGE,RATED_CURRENT,SHORT_VOLTAGE,CONNECT_TYPE,NUM_PHASE_TYPE,EMPTY_LOOSE,EMPTY_CURRENT,SHORT_LOOSE,RT,OIL_NO,VOLT_ATTACH,HV_LIMIT,THEROEM,FIRST_VOLT,SECOND_VOLT,DEPT_ID,CREATE_DATE,REMARK,STATUS,OPERATION,OPERATOR,OPERATION_DATE) 
+values
+ (#{transformerAssetsNo},#{voltageRatio},#{currentRatio},#{transformerModelType},#{factoryType},#{madeNo},#{madeDate},#{ratedVoltage},#{ratedCurrent},#{shortVoltage},#{connectType},#{numPhaseType},#{emptyLoose},#{emptyCurrent},#{shortLoose},#{rt},#{oilNo},#{voltAttach},#{hvLimit},#{theroem},#{firstVolt},#{secondVolt},#{deptId},#{createDate},#{remark},#{status},#{operation},#{operator},#{operationDate})
+</insert>
+<update id="update" parameterType="TransformerAssetsLogDomain" flushCache="true">
+update TRANSFORMER_ASSETS_LOG
+<set>
+<if test="transformerAssetsNo !=null">
+TRANSFORMER_ASSETS_NO = #{transformerAssetsNo},
+</if>
+<if test="voltageRatio !=null">
+VOLTAGE_RATIO = #{voltageRatio},
+</if>
+<if test="currentRatio !=null">
+CURRENT_RATIO = #{currentRatio},
+</if>
+<if test="transformerModelType !=null">
+TRANSFORMER_MODEL_TYPE = #{transformerModelType},
+</if>
+<if test="factoryType !=null">
+FACTORY_TYPE = #{factoryType},
+</if>
+<if test="madeNo !=null">
+MADE_NO = #{madeNo},
+</if>
+<if test="madeDate !=null">
+MADE_DATE = #{madeDate},
+</if>
+<if test="ratedVoltage !=null">
+RATED_VOLTAGE = #{ratedVoltage},
+</if>
+<if test="ratedCurrent !=null">
+RATED_CURRENT = #{ratedCurrent},
+</if>
+<if test="shortVoltage !=null">
+SHORT_VOLTAGE = #{shortVoltage},
+</if>
+<if test="connectType !=null">
+CONNECT_TYPE = #{connectType},
+</if>
+<if test="numPhaseType !=null">
+NUM_PHASE_TYPE = #{numPhaseType},
+</if>
+<if test="emptyLoose !=null">
+EMPTY_LOOSE = #{emptyLoose},
+</if>
+<if test="emptyCurrent !=null">
+EMPTY_CURRENT = #{emptyCurrent},
+</if>
+<if test="shortLoose !=null">
+SHORT_LOOSE = #{shortLoose},
+</if>
+<if test="rt !=null">
+RT = #{rt},
+</if>
+<if test="oilNo !=null">
+OIL_NO = #{oilNo},
+</if>
+<if test="voltAttach !=null">
+VOLT_ATTACH = #{voltAttach},
+</if>
+<if test="hvLimit !=null">
+HV_LIMIT = #{hvLimit},
+</if>
+<if test="theroem !=null">
+THEROEM = #{theroem},
+</if>
+<if test="firstVolt !=null">
+FIRST_VOLT = #{firstVolt},
+</if>
+<if test="secondVolt !=null">
+SECOND_VOLT = #{secondVolt},
+</if>
+<if test="deptId !=null">
+DEPT_ID = #{deptId},
+</if>
+<if test="createDate !=null">
+CREATE_DATE = #{createDate},
+</if>
+<if test="remark !=null">
+REMARK = #{remark},
+</if>
+<if test="status !=null">
+STATUS = #{status},
+</if>
+<if test="operation !=null">
+OPERATION = #{operation},
+</if>
+<if test="operator !=null">
+OPERATOR = #{operator},
+</if>
+<if test="operationDate !=null">
+OPERATION_DATE = #{operationDate},
+</if>
+</set>
+<where>
+ and ID = #{id}
+
+</where>
+</update>
+<delete id="delete" parameterType="TransformerAssetsLogDomain" flushCache="true">
+delete from TRANSFORMER_ASSETS_LOG
+<where>
+ and ID = #{id}
+
+</where>
+</delete>
+</mapper>

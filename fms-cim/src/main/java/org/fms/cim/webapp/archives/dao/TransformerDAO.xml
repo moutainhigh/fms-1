@@ -1,0 +1,756 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.TransformerDAO">
+    <sql id="Base_Column_List">
+        ID,TRANSFORMER_ASSETS_ID,TRANSFORMER_NO,DESK_NAME,CAPACITY,TRANSFORMER_GROUP_NO,
+		IS_PUB_TYPE,TRANSFORMER_LOSS_TYPE,BUSINESS_PLACE_CODE,RUN_DATE,STAND_TIME,VOLT_TYPE,CHARGE_MAN,
+		PRODUCE_TEAM,SET_FORMAT,AREA_NO,SUPPLY_ROOM,VILLAGE_NO,TRANS_CHANGE,INPUT_NODE_CODE,CAPCITOR_CAPACITY,
+		COS_STD_CODE,CREATE_DATE,REMARK,STATUS,LINE_ID
+
+    </sql>
+
+    <select id="findByKey" parameterType="TransformerDomain"
+            resultType="TransformerDomain" useCache="true">
+        select
+        <include refid="Base_Column_List"/>
+        from TRANSFORMER_INFO
+        <where>
+            and ID = #{id}
+
+        </where>
+    </select>
+    <select id="findByWhere" parameterType="TransformerDomain"
+            resultType="TransformerDomain" useCache="true">
+        select
+        T.*,TA.TRANSFORMER_ASSETS_NO,TA.TRANSFORMER_MODEL_TYPE,L.LINE_NAME,L.LINE_CODE
+        from TRANSFORMER_INFO T LEFT JOIN TRANSFORMER_ASSETS_INFO TA ON T.TRANSFORMER_ASSETS_ID = TA.ID
+        LEFT JOIN LINE_INFO L ON L.ID = T.LINE_ID
+        <where>
+
+            <if test="transformerAssetsNo !=null">
+                and TRANSFORMER_ASSETS_NO like CONCAT('%',#{transformerAssetsNo},'%')
+            </if>
+            <if test="transformerNo !=null">
+                and TRANSFORMER_NO like CONCAT('%',#{transformerNo},'%')
+            </if>
+            <if test="deskName !=null">
+                and DESK_NAME like CONCAT('%',#{deskName},'%')
+            </if>
+            <if test="capacity !=null">
+                and CAPACITY = #{capacity}
+            </if>
+            <if test="transformerGroupNo !=null">
+                and TRANSFORMER_GROUP_NO = #{transformerGroupNo}
+            </if>
+            <if test="isPubType !=null">
+                and IS_PUB_TYPE = #{isPubType}
+            </if>
+            <if test="transformerLossType !=null">
+                and TRANSFORMER_LOSS_TYPE = #{transformerLossType}
+            </if>
+            <if test="businessPlaceCode !=null">
+                and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+            </if>
+            <if test="runDate !=null">
+                and RUN_DATE = #{runDate}
+            </if>
+            <if test="standTime !=null">
+                and STAND_TIME = #{standTime}
+            </if>
+
+            <if test="voltType !=null">
+                and VOLT_TYPE = #{voltType}
+            </if>
+            <if test="chargeMan !=null">
+                and CHARGE_MAN = #{chargeMan}
+            </if>
+            <if test="produceTeam !=null">
+                and PRODUCE_TEAM = #{produceTeam}
+            </if>
+            <if test="setFormat !=null">
+                and SET_FORMAT = #{setFormat}
+            </if>
+            <if test="areaNo !=null">
+                and AREA_NO = #{areaNo}
+            </if>
+            <if test="supplyRoom !=null">
+                and SUPPLY_ROOM = #{supplyRoom}
+            </if>
+            <if test="villageNo !=null">
+                and VILLAGE_NO = #{villageNo}
+            </if>
+            <if test="transChange !=null">
+                and TRANS_CHANGE = #{transChange}
+            </if>
+            <if test="inputNodeCode !=null">
+                and INPUT_NODE_CODE = #{inputNodeCode}
+            </if>
+            <if test="capcitorCapacity !=null">
+                and CAPCITOR_CAPACITY = #{capcitorCapacity}
+            </if>
+            <if test="cosStdCode !=null">
+                and COS_STD_CODE = #{cosStdCode}
+            </if>
+            <if test="createDate !=null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="remark !=null">
+                and REMARK = #{remark}
+            </if>
+            <if test="status !=null">
+                and STATUS = #{status}
+            </if>
+            <if test="lineId !=null">
+                and LINE_ID = #{lineId}
+            </if>
+        </where>
+        ORDER BY T.ID DESC
+    </select>
+
+    <!--变压器编号查重专用,新增时-->
+    <select id="findByNo" parameterType="TransformerDomain"
+            resultType="TransformerDomain" useCache="true">
+        select
+        <include refid="Base_Column_List"/>
+        from TRANSFORMER_INFO
+        <where>
+            and TRANSFORMER_NO = #{transformerNo}
+
+        </where>
+    </select>
+    <!--变压器编号查重专用，更新时-->
+    <select id="findByNoId" parameterType="TransformerDomain"
+            resultType="TransformerDomain" useCache="true">
+        select
+        <include refid="Base_Column_List"/>
+        from TRANSFORMER_INFO
+        WHERE TRANSFORMER_NO = #{transformerNo}
+        AND ID != #{id}
+
+    </select>
+
+    <select id="getTransformerByAsset" parameterType="TransformerAssetsDomain"
+            resultType="TransformerDomain" useCache="true">
+        select
+        <include refid="Base_Column_List"/>
+        from TRANSFORMER_INFO
+        <where>
+            <if test="id !=null">
+                and ID = #{id}
+            </if>
+            <if test="transformerAssetsNo !=null">
+                and TRANSFORMER_ASSETS_ID = (SELECT ID FROM TRANSFORMER_ASSETS_INFO WHERE TRANSFORMER_ASSETS_NO =
+                #{transformerAssetsNo} )
+            </if>
+
+        </where>
+    </select>
+
+
+    <!-- 查询变压器信息及其关联线路名称 -->
+    <select id="findByItems" parameterType="TransformerDomain"
+            resultType="TransformerDomain" useCache="true">
+        select
+        T.*,L.LINE_NAME
+        from TRANSFORMER_INFO T LEFT JOIN LINE_INFO L ON L.ID = T.LINE_ID
+        <where>
+            <if test="id !=null">
+                and ID = #{id}
+            </if>
+            <if test="transformerAssetsId !=null">
+                and TRANSFORMER_ASSETS_ID = #{transformerAssetsId}
+            </if>
+            <if test="transformerNo !=null">
+                and TRANSFORMER_NO = #{transformerNo}
+            </if>
+            <if test="deskName !=null">
+                and DESK_NAME = #{deskName}
+            </if>
+            <if test="capacity !=null">
+                and CAPACITY = #{capacity}
+            </if>
+            <if test="transformerGroupNo !=null">
+                and TRANSFORMER_GROUP_NO = #{transformerGroupNo}
+            </if>
+            <if test="isPubType !=null">
+                and IS_PUB_TYPE = #{isPubType}
+            </if>
+            <if test="transformerLossType !=null">
+                and TRANSFORMER_LOSS_TYPE = #{transformerLossType}
+            </if>
+            <if test="businessPlaceCode !=null">
+                and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+            </if>
+            <if test="runDate !=null">
+                and RUN_DATE = #{runDate}
+            </if>
+            <if test="standTime !=null">
+                and STAND_TIME = #{standTime}
+            </if>
+
+            <if test="voltType !=null">
+                and VOLT_TYPE = #{voltType}
+            </if>
+            <if test="chargeMan !=null">
+                and CHARGE_MAN = #{chargeMan}
+            </if>
+            <if test="produceTeam !=null">
+                and PRODUCE_TEAM = #{produceTeam}
+            </if>
+            <if test="setFormat !=null">
+                and SET_FORMAT = #{setFormat}
+            </if>
+            <if test="areaNo !=null">
+                and AREA_NO = #{areaNo}
+            </if>
+            <if test="supplyRoom !=null">
+                and SUPPLY_ROOM = #{supplyRoom}
+            </if>
+            <if test="villageNo !=null">
+                and VILLAGE_NO = #{villageNo}
+            </if>
+            <if test="transChange !=null">
+                and TRANS_CHANGE = #{transChange}
+            </if>
+            <if test="inputNodeCode !=null">
+                and INPUT_NODE_CODE = #{inputNodeCode}
+            </if>
+            <if test="capcitorCapacity !=null">
+                and CAPCITOR_CAPACITY = #{capcitorCapacity}
+            </if>
+            <if test="cosStdCode !=null">
+                and COS_STD_CODE = #{cosStdCode}
+            </if>
+            <if test="createDate !=null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="remark !=null">
+                and REMARK = #{remark}
+            </if>
+            <if test="status !=null">
+                and STATUS = #{status}
+            </if>
+
+        </where>
+
+    </select>
+
+    <select id="findRelByTranId" parameterType="TransformerDomain" resultType="TransformerDomain" useCache="true">
+        select
+        *
+        from TRANSFORMER_LINE_REL
+        <where>
+            <if test="id !=null">
+                and TRANSFORMER_ID = #{id}
+            </if>
+        </where>
+
+    </select>
+
+    <insert id="insert" parameterType="TransformerDomain" useGeneratedKeys="true" keyProperty="id" flushCache="true">
+        insert into
+        TRANSFORMER_INFO(
+        <include refid="Base_Column_List"/>
+        )
+        values
+        (#{id},#{transformerAssetsId},#{transformerNo},#{deskName},#{capacity},#{transformerGroupNo},
+        #{isPubType},#{transformerLossType},#{businessPlaceCode},#{runDate},#{standTime},#{voltType},#{chargeMan},
+        #{produceTeam},#{setFormat},#{areaNo},#{supplyRoom},#{villageNo},#{transChange},#{inputNodeCode},#{capcitorCapacity},
+        #{cosStdCode},#{createDate},#{remark},#{status},#{lineId})
+    </insert>
+
+    <insert id="insertList" parameterType="TransformerDomain" flushCache="true">
+        insert into
+        TRANSFORMER_INFO(
+        <include refid="Base_Column_List"/>
+        )
+        values
+        (#{id},#{transformerAssetsId},#{transformerNo},#{deskName},#{capacity},#{transformerGroupNo},
+        #{isPubType},#{transformerLossType},#{businessPlaceCode},#{runDate},#{standTime},#{voltType},#{chargeMan},
+        #{produceTeam},#{setFormat},#{areaNo},#{supplyRoom},#{villageNo},#{transChange},#{inputNodeCode},#{capcitorCapacity},
+        #{cosStdCode},#{createDate},#{remark},#{status},#{lineId})
+    </insert>
+
+
+    <insert id="insertLineTransRela" parameterType="TransformerDomain" flushCache="true">
+        insert into TRANSFORMER_LINE_REL
+            (LINE_ID, TRANSFORMER_ID, CREATE_DATE, OPERATOR, STATUS)
+        values (#{lineId}, #{id}, #{createDate}, #{operator}, #{status})
+    </insert>
+
+    <update id="updateLineTransRela" parameterType="TransformerDomain" flushCache="true">
+        update TRANSFORMER_LINE_REL
+        <set>
+            <if test="lineId !=null">
+                LINE_ID = #{lineId}
+            </if>
+        </set>
+        <where>
+            TRANSFORMER_ID = #{id}
+        </where>
+    </update>
+    
+    <update id="updateByTransformerAssetsId" parameterType="TransformerDomain" flushCache="true">
+         update TRANSFORMER_INFO
+        <set>
+           
+            <if test="deskName !=null">
+                DESK_NAME = #{deskName},
+            </if>
+            <if test="capacity !=null">
+                CAPACITY = #{capacity},
+            </if>
+            <if test="isPubType !=null">
+                IS_PUB_TYPE = #{isPubType},
+            </if>
+            <if test="transformerLossType !=null">
+                TRANSFORMER_LOSS_TYPE = #{transformerLossType},
+            </if>
+            <if test="businessPlaceCode !=null">
+                BUSINESS_PLACE_CODE = #{businessPlaceCode},
+            </if>
+            <if test="runDate !=null">
+                RUN_DATE = #{runDate},
+            </if>
+            <if test="standTime !=null">
+                STAND_TIME = #{standTime},
+            </if>
+            <if test="voltType !=null">
+                VOLT_TYPE = #{voltType},
+            </if>
+            <if test="chargeMan !=null">
+                CHARGE_MAN = #{chargeMan},
+            </if>
+            <if test="produceTeam !=null">
+                PRODUCE_TEAM = #{produceTeam},
+            </if>
+            <if test="setFormat !=null">
+                SET_FORMAT = #{setFormat},
+            </if>
+            <if test="areaNo !=null">
+                AREA_NO = #{areaNo},
+            </if>
+            <if test="supplyRoom !=null">
+                SUPPLY_ROOM = #{supplyRoom},
+            </if>
+            <if test="villageNo !=null">
+                VILLAGE_NO = #{villageNo},
+            </if>
+            <if test="transChange !=null">
+                TRANS_CHANGE = #{transChange},
+            </if>
+            <if test="inputNodeCode !=null">
+                INPUT_NODE_CODE = #{inputNodeCode},
+            </if>
+            <if test="capcitorCapacity !=null">
+                CAPCITOR_CAPACITY = #{capcitorCapacity},
+            </if>
+            <if test="cosStdCode !=null">
+                COS_STD_CODE = #{cosStdCode},
+            </if>
+            <if test="createDate !=null">
+                CREATE_DATE = #{createDate},
+            </if>
+            <if test="remark !=null">
+                REMARK = #{remark},
+            </if>
+            <if test="status !=null">
+                STATUS = #{status},
+            </if>
+  
+        </set>
+        <where>
+            and TRANSFORMER_ASSETS_ID = #{transformerAssetsId}
+
+        </where>
+    </update>
+    
+    
+
+    <update id="update" parameterType="TransformerDomain" flushCache="true">
+        update TRANSFORMER_INFO
+        <set>
+            <if test="transformerAssetsId !=null">
+                TRANSFORMER_ASSETS_ID = #{transformerAssetsId},
+            </if>
+            <if test="transformerNo !=null">
+                TRANSFORMER_NO = #{transformerNo},
+            </if>
+            <if test="deskName !=null">
+                DESK_NAME = #{deskName},
+            </if>
+            <if test="capacity !=null">
+                CAPACITY = #{capacity},
+            </if>
+            <if test="transformerGroupNo !=null">
+                TRANSFORMER_GROUP_NO = #{transformerGroupNo},
+            </if>
+            <if test="isPubType !=null">
+                IS_PUB_TYPE = #{isPubType},
+            </if>
+            <if test="transformerLossType !=null">
+                TRANSFORMER_LOSS_TYPE = #{transformerLossType},
+            </if>
+            <if test="businessPlaceCode !=null">
+                BUSINESS_PLACE_CODE = #{businessPlaceCode},
+            </if>
+            <if test="runDate !=null">
+                RUN_DATE = #{runDate},
+            </if>
+            <if test="standTime !=null">
+                STAND_TIME = #{standTime},
+            </if>
+
+            <if test="voltType !=null">
+                VOLT_TYPE = #{voltType},
+            </if>
+            <if test="chargeMan !=null">
+                CHARGE_MAN = #{chargeMan},
+            </if>
+            <if test="produceTeam !=null">
+                PRODUCE_TEAM = #{produceTeam},
+            </if>
+            <if test="setFormat !=null">
+                SET_FORMAT = #{setFormat},
+            </if>
+            <if test="areaNo !=null">
+                AREA_NO = #{areaNo},
+            </if>
+            <if test="supplyRoom !=null">
+                SUPPLY_ROOM = #{supplyRoom},
+            </if>
+            <if test="villageNo !=null">
+                VILLAGE_NO = #{villageNo},
+            </if>
+            <if test="transChange !=null">
+                TRANS_CHANGE = #{transChange},
+            </if>
+            <if test="inputNodeCode !=null">
+                INPUT_NODE_CODE = #{inputNodeCode},
+            </if>
+            <if test="capcitorCapacity !=null">
+                CAPCITOR_CAPACITY = #{capcitorCapacity},
+            </if>
+            <if test="cosStdCode !=null">
+                COS_STD_CODE = #{cosStdCode},
+            </if>
+            <if test="createDate !=null">
+                CREATE_DATE = #{createDate},
+            </if>
+            <if test="remark !=null">
+                REMARK = #{remark},
+            </if>
+            <if test="status !=null">
+                STATUS = #{status},
+            </if>
+            <if test="lineId !=null">
+                LINE_ID = #{lineId},
+            </if>
+        </set>
+        <where>
+            and ID = #{id}
+
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="TransformerDomain"
+            flushCache="true">
+        delete from TRANSFORMER_INFO
+        <where>
+            and ID = #{id}
+
+        </where>
+    </delete>
+
+
+    <select id="getTransformerByUser" parameterType="UserDomain"
+            resultType="TransformerDomain" useCache="true">
+        SELECT
+        a.*
+        FROM
+        TRANSFORMER_INFO a
+        LEFT JOIN USER_TRANSFORMER_REL b ON
+        a.ID = b.TRANSFORMER_ID
+        LEFT JOIN USER_INFO c ON b.USER_ID = c.ID
+        <where>
+            <if test="userNo !=null">
+                and c.USER_NO = #{userNo}
+            </if>
+        </where>
+    </select>
+
+    <select id="getTransformerByCustomer" parameterType="CustomerDomain"
+            resultType="TransformerDomain" useCache="true">
+        select T.TRANSFORMER_ASSETS_ID,
+        T.TRANSFORMER_NO,
+        T.DESK_NAME,
+        T.CAPACITY,
+        T.COS_STD_CODE,
+        T.TRANSFORMER_GROUP_NO,
+        T.IS_PUB_TYPE,
+        T.TRANSFORMER_LOSS_TYPE,
+        T.BUSINESS_PLACE_CODE,
+        T.RUN_DATE,
+        T.STAND_TIME,
+        T.LOSS_TYPE,
+        T.LINE_ID,
+        T.VOLT_TYPE,
+        T.CHARGE_MAN,
+        T.PRODUCE_TEAM,
+        T.SET_FORMAT,
+        T.AREA_NO,
+        T.SUPPLY_ROOM,
+        T.VILLAGE_NO,
+        T.TRANS_CHANGE,
+        T.INPUT_NODE_CODE,
+        T.CAPCITOR_CAPACITY,
+        T.CREATE_DATE,
+        T.REMARK,
+        T.STATUS,
+        TA.TRANSFORMER_ASSETS_NO,
+        TA.VOLTAGE_RATIO,
+        TA.CURRENT_RATIO,
+        TA.TRANSFORMER_MODEL_TYPE,
+        TA.FACTORY_TYPE,
+        TA.MADE_NO,
+        TA.MADE_DATE,
+        TA.RATED_VOLTAGE,
+        TA.RATED_CURRENT,
+        TA.SHORT_VOLTAGE,
+        TA.CONNECT_TYPE,
+        TA.NUM_PHASE_TYPE,
+        TA.EMPTY_LOSE,
+        TA.EMPTY_CURRENT,
+        TA.SHORT_LOSE,
+        TA.RT,
+        TA.OIL_NO,
+        TA.VOLT_ATTACH,
+        TA.HV_LIMIT,
+        TA.THEROEM,
+        TA.FIRST_VOLT,
+        TA.SECOND_VOLT,
+        TA.DEPT_ID,
+        TA.CREATE_DATE,
+        TA.REMARK,
+        TA.STATUS,
+        TA.LIFE_SPAN,
+        TA.DET_PERIOD,
+        TA.LAST_DET_DATE,
+        TA.BATCH_NO,
+        TA.LOAD_LOSE,
+        TA.FIRST_CURRENT,
+        TA.SECOND_CURRENT,
+        TA.COMPANY_ASSETS_NO,
+        TA.PROPERTY_NO,
+        TA.RATED_CAPACITY,
+        TA.MAN_ID,
+        TA.RIGHT_ATTACH
+        from TRANSFORMER_INFO T
+        left join TRANSFORMER_ASSETS_INFO TA
+        on T.TRANSFORMER_ASSETS_ID = TA.ID
+        <where>
+            AND T.ID in (
+            SELECT DISTINCT TMR.TRANSFORMER_ID
+            FROM USER_INFO U
+            LEFT JOIN METER_INFO M
+            ON U.ID = M.USER_ID
+            LEFT JOIN TRANSFORMER_METER_REL TMR
+            ON M.ID = TMR.METER_ID
+            WHERE U.CUSTOMER_ID = #{id}
+            )
+        </where>
+    </select>
+
+
+    <select id="getTransformerByWriteSectIds" parameterType="String"
+            resultType="TransformerDomain" useCache="false">
+        SELECT
+        T.*,TA.TRANSFORMER_MODEL_TYPE
+        FROM
+        TRANSFORMER_INFO T
+        LEFT JOIN TRANSFORMER_ASSETS_INFO TA ON T.TRANSFORMER_ASSETS_ID = TA.ID
+        <where>
+            and T.ID IN
+            (
+            SELECT DISTINCT(TMR.TRANSFORMER_ID) FROM TRANSFORMER_METER_REL TMR
+            LEFT JOIN METER_INFO M ON TMR.METER_ID=M.ID
+            WHERE M.WRITE_SECTION_ID IN
+            <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+                ${item}
+            </foreach>
+            and TMR.STATUS =1
+            )
+            and T.STATUS =1
+
+        </where>
+    </select>
+
+
+    <insert id="saveUserTransformerRela" parameterType="UserTransformerRelaDomain" useGeneratedKeys="true"
+            keyProperty="id" flushCache="true">
+        insert into USER_TRANSFORMER_REL
+            (USER_ID, TRANSFORMER_ID, CREATE_DATE, REMARK, STATUS)
+        values (#{userId}, #{transformerId}, #{createDate}, #{remark}, #{status})
+    </insert>
+
+    <select id="getTransformerByMeterIds" resultType="TransformerDomain" useCache="true">
+
+        SELECT
+        T.*,TA.TRANSFORMER_MODEL_TYPE
+        FROM
+        TRANSFORMER_INFO T
+        LEFT JOIN TRANSFORMER_ASSETS_INFO TA ON T.TRANSFORMER_ASSETS_ID = TA.ID
+        <where>
+            and T.ID IN
+            (
+            select DISTINCT(TRANSFORMER_ID) from TRANSFORMER_METER_REL WHERE METER_ID IN
+            <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+                ${item}
+            </foreach>
+            and status =1
+            )
+            and T.STATUS =1
+
+        </where>
+    </select>
+
+    <select id="getTransformerByRel" resultType="java.util.Map" useCache="true">
+
+        SELECT R.*,T.* FROM
+        TRANSFORMER_METER_REL R LEFT JOIN TRANSFORMER_INFO T ON R.TRANSFORMER_ID = T.ID
+        WHERE R.METER_ID IN
+
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            ${item}
+        </foreach>
+
+
+    </select>
+
+    <select id="getAvaTransformerByWhere" resultType="TransformerDomain" useCache="true">
+
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        TRANSFORMER_INFO T
+        <where>
+            <if test="transformerNo !=null">
+                and TRANSFORMER_NO like CONCAT('%',#{transformerNo},'%')
+            </if>
+            <if test="deskName !=null">
+                and DESK_NAME like CONCAT('%',#{deskName},'%')
+            </if>
+            <if test="capacity !=null">
+                and CAPACITY = #{capacity}
+            </if>
+            <if test="transformerGroupNo !=null">
+                and TRANSFORMER_GROUP_NO = #{transformerGroupNo}
+            </if>
+            <if test="isPubType !=null">
+                and IS_PUB_TYPE = #{isPubType}
+            </if>
+            <if test="transformerLossType !=null">
+                and TRANSFORMER_LOSS_TYPE = #{transformerLossType}
+            </if>
+            <if test="businessPlaceCode !=null">
+                and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+            </if>
+            <if test="runDate !=null">
+                and RUN_DATE = #{runDate}
+            </if>
+            <if test="standTime !=null">
+                and STAND_TIME = #{standTime}
+            </if>
+
+            <if test="voltType !=null">
+                and VOLT_TYPE = #{voltType}
+            </if>
+            <if test="chargeMan !=null">
+                and CHARGE_MAN = #{chargeMan}
+            </if>
+            <if test="produceTeam !=null">
+                and PRODUCE_TEAM = #{produceTeam}
+            </if>
+            <if test="setFormat !=null">
+                and SET_FORMAT = #{setFormat}
+            </if>
+            <if test="areaNo !=null">
+                and AREA_NO = #{areaNo}
+            </if>
+            <if test="supplyRoom !=null">
+                and SUPPLY_ROOM = #{supplyRoom}
+            </if>
+            <if test="villageNo !=null">
+                and VILLAGE_NO = #{villageNo}
+            </if>
+            <if test="transChange !=null">
+                and TRANS_CHANGE = #{transChange}
+            </if>
+            <if test="inputNodeCode !=null">
+                and INPUT_NODE_CODE = #{inputNodeCode}
+            </if>
+            <if test="capcitorCapacity !=null">
+                and CAPCITOR_CAPACITY = #{capcitorCapacity}
+            </if>
+            <if test="cosStdCode !=null">
+                and COS_STD_CODE = #{cosStdCode}
+            </if>
+            <if test="createDate !=null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="remark !=null">
+                and REMARK = #{remark}
+            </if>
+            <if test="status !=null">
+                and STATUS = #{status}
+            </if>
+            <if test="lineId !=null">
+                and LINE_ID = #{lineId}
+            </if>
+            <if test="transformerIds != null and transformerIds.size>0">
+                and ID IN
+                <foreach item="item" index="index" collection="transformerIds" open="("
+                         separator="," close=")">
+                    ${item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="findRelByTranformIds" parameterType="TransformerLineRelDomain"
+            resultType="TransformerLineRelDomain" useCache="true">
+        select
+        TRANSFORMER_LINE_REL.*,LINE_INFO.LINE_NAME
+        from TRANSFORMER_LINE_REL
+        LEFT JOIN LINE_INFO on LINE_INFO.ID = TRANSFORMER_LINE_REL.LINE_ID
+        <where>
+            <if test="transformIds != null and transformIds.size > 0">
+                and TRANSFORMER_ID in
+                <foreach item="item" index="index" collection="transformIds"
+                         open="("
+                         separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+
+    </select>
+
+    <select id="findRelByLineIds" parameterType="TransformerLineRelDomain"
+            resultType="TransformerLineRelDomain" useCache="true">
+        select
+        *
+        from TRANSFORMER_LINE_REL
+        <where>
+            <if test="lineIds != null and lineIds.size > 0">
+                and LINE_ID in
+                <foreach item="item" index="index" collection="lineIds"
+                         open="("
+                         separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+
+    </select>
+</mapper>

@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.UserDAO">
+	<sql id="Base_Column_List">
+		ID,CUSTOMER_ID,USER_NO,USER_NAME,ADDRESS,BUSINESS_PLACE_CODE,WRITE_SECT_ID,ALL_CAPACITY,LOAD_TYPE,IS_HIGH_TYPE,
+		TEMP_TYPE,CREDIT_RANK_TYPE,WRITE_TYPE,USER_TYPE,ELEC_TYPE,VOLT_LEVEL_TYPE,TG_ID,GUID,METER_BOX_NUMBER,
+		CREATE_DATE,REMARK,STATUS
+	</sql>
+
+
+	<select id="findByKey" parameterType="UserDomain"
+		resultType="UserDomain" useCache="true">
+		select
+		<include refid="Base_Column_List" />
+		from USER_INFO
+		<where>
+			and ID = #{id}
+		</where>
+	</select>
+
+	<select id="findByNo" parameterType="UserDomain"
+		resultType="UserDomain" useCache="false">
+		select
+		<include refid="Base_Column_List" />
+		from USER_INFO
+		<where>
+			and USER_NO = #{userNo}
+		</where>
+	</select>
+
+	<select id="findByWhere" parameterType="UserDomain"
+		resultType="UserDomain" useCache="true">
+		select
+		hu.*,c.CUSTOMER_NO,c.CUSTOMER_NAME,T.TG_NAME,W.WRITE_SECT_NO,W.WRITE_SECT_NAME
+		from (
+		select
+		<include refid="Base_Column_List" />
+		from USER_INFO
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+			<if test="userNo !=null">
+				and USER_NO like CONCAT('%',#{userNo},'%')
+			</if>
+			<if test="customerId !=null">
+				and CUSTOMER_ID = #{customerId}
+			</if>
+			<if test="userName !=null">
+				and USER_NAME like CONCAT('%',#{userName},'%')
+			</if>
+			<if test="address !=null">
+				and ADDRESS like CONCAT('%',#{address},'%')
+			</if>
+			<if test="businessPlaceCode !=null">
+				and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+			</if>
+			<if test="writeSectId !=null">
+				and WRITE_SECT_ID = #{writeSectId}
+			</if>
+			<if test="allCapacity !=null">
+				and ALL_CAPACITY = #{allCapacity}
+			</if>
+			<if test="loadType !=null">
+				and LOAD_TYPE = #{loadType}
+			</if>
+			<if test="isHighType !=null">
+				and IS_HIGH_TYPE = #{isHighType}
+			</if>
+			<if test="tempType !=null">
+				and TEMP_TYPE = #{tempType}
+			</if>
+			<if test="creditRankType !=null">
+				and CREDIT_RANK_TYPE = #{creditRankType}
+			</if>
+			<if test="writeType !=null">
+				and WRITE_TYPE = #{writeType}
+			</if>
+			<if test="userType !=null">
+				and USER_TYPE = #{userType}
+			</if>
+			<if test="tgId !=null">
+				and TG_ID = #{tgId}
+			</if>
+			<if test="guid !=null">
+				and GUID like CONCAT('%',#{guid},'%')
+			</if>
+			<if test="meterBoxNumber !=null">
+				METER_BOX_NUMBER = #{meterBoxNumber},
+			</if>
+			<if test="createDate !=null">
+				and CREATE_DATE = #{createDate}
+			</if>
+			<if test="remark !=null">
+				and REMARK = #{remark}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+			AND CUSTOMER_ID IN (SELECT ID FROM CUSTOMER_INFO
+			<where>
+				<if test="customerName !=null">
+					and CUSTOMER_NAME like CONCAT('%',#{customerName},'%')
+				</if>
+				<if test="customerNo !=null">
+					and CUSTOMER_NO like CONCAT('%',#{customerNo},'%')
+				</if>
+			</where>
+			)
+		</where>
+		)hu left join CUSTOMER_INFO c on hu.CUSTOMER_ID = c.ID
+		left join
+		TG_INFO T on T.ID = hu.TG_ID
+		LEFT JOIN WRITE_SECTION_INFO W ON
+		hu.WRITE_SECT_ID =
+		W.ID
+		ORDER BY hu.ID DESC
+	</select>
+	<insert id="insert" parameterType="UserDomain"
+		useGeneratedKeys="true" keyProperty="id" flushCache="true">
+		insert into
+		USER_INFO(
+		<include refid="Base_Column_List" />
+		)
+		values
+		(#{id},#{customerId},#{userNo},#{userName},#{address},#{businessPlaceCode},#{writeSectId},#{allCapacity},#{loadType},#{isHighType},#{tempType},#{creditRankType},#{writeType},#{userType},#{elecType},#{voltLevelType},#{tgId},#{guid},#{meterBoxNumber},#{createDate},#{remark},#{status})
+	</insert>
+	<update id="update" parameterType="UserDomain" flushCache="true">
+		update USER_INFO
+		<set>
+			<if test="userNo !=null">
+				USER_NO = #{userNo},
+			</if>
+			<if test="customerId !=null">
+				CUSTOMER_ID = #{customerId},
+			</if>
+			<if test="userName !=null">
+				USER_NAME = #{userName},
+			</if>
+			<if test="address !=null">
+				ADDRESS = #{address},
+			</if>
+			<if test="businessPlaceCode !=null">
+				BUSINESS_PLACE_CODE = #{businessPlaceCode},
+			</if>
+			<if test="writeSectId !=null">
+				WRITE_SECT_ID = #{writeSectId},
+			</if>
+			<if test="allCapacity !=null">
+				ALL_CAPACITY = #{allCapacity},
+			</if>
+			<if test="loadType !=null">
+				LOAD_TYPE = #{loadType},
+			</if>
+			<if test="isHighType !=null">
+				IS_HIGH_TYPE = #{isHighType},
+			</if>
+			<if test="tempType !=null">
+				TEMP_TYPE = #{tempType},
+			</if>
+			<if test="creditRankType !=null">
+				CREDIT_RANK_TYPE = #{creditRankType},
+			</if>
+			<if test="writeType !=null">
+				WRITE_TYPE = #{writeType},
+			</if>
+			<if test="userType !=null">
+				USER_TYPE = #{userType},
+			</if>
+			<if test="elecType !=null">
+				ELEC_TYPE = #{elecType},
+			</if>
+			<if test="voltLevelType !=null">
+				VOLT_LEVEL_TYPE = #{voltLevelType},
+			</if>
+			<if test="tgId !=null">
+				TG_ID = #{tgId},
+			</if>
+			<if test="guid !=null">
+				GUID = #{guid},
+			</if>
+			<if test="meterBoxNumber !=null">
+				METER_BOX_NUMBER = #{meterBoxNumber},
+			</if>
+			<if test="createDate !=null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="remark !=null">
+				REMARK = #{remark},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status},
+			</if>
+		</set>
+		<where>
+			and ID = #{id}
+
+		</where>
+	</update>
+	<delete id="delete" parameterType="UserDomain" flushCache="true">
+		delete from USER_INFO
+		<where>
+			and ID = #{id}
+		</where>
+	</delete>
+
+
+	<select id="getUserAllInfo" parameterType="UserDomain"
+		resultType="UserDomain" useCache="true">
+		SELECT
+		a.*, b.CUSTOMER_NAME,b.CUSTOMER_NO,
+		b.ADDRESS,
+		b.CARD_TYPE,
+		b.CARD_NO,
+		b.LINK_MAN,
+		b.CONTACT_INFORMATION
+		FROM
+		USER_INFO a
+		LEFT JOIN
+		CUSTOMER_INFO b ON a.CUSTOMER_ID = b.ID
+		<where>
+
+			<if test="userNo !=null">
+				and a.USER_NO like CONCAT('%',#{userNo},'%')
+			</if>
+			<if test="userName !=null">
+				and a.USER_NAME like CONCAT('%',#{userName},'%')
+			</if>
+			<if test="address !=null">
+				and a.ADDRESS like CONCAT('%',#{address},'%')
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+		</where>
+	</select>
+
+	<select id="getUserByIds" resultType="UserDomain"
+		useCache="false">
+		select
+		<include refid="Base_Column_List" />
+		from USER_INFO
+		<where>
+			ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+		</where>
+	</select>
+
+
+	<select id="getUserIdsByCustomerIds" resultType="Long"
+		useCache="false">
+
+		SELECT ID FROM USER_INFO
+		<where>
+			CUSTOMER_ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+
+		</where>
+	</select>
+
+	<select id="getUsersByCustomerNo" parameterType="com.riozenc.cim.webapp.archives.domain.UserDomain"
+			resultType="UserDomain" useCache="true">
+		select
+		C.ID CUSTOMER_ID,C.CUSTOMER_NO,C.CUSTOMER_NAME,C.CUSTOMER_NAME_SPELL,C.ADDRESS,C.ADDRESS_SPELL,C.CARD_TYPE,C.CARD_NO,C.LINK_MAN,C.CONTACT_INFORMATION,
+		C.CREATE_DATE,C.CANCEL_DATE,C.REMARK,C.STATUS,C.SPARE_LINK_MAN,C.SPARE_CONTACT_INFORMATION,C.BUSINESS_PLACE_CODE,C.WE_CHAT_FLAG,C.INSIDE_FLAG,U.ID ID,
+		U.CUSTOMER_ID,U.USER_NO,U.USER_NAME,U.ADDRESS,U.BUSINESS_PLACE_CODE,U.WRITE_SECT_ID,U.ALL_CAPACITY,U.LOAD_TYPE,U.IS_HIGH_TYPE,U.TEMP_TYPE,U.CREDIT_RANK_TYPE,U.WRITE_TYPE,U.USER_TYPE,U.ELEC_TYPE,U.VOLT_LEVEL_TYPE,U.TG_ID,U.GUID,U.METER_BOX_NUMBER,
+		U.CREATE_DATE,U.REMARK,U.STATUS
+		from CUSTOMER_INFO C
+		left join USER_INFO U
+		on C.ID = U.CUSTOMER_ID
+		<where>
+			<if test="customerId != null">
+				AND C.ID=#{customerId}
+			</if>
+			<if test="customerIds != null and customerIds.size>0">
+				AND C.ID IN
+				<foreach item="item" index="index" collection="customerIds" open="("
+						 separator="," close=")">
+					${item}
+				</foreach>
+			</if>
+		</where>
+	</select>
+
+	<select id="getUserByCustomerIds" resultType="UserDomain"
+		useCache="false">
+
+		SELECT <include refid="Base_Column_List" /> FROM USER_INFO
+		<where>
+			CUSTOMER_ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+			and status >0
+		</where>
+	</select>
+
+	<select id="getUserIdsByWriteSectIds" resultType="Long"
+		useCache="false">
+
+		SELECT ID FROM USER_INFO
+		<where>
+			WRITE_SECT_ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+		</where>
+	</select>
+	
+	<select id="getUserByWriteSectIds" resultType="UserDomain"
+		useCache="false">
+
+		SELECT <include refid="Base_Column_List" /> FROM USER_INFO
+		<where>
+			WRITE_SECT_ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+			and status >0
+		</where>
+	</select>
+	
+	
+
+	<select id="getDeptIdsByUserIds" resultType="Long"
+		useCache="false">
+
+		SELECT BUSINESS_PLACE_CODE FROM USER_INFO
+		<where>
+			ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+		</where>
+	</select>
+
+	<select id="userNoDC" parameterType="UserDomain"
+		resultType="UserDomain" useCache="true">
+
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		USER_INFO
+		<where>
+			<if test="id !=null">
+				and ID != #{id}
+			</if>
+			<if test="userNo !=null">
+				and USER_NO = #{userNo}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+		</where>
+	</select>
+</mapper>

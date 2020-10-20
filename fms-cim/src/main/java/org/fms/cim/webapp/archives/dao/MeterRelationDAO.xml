@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.riozenc.cim.webapp.archives.dao.MeterRelationDAO">
+	<select id="findByKey" parameterType="MeterRelationDomain"
+		resultType="MeterRelationDomain" useCache="true">
+		select
+		ID,METER_ID,P_METER_ID,SHARE_RATE,METER_RELATION_TYPE,METER_RELATION_VALUE,CREATE_DATE,REMARK,STATUS
+
+		from METER_REL
+		<where>
+			and ID = #{id}
+
+		</where>
+	</select>
+	<select id="findByWhere" parameterType="MeterRelationDomain"
+		resultType="MeterRelationDomain" useCache="true">
+		select
+		R.*,M.METER_NAME,M.METER_NO
+		from METER_REL R
+		LEFT JOIN METER_INFO
+		M ON R.METER_ID = M.ID
+		<where>
+
+			<if test="meterId !=null">
+				and METER_ID = #{meterId}
+			</if>
+			<if test="pMeterId !=null">
+				and P_METER_ID = #{pMeterId}
+			</if>
+			<if test="shareRate !=null">
+				and SHARE_RATE = #{shareRate}
+			</if>
+			<if test="meterRelationType !=null">
+				and METER_RELATION_TYPE = #{meterRelationType}
+			</if>
+			<if test="meterRelationValue !=null">
+				and METER_RELATION_VALUE = #{meterRelationValue}
+			</if>
+			<if test="createDate !=null">
+				and CREATE_DATE = #{createDate}
+			</if>
+			<if test="remark !=null">
+				and REMARK = #{remark}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+
+		</where>
+		ORDER BY R.ID DESC 
+	</select>
+	
+	<select id="cc" parameterType="MeterRelationDomain"
+		resultType="MeterRelationDomain" useCache="true">
+		select * from METER_REL 
+		<where>
+	
+			<if test="id !=null">
+				and ID != #{id}
+			</if>
+			<if test="meterId !=null">
+				and METER_ID = #{meterId}
+			</if>
+			<if test="pMeterId !=null">
+				and P_METER_ID = #{pMeterId}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+			
+		</where>
+	
+	</select>
+	
+	<insert id="insert" parameterType="MeterRelationDomain"
+		flushCache="true">
+		insert into
+		METER_REL(METER_ID,P_METER_ID,SHARE_RATE,METER_RELATION_TYPE,METER_RELATION_VALUE,CREATE_DATE,REMARK,STATUS)
+		values
+		(#{meterId},#{pMeterId},#{shareRate},#{meterRelationType},#{meterRelationValue},#{createDate},#{remark},#{status})
+	</insert>
+	<update id="update" parameterType="MeterRelationDomain"
+		flushCache="true">
+		update METER_REL
+		<set>
+			<if test="meterId !=null">
+				METER_ID = #{meterId},
+			</if>
+			<if test="pMeterId !=null">
+				P_METER_ID = #{pMeterId},
+			</if>
+			<if test="shareRate !=null">
+				SHARE_RATE = #{shareRate},
+			</if>
+			<if test="meterRelationType !=null">
+				METER_RELATION_TYPE = #{meterRelationType},
+			</if>
+			<if test="meterRelationValue !=null">
+				METER_RELATION_VALUE = #{meterRelationValue},
+			</if>
+			<if test="createDate !=null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="remark !=null">
+				REMARK = #{remark},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status},
+			</if>
+
+		</set>
+		<where>
+			and ID = #{id}
+
+		</where>
+	</update>
+	<delete id="deleteList" parameterType="MeterRelationDomain"
+		flushCache="true">
+		delete from METER_REL
+		<where>
+			and ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item.id}
+			</foreach>
+
+		</where>
+	</delete>
+
+	<delete id="delete" parameterType="MeterRelationDomain"
+		flushCache="true">
+		delete from METER_REL
+		<where>
+			and ID = #{id}
+
+		</where>
+	</delete>
+	
+
+	<select id="getMeterRelationByWriteSectId"
+		parameterType="String" resultType="MeterRelationDomain"
+		useCache="false">
+		select a.* from METER_REL a LEFT JOIN METER_INFO b ON a.METER_ID = b.ID 
+		<where>
+			b.WRITE_SECTION_ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+		</where>
+		union
+		select a.* from METER_REL a LEFT JOIN METER_INFO b ON a.P_METER_ID = b.ID 
+		<where>
+			b.WRITE_SECTION_ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+		</where>
+	</select>
+	
+	<select id="getMeterRelationByMeterIds"
+		parameterType="Long" resultType="MeterRelationDomain"
+		useCache="false">
+		select
+		ID,METER_ID,P_METER_ID,SHARE_RATE,METER_RELATION_TYPE,METER_RELATION_VALUE,CREATE_DATE,REMARK,STATUS
+
+		from METER_REL
+		<where>
+			METER_ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+			OR P_METER_ID IN 
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+		</where>
+	</select>
+	
+</mapper>

@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.SettlementDAO">
+    <sql id="Base_Column_List">
+		ID,CUSTOMER_ID,SETTLEMENT_NO,SETTLEMENT_NAME,SETTLEMENT_PHONE,CHARGE_MODE_TYPE,CONNECT_BANK,OPENDING_BANK,BANK_NO,CREATE_DATE,
+		REMARK,STATUS,ACCOUNT_NAME,ACCOUNT_NO,CUSCC,BUSINESS_PLACE_CODE,INVOICE_TYPE,INVOICE_PRINT_TYPE,ADDRESS
+	</sql>
+
+    <select id="findByKey" parameterType="SettlementDomain"
+            resultType="SettlementDomain" useCache="true">
+        select
+        <include refid="Base_Column_List"/>
+        from SETTLEMENT_INFO
+        <where>
+            and ID = #{id}
+
+        </where>
+    </select>
+    <select id="findByWhere" parameterType="SettlementDomain"
+            resultType="SettlementDomain" useCache="true">
+        select S.*,C.CUSTOMER_NO, C.CUSTOMER_NAME from (
+        select
+        SETTLEMENT_INFO.ID,CUSTOMER_ID,SETTLEMENT_NO,SETTLEMENT_NAME,SETTLEMENT_PHONE,CHARGE_MODE_TYPE,CONNECT_BANK,OPENDING_BANK,BANK_NO,CREATE_DATE,
+        REMARK,STATUS,ACCOUNT_NAME,ACCOUNT_NO,CUSCC,BUSINESS_PLACE_CODE,INVOICE_TYPE,INVOICE_PRINT_TYPE,ADDRESS
+        from SETTLEMENT_INFO
+        <where>
+            <if test="id !=null">
+                and ID = #{id}
+            </if>
+            <if test="customerId !=null">
+                and CUSTOMER_ID = #{customerId}
+            </if>
+            <if test="settlementNo !=null">
+                and SETTLEMENT_NO = #{settlementNo}
+            </if>
+            <if test="settlementName !=null">
+                and SETTLEMENT_NAME like CONCAT('%',#{settlementName},'%')
+            </if>
+            <if test="settlementPhone !=null">
+                and SETTLEMENT_PHONE = #{settlementPhone}
+            </if>
+            <if test="chargeModeType !=null">
+                and CHARGE_MODE_TYPE = #{chargeModeType}
+            </if>
+            <if test="connectBank !=null">
+                and CONNECT_BANK = #{connectBank}
+            </if>
+            <if test="opendingBank !=null">
+                and OPENDING_BANK = #{opendingBank}
+            </if>
+            <if test="bankNo !=null">
+                and BANK_NO = #{bankNo}
+            </if>
+            <if test="createDate !=null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="remark !=null">
+                and REMARK = #{remark}
+            </if>
+            <if test="status !=null">
+                and STATUS = #{status}
+            </if>
+            <if test="accountName !=null">
+                and ACCOUNT_NAME = #{accountName}
+            </if>
+            <if test="accountNo !=null">
+                and ACCOUNT_NO = #{accountNo}
+            </if>
+            <if test="cuscc !=null">
+                and CUSCC = #{cuscc}
+            </if>
+            <if test="address !=null">
+                and ADDRESS = #{address}
+            </if>
+       		<if test="invoiceType !=null">
+                and INVOICE_TYPE = #{invoiceType}
+            </if>
+            <if test="invoicePrintType !=null">
+                and INVOICE_PRINT_TYPE = #{invoicePrintType}
+            </if>
+            <if test="businessPlaceCode !=null">
+                and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+            </if>
+            AND CUSTOMER_ID IN (SELECT ID FROM CUSTOMER_INFO
+            <where>
+                <if test="customerName !=null">
+                    and CUSTOMER_NAME like CONCAT('%',#{customerName},'%')
+                </if>
+                <if test="customerNo !=null">
+                    and CUSTOMER_NO = #{customerNo}
+                </if>
+            </where>
+            )
+        </where>
+        <if test="settlementIds != null and settlementIds.size > 0">
+            and ID in
+            <foreach item="item" index="index" collection="settlementIds" open="("
+                     separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        ) S left join CUSTOMER_INFO C ON S.CUSTOMER_ID = C.ID
+        ORDER BY S.ID DESC
+
+    </select>
+
+    <select id="findByBusinessPlaceCodeAndInvoiceType" parameterType="SettlementDomain"
+            resultType="SettlementDomain" useCache="true">
+        select S.*,C.CUSTOMER_NO, C.CUSTOMER_NAME from (
+        select
+        <include refid="Base_Column_List"/>
+        from SETTLEMENT_INFO
+        <where>
+       		<if test="invoiceType !=null">
+                and INVOICE_TYPE = #{invoiceType}
+            </if>
+            <if test="businessPlaceCode !=null">
+                and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+            </if>
+        </where>
+        ) S left join CUSTOMER_INFO C ON S.CUSTOMER_ID = C.ID
+        ORDER BY S.ID DESC
+    </select>
+
+
+    <select id="findByNo" parameterType="SettlementDomain"
+            resultType="SettlementDomain" useCache="false">
+        select
+        <include refid="Base_Column_List"/>
+        from SETTLEMENT_INFO
+        <where>
+
+            <if test="settlementNo !=null">
+                and SETTLEMENT_NO =#{settlementNo}
+            </if>
+          
+        </where>
+    </select>
+    <insert id="insert" parameterType="SettlementDomain"
+            flushCache="true">
+        insert into
+        SETTLEMENT_INFO(
+        <include refid="Base_Column_List"/>
+        )
+        values
+        (#{id},#{customerId},#{settlementNo},#{settlementName},#{settlementPhone},
+        #{chargeModeType},#{connectBank},#{opendingBank},#{bankNo},#{createDate},#{remark},#{status},
+        #{accountName},#{accountNo},#{cuscc},#{businessPlaceCode},#{invoiceType},#{invoicePrintType},
+        #{address})
+    </insert>
+    <update id="update" parameterType="SettlementDomain"
+            flushCache="true">
+        update SETTLEMENT_INFO
+        <set>
+            <if test="settlementNo !=null">
+                SETTLEMENT_NO = #{settlementNo},
+            </if>
+            <if test="customerId !=null">
+                CUSTOMER_ID = #{customerId},
+            </if>
+            <if test="settlementName !=null">
+                SETTLEMENT_NAME = #{settlementName},
+            </if>
+            <if test="settlementPhone !=null">
+                SETTLEMENT_PHONE = #{settlementPhone},
+            </if>
+            <if test="chargeModeType !=null">
+                CHARGE_MODE_TYPE = #{chargeModeType},
+            </if>
+            <if test="connectBank !=null">
+                CONNECT_BANK = #{connectBank},
+            </if>
+          	<if test="opendingBank !=null">
+                OPENDING_BANK = #{opendingBank},
+            </if>
+            <if test="bankNo !=null">
+                BANK_NO = #{bankNo},
+            </if>
+            <if test="createDate !=null">
+                CREATE_DATE = #{createDate},
+            </if>
+            <if test="remark !=null">
+                REMARK = #{remark},
+            </if>
+            <if test="status !=null">
+                STATUS = #{status},
+            </if>
+            <if test="accountName !=null">
+                ACCOUNT_NAME = #{accountName},
+            </if>
+            <if test="accountNo !=null">
+                ACCOUNT_NO = #{accountNo},
+            </if>
+            <if test="cuscc !=null">
+                CUSCC = #{cuscc},
+            </if>
+            <if test="businessPlaceCode !=null">
+                BUSINESS_PLACE_CODE = #{businessPlaceCode},
+            </if>
+			<if test="invoiceType !=null">
+                INVOICE_TYPE = #{invoiceType},
+            </if>
+            <if test="invoicePrintType !=null">
+                INVOICE_PRINT_TYPE = #{invoicePrintType},
+            </if>
+            <if test="address !=null">
+                ADDRESS = #{address}
+            </if>
+        </set>
+        <where>
+            and ID = #{id}
+
+        </where>
+    </update>
+    <delete id="delete" parameterType="SettlementDomain"
+            flushCache="true">
+        delete from SETTLEMENT_INFO
+        <where>
+            and ID = #{id}
+
+        </where>
+    </delete>
+
+    <insert id="addSettlementMeterRelBySettlement"
+            parameterType="SettlementDomain" flushCache="true">
+		insert into
+		SETTLEMENT_METER_REL(SETTLEMENT_ID,METER_ID,DEDUCTION_ORDER,CREATE_DATE,REMARK,STATUS)
+		values
+		(#{settlementId},#{meterId},#{deductionOrder},#{createDate},#{remark},#{status})
+	</insert>
+
+    <delete id="deleteSettlementMeterRelBySettlement"
+            parameterType="SettlementMeterRelDomain"
+            flushCache="true">
+        delete from SETTLEMENT_METER_REL
+        <where>
+            ID IN
+            <foreach item="item" index="index" collection="list" open="("
+                     separator="," close=")">
+                ${item.id}
+            </foreach>
+
+        </where>
+    </delete>
+
+    <select id="getSettlementMeterRel" parameterType="SettlementDomain"
+            resultType="SettlementMeterRelDomain" useCache="false">
+        select R.*,M.METER_NAME,M.METER_NO,M.SET_ADDRESS,M.VOLT_LEVEL_TYPE FROM
+        (
+        select
+        ID,SETTLEMENT_ID,METER_ID,DEDUCTION_ORDER,CREATE_DATE,REMARK,STATUS
+        from SETTLEMENT_METER_REL
+        <where>
+            <if test="id !=null">
+                and SETTLEMENT_ID = #{id}
+            </if>
+
+            <if test="status !=null">
+                and STATUS = #{status}
+            </if>
+        </where>
+        )R LEFT JOIN METER_INFO M ON R.METER_ID=M.ID
+
+    </select>
+
+    <select id="getNoSettlementMeter" parameterType="MeterDomain"
+            resultType="MeterDomain" useCache="false">
+
+        SELECT * FROM METER_INFO M
+        <where>
+            <if test="customerId !=null">
+                AND USER_ID IN (SELECT ID FROM USER_INFO WHERE CUSTOMER_ID =
+                #{customerId})
+            </if>
+            <if test="meterNo !=null">
+                AND METER_NO LIKE CONCAT('%',#{meterNo},'%')
+            </if>
+            <if test="meterName !=null">
+                AND METER_NAME LIKE CONCAT('%',#{meterName},'%')
+            </if>
+            AND STATUS = 1
+        </where>
+        AND NOT EXISTS ( SELECT 1 FROM SETTLEMENT_METER_REL R WHERE STATUS = 1
+        AND R.METER_ID=M.ID)
+
+    </select>
+
+    <select id="getSettlementbyMeter" parameterType="SettlementMeterRelDomain"
+            resultType="SettlementDomain" useCache="false">
+
+
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM SETTLEMENT_INFO
+
+        <where>
+            ID IN (SELECT SETTLEMENT_ID from SETTLEMENT_METER_REL WHERE METER_ID
+            = #{meterId})
+
+        </where>
+
+    </select>
+    
+    <select id="getSettlementbyMeterIds"
+            resultType="SettlementDomain" useCache="false">
+
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM SETTLEMENT_INFO
+
+        <where>
+            ID IN (SELECT SETTLEMENT_ID from SETTLEMENT_METER_REL WHERE METER_ID IN 
+            <foreach item="item" index="index" collection="list" open="("
+                     separator="," close=")">
+                ${item}
+            </foreach>
+			)
+        </where>
+
+    </select>
+    
+    
+
+    <select id="getNoSettlementMeterWater"
+            parameterType="SettlementMeterRelDomain" resultType="MeterDomain"
+            useCache="false">
+
+        SELECT * FROM METER_WATER_INFO M
+        <where>
+            <if test="customerId !=null">
+                AND USER_WATER_ID IN (SELECT ID FROM USER_WATER_INFO WHERE
+                CUSTOMER_ID = #{customerId})
+            </if>
+            <if test="meterNo !=null">
+                AND METER_WATER_NO LIKE CONCAT('%',#{meterNo},'%')
+            </if>
+            <if test="meterName !=null">
+                AND METER_WATER_NAME LIKE CONCAT('%',#{meterName},'%')
+            </if>
+            AND STATUS = 1
+        </where>
+        AND NOT EXISTS ( SELECT 1 FROM SETTLEMENT_METER_REL R WHERE STATUS = 1
+        AND R.METER_ID=M.ID)
+
+    </select>
+
+    <select id="getNoSettlementMeterGas"
+            parameterType="SettlementMeterRelDomain" resultType="MeterDomain"
+            useCache="false">
+
+        SELECT * FROM METER_GAS_INFO M
+        <where>
+            <if test="customerId !=null">
+                AND USER_GAS_ID IN (SELECT ID FROM USER_GAS_INFO WHERE
+                CUSTOMER_ID = #{customerId})
+            </if>
+            <if test="meterNo !=null">
+                AND METER_GAS_NO LIKE CONCAT('%',#{meterNo},'%')
+            </if>
+            <if test="meterName !=null">
+                AND METER_GAS_NAME LIKE CONCAT('%',#{meterName},'%')
+            </if>
+            AND STATUS = 1
+        </where>
+        AND NOT EXISTS ( SELECT 1 FROM SETTLEMENT_METER_REL R WHERE STATUS = 1
+        AND R.METER_ID=M.ID)
+
+    </select>
+
+    <select id="getNoSettlementUserHouse"
+            parameterType="SettlementMeterRelDomain" resultType="MeterDomain"
+            useCache="true">
+
+        SELECT * FROM USER_HOUSE_INFO M
+        <where>
+            <if test="customerId !=null">
+                AND CUSTOMER_ID = #{customerId}
+            </if>
+            <if test="meterNo !=null">
+                AND USER_HOUSE_NO LIKE CONCAT('%',#{meterNo},'%')
+            </if>
+            <if test="meterName !=null">
+                AND USER_HOUSE_NAME LIKE CONCAT('%',#{meterName},'%')
+            </if>
+            AND STATUS = 1
+        </where>
+        AND NOT EXISTS ( SELECT 1 FROM SETTLEMENT_METER_REL R WHERE STATUS = 1
+        AND R.METER_ID=M.ID)
+
+    </select>
+
+    <insert id="addSettlementMeterRel" parameterType="SettlementMeterRelDomain"
+            flushCache="true">
+		insert into
+		SETTLEMENT_METER_REL(SETTLEMENT_ID,METER_ID,DEDUCTION_ORDER,CREATE_DATE,REMARK,STATUS)
+		values
+		(#{settlementId},#{meterId},#{deductionOrder},#{createDate},#{remark},#{status})
+	</insert>
+
+
+    <select id="getSettlementMeterRelByMeterIds" parameterType="String"
+            resultType="SettlementMeterRelDomain" useCache="false">
+        select * from SETTLEMENT_METER_REL
+        where METER_ID IN
+        <foreach item="item" index="index" collection="list" open="("
+                 separator="," close=")">
+            ${item}
+        </foreach>
+        and status = 1
+
+    </select>
+
+    <select id="findBankSettlement" parameterType="SettlementDomain"
+            resultType="SettlementDomain" useCache="true">
+        select
+        S.ID,S.CUSTOMER_ID,S.SETTLEMENT_NO,S.SETTLEMENT_NAME,S.SETTLEMENT_PHONE,S.CHARGE_MODE_TYPE,
+        S.CONNECT_BANK,S.BANK_NO,S.CREATE_DATE,S.ADDRESS,OPENDING_BANK,
+        S.REMARK,S.STATUS,S.ACCOUNT_NAME,S.ACCOUNT_NO,S.CUSCC,S.BUSINESS_PLACE_CODE
+        from SETTLEMENT_INFO S
+        <where>
+            and S.`STATUS` = 1
+            <if test="chargeModeType !=null and chargeModeType==5">
+                AND BANK_NO IS NOT NULL
+                AND CHARGE_MODE_TYPE=#{chargeModeType}
+                AND OPENDING_BANK is not null
+                <if test="bankNo !=null">
+                    AND BANK_NO=#{bankNo}
+                </if>
+                AND CONNECT_BANK IS NOT NULL
+                AND CONNECT_BANK !=13
+            </if>
+            <if test="unChargeModeType !=null">
+                AND (CHARGE_MODE_TYPE is null or CHARGE_MODE_TYPE != #{unChargeModeType})
+                 <if test="bankNo !=null">
+                    AND BANK_NO=#{bankNo}
+                </if>
+            </if>
+            <if test="chargeModeType !=null and chargeModeType==3">
+                AND CHARGE_MODE_TYPE=#{chargeModeType}
+                AND CONNECT_BANK is not null
+                AND BANK_NO IS NOT NULL
+                AND CONNECT_BANK !=13
+            </if>
+            <if test="businessPlaceCode !=null">
+                AND BUSINESS_PLACE_CODE=#{businessPlaceCode}
+            </if>
+            <if test="settlementNo !=null">
+                AND SETTLEMENT_NO=#{settlementNo}
+            </if>
+            <if test="settlementName !=null">
+                AND SETTLEMENT_NAME like CONCAT('%',#{settlementName},'%')
+            </if>
+              <if test="businessPlaceCodes != null and businessPlaceCodes.size > 0">
+            and BUSINESS_PLACE_CODE in
+            <foreach item="item" index="index" collection="businessPlaceCodes" open="("
+                     separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        </where>
+    </select>
+
+
+    <select id="findSettlementByIds" parameterType="Long"
+            resultType="SettlementDomain" useCache="true">
+        select * from SETTLEMENT_INFO
+        <where>
+            ID IN
+            <foreach item="item" index="index" collection="list" open="("
+                     separator="," close=")">
+                ${item}
+            </foreach>
+        </where>
+    </select>
+
+
+    <select id="findBySettlementNos" parameterType="SettlementDomain"
+            resultType="SettlementDomain" useCache="true">
+        select
+        <include refid="Base_Column_List"/>
+        from SETTLEMENT_INFO
+        <where>
+            <if test="settlementNos != null and settlementNos.size > 0">
+                and SETTLEMENT_NO in
+                <foreach item="item" index="index" collection="settlementNos" open="("
+                         separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="findSettlementIdByWhere" parameterType="SettlementDomain"
+            resultType="java.lang.Long" useCache="true">
+        select
+        SETTLEMENT_INFO.ID
+        from SETTLEMENT_INFO
+        <where>
+            <if test="id !=null">
+                and ID = #{id}
+            </if>
+            <if test="customerId !=null">
+                and CUSTOMER_ID = #{customerId}
+            </if>
+            <if test="settlementNo !=null">
+                and SETTLEMENT_NO = #{settlementNo}
+            </if>
+            <if test="settlementName !=null">
+                and SETTLEMENT_NAME like CONCAT('%',#{settlementName},'%')
+            </if>
+            <if test="settlementPhone !=null">
+                and SETTLEMENT_PHONE = #{settlementPhone}
+            </if>
+            <if test="chargeModeType !=null">
+                and CHARGE_MODE_TYPE = #{chargeModeType}
+            </if>
+            <if test="connectBank !=null">
+                and CONNECT_BANK = #{connectBank}
+            </if>
+            <if test="opendingBank !=null">
+                and OPENDING_BANK = #{opendingBank}
+            </if>
+            <if test="bankNo !=null">
+                and BANK_NO = #{bankNo}
+            </if>
+            <if test="createDate !=null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="remark !=null">
+                and REMARK = #{remark}
+            </if>
+            <if test="status !=null">
+                and STATUS = #{status}
+            </if>
+            <if test="accountName !=null">
+                and ACCOUNT_NAME = #{accountName}
+            </if>
+            <if test="accountNo !=null">
+                and ACCOUNT_NO = #{accountNo}
+            </if>
+            <if test="cuscc !=null">
+                and CUSCC = #{cuscc}
+            </if>
+            <if test="address !=null">
+                and ADDRESS = #{address}
+            </if>
+            <if test="invoiceType !=null">
+                and INVOICE_TYPE = #{invoiceType}
+            </if>
+            <if test="invoicePrintType !=null">
+                and INVOICE_PRINT_TYPE = #{invoicePrintType}
+            </if>
+            <if test="businessPlaceCode !=null">
+                and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+            </if>
+            <if test="settlementIds != null and settlementIds.size > 0">
+                and ID in
+                <foreach item="item" index="index" collection="settlementIds" open="("
+                         separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+
+
+    </select>
+
+
+    <select id="findClearSettlementByWhere" parameterType="SettlementDomain"
+            resultType="SettlementDomain" useCache="true">
+        select
+        SETTLEMENT_INFO.ID,CUSTOMER_ID,SETTLEMENT_NO,SETTLEMENT_NAME,SETTLEMENT_PHONE,CHARGE_MODE_TYPE,CONNECT_BANK,OPENDING_BANK,BANK_NO,CREATE_DATE,
+        REMARK,STATUS,ACCOUNT_NAME,ACCOUNT_NO,CUSCC,BUSINESS_PLACE_CODE,INVOICE_TYPE,INVOICE_PRINT_TYPE,ADDRESS
+        from SETTLEMENT_INFO
+        <where>
+            <if test="id !=null">
+                and ID = #{id}
+            </if>
+            <if test="customerId !=null">
+                and CUSTOMER_ID = #{customerId}
+            </if>
+            <if test="settlementNo !=null">
+                and SETTLEMENT_NO = #{settlementNo}
+            </if>
+            <if test="settlementName !=null">
+                and SETTLEMENT_NAME = #{settlementName}
+            </if>
+            <if test="settlementPhone !=null">
+                and SETTLEMENT_PHONE = #{settlementPhone}
+            </if>
+            <if test="chargeModeType !=null">
+                and CHARGE_MODE_TYPE = #{chargeModeType}
+            </if>
+            <if test="connectBank !=null">
+                and CONNECT_BANK = #{connectBank}
+            </if>
+            <if test="opendingBank !=null">
+                and OPENDING_BANK = #{opendingBank}
+            </if>
+            <if test="bankNo !=null">
+                and BANK_NO = #{bankNo}
+            </if>
+            <if test="createDate !=null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="remark !=null">
+                and REMARK = #{remark}
+            </if>
+            <if test="status !=null">
+                and STATUS = #{status}
+            </if>
+            <if test="accountName !=null">
+                and ACCOUNT_NAME = #{accountName}
+            </if>
+            <if test="accountNo !=null">
+                and ACCOUNT_NO = #{accountNo}
+            </if>
+            <if test="cuscc !=null">
+                and CUSCC = #{cuscc}
+            </if>
+            <if test="address !=null">
+                and ADDRESS = #{address}
+            </if>
+            <if test="invoiceType !=null">
+                and INVOICE_TYPE = #{invoiceType}
+            </if>
+            <if test="invoicePrintType !=null">
+                and INVOICE_PRINT_TYPE = #{invoicePrintType}
+            </if>
+            <if test="businessPlaceCode !=null">
+                and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+            </if>
+        </where>
+        ORDER BY ID DESC
+
+    </select>
+
+</mapper>

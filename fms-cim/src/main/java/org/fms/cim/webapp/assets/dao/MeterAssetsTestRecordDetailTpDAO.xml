@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.assets.dao.MeterAssetsTestRecordDetailTpDAO">
+<select id="findByKey" parameterType="MeterAssetsTestRecordDetailTpDomain" resultType="MeterAssetsTestRecordDetailTpDomain" useCache="true">
+select ID,RECORD_ID,METER_ASSETS_ID,TP_LOAD_AA,TP_LOAD_AB,TP_LOAD_AC,TP_LOAD_AD,TP_LOAD_AE,TP_LOAD_AF,TP_LOAD_AG,TP_LOAD_AH,TP_LOAD_BA,TP_LOAD_BB,TP_LOAD_BC,TP_LOAD_BD,TP_LOAD_BE,TP_LOAD_BF,TP_LOAD_BG,TP_LOAD_BH,TP_LOAD_CA,TP_LOAD_CB,TP_LOAD_CC,TP_LOAD_CD,TP_LOAD_CE,TP_LOAD_CF,TP_LOAD_CG,TP_LOAD_CH,TP_LOAD_DA,TP_LOAD_DB,TP_LOAD_DC,TP_LOAD_DD,TP_LOAD_DE,TP_LOAD_DF,TP_LOAD_DG,TP_LOAD_DH,TP_GROUP_AA,TP_GROUP_AB,TP_GROUP_AC,TP_GROUP_AD,TP_GROUP_AE,TP_GROUP_AF,TP_GROUP_AG,TP_GROUP_AH,TP_GROUP_AI,TP_GROUP_AJ,TP_GROUP_AK,TP_GROUP_AL,TP_GROUP_BA,TP_GROUP_BB,TP_GROUP_BC,TP_GROUP_BD,TP_GROUP_BE,TP_GROUP_BF,TP_GROUP_BG,TP_GROUP_BH,TP_GROUP_BI,TP_GROUP_BJ,TP_GROUP_BK,TP_GROUP_BL,TP_GROUP_CA,TP_GROUP_CB,TP_GROUP_CC,TP_GROUP_CD,TP_GROUP_CE,TP_GROUP_CF,TP_GROUP_CG,TP_GROUP_CH,TP_GROUP_CI,TP_GROUP_CJ,TP_GROUP_CK,TP_GROUP_CL,TP_GROUP_DA,TP_GROUP_DB,TP_GROUP_DC,TP_GROUP_DD,TP_GROUP_DE,TP_GROUP_DF,TP_GROUP_DG,TP_GROUP_DH,TP_GROUP_DI,TP_GROUP_DJ,TP_GROUP_DK,TP_GROUP_DL,REMARK from METER_ASSETS_TEST_RECORD_DETAIL_TP<where>
+ and ID = #{id}
+
+</where>
+</select>
+<select id="findByWhere" parameterType="MeterAssetsTestRecordDetailTpDomain" resultType="MeterAssetsTestRecordDetailTpDomain" useCache="true">
+select ID,RECORD_ID,METER_ASSETS_ID,TP_LOAD_AA,TP_LOAD_AB,TP_LOAD_AC,TP_LOAD_AD,TP_LOAD_AE,TP_LOAD_AF,TP_LOAD_AG,TP_LOAD_AH,TP_LOAD_BA,TP_LOAD_BB,TP_LOAD_BC,TP_LOAD_BD,TP_LOAD_BE,TP_LOAD_BF,TP_LOAD_BG,TP_LOAD_BH,TP_LOAD_CA,TP_LOAD_CB,TP_LOAD_CC,TP_LOAD_CD,TP_LOAD_CE,TP_LOAD_CF,TP_LOAD_CG,TP_LOAD_CH,TP_LOAD_DA,TP_LOAD_DB,TP_LOAD_DC,TP_LOAD_DD,TP_LOAD_DE,TP_LOAD_DF,TP_LOAD_DG,TP_LOAD_DH,TP_GROUP_AA,TP_GROUP_AB,TP_GROUP_AC,TP_GROUP_AD,TP_GROUP_AE,TP_GROUP_AF,TP_GROUP_AG,TP_GROUP_AH,TP_GROUP_AI,TP_GROUP_AJ,TP_GROUP_AK,TP_GROUP_AL,TP_GROUP_BA,TP_GROUP_BB,TP_GROUP_BC,TP_GROUP_BD,TP_GROUP_BE,TP_GROUP_BF,TP_GROUP_BG,TP_GROUP_BH,TP_GROUP_BI,TP_GROUP_BJ,TP_GROUP_BK,TP_GROUP_BL,TP_GROUP_CA,TP_GROUP_CB,TP_GROUP_CC,TP_GROUP_CD,TP_GROUP_CE,TP_GROUP_CF,TP_GROUP_CG,TP_GROUP_CH,TP_GROUP_CI,TP_GROUP_CJ,TP_GROUP_CK,TP_GROUP_CL,TP_GROUP_DA,TP_GROUP_DB,TP_GROUP_DC,TP_GROUP_DD,TP_GROUP_DE,TP_GROUP_DF,TP_GROUP_DG,TP_GROUP_DH,TP_GROUP_DI,TP_GROUP_DJ,TP_GROUP_DK,TP_GROUP_DL,REMARK from METER_ASSETS_TEST_RECORD_DETAIL_TP
+<where>
+<if test="id !=null"> 
+ and ID = #{id}
+</if>
+<if test="recordId !=null"> 
+ and RECORD_ID = #{recordId}
+</if>
+<if test="meterAssetsId !=null"> 
+ and METER_ASSETS_ID = #{meterAssetsId}
+</if>
+<if test="tpLoadAa !=null"> 
+ and TP_LOAD_AA = #{tpLoadAa}
+</if>
+<if test="tpLoadAb !=null"> 
+ and TP_LOAD_AB = #{tpLoadAb}
+</if>
+<if test="tpLoadAc !=null"> 
+ and TP_LOAD_AC = #{tpLoadAc}
+</if>
+<if test="tpLoadAd !=null"> 
+ and TP_LOAD_AD = #{tpLoadAd}
+</if>
+<if test="tpLoadAe !=null"> 
+ and TP_LOAD_AE = #{tpLoadAe}
+</if>
+<if test="tpLoadAf !=null"> 
+ and TP_LOAD_AF = #{tpLoadAf}
+</if>
+<if test="tpLoadAg !=null"> 
+ and TP_LOAD_AG = #{tpLoadAg}
+</if>
+<if test="tpLoadAh !=null"> 
+ and TP_LOAD_AH = #{tpLoadAh}
+</if>
+<if test="tpLoadBa !=null"> 
+ and TP_LOAD_BA = #{tpLoadBa}
+</if>
+<if test="tpLoadBb !=null"> 
+ and TP_LOAD_BB = #{tpLoadBb}
+</if>
+<if test="tpLoadBc !=null"> 
+ and TP_LOAD_BC = #{tpLoadBc}
+</if>
+<if test="tpLoadBd !=null"> 
+ and TP_LOAD_BD = #{tpLoadBd}
+</if>
+<if test="tpLoadBe !=null"> 
+ and TP_LOAD_BE = #{tpLoadBe}
+</if>
+<if test="tpLoadBf !=null"> 
+ and TP_LOAD_BF = #{tpLoadBf}
+</if>
+<if test="tpLoadBg !=null"> 
+ and TP_LOAD_BG = #{tpLoadBg}
+</if>
+<if test="tpLoadBh !=null"> 
+ and TP_LOAD_BH = #{tpLoadBh}
+</if>
+<if test="tpLoadCa !=null"> 
+ and TP_LOAD_CA = #{tpLoadCa}
+</if>
+<if test="tpLoadCb !=null"> 
+ and TP_LOAD_CB = #{tpLoadCb}
+</if>
+<if test="tpLoadCc !=null"> 
+ and TP_LOAD_CC = #{tpLoadCc}
+</if>
+<if test="tpLoadCd !=null"> 
+ and TP_LOAD_CD = #{tpLoadCd}
+</if>
+<if test="tpLoadCe !=null"> 
+ and TP_LOAD_CE = #{tpLoadCe}
+</if>
+<if test="tpLoadCf !=null"> 
+ and TP_LOAD_CF = #{tpLoadCf}
+</if>
+<if test="tpLoadCg !=null"> 
+ and TP_LOAD_CG = #{tpLoadCg}
+</if>
+<if test="tpLoadCh !=null"> 
+ and TP_LOAD_CH = #{tpLoadCh}
+</if>
+<if test="tpLoadDa !=null"> 
+ and TP_LOAD_DA = #{tpLoadDa}
+</if>
+<if test="tpLoadDb !=null"> 
+ and TP_LOAD_DB = #{tpLoadDb}
+</if>
+<if test="tpLoadDc !=null"> 
+ and TP_LOAD_DC = #{tpLoadDc}
+</if>
+<if test="tpLoadDd !=null"> 
+ and TP_LOAD_DD = #{tpLoadDd}
+</if>
+<if test="tpLoadDe !=null"> 
+ and TP_LOAD_DE = #{tpLoadDe}
+</if>
+<if test="tpLoadDf !=null"> 
+ and TP_LOAD_DF = #{tpLoadDf}
+</if>
+<if test="tpLoadDg !=null"> 
+ and TP_LOAD_DG = #{tpLoadDg}
+</if>
+<if test="tpLoadDh !=null"> 
+ and TP_LOAD_DH = #{tpLoadDh}
+</if>
+<if test="tpGroupAa !=null"> 
+ and TP_GROUP_AA = #{tpGroupAa}
+</if>
+<if test="tpGroupAb !=null"> 
+ and TP_GROUP_AB = #{tpGroupAb}
+</if>
+<if test="tpGroupAc !=null"> 
+ and TP_GROUP_AC = #{tpGroupAc}
+</if>
+<if test="tpGroupAd !=null"> 
+ and TP_GROUP_AD = #{tpGroupAd}
+</if>
+<if test="tpGroupAe !=null"> 
+ and TP_GROUP_AE = #{tpGroupAe}
+</if>
+<if test="tpGroupAf !=null"> 
+ and TP_GROUP_AF = #{tpGroupAf}
+</if>
+<if test="tpGroupAg !=null"> 
+ and TP_GROUP_AG = #{tpGroupAg}
+</if>
+<if test="tpGroupAh !=null"> 
+ and TP_GROUP_AH = #{tpGroupAh}
+</if>
+<if test="tpGroupAi !=null"> 
+ and TP_GROUP_AI = #{tpGroupAi}
+</if>
+<if test="tpGroupAj !=null"> 
+ and TP_GROUP_AJ = #{tpGroupAj}
+</if>
+<if test="tpGroupAk !=null"> 
+ and TP_GROUP_AK = #{tpGroupAk}
+</if>
+<if test="tpGroupAl !=null"> 
+ and TP_GROUP_AL = #{tpGroupAl}
+</if>
+<if test="tpGroupBa !=null"> 
+ and TP_GROUP_BA = #{tpGroupBa}
+</if>
+<if test="tpGroupBb !=null"> 
+ and TP_GROUP_BB = #{tpGroupBb}
+</if>
+<if test="tpGroupBc !=null"> 
+ and TP_GROUP_BC = #{tpGroupBc}
+</if>
+<if test="tpGroupBd !=null"> 
+ and TP_GROUP_BD = #{tpGroupBd}
+</if>
+<if test="tpGroupBe !=null"> 
+ and TP_GROUP_BE = #{tpGroupBe}
+</if>
+<if test="tpGroupBf !=null"> 
+ and TP_GROUP_BF = #{tpGroupBf}
+</if>
+<if test="tpGroupBg !=null"> 
+ and TP_GROUP_BG = #{tpGroupBg}
+</if>
+<if test="tpGroupBh !=null"> 
+ and TP_GROUP_BH = #{tpGroupBh}
+</if>
+<if test="tpGroupBi !=null"> 
+ and TP_GROUP_BI = #{tpGroupBi}
+</if>
+<if test="tpGroupBj !=null"> 
+ and TP_GROUP_BJ = #{tpGroupBj}
+</if>
+<if test="tpGroupBk !=null"> 
+ and TP_GROUP_BK = #{tpGroupBk}
+</if>
+<if test="tpGroupBl !=null"> 
+ and TP_GROUP_BL = #{tpGroupBl}
+</if>
+<if test="tpGroupCa !=null"> 
+ and TP_GROUP_CA = #{tpGroupCa}
+</if>
+<if test="tpGroupCb !=null"> 
+ and TP_GROUP_CB = #{tpGroupCb}
+</if>
+<if test="tpGroupCc !=null"> 
+ and TP_GROUP_CC = #{tpGroupCc}
+</if>
+<if test="tpGroupCd !=null"> 
+ and TP_GROUP_CD = #{tpGroupCd}
+</if>
+<if test="tpGroupCe !=null"> 
+ and TP_GROUP_CE = #{tpGroupCe}
+</if>
+<if test="tpGroupCf !=null"> 
+ and TP_GROUP_CF = #{tpGroupCf}
+</if>
+<if test="tpGroupCg !=null"> 
+ and TP_GROUP_CG = #{tpGroupCg}
+</if>
+<if test="tpGroupCh !=null"> 
+ and TP_GROUP_CH = #{tpGroupCh}
+</if>
+<if test="tpGroupCi !=null"> 
+ and TP_GROUP_CI = #{tpGroupCi}
+</if>
+<if test="tpGroupCj !=null"> 
+ and TP_GROUP_CJ = #{tpGroupCj}
+</if>
+<if test="tpGroupCk !=null"> 
+ and TP_GROUP_CK = #{tpGroupCk}
+</if>
+<if test="tpGroupCl !=null"> 
+ and TP_GROUP_CL = #{tpGroupCl}
+</if>
+<if test="tpGroupDa !=null"> 
+ and TP_GROUP_DA = #{tpGroupDa}
+</if>
+<if test="tpGroupDb !=null"> 
+ and TP_GROUP_DB = #{tpGroupDb}
+</if>
+<if test="tpGroupDc !=null"> 
+ and TP_GROUP_DC = #{tpGroupDc}
+</if>
+<if test="tpGroupDd !=null"> 
+ and TP_GROUP_DD = #{tpGroupDd}
+</if>
+<if test="tpGroupDe !=null"> 
+ and TP_GROUP_DE = #{tpGroupDe}
+</if>
+<if test="tpGroupDf !=null"> 
+ and TP_GROUP_DF = #{tpGroupDf}
+</if>
+<if test="tpGroupDg !=null"> 
+ and TP_GROUP_DG = #{tpGroupDg}
+</if>
+<if test="tpGroupDh !=null"> 
+ and TP_GROUP_DH = #{tpGroupDh}
+</if>
+<if test="tpGroupDi !=null"> 
+ and TP_GROUP_DI = #{tpGroupDi}
+</if>
+<if test="tpGroupDj !=null"> 
+ and TP_GROUP_DJ = #{tpGroupDj}
+</if>
+<if test="tpGroupDk !=null"> 
+ and TP_GROUP_DK = #{tpGroupDk}
+</if>
+<if test="tpGroupDl !=null"> 
+ and TP_GROUP_DL = #{tpGroupDl}
+</if>
+<if test="remark !=null"> 
+ and REMARK = #{remark}
+</if>
+</where>
+</select>
+<insert id="insert" parameterType="MeterAssetsTestRecordDetailTpDomain" flushCache="true">
+insert into METER_ASSETS_TEST_RECORD_DETAIL_TP(ID,RECORD_ID,METER_ASSETS_ID,TP_LOAD_AA,TP_LOAD_AB,TP_LOAD_AC,TP_LOAD_AD,TP_LOAD_AE,TP_LOAD_AF,TP_LOAD_AG,TP_LOAD_AH,TP_LOAD_BA,TP_LOAD_BB,TP_LOAD_BC,TP_LOAD_BD,TP_LOAD_BE,TP_LOAD_BF,TP_LOAD_BG,TP_LOAD_BH,TP_LOAD_CA,TP_LOAD_CB,TP_LOAD_CC,TP_LOAD_CD,TP_LOAD_CE,TP_LOAD_CF,TP_LOAD_CG,TP_LOAD_CH,TP_LOAD_DA,TP_LOAD_DB,TP_LOAD_DC,TP_LOAD_DD,TP_LOAD_DE,TP_LOAD_DF,TP_LOAD_DG,TP_LOAD_DH,TP_GROUP_AA,TP_GROUP_AB,TP_GROUP_AC,TP_GROUP_AD,TP_GROUP_AE,TP_GROUP_AF,TP_GROUP_AG,TP_GROUP_AH,TP_GROUP_AI,TP_GROUP_AJ,TP_GROUP_AK,TP_GROUP_AL,TP_GROUP_BA,TP_GROUP_BB,TP_GROUP_BC,TP_GROUP_BD,TP_GROUP_BE,TP_GROUP_BF,TP_GROUP_BG,TP_GROUP_BH,TP_GROUP_BI,TP_GROUP_BJ,TP_GROUP_BK,TP_GROUP_BL,TP_GROUP_CA,TP_GROUP_CB,TP_GROUP_CC,TP_GROUP_CD,TP_GROUP_CE,TP_GROUP_CF,TP_GROUP_CG,TP_GROUP_CH,TP_GROUP_CI,TP_GROUP_CJ,TP_GROUP_CK,TP_GROUP_CL,TP_GROUP_DA,TP_GROUP_DB,TP_GROUP_DC,TP_GROUP_DD,TP_GROUP_DE,TP_GROUP_DF,TP_GROUP_DG,TP_GROUP_DH,TP_GROUP_DI,TP_GROUP_DJ,TP_GROUP_DK,TP_GROUP_DL,REMARK) values (#{id},#{recordId},#{meterAssetsId},#{tpLoadAa},#{tpLoadAb},#{tpLoadAc},#{tpLoadAd},#{tpLoadAe},#{tpLoadAf},#{tpLoadAg},#{tpLoadAh},#{tpLoadBa},#{tpLoadBb},#{tpLoadBc},#{tpLoadBd},#{tpLoadBe},#{tpLoadBf},#{tpLoadBg},#{tpLoadBh},#{tpLoadCa},#{tpLoadCb},#{tpLoadCc},#{tpLoadCd},#{tpLoadCe},#{tpLoadCf},#{tpLoadCg},#{tpLoadCh},#{tpLoadDa},#{tpLoadDb},#{tpLoadDc},#{tpLoadDd},#{tpLoadDe},#{tpLoadDf},#{tpLoadDg},#{tpLoadDh},#{tpGroupAa},#{tpGroupAb},#{tpGroupAc},#{tpGroupAd},#{tpGroupAe},#{tpGroupAf},#{tpGroupAg},#{tpGroupAh},#{tpGroupAi},#{tpGroupAj},#{tpGroupAk},#{tpGroupAl},#{tpGroupBa},#{tpGroupBb},#{tpGroupBc},#{tpGroupBd},#{tpGroupBe},#{tpGroupBf},#{tpGroupBg},#{tpGroupBh},#{tpGroupBi},#{tpGroupBj},#{tpGroupBk},#{tpGroupBl},#{tpGroupCa},#{tpGroupCb},#{tpGroupCc},#{tpGroupCd},#{tpGroupCe},#{tpGroupCf},#{tpGroupCg},#{tpGroupCh},#{tpGroupCi},#{tpGroupCj},#{tpGroupCk},#{tpGroupCl},#{tpGroupDa},#{tpGroupDb},#{tpGroupDc},#{tpGroupDd},#{tpGroupDe},#{tpGroupDf},#{tpGroupDg},#{tpGroupDh},#{tpGroupDi},#{tpGroupDj},#{tpGroupDk},#{tpGroupDl},#{remark})
+</insert>
+<update id="update" parameterType="MeterAssetsTestRecordDetailTpDomain" flushCache="true">
+update METER_ASSETS_TEST_RECORD_DETAIL_TP
+<set>
+<if test="recordId !=null">
+RECORD_ID = #{recordId},
+</if>
+<if test="meterAssetsId !=null">
+METER_ASSETS_ID = #{meterAssetsId},
+</if>
+<if test="tpLoadAa !=null">
+TP_LOAD_AA = #{tpLoadAa},
+</if>
+<if test="tpLoadAb !=null">
+TP_LOAD_AB = #{tpLoadAb},
+</if>
+<if test="tpLoadAc !=null">
+TP_LOAD_AC = #{tpLoadAc},
+</if>
+<if test="tpLoadAd !=null">
+TP_LOAD_AD = #{tpLoadAd},
+</if>
+<if test="tpLoadAe !=null">
+TP_LOAD_AE = #{tpLoadAe},
+</if>
+<if test="tpLoadAf !=null">
+TP_LOAD_AF = #{tpLoadAf},
+</if>
+<if test="tpLoadAg !=null">
+TP_LOAD_AG = #{tpLoadAg},
+</if>
+<if test="tpLoadAh !=null">
+TP_LOAD_AH = #{tpLoadAh},
+</if>
+<if test="tpLoadBa !=null">
+TP_LOAD_BA = #{tpLoadBa},
+</if>
+<if test="tpLoadBb !=null">
+TP_LOAD_BB = #{tpLoadBb},
+</if>
+<if test="tpLoadBc !=null">
+TP_LOAD_BC = #{tpLoadBc},
+</if>
+<if test="tpLoadBd !=null">
+TP_LOAD_BD = #{tpLoadBd},
+</if>
+<if test="tpLoadBe !=null">
+TP_LOAD_BE = #{tpLoadBe},
+</if>
+<if test="tpLoadBf !=null">
+TP_LOAD_BF = #{tpLoadBf},
+</if>
+<if test="tpLoadBg !=null">
+TP_LOAD_BG = #{tpLoadBg},
+</if>
+<if test="tpLoadBh !=null">
+TP_LOAD_BH = #{tpLoadBh},
+</if>
+<if test="tpLoadCa !=null">
+TP_LOAD_CA = #{tpLoadCa},
+</if>
+<if test="tpLoadCb !=null">
+TP_LOAD_CB = #{tpLoadCb},
+</if>
+<if test="tpLoadCc !=null">
+TP_LOAD_CC = #{tpLoadCc},
+</if>
+<if test="tpLoadCd !=null">
+TP_LOAD_CD = #{tpLoadCd},
+</if>
+<if test="tpLoadCe !=null">
+TP_LOAD_CE = #{tpLoadCe},
+</if>
+<if test="tpLoadCf !=null">
+TP_LOAD_CF = #{tpLoadCf},
+</if>
+<if test="tpLoadCg !=null">
+TP_LOAD_CG = #{tpLoadCg},
+</if>
+<if test="tpLoadCh !=null">
+TP_LOAD_CH = #{tpLoadCh},
+</if>
+<if test="tpLoadDa !=null">
+TP_LOAD_DA = #{tpLoadDa},
+</if>
+<if test="tpLoadDb !=null">
+TP_LOAD_DB = #{tpLoadDb},
+</if>
+<if test="tpLoadDc !=null">
+TP_LOAD_DC = #{tpLoadDc},
+</if>
+<if test="tpLoadDd !=null">
+TP_LOAD_DD = #{tpLoadDd},
+</if>
+<if test="tpLoadDe !=null">
+TP_LOAD_DE = #{tpLoadDe},
+</if>
+<if test="tpLoadDf !=null">
+TP_LOAD_DF = #{tpLoadDf},
+</if>
+<if test="tpLoadDg !=null">
+TP_LOAD_DG = #{tpLoadDg},
+</if>
+<if test="tpLoadDh !=null">
+TP_LOAD_DH = #{tpLoadDh},
+</if>
+<if test="tpGroupAa !=null">
+TP_GROUP_AA = #{tpGroupAa},
+</if>
+<if test="tpGroupAb !=null">
+TP_GROUP_AB = #{tpGroupAb},
+</if>
+<if test="tpGroupAc !=null">
+TP_GROUP_AC = #{tpGroupAc},
+</if>
+<if test="tpGroupAd !=null">
+TP_GROUP_AD = #{tpGroupAd},
+</if>
+<if test="tpGroupAe !=null">
+TP_GROUP_AE = #{tpGroupAe},
+</if>
+<if test="tpGroupAf !=null">
+TP_GROUP_AF = #{tpGroupAf},
+</if>
+<if test="tpGroupAg !=null">
+TP_GROUP_AG = #{tpGroupAg},
+</if>
+<if test="tpGroupAh !=null">
+TP_GROUP_AH = #{tpGroupAh},
+</if>
+<if test="tpGroupAi !=null">
+TP_GROUP_AI = #{tpGroupAi},
+</if>
+<if test="tpGroupAj !=null">
+TP_GROUP_AJ = #{tpGroupAj},
+</if>
+<if test="tpGroupAk !=null">
+TP_GROUP_AK = #{tpGroupAk},
+</if>
+<if test="tpGroupAl !=null">
+TP_GROUP_AL = #{tpGroupAl},
+</if>
+<if test="tpGroupBa !=null">
+TP_GROUP_BA = #{tpGroupBa},
+</if>
+<if test="tpGroupBb !=null">
+TP_GROUP_BB = #{tpGroupBb},
+</if>
+<if test="tpGroupBc !=null">
+TP_GROUP_BC = #{tpGroupBc},
+</if>
+<if test="tpGroupBd !=null">
+TP_GROUP_BD = #{tpGroupBd},
+</if>
+<if test="tpGroupBe !=null">
+TP_GROUP_BE = #{tpGroupBe},
+</if>
+<if test="tpGroupBf !=null">
+TP_GROUP_BF = #{tpGroupBf},
+</if>
+<if test="tpGroupBg !=null">
+TP_GROUP_BG = #{tpGroupBg},
+</if>
+<if test="tpGroupBh !=null">
+TP_GROUP_BH = #{tpGroupBh},
+</if>
+<if test="tpGroupBi !=null">
+TP_GROUP_BI = #{tpGroupBi},
+</if>
+<if test="tpGroupBj !=null">
+TP_GROUP_BJ = #{tpGroupBj},
+</if>
+<if test="tpGroupBk !=null">
+TP_GROUP_BK = #{tpGroupBk},
+</if>
+<if test="tpGroupBl !=null">
+TP_GROUP_BL = #{tpGroupBl},
+</if>
+<if test="tpGroupCa !=null">
+TP_GROUP_CA = #{tpGroupCa},
+</if>
+<if test="tpGroupCb !=null">
+TP_GROUP_CB = #{tpGroupCb},
+</if>
+<if test="tpGroupCc !=null">
+TP_GROUP_CC = #{tpGroupCc},
+</if>
+<if test="tpGroupCd !=null">
+TP_GROUP_CD = #{tpGroupCd},
+</if>
+<if test="tpGroupCe !=null">
+TP_GROUP_CE = #{tpGroupCe},
+</if>
+<if test="tpGroupCf !=null">
+TP_GROUP_CF = #{tpGroupCf},
+</if>
+<if test="tpGroupCg !=null">
+TP_GROUP_CG = #{tpGroupCg},
+</if>
+<if test="tpGroupCh !=null">
+TP_GROUP_CH = #{tpGroupCh},
+</if>
+<if test="tpGroupCi !=null">
+TP_GROUP_CI = #{tpGroupCi},
+</if>
+<if test="tpGroupCj !=null">
+TP_GROUP_CJ = #{tpGroupCj},
+</if>
+<if test="tpGroupCk !=null">
+TP_GROUP_CK = #{tpGroupCk},
+</if>
+<if test="tpGroupCl !=null">
+TP_GROUP_CL = #{tpGroupCl},
+</if>
+<if test="tpGroupDa !=null">
+TP_GROUP_DA = #{tpGroupDa},
+</if>
+<if test="tpGroupDb !=null">
+TP_GROUP_DB = #{tpGroupDb},
+</if>
+<if test="tpGroupDc !=null">
+TP_GROUP_DC = #{tpGroupDc},
+</if>
+<if test="tpGroupDd !=null">
+TP_GROUP_DD = #{tpGroupDd},
+</if>
+<if test="tpGroupDe !=null">
+TP_GROUP_DE = #{tpGroupDe},
+</if>
+<if test="tpGroupDf !=null">
+TP_GROUP_DF = #{tpGroupDf},
+</if>
+<if test="tpGroupDg !=null">
+TP_GROUP_DG = #{tpGroupDg},
+</if>
+<if test="tpGroupDh !=null">
+TP_GROUP_DH = #{tpGroupDh},
+</if>
+<if test="tpGroupDi !=null">
+TP_GROUP_DI = #{tpGroupDi},
+</if>
+<if test="tpGroupDj !=null">
+TP_GROUP_DJ = #{tpGroupDj},
+</if>
+<if test="tpGroupDk !=null">
+TP_GROUP_DK = #{tpGroupDk},
+</if>
+<if test="tpGroupDl !=null">
+TP_GROUP_DL = #{tpGroupDl},
+</if>
+<if test="remark !=null">
+REMARK = #{remark},
+</if>
+</set>
+<where>
+ and ID = #{id}
+
+</where>
+</update>
+<delete id="delete" parameterType="MeterAssetsTestRecordDetailTpDomain" flushCache="true">
+delete from METER_ASSETS_TEST_RECORD_DETAIL_TP
+<where>
+ and ID = #{id}
+
+</where>
+</delete>
+</mapper>

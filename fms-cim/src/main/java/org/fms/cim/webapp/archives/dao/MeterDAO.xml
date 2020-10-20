@@ -1,0 +1,1012 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riozenc.cim.webapp.archives.dao.MeterDAO">
+	<sql id="Base_Column_List">
+		ID,METER_NO,METER_ORDER,METER_NAME,METER_ASSETS_ID,SET_ADDRESS,CT_ASSETS_ID,PT_ASSETS_ID,CT_VALUE,PT_VALUE,PRICE_TYPE,BASIC_PRICE,
+		NEED_INDEX,VOLT_LEVEL_TYPE,METER_TYPE,METER_CLASS_TYPE,MS_TYPE,ELEC_TYPE_CODE,BASE_MONEY_FLAG,COS_TYPE,TRADE_TYPE,
+		TS_TYPE,TRANS_LOST_TYPE,TRANS_LOST_NUM,Q_TRANS_LOST_NUM,LINE_LOST_TYPE,LINE_LOST_NUM,Q_LINE_LOST_NUM,CREATE_DATE,
+		REMARK,STATUS,TG_ID,LINE_ID,SUBS_ID,USER_ID,WRITE_SECTION_ID,KEEP_POWER_FLAG,
+		BILL_FLAG,OVERDUE_FINE_FLAG,TIERED_PRICE_FLAG,WRITE_METHOD,RATE_FLAG,
+		POWER_CUT_FLAG,PHASE_SEQ,COUNT_TIMES,CHARGING_CAPACITY,LADDER_NUM,BUSINESS_PLACE_CODE 
+	</sql>
+
+	<select id="findByKey" parameterType="MeterDomain"
+		resultType="MeterDomain" useCache="true">
+		select M.*,U.USER_NAME,U.USER_NO FROM(
+		select
+		<include refid="Base_Column_List" />
+		from METER_INFO
+		<where>
+			and ID = #{id}
+		</where>
+		)M LEFT JOIN USER_INFO U ON M.USER_ID = U.ID
+	</select>
+
+	<select id="findByWhere" parameterType="MeterDomain"
+		resultType="MeterDomain" useCache="true">
+
+		select M.*,
+		U.USER_NAME,U.USER_NO,
+		MA.METER_ASSETS_NO,
+		IA.INDUCTOR_ASSETS_NO AS CT_ASSETS_NO,
+		IA.RATED_CT_CODE,
+		IAA.INDUCTOR_ASSETS_NO AS
+		PT_ASSETS_NO,IAA.RATED_PT_CODE,
+		WS.WRITE_SECT_NAME
+		FROM
+		(select
+		<include refid="Base_Column_List" />
+		from METER_INFO
+		<where>
+			<if test="id !=null">
+				and ID = #{id}
+			</if>
+			<if test="meterNo !=null">
+				and METER_NO = #{meterNo}
+			</if>
+			<if test="meterOrder !=null">
+				and METER_ORDER = #{meterOrder}
+			</if>
+			<if test="meterName !=null">
+				and METER_NAME like CONCAT('%',#{meterName},'%')
+			</if>
+			<if test="meterAssetsId !=null">
+				and METER_ASSETS_ID = #{meterAssetsId}
+			</if>
+			<if test="setAddress !=null">
+				and SET_ADDRESS = #{setAddress}
+			</if>
+			<if test="priceType !=null">
+				and PRICE_TYPE = #{priceType}
+			</if>
+			<if test="basicPrice!=null">
+				and BASIC_PRICE = #{basicPrice}
+			</if>
+			<if test="needIndex !=null">
+				and NEED_INDEX = #{needIndex}
+			</if>
+			<if test="voltLevelType !=null">
+				and VOLT_LEVEL_TYPE = #{voltLevelType}
+			</if>
+			<if test="meterType !=null">
+				and METER_TYPE = #{meterType}
+			</if>
+			<if test="meterClassType !=null">
+				and METER_CLASS_TYPE = #{meterClassType}
+			</if>
+			<if test="msType !=null">
+				and MS_TYPE = #{msType}
+			</if>
+			<if test="elecTypeCode !=null">
+				and ELEC_TYPE_CODE = #{elecTypeCode}
+			</if>
+			<if test="baseMoneyFlag !=null">
+				and BASE_MONEY_FLAG = #{baseMoneyFlag}
+			</if>
+			<if test="cosType !=null">
+				and COS_TYPE = #{cosType}
+			</if>
+			<if test="tradeType !=null">
+				and TRADE_TYPE = #{tradeType}
+			</if>
+			<if test="tsType !=null">
+				and TS_TYPE = #{tsType}
+			</if>
+			<if test="transLostType !=null">
+				and TRANS_LOST_TYPE = #{transLostType}
+			</if>
+			<if test="transLostNum !=null">
+				and TRANS_LOST_NUM = #{transLostNum}
+			</if>
+			<if test="qTransLostNum !=null">
+				and Q_TRANS_LOST_NUM = #{qTransLostNum}
+			</if>
+			<if test="lineLostType !=null">
+				and LINE_LOST_TYPE = #{lineLostType}
+			</if>
+			<if test="lineLostNum !=null">
+				and LINE_LOST_NUM = #{lineLostNum}
+			</if>
+			<if test="qLineLostNum !=null">
+				and Q_LINE_LOST_NUM = #{qLineLostNum}
+			</if>
+			<if test="createDate !=null">
+				and CREATE_DATE = #{createDate}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+			<if test="tgId !=null">
+				and TG_ID = #{tgId}
+			</if>
+			<if test="lineId !=null">
+				and LINE_ID = #{lineId}
+			</if>
+			<if test="subsId !=null">
+				and SUBS_ID = #{subsId}
+			</if>
+			<if test="userId !=null">
+				and USER_ID = #{userId}
+			</if>
+			<if test="writeSectionId !=null">
+				and WRITE_SECTION_ID = #{writeSectionId}
+			</if>
+			<if test="keepPowerFlag !=null">
+				and KEEP_POWER_FLAG = #{keepPowerFlag}
+			</if>
+			<if test="billFlag !=null">
+				and BILL_FLAG = #{billFlag}
+			</if>
+			<if test="overdueFineFlag !=null">
+				and OVERDUE_FINE_FLAG = #{overdueFineFlag}
+			</if>
+			<if test="tieredPriceFlag !=null">
+				and TIERED_PRICE_FLAG = #{tieredPriceFlag}
+			</if>
+			<if test="writeMethod !=null">
+				and WRITE_METHOD = #{writeMethod}
+			</if>
+			<if test="rateFlag !=null">
+				and RATE_FLAG = #{rateFlag}
+			</if>
+			<if test="powerCutFlag !=null">
+				and POWER_CUT_FLAG = #{powerCutFlag}
+			</if>
+			<if test="phaseSeq !=null">
+				and PHASE_SEQ = #{phaseSeq}
+			</if>
+			<if test="countTimes !=null">
+				and COUNT_TIMES = #{countTimes}
+			</if>
+			<if test="ladderNum !=null">
+				and LADDER_NUM = #{ladderNum}
+			</if>
+			<if test="businessPlaceCode !=null">
+				and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+			</if>
+		</where>
+		)M INNER JOIN (select ID,USER_NO,USER_NAME from USER_INFO
+		<where>
+			<if test="userNo !=null">
+				and USER_NO like CONCAT('%',#{userNo},'%')
+			</if>
+			<if test="userName !=null">
+				and USER_NAME like CONCAT('%',#{userName},'%')
+			</if>
+		</where>
+		) U ON M.USER_ID = U.ID
+		LEFT JOIN METER_ASSETS_INFO MA ON
+		M.METER_ASSETS_ID = MA.ID
+		LEFT JOIN INDUCTOR_ASSETS_INFO IA ON
+		M.CT_ASSETS_ID = IA.ID
+		LEFT JOIN INDUCTOR_ASSETS_INFO IAA ON
+		M.PT_ASSETS_ID = IAA.ID
+		LEFT JOIN WRITE_SECTION_INFO WS ON
+		M.WRITE_SECTION_ID = WS.ID
+		ORDER BY M.ID DESC
+	</select>
+
+	<insert id="insert" parameterType="MeterDomain"
+		useGeneratedKeys="true" keyProperty="id" flushCache="true">
+		INSERT INTO METER_INFO (
+		<include refid="Base_Column_List" />
+		)
+		VALUES
+		(
+		#{id},#{meterNo},#{meterOrder},#{meterName},#{meterAssetsId},#{setAddress},#{ctAssetsId},#{ptAssetsId},
+		#{ctValue},#{ptValue},#{priceType},#{basicPrice},#{needIndex},#{voltLevelType},#{meterType},#{meterClassType},
+		#{msType},#{elecTypeCode},#{baseMoneyFlag},#{cosType},#{tradeType},#{tsType},#{transLostType},
+		#{transLostNum},#{qTransLostNum},#{lineLostType},#{lineLostNum},#{qLineLostNum},#{createDate},
+		#{remark},#{status},#{tgId},#{lineId},#{subsId},#{userId},#{writeSectionId},#{keepPowerFlag},
+		#{billFlag},#{overdueFineFlag},#{tieredPriceFlag},#{writeMethod},
+		#{rateFlag},#{powerCutFlag},#{phaseSeq},#{countTimes},#{chargingCapacity},#{ladderNum},#{businessPlaceCode})
+	</insert>
+
+	<select id="findRelByTranIdAndMeterId"
+		parameterType="MeterDomain" resultType="MeterDomain" useCache="true">
+		select
+		*
+		from TRANSFORMER_METER_REL
+		<where>
+			<if test="transformerId !=null">
+				and TRANSFORMER_ID = #{transformerId}
+			</if>
+			<if test="id !=null">
+				and METER_ID = #{id}
+			</if>
+		</where>
+
+	</select>
+
+	<insert id="insertTransMeterRela" parameterType="MeterDomain"
+		flushCache="true">
+		insert into
+		TRANSFORMER_METER_REL(METER_ID,TRANSFORMER_ID,MS_TYPE,TRANSFORMER_GROUP_NO,CREATE_DATE,REMARK,STATUS)
+		values
+		(#{id},#{transformerId},#{msType},#{transformerGroupNo},#{createDate},#{remark},#{status})
+	</insert>
+
+	<update id="updateTransMeterRela" parameterType="MeterDomain"
+		flushCache="true">
+		update TRANSFORMER_METER_REL
+		<set>
+			<if test="transformerId !=null">
+				TRANSFORMER_ID = #{transformerId},
+			</if>
+			<if test="msType !=null">
+				MS_TYPE = #{msType},
+			</if>
+			<if test="transformerGroupNo !=null">
+				TRANSFORMER_GROUP_NO =
+				#{transformerGroupNo},
+			</if>
+			<if test="createDate !=null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="remark !=null">
+				REMARK = #{remark},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status}
+			</if>
+		</set>
+		<where>
+			METER_ID = #{id}
+		</where>
+	</update>
+
+	<update id="update" parameterType="MeterDomain"
+		flushCache="true">
+		update METER_INFO
+		<set>
+			<if test="meterNo !=null">
+				METER_NO = #{meterNo},
+			</if>
+			<if test="meterOrder!=null">
+				METER_ORDER = #{meterOrder},
+			</if>
+			<if test="meterName !=null">
+				METER_NAME = #{meterName},
+			</if>
+			<if test="meterAssetsId !=null">
+				METER_ASSETS_ID = #{meterAssetsId},
+			</if>
+			<if test="setAddress !=null">
+				SET_ADDRESS = #{setAddress},
+			</if>
+			<if test="ctAssetsId !=null">
+				CT_ASSETS_ID = #{ctAssetsId},
+			</if>
+			<if test="ptAssetsId !=null">
+				PT_ASSETS_ID = #{ptAssetsId},
+			</if>
+			<if test="ctValue !=null">
+				CT_VALUE = #{ctValue},
+			</if>
+			<if test="ptValue !=null">
+				PT_VALUE = #{ptValue},
+			</if>
+			<if test="priceType !=null">
+				PRICE_TYPE = #{priceType},
+			</if>
+			<if test="basicPrice !=null">
+				BASIC_PRICE = #{basicPrice},
+			</if>
+			<if test="needIndex !=null">
+				NEED_INDEX = #{needIndex},
+			</if>
+			<if test="voltLevelType !=null">
+				VOLT_LEVEL_TYPE = #{voltLevelType},
+			</if>
+			<if test="meterType !=null">
+				METER_TYPE = #{meterType},
+			</if>
+			<if test="meterClassType !=null">
+				METER_CLASS_TYPE = #{meterClassType},
+			</if>
+			<if test="msType !=null">
+				MS_TYPE = #{msType},
+			</if>
+			<if test="elecTypeCode !=null">
+				ELEC_TYPE_CODE = #{elecTypeCode},
+			</if>
+			<if test="baseMoneyFlag !=null">
+				BASE_MONEY_FLAG = #{baseMoneyFlag},
+			</if>
+			<if test="cosType !=null">
+				COS_TYPE = #{cosType},
+			</if>
+			<if test="tradeType !=null">
+				TRADE_TYPE = #{tradeType},
+			</if>
+			<if test="tsType !=null">
+				TS_TYPE = #{tsType},
+			</if>
+			<if test="transLostType !=null">
+				TRANS_LOST_TYPE = #{transLostType},
+			</if>
+			<if test="transLostNum !=null">
+				TRANS_LOST_NUM = #{transLostNum},
+			</if>
+			<if test="qTransLostNum !=null">
+				Q_TRANS_LOST_NUM = #{qTransLostNum},
+			</if>
+			<if test="lineLostType !=null">
+				LINE_LOST_TYPE = #{lineLostType},
+			</if>
+			<if test="lineLostNum !=null">
+				LINE_LOST_NUM = #{lineLostNum},
+			</if>
+			<if test="qLineLostNum !=null">
+				Q_LINE_LOST_NUM = #{qLineLostNum},
+			</if>
+			<if test="createDate !=null">
+				CREATE_DATE = #{createDate},
+			</if>
+			<if test="remark !=null">
+				REMARK = #{remark},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status},
+			</if>
+			<if test="tgId !=null">
+				TG_ID = #{tgId},
+			</if>
+			<if test="lineId !=null">
+				LINE_ID = #{lineId},
+			</if>
+			<if test="subsId !=null">
+				SUBS_ID = #{subsId},
+			</if>
+			<if test="userId !=null">
+				USER_ID = #{userId},
+			</if>
+			<if test="writeSectionId !=null">
+				WRITE_SECTION_ID = #{writeSectionId},
+			</if>
+			<if test="keepPowerFlag !=null">
+				KEEP_POWER_FLAG = #{keepPowerFlag},
+			</if>
+			<if test="billFlag !=null">
+				BILL_FLAG = #{billFlag},
+			</if>
+			<if test="overdueFineFlag !=null">
+				OVERDUE_FINE_FLAG = #{overdueFineFlag},
+			</if>
+			<if test="tieredPriceFlag !=null">
+				TIERED_PRICE_FLAG = #{tieredPriceFlag},
+			</if>
+			<if test="writeMethod !=null">
+				WRITE_METHOD = #{writeMethod},
+			</if>
+			<if test="rateFlag !=null">
+				RATE_FLAG = #{rateFlag},
+			</if>
+			<if test="powerCutFlag !=null">
+				POWER_CUT_FLAG = #{powerCutFlag},
+			</if>
+			<if test="phaseSeq !=null">
+				PHASE_SEQ = #{phaseSeq},
+			</if>
+			<if test="countTimes !=null">
+				COUNT_TIMES = #{countTimes},
+			</if>
+			<if test="chargingCapacity !=null">
+				CHARGING_CAPACITY = #{chargingCapacity},
+			</if>
+			<if test="ladderNum !=null">
+				LADDER_NUM = #{ladderNum},
+			</if>			
+			<if test="businessPlaceCode !=null">
+				BUSINESS_PLACE_CODE = #{businessPlaceCode}
+			</if>
+		</set>
+		<where>
+			and ID = #{id}
+
+		</where>
+	</update>
+
+	<delete id="delete" parameterType="MeterDomain"
+		flushCache="true">
+		delete from METER_INFO
+		<where>
+			and ID = #{id}
+		</where>
+	</delete>
+
+	<!-- 通过电能表资产号获取测量点档案。专用方法 -->
+	<select id="getMeterByMeterAssestsNo"
+		parameterType="MeterAssetsDomain" resultType="MeterDomain"
+		useCache="true">
+  
+		select
+		<include refid="Base_Column_List" />
+		from METER_INFO M
+		<where>
+			AND M.METER_ASSETS_ID in (select id from METER_ASSETS_INFO A
+			where A.METER_ASSETS_NO = #{meterAssetsNo})
+		</where>
+
+	</select>
+
+
+	<!-- 通过互感器资产号获取测量点档案。专用方法 -->
+	<select id="getMeterByInductorAssestsNo"
+		parameterType="InductorAssetsDomain" resultType="MeterDomain"
+		useCache="true">
+		select
+		<include refid="Base_Column_List" />
+		from METER_INFO M where M.CT_ASSETS_ID in
+		(select id
+		from
+		INDUCTOR_ASSETS_INFO A where A.INDUCTOR_ASSETS_NO =
+		#{inductorAssetsNo})
+		OR
+		M.PT_ASSETS_ID in (select id from
+		INDUCTOR_ASSETS_INFO A where A.INDUCTOR_ASSETS_NO
+		=
+		#{inductorAssetsNo})
+
+	</select>
+
+	<!-- 通过用户户名、户号获取计量点信息。专用方法 -->
+	<select id="getMeterByUser" parameterType="UserDomain"
+		resultType="MeterDomain" useCache="true">
+		SELECT
+		M.*,F_GET_VALUE_NAME('WRITE_SECT_NAME',M.WRITE_SECTION_ID)
+		writeSectName,F_GET_VALUE_NAME('WRITE_SECT_NO',M.WRITE_SECTION_ID)
+		writeSectNo,U.USER_NO,U.USER_NAME
+		FROM(
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM METER_INFO M
+		WHERE
+		M.USER_ID IN (
+		SELECT ID FROM USER_INFO
+		<where>
+			<if test="userNo !=null">
+				and USER_NO = #{userNo}
+			</if>
+			<if test="userName !=null">
+				and USER_NAME = #{userName}
+			</if>
+		</where>
+		)
+		)M
+
+		LEFT JOIN USER_INFO U ON M.USER_ID = U.ID
+
+	</select>
+
+	<select id="getMeterRel" parameterType="MeterDomain"
+		resultType="MeterRelationDomain" useCache="true">
+		SELECT R.*,MA.METER_NAME,MB.METER_NAME AS pMeterName
+		FROM METER_REL R
+		LEFT JOIN METER_INFO MA ON R.METER_ID = MA.ID
+		LEFT JOIN METER_INFO MB
+		ON R.P_METER_ID = MB.ID
+
+		<where>
+			and R.P_METER_ID = #{id} and R.STATUS = 1
+		</where>
+
+	</select>
+
+	<insert id="insertMeterRel" parameterType="MeterRelationDomain"
+		flushCache="true">
+		insert into
+		METER_REL
+		(
+		METER_ID,P_METER_ID,METER_RELATION_TYPE,METER_RELATION_VALUE,CREATE_DATE,UPDATE_DATE,STATUS
+		)
+		values
+		(
+		#{meterId},#{pMeterId},#{meterRelationType},#{meterRelationValue},#{createDate},#{updateDate},#{status}
+		)
+	</insert>
+
+	<update id="updateMeterRel" parameterType="MeterRelationDomain"
+		flushCache="true">
+		update METER_REL
+		<set>
+			<if test="meterId !=null">
+				METER_ID = #{meterId},
+			</if>
+			<if test="meterRelationType !=null">
+				METER_RELATION_TYPE = #{meterRelationType},
+			</if>
+			<if test="meterRelationValue !=null">
+				METER_RELATION_VALUE = #{meterRelationValue},
+			</if>
+			<if test="updateDate !=null">
+				UPDATE_DATE = #{updateDate},
+			</if>
+			<if test="remark !=null">
+				REMARK = #{remark},
+			</if>
+			<if test="status !=null">
+				STATUS = #{status}
+			</if>
+
+		</set>
+		<where>
+			and ID = #{id} and P_METER_ID = #{pMeterId}
+
+		</where>
+	</update>
+
+	<select id="getMeterByIds" parameterType="String"
+		resultType="MeterDomain" useCache="true">
+		SELECT
+		M.*,U.USER_NO,U.USER_NAME,T.TG_NO,T.TG_NAME,W.WRITE_SECT_NO,W.WRITE_SECT_NAME
+		FROM (
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		METER_INFO
+		where status = 1 
+			AND ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+
+		)M LEFT JOIN USER_INFO U ON M.USER_ID = U.ID
+		LEFT JOIN TG_INFO T ON M.TG_ID = T.ID
+		LEFT JOIN WRITE_SECTION_INFO W ON M.WRITE_SECTION_ID =W.ID
+		WHERE U.STATUS=1
+	</select>
+
+	<select id="getMeterIdsByMeterRel" parameterType="String" resultType="Long" useCache="true">
+
+		
+		SELECT M.METER_ID FROM (
+			SELECT P_METER_ID METER_ID
+			FROM METER_REL WHERE METER_ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+			UNION
+			SELECT METER_ID FROM METER_REL WHERE P_METER_ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+		)M WHERE M.METER_ID NOT IN
+		<foreach item="item" index="index" collection="list" open="("
+			separator="," close=")">
+			${item}
+		</foreach>
+		
+	</select>
+
+
+	<select id="getMeterRelByMeterIds" parameterType="String"
+		resultType="MeterRelationDomain" useCache="true">
+
+		SELECT * FROM METER_REL
+		<where>
+			and STATUS = 1
+			and (
+			METER_ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+
+			OR P_METER_ID IN
+
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+			)
+		</where>
+	</select>
+
+	<select id="getMeterIdsByWriteSectIds" resultType="Long"
+		useCache="true">
+
+		SELECT ID FROM METER_INFO
+		<where>
+			WRITE_SECTION_ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+
+		</where>
+	</select>
+
+	<select id="getMeterIdsByUserIds" resultType="Long"
+		useCache="true">
+
+		SELECT ID FROM METER_INFO
+		<where>
+			USER_ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+
+		</where>
+	</select>
+	
+	<select id="getMeterByUserIds" resultType="MeterDomain"
+		useCache="true">
+
+		SELECT <include refid="Base_Column_List" /> FROM METER_INFO
+		<where>
+			USER_ID IN
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+			and status >0 
+		</where>
+	</select>
+
+	<select id="getMeterByMeterIds" parameterType="Long"
+		resultType="MeterDomain" useCache="true">
+
+		SELECT <include refid="Base_Column_List" />
+		FROM METER_INFO
+		WHERE ID IN 
+		<foreach item="item" index="index" collection="list" open="("
+			separator="," close=")">
+			${item}
+		</foreach>
+		AND STATUS = 1
+
+	</select>
+
+
+	<select id="selectMetersByMeterIds" resultType="MeterDomain" useCache="true">
+		SELECT U.*, M.*, MMAR.*, MAI.*
+		FROM METER_INFO M
+		LEFT JOIN USER_INFO U
+		  ON M.USER_ID = U.ID
+		LEFT JOIN METER_METER_ASSETS_REL MMAR
+		  ON M.ID = MMAR.METER_ID
+		LEFT JOIN METER_ASSETS_INFO MAI
+		  ON MMAR.METER_ASSETS_ID = MAI.ID
+		WHERE M.ID IN
+		<foreach item="item" index="index" collection="list" open="("
+			separator="," close=")">
+			${item}
+		</foreach>
+	</select>
+	
+
+	<select id="getMeterByWriteSectIds" parameterType="Long"
+		resultType="MeterDomain" useCache="false">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM METER_INFO
+		<where>
+			WRITE_SECTION_ID in
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+			</foreach>
+			and status >0 
+		</where>
+
+	</select>
+	
+	
+	<select id="getRelationMeterByWriteSectIds" parameterType="Long"
+		resultType="MeterDomain" useCache="true">
+		SELECT M.* FROM METER_REL MR 
+		LEFT JOIN METER_INFO M ON M.ID = MR.METER_ID
+		WHERE M.WRITE_SECTION_ID IN
+		<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+		</foreach>
+		union 
+		SELECT M.* FROM METER_REL MR 
+		LEFT JOIN METER_INFO M ON M.ID = MR.P_METER_ID
+		WHERE M.WRITE_SECTION_ID IN 	
+		<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				${item}
+		</foreach>
+
+
+	</select>
+	
+
+	<select id="meterNoDC" parameterType="MeterDomain"
+		resultType="MeterDomain" useCache="true">
+		select
+		<include refid="Base_Column_List" />
+		from METER_INFO
+		<where>
+			and ID != #{id}
+
+			<if test="meterNo !=null">
+				and METER_NO = #{meterNo}
+			</if>
+			<if test="status !=null">
+				and STATUS = #{status}
+			</if>
+		</where>
+
+	</select>
+
+	<select id="findByNo" parameterType="MeterDomain"
+		resultType="MeterDomain" useCache="true">
+		select
+		<include refid="Base_Column_List" />
+		from METER_INFO
+		<where>
+			and METER_NO = #{meterNo}
+		</where>
+	</select>
+
+	<update id="reUpdate" parameterType="MeterDomain"
+		flushCache="true">
+		update METER_INFO
+		<set>
+
+			<if test="meterAssetsId !=null">
+				METER_ASSETS_ID = null,
+			</if>
+			<if test="ctAssetsId !=null">
+				CT_ASSETS_ID = null,
+			</if>
+			<if test="ptAssetsId !=null">
+				PT_ASSETS_ID = null
+			</if>
+
+		</set>
+		<where>
+			and ID = #{id}
+
+		</where>
+	</update>
+
+	<!-- bill专用 根据客户查询计量点 -->
+	<select id="getMetersByCustomer" parameterType="CustomerDomain"
+		resultType="MeterDomain" useCache="true">
+		SELECT M.*,U.USER_NO,U.USER_NAME FROM (
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM METER_INFO M WHERE
+		M.USER_ID IN (
+		SELECT ID FROM USER_INFO U WHERE
+		U.CUSTOMER_ID IN (
+		SELECT ID FROM CUSTOMER_INFO C
+		<where>
+			<if test="id !=null">
+				AND ID = #{id}
+			</if>
+			<if test="customerNo !=null">
+				AND CUSTOMER_NO = #{customerNo}
+			</if>
+			<if test="customerName !=null">
+				AND CUSTOMER_NAME = #{customerName}
+			</if>
+		</where>
+		)
+		))M
+		LEFT JOIN USER_INFO U ON M.USER_ID = U.ID
+	</select>
+
+	<!-- bill专用 根据用电户查询计量点 -->
+	<select id="getMetersByUser" parameterType="UserDomain"
+		resultType="MeterDomain" useCache="true">
+		SELECT M.*,U.USER_NO,U.USER_NAME FROM (
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM METER_INFO M
+
+		WHERE M.USER_ID IN (
+		SELECT ID FROM USER_INFO U
+
+		<where>
+			<if test="userNo !=null">
+				AND USER_NO = #{userNo}
+			</if>
+			<if test="userName !=null">
+				AND USER_NAME = #{userName}
+			</if>
+
+		</where>
+			)
+		)M
+		LEFT JOIN USER_INFO U ON M.USER_ID = U.ID
+
+	</select>
+
+	<!-- bill专用 根据结算户查询计量点 -->
+	<select id="getMetersBySettlement"
+		parameterType="SettlementDomain" resultType="MeterDomain"
+		useCache="false">
+		SELECT 
+		M.ID,M.METER_NO,M.METER_ORDER,M.METER_NAME,M.SET_ADDRESS,M.PRICE_TYPE,M.BASIC_PRICE,
+		M.NEED_INDEX,M.VOLT_LEVEL_TYPE,M.METER_TYPE,M.METER_CLASS_TYPE,M.MS_TYPE,M.ELEC_TYPE_CODE,
+		M.BASE_MONEY_FLAG,M.COS_TYPE,M.TRADE_TYPE,
+		M.TS_TYPE,M.LINE_LOST_TYPE,M.LINE_LOST_NUM,M.CREATE_DATE,
+		M.REMARK,M.STATUS,M.USER_ID,M.WRITE_SECTION_ID,M.KEEP_POWER_FLAG,
+		M.BILL_FLAG,M.OVERDUE_FINE_FLAG,M.TIERED_PRICE_FLAG,M.WRITE_METHOD,M.RATE_FLAG,
+		M.POWER_CUT_FLAG,M.PHASE_SEQ,M.COUNT_TIMES,M.CHARGING_CAPACITY,M.LADDER_NUM,M.BUSINESS_PLACE_CODE,
+		U.USER_NO,U.USER_NAME FROM (
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM METER_INFO M
+
+		WHERE ID IN (
+		SELECT DISTINCT(METER_ID) FROM
+		SETTLEMENT_METER_REL WHERE SETTLEMENT_ID
+		IN (
+		SELECT ID FROM
+		SETTLEMENT_INFO
+		<where>
+			<if test="settlementNo !=null">
+				and SETTLEMENT_NO = #{settlementNo}
+			</if>
+			<if test="settlementName !=null">
+				and SETTLEMENT_NAME = #{settlementName}
+			</if>
+			<if test="bankNo !=null">
+				and BANK_NO = #{bankNo}
+			</if>
+			<if test="businessPlaceCode !=null">
+				and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+			</if>
+			<if test="chargeModeType !=null">
+				and CHARGE_MODE_TYPE = #{chargeModeType}
+			</if>
+		</where>
+		)
+		))M
+		LEFT JOIN USER_INFO U ON M.USER_ID = U.ID
+
+
+	</select>
+
+	<!-- 根据客户id查询计量点 -->
+	<select id="getMeterByCustomer" parameterType="MeterDomain"
+		resultType="MeterDomain" useCache="true">
+		SELECT M.*,U.USER_NO,U.USER_NAME FROM (
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM METER_INFO M WHERE
+		M.USER_ID IN (
+		SELECT ID FROM USER_INFO U WHERE
+		U.CUSTOMER_ID IN (
+		SELECT ID FROM CUSTOMER_INFO C
+		<where>
+			<if test="customerId !=null">
+				AND ID = #{customerId}
+			</if>
+		</where>
+		)
+		)
+		<if test="meterNo !=null">
+			AND METER_NO like CONCAT('%',#{meterNo},'%')
+		</if>
+		<if test="meterName !=null">
+			AND METER_NAME like CONCAT('%',#{meterName},'%')
+		</if>
+
+
+		)M
+		LEFT JOIN USER_INFO U ON M.USER_ID = U.ID
+	</select>
+
+	<select id="getMeterInformation"
+		parameterType="MeterInformationEntity"
+		resultType="MeterInformationEntity" useCache="true">
+		SELECT
+		A.ID,
+		A.METER_NO,
+		A.METER_NAME,
+		A.SET_ADDRESS,
+		A.PRICE_TYPE,
+		A.BASIC_PRICE,
+		A.NEED_INDEX,
+		A.VOLT_LEVEL_TYPE,
+		A.METER_TYPE,
+		A.ELEC_TYPE_CODE,
+		A.TS_TYPE TS_FLAG,
+		B.USER_NO,
+		B.USER_NAME
+		FROM
+		METER_INFO A,USER_INFO B
+		WHERE
+		A.USER_ID=B.ID
+		<if test="meterNo !=null">
+			and A.METER_NO like CONCAT('%',#{meterNo},'%')
+		</if>
+		<if test="userNo !=null">
+			and B.USER_NO =#{userNo}
+		</if>
+		<if test="userName !=null">
+			and B.USER_NAME like CONCAT('%',#{userName},'%')
+		</if>
+		<if test="constomerNo !=null">
+			and (exists select 1 from CUSTOMER_INFO c where
+			c.ID=B.CUSTOMER_ID and c.CUSTOMER_NO like
+			CONCAT(#{constomerNo},'%'))
+		</if>
+	</select>
+
+	<select id="findMeterAndMeterRel" parameterType="MeterDomain"
+		resultType="MeterDomain" useCache="true">
+		select
+		METER_INFO.id,
+		METER_INFO.METER_NO,
+		METER_INFO.USER_ID,
+		METER_INFO.METER_NAME,
+		METER_INFO.SET_ADDRESS,
+		METER_INFO.PRICE_TYPE,
+		METER_INFO.BASIC_PRICE,
+		METER_INFO.NEED_INDEX,
+		METER_INFO.VOLT_LEVEL_TYPE,
+		METER_INFO.MS_TYPE,
+		METER_INFO.ELEC_TYPE_CODE,
+		METER_INFO.TS_TYPE ts_flag,
+		METER_INFO.CREATE_DATE,
+		1 parent,
+		METER_METER_ASSETS_REL.METER_ASSETS_ID
+		from METER_INFO
+		left join
+		METER_METER_ASSETS_REL
+		on METER_INFO.ID=METER_METER_ASSETS_REL.METER_ID
+	</select>
+
+	<select id="getMeterCountByWriteSect"
+		parameterType="WriteSectDomain" resultType="Map" useCache="false">
+		select WRITE_SECTION_ID ID,count(1) NUM from METER_INFO m where m.status = 1 GROUP BY WRITE_SECTION_ID
+	</select>
+
+
+	<update id="updateWriteSectIdByUserId" parameterType="MeterDomain"
+		flushCache="true">
+		UPDATE METER_INFO 
+		SET WRITE_SECTION_ID = #{writeSectionId}
+		WHERE USER_ID = #{userId}
+	</update>
+	
+	<select id="getMeterByUserNos" parameterType="UserDomain"
+		resultType="MeterDomain" useCache="false">
+		SELECT M.*,U.USER_NO FROM METER_INFO M 
+		LEFT JOIN USER_INFO U ON M.USER_ID = U.ID 
+		<where>
+			USER_ID in(
+				SELECT ID FROM USER_INFO U WHERE U.USER_NO IN 
+				<foreach item="item" index="index" collection="list" open="("
+					separator="," close=")">
+					#{item.userNo}
+				</foreach>
+			)
+		</where>
+
+	</select>
+
+	<select id="getMeterAndUserByIds" parameterType="Long"
+			resultType="MeterDomain" useCache="true">
+		SELECT
+		M.ID,M.METER_NO,M.METER_ORDER,M.METER_NAME,U.USER_NO,U.USER_NAME
+		FROM (
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		METER_INFO
+		where status = 1
+		AND ID IN
+		<foreach item="item" index="index" collection="list" open="("
+				 separator="," close=")">
+			${item}
+		</foreach>
+
+		)M LEFT JOIN USER_INFO U ON M.USER_ID = U.ID
+	</select>
+	
+</mapper>
