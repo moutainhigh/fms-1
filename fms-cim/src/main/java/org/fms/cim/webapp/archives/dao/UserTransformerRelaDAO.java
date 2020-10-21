@@ -7,9 +7,10 @@ package org.fms.cim.webapp.archives.dao;
 
 import java.util.List;
 
+import org.fms.cim.webapp.archives.domain.UserDomain;
+import org.fms.cim.webapp.archives.domain.UserTransformerRelaDomain;
+
 import com.riozenc.cim.api.annotation.SynchronizeTrigger;
-import com.riozenc.cim.webapp.archives.domain.UserDomain;
-import com.riozenc.cim.webapp.archives.domain.UserTransformerRelaDomain;
 import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;

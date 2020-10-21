@@ -5,13 +5,9 @@
  **/
 package org.fms.cim.webapp.archives.domain;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.riozenc.titanTool.annotation.TablePrimaryKey;
 import com.riozenc.titanTool.mybatis.MybatisEntity;
-import com.riozenc.titanTool.mybatis.pagination.Page;
 
 /**
  * 系统中用到的序列号	SYS_SEQUENCE_NO

@@ -8,11 +8,12 @@ package org.fms.cim.webapp.archives.service;
 import java.util.List;
 import java.util.Map;
 
-import com.riozenc.cim.webapp.archives.domain.CustomerDomain;
-import com.riozenc.cim.webapp.archives.domain.TransformerDomain;
-import com.riozenc.cim.webapp.archives.domain.TransformerLineRelDomain;
-import com.riozenc.cim.webapp.archives.domain.UserDomain;
-import com.riozenc.cim.webapp.assets.domain.TransformerAssetsDomain;
+import org.fms.cim.webapp.archives.domain.CustomerDomain;
+import org.fms.cim.webapp.archives.domain.TransformerDomain;
+import org.fms.cim.webapp.archives.domain.TransformerLineRelDomain;
+import org.fms.cim.webapp.archives.domain.UserDomain;
+import org.fms.cim.webapp.assets.domain.TransformerAssetsDomain;
+
 import com.riozenc.titanTool.spring.webapp.service.BaseService;
 
 public interface ITransformerService extends BaseService<TransformerDomain>{

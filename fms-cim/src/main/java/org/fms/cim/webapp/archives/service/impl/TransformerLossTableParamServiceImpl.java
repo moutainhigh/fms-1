@@ -8,9 +8,10 @@ package org.fms.cim.webapp.archives.service.impl;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.dao.TransformerLossTableParamDAO;
-import com.riozenc.cim.webapp.archives.domain.TransformerLossTableParamDomain;
-import com.riozenc.cim.webapp.archives.service.ITransformerLossTableParamService;
+import org.fms.cim.webapp.archives.dao.TransformerLossTableParamDAO;
+import org.fms.cim.webapp.archives.domain.TransformerLossTableParamDomain;
+import org.fms.cim.webapp.archives.service.ITransformerLossTableParamService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 

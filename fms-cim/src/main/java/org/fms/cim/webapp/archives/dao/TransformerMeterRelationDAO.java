@@ -8,8 +8,11 @@ package org.fms.cim.webapp.archives.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.domain.*;
 import org.apache.ibatis.session.ExecutorType;
+import org.fms.cim.webapp.archives.domain.MeterDomain;
+import org.fms.cim.webapp.archives.domain.TransformerDomain;
+import org.fms.cim.webapp.archives.domain.TransformerLineRelDomain;
+import org.fms.cim.webapp.archives.domain.TransformerMeterRelationDomain;
 
 import com.riozenc.cim.api.annotation.SynchronizeTrigger;
 import com.riozenc.titanTool.annotation.PaginationSupport;

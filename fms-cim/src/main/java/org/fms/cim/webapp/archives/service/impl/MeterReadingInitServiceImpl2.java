@@ -5,9 +5,7 @@
  **/
 package org.fms.cim.webapp.archives.service.impl;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -19,35 +17,28 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
-import org.apache.rocketmq.client.exception.MQBrokerException;
-import org.apache.rocketmq.client.exception.MQClientException;
-import org.apache.rocketmq.remoting.exception.RemotingException;
-import org.mbs.client.producer.ProducerClient;
-import org.mbs.client.producer.ProducerClient.ProducerConfig;
-import org.mbs.client.producer.ProducerStarter;
+import org.fms.cim.webapp.archives.domain.DeptMonDomain;
+import org.fms.cim.webapp.archives.domain.MeterDomain;
+import org.fms.cim.webapp.archives.domain.UserDomain;
+import org.fms.cim.webapp.archives.domain.WriteSectDomain;
+import org.fms.cim.webapp.archives.service.ICustomerService;
+import org.fms.cim.webapp.archives.service.IMeterInductorAssetsService;
+import org.fms.cim.webapp.archives.service.IMeterMeterAssetsService;
+import org.fms.cim.webapp.archives.service.IMeterReadingInitService;
+import org.fms.cim.webapp.archives.service.IMeterRelationService;
+import org.fms.cim.webapp.archives.service.IMeterReplaceInfoService;
+import org.fms.cim.webapp.archives.service.IMeterService;
+import org.fms.cim.webapp.archives.service.ITransformerMeterRelationService;
+import org.fms.cim.webapp.archives.service.ITransformerService;
+import org.fms.cim.webapp.archives.service.IUserService;
+import org.fms.cim.webapp.archives.service.IWriteSectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.riozenc.cim.webapp.archives.domain.DeptMonDomain;
-import com.riozenc.cim.webapp.archives.domain.MeterDomain;
-import com.riozenc.cim.webapp.archives.domain.UserDomain;
-import com.riozenc.cim.webapp.archives.domain.WriteSectDomain;
-import com.riozenc.cim.webapp.archives.service.ICustomerService;
-import com.riozenc.cim.webapp.archives.service.IMeterInductorAssetsService;
-import com.riozenc.cim.webapp.archives.service.IMeterMeterAssetsService;
-import com.riozenc.cim.webapp.archives.service.IMeterReadingInitService;
-import com.riozenc.cim.webapp.archives.service.IMeterRelationService;
-import com.riozenc.cim.webapp.archives.service.IMeterReplaceInfoService;
-import com.riozenc.cim.webapp.archives.service.IMeterService;
-import com.riozenc.cim.webapp.archives.service.ITransformerMeterRelationService;
-import com.riozenc.cim.webapp.archives.service.ITransformerService;
-import com.riozenc.cim.webapp.archives.service.IUserService;
-import com.riozenc.cim.webapp.archives.service.IWriteSectService;
 import com.riozenc.titanTool.annotation.TransactionService;
-import com.riozenc.titanTool.common.json.utils.GsonUtils;
 import com.riozenc.titanTool.spring.web.client.TitanTemplate;
 import com.riozenc.titanTool.spring.web.http.HttpResult;
 

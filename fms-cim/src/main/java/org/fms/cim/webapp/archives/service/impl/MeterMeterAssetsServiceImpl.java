@@ -5,19 +5,18 @@
  **/
 package org.fms.cim.webapp.archives.service.impl;
 
-import com.riozenc.cim.webapp.archives.dao.MeterMeterAssetsRelDAO;
-import com.riozenc.cim.webapp.archives.domain.MeterDomain;
-import com.riozenc.cim.webapp.archives.domain.MeterMeterAssetsRelDomain;
-import com.riozenc.cim.webapp.archives.domain.MeterWriteSnEntity;
-import com.riozenc.cim.webapp.archives.domain.TransformerDomain;
-import com.riozenc.cim.webapp.archives.domain.WriteSectDomain;
-import com.riozenc.cim.webapp.archives.service.IMeterMeterAssetsService;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.fms.cim.webapp.archives.dao.MeterMeterAssetsRelDAO;
+import org.fms.cim.webapp.archives.domain.MeterDomain;
+import org.fms.cim.webapp.archives.domain.MeterMeterAssetsRelDomain;
+import org.fms.cim.webapp.archives.domain.MeterWriteSnEntity;
+import org.fms.cim.webapp.archives.domain.WriteSectDomain;
+import org.fms.cim.webapp.archives.service.IMeterMeterAssetsService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 
 @TransactionService
 public class MeterMeterAssetsServiceImpl implements IMeterMeterAssetsService {

@@ -5,15 +5,15 @@
  **/
 package org.fms.cim.webapp.archives.dao;
 
-import com.riozenc.cim.api.annotation.SynchronizeTrigger;
-import com.riozenc.cim.webapp.archives.domain.MeterInductorAssetsRelDomain;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.fms.cim.webapp.archives.domain.MeterInductorAssetsRelDomain;
+
 import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
 import com.riozenc.titanTool.spring.webapp.dao.BaseDAO;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @TransactionDAO()
 public class MeterInductorAssetsRelDAO extends AbstractTransactionDAOSupport implements BaseDAO<MeterInductorAssetsRelDomain> {

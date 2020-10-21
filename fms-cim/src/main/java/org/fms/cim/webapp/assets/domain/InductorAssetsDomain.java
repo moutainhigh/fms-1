@@ -7,9 +7,10 @@ package org.fms.cim.webapp.assets.domain;
 
 import java.util.Date;
 
+import org.fms.cim.webapp.archives.domain.ManagerParamEntity;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.riozenc.cim.webapp.archives.domain.ManagerParamEntity;
 import com.riozenc.titanTool.annotation.TablePrimaryKey;
 import com.riozenc.titanTool.mybatis.MybatisEntity;
 

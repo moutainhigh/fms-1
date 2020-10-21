@@ -5,7 +5,8 @@
  **/
 package org.fms.cim.webapp.assets.service;
 
-import com.riozenc.cim.webapp.assets.domain.InductorAssetsTestRecordDetailDomain;
+import org.fms.cim.webapp.assets.domain.InductorAssetsTestRecordDetailDomain;
+
 import com.riozenc.titanTool.spring.webapp.service.BaseService;
 
 public interface IInductorAssetsTestRecordDetailService extends BaseService<InductorAssetsTestRecordDetailDomain> {

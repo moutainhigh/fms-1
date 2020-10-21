@@ -5,16 +5,17 @@
  **/
 package org.fms.cim.webapp.archives.service.impl;
 
-import com.riozenc.cim.webapp.archives.dao.CustomerDAO;
-import com.riozenc.cim.webapp.archives.dao.UserDAO;
-import com.riozenc.cim.webapp.archives.domain.CustomerDomain;
-import com.riozenc.cim.webapp.archives.domain.UserDomain;
-import com.riozenc.cim.webapp.archives.service.IUserService;
-import com.riozenc.titanTool.annotation.TransactionDAO;
-import com.riozenc.titanTool.annotation.TransactionService;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.fms.cim.webapp.archives.dao.CustomerDAO;
+import org.fms.cim.webapp.archives.dao.UserDAO;
+import org.fms.cim.webapp.archives.domain.CustomerDomain;
+import org.fms.cim.webapp.archives.domain.UserDomain;
+import org.fms.cim.webapp.archives.service.IUserService;
+
+import com.riozenc.titanTool.annotation.TransactionDAO;
+import com.riozenc.titanTool.annotation.TransactionService;
 
 @TransactionService
 public class UserServiceImpl implements IUserService {

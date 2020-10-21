@@ -5,12 +5,12 @@
  **/
 package org.fms.cim.webapp.archives.domain;
 
+import java.util.Date;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.riozenc.titanTool.annotation.TablePrimaryKey;
 import com.riozenc.titanTool.mybatis.MybatisEntity;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * 客户 CUSTOMER_INFO

@@ -1,15 +1,16 @@
 package org.fms.cim.webapp.archives.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.ibatis.session.ExecutorType;
+import org.fms.cim.webapp.archives.domain.MeterDomain;
+import org.fms.cim.webapp.archives.domain.TransformerMeterRelationDomain;
+
 import com.riozenc.cim.api.annotation.SynchronizeTrigger;
-import com.riozenc.cim.webapp.archives.domain.MeterDomain;
-import com.riozenc.cim.webapp.archives.domain.TransformerMeterRelationDomain;
 import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
-import org.apache.ibatis.session.ExecutorType;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @TransactionDAO()
 public class MeterTransRelDAO extends AbstractTransactionDAOSupport{

@@ -8,7 +8,12 @@ package org.fms.cim.webapp.assets.action;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import com.riozenc.cim.web.strategy.SequenceStrategy;
+
+import org.fms.cim.common.strategy.no.SequenceEnvironment;
+import org.fms.cim.common.strategy.no.SequenceStrategy;
+import org.fms.cim.web.config.JsonGrid;
+import org.fms.cim.webapp.assets.domain.TransformerAssetsDomain;
+import org.fms.cim.webapp.assets.service.ITransformerAssetsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,10 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.riozenc.cim.web.config.JsonGrid;
-import com.riozenc.cim.web.strategy.SequenceEnvironment;
-import com.riozenc.cim.webapp.assets.domain.TransformerAssetsDomain;
-import com.riozenc.cim.webapp.assets.service.ITransformerAssetsService;
 import com.riozenc.titanTool.common.json.utils.GsonUtils;
 import com.riozenc.titanTool.spring.web.http.HttpResult;
 

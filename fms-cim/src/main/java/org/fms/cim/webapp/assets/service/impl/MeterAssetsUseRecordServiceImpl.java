@@ -7,11 +7,12 @@ package org.fms.cim.webapp.assets.service.impl;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.assets.dao.MeterAssetsDAO;
-import com.riozenc.cim.webapp.assets.dao.MeterAssetsUseRecordDAO;
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsDomain;
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsUseRecordDomain;
-import com.riozenc.cim.webapp.assets.service.IMeterAssetsUseRecordService;
+import org.fms.cim.webapp.assets.dao.MeterAssetsDAO;
+import org.fms.cim.webapp.assets.dao.MeterAssetsUseRecordDAO;
+import org.fms.cim.webapp.assets.domain.MeterAssetsDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsUseRecordDomain;
+import org.fms.cim.webapp.assets.service.IMeterAssetsUseRecordService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 

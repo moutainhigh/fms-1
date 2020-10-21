@@ -5,14 +5,15 @@
  **/
 package org.fms.cim.webapp.assets.service;
 
-import com.riozenc.cim.webapp.archives.domain.UserDomain;
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsDomain;
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsEntity;
-import com.riozenc.titanTool.spring.web.http.HttpResult;
-import com.riozenc.titanTool.spring.webapp.service.BaseService;
-
 import java.util.List;
 import java.util.Map;
+
+import org.fms.cim.webapp.archives.domain.UserDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsEntity;
+
+import com.riozenc.titanTool.spring.web.http.HttpResult;
+import com.riozenc.titanTool.spring.webapp.service.BaseService;
 
 public interface IMeterAssetsService extends BaseService<MeterAssetsDomain> {
 

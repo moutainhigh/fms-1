@@ -8,8 +8,8 @@ package org.fms.cim.webapp.assets.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.ExecutorType;
+import org.fms.cim.webapp.assets.domain.TransformerAssetsDomain;
 
-import com.riozenc.cim.webapp.assets.domain.TransformerAssetsDomain;
 import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;

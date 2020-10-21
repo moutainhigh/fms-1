@@ -2,7 +2,8 @@ package org.fms.cim.webapp.archives.service;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.domain.WriteSectDomain;
+import org.fms.cim.webapp.archives.domain.WriteSectDomain;
+
 import com.riozenc.titanTool.spring.web.http.HttpResult;
 
 public interface IMeterReadingInitService {

@@ -8,9 +8,10 @@ package org.fms.cim.webapp.archives.service.impl;
 import java.util.Date;
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.dao.SubsLineRelaDAO;
-import com.riozenc.cim.webapp.archives.domain.SubsLineRelaDomain;
-import com.riozenc.cim.webapp.archives.service.ISubsLineRelaService;
+import org.fms.cim.webapp.archives.dao.SubsLineRelaDAO;
+import org.fms.cim.webapp.archives.domain.SubsLineRelaDomain;
+import org.fms.cim.webapp.archives.service.ISubsLineRelaService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 

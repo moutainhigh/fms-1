@@ -5,11 +5,12 @@
  **/
 package org.fms.cim.webapp.archives.service;
 
-import com.riozenc.cim.webapp.archives.domain.CustomerDomain;
-import com.riozenc.cim.webapp.archives.domain.UserDomain;
-import com.riozenc.titanTool.spring.webapp.service.BaseService;
-
 import java.util.List;
+
+import org.fms.cim.webapp.archives.domain.CustomerDomain;
+import org.fms.cim.webapp.archives.domain.UserDomain;
+
+import com.riozenc.titanTool.spring.webapp.service.BaseService;
 
 public interface IUserService extends BaseService<UserDomain> {
 

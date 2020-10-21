@@ -7,11 +7,12 @@ package org.fms.cim.webapp.assets.service.impl;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.domain.UserDomain;
-import com.riozenc.cim.webapp.assets.dao.InductorAssetsDAO;
-import com.riozenc.cim.webapp.assets.domain.InductorAssetsDomain;
-import com.riozenc.cim.webapp.assets.domain.InductorAssetsEntity;
-import com.riozenc.cim.webapp.assets.service.IInductorAssetsService;
+import org.fms.cim.webapp.archives.domain.UserDomain;
+import org.fms.cim.webapp.assets.dao.InductorAssetsDAO;
+import org.fms.cim.webapp.assets.domain.InductorAssetsDomain;
+import org.fms.cim.webapp.assets.domain.InductorAssetsEntity;
+import org.fms.cim.webapp.assets.service.IInductorAssetsService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 

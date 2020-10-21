@@ -8,14 +8,15 @@ package org.fms.cim.webapp.assets.service.impl;
 import java.util.Date;
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.dao.SystemCommonConfigDAO;
-import com.riozenc.cim.webapp.assets.dao.InductorAssetsDAO;
-import com.riozenc.cim.webapp.assets.dao.InductorAssetsTestRecordDAO;
-import com.riozenc.cim.webapp.assets.dao.InductorAssetsTestRecordDetailDAO;
-import com.riozenc.cim.webapp.assets.domain.InductorAssetsDomain;
-import com.riozenc.cim.webapp.assets.domain.InductorAssetsTestRecordDetailDomain;
-import com.riozenc.cim.webapp.assets.domain.InductorAssetsTestRecordDomain;
-import com.riozenc.cim.webapp.assets.service.IInductorAssetsTestRecordService;
+import org.fms.cim.webapp.archives.dao.SystemCommonConfigDAO;
+import org.fms.cim.webapp.assets.dao.InductorAssetsDAO;
+import org.fms.cim.webapp.assets.dao.InductorAssetsTestRecordDAO;
+import org.fms.cim.webapp.assets.dao.InductorAssetsTestRecordDetailDAO;
+import org.fms.cim.webapp.assets.domain.InductorAssetsDomain;
+import org.fms.cim.webapp.assets.domain.InductorAssetsTestRecordDetailDomain;
+import org.fms.cim.webapp.assets.domain.InductorAssetsTestRecordDomain;
+import org.fms.cim.webapp.assets.service.IInductorAssetsTestRecordService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 import com.riozenc.titanTool.spring.web.http.HttpResult;

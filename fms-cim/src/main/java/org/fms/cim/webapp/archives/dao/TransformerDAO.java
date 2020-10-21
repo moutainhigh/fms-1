@@ -5,18 +5,23 @@
  **/
 package org.fms.cim.webapp.archives.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.ExecutorType;
+import org.fms.cim.webapp.archives.domain.CustomerDomain;
+import org.fms.cim.webapp.archives.domain.TransformerDomain;
+import org.fms.cim.webapp.archives.domain.TransformerLineRelDomain;
+import org.fms.cim.webapp.archives.domain.UserDomain;
+import org.fms.cim.webapp.archives.domain.UserTransformerRelaDomain;
+import org.fms.cim.webapp.assets.domain.TransformerAssetsDomain;
+
 import com.riozenc.cim.api.annotation.SynchronizeTrigger;
-import com.riozenc.cim.webapp.archives.domain.*;
-import com.riozenc.cim.webapp.assets.domain.TransformerAssetsDomain;
 import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
 import com.riozenc.titanTool.spring.webapp.dao.BaseDAO;
-import org.apache.ibatis.session.ExecutorType;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @TransactionDAO
 public class TransformerDAO extends AbstractTransactionDAOSupport implements BaseDAO<TransformerDomain> {

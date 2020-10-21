@@ -5,15 +5,16 @@
  **/
 package org.fms.cim.webapp.archives.dao;
 
-import com.riozenc.cim.webapp.archives.domain.SettlementDomain;
-import com.riozenc.cim.webapp.archives.domain.SettlementMeterRelDomain;
+import java.util.List;
+
+import org.apache.ibatis.session.ExecutorType;
+import org.fms.cim.webapp.archives.domain.SettlementDomain;
+import org.fms.cim.webapp.archives.domain.SettlementMeterRelDomain;
+
 import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
 import com.riozenc.titanTool.spring.webapp.dao.BaseDAO;
-import org.apache.ibatis.session.ExecutorType;
-
-import java.util.List;
 
 @TransactionDAO
 public class SettlementMeterRelDAO extends AbstractTransactionDAOSupport implements BaseDAO<SettlementMeterRelDomain> {

@@ -7,11 +7,12 @@ package org.fms.cim.webapp.assets.service.impl;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.dao.TransformerDAO;
-import com.riozenc.cim.webapp.archives.domain.TransformerDomain;
-import com.riozenc.cim.webapp.assets.dao.TransformerAssetsDAO;
-import com.riozenc.cim.webapp.assets.domain.TransformerAssetsDomain;
-import com.riozenc.cim.webapp.assets.service.ITransformerAssetsService;
+import org.fms.cim.webapp.archives.dao.TransformerDAO;
+import org.fms.cim.webapp.archives.domain.TransformerDomain;
+import org.fms.cim.webapp.assets.dao.TransformerAssetsDAO;
+import org.fms.cim.webapp.assets.domain.TransformerAssetsDomain;
+import org.fms.cim.webapp.assets.service.ITransformerAssetsService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 

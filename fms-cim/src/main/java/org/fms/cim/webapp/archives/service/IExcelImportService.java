@@ -7,7 +7,8 @@ package org.fms.cim.webapp.archives.service;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsDomain;
+
 import com.riozenc.titanTool.spring.web.http.HttpResult;
 
 public interface IExcelImportService {

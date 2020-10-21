@@ -1,13 +1,14 @@
 package org.fms.cim.webapp.archives.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.riozenc.titanTool.annotation.TablePrimaryKey;
-import com.riozenc.titanTool.mybatis.MybatisEntity;
-import org.springframework.data.annotation.Transient;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.data.annotation.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.riozenc.titanTool.annotation.TablePrimaryKey;
+import com.riozenc.titanTool.mybatis.MybatisEntity;
 
 /**
  * 计量点与表资产中间表

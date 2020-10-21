@@ -7,16 +7,17 @@ package org.fms.cim.webapp.assets.service.impl;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.dao.SystemCommonConfigDAO;
-import com.riozenc.cim.webapp.assets.dao.MeterAssetsDAO;
-import com.riozenc.cim.webapp.assets.dao.MeterAssetsTestRecordDAO;
-import com.riozenc.cim.webapp.assets.dao.MeterAssetsTestRecordDetailTpDAO;
-import com.riozenc.cim.webapp.assets.dao.MeterAssetsTestRecordDetailUpDAO;
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsTestRecordDomain;
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsDomain;
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsTestRecordDetailTpDomain;
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsTestRecordDetailUpDomain;
-import com.riozenc.cim.webapp.assets.service.IMeterAssetsTestRecordService;
+import org.fms.cim.webapp.archives.dao.SystemCommonConfigDAO;
+import org.fms.cim.webapp.assets.dao.MeterAssetsDAO;
+import org.fms.cim.webapp.assets.dao.MeterAssetsTestRecordDAO;
+import org.fms.cim.webapp.assets.dao.MeterAssetsTestRecordDetailTpDAO;
+import org.fms.cim.webapp.assets.dao.MeterAssetsTestRecordDetailUpDAO;
+import org.fms.cim.webapp.assets.domain.MeterAssetsDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsTestRecordDetailTpDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsTestRecordDetailUpDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsTestRecordDomain;
+import org.fms.cim.webapp.assets.service.IMeterAssetsTestRecordService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 import com.riozenc.titanTool.spring.web.http.HttpResult;

@@ -5,7 +5,6 @@
  **/
 package org.fms.cim.webapp.archives.domain;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 

@@ -1,9 +1,9 @@
 package org.fms.cim.webapp.archives.domain;
 
+import java.math.BigDecimal;
+
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.metadata.BaseRowModel;
-
-import java.math.BigDecimal;
 
 public class BulkRefundEntity extends BaseRowModel {
     @ExcelProperty(value = "结算户号", index = 0)

@@ -5,13 +5,13 @@
  **/
 package org.fms.cim.webapp.archives.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.riozenc.titanTool.annotation.TablePrimaryKey;
-import com.riozenc.titanTool.mybatis.MybatisEntity;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.riozenc.titanTool.annotation.TablePrimaryKey;
+import com.riozenc.titanTool.mybatis.MybatisEntity;
 
 /**
  * 变压器 TRANSFORMER_INFO

@@ -1,8 +1,9 @@
 package org.fms.cim.webapp.archives.domain;
 
+import java.util.Date;
+
 import com.riozenc.titanTool.annotation.TablePrimaryKey;
 import com.riozenc.titanTool.mybatis.MybatisEntity;
-import java.util.Date;
 
 /**
  * 台区	TG_INFO

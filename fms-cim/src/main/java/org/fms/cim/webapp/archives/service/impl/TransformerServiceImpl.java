@@ -9,11 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.riozenc.cim.webapp.archives.dao.MeterDAO;
-import com.riozenc.cim.webapp.archives.dao.TransformerDAO;
-import com.riozenc.cim.webapp.archives.domain.*;
-import com.riozenc.cim.webapp.archives.service.ITransformerService;
-import com.riozenc.cim.webapp.assets.domain.TransformerAssetsDomain;
+import org.fms.cim.webapp.archives.dao.MeterDAO;
+import org.fms.cim.webapp.archives.dao.TransformerDAO;
+import org.fms.cim.webapp.archives.domain.CustomerDomain;
+import org.fms.cim.webapp.archives.domain.TransformerDomain;
+import org.fms.cim.webapp.archives.domain.TransformerLineRelDomain;
+import org.fms.cim.webapp.archives.domain.UserDomain;
+import org.fms.cim.webapp.archives.service.ITransformerService;
+import org.fms.cim.webapp.assets.domain.TransformerAssetsDomain;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 

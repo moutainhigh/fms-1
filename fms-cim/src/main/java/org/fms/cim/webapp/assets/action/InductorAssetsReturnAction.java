@@ -6,6 +6,9 @@
 package org.fms.cim.webapp.assets.action;
 
 import java.util.List;
+
+import org.fms.cim.webapp.assets.domain.InductorAssetsDomain;
+import org.fms.cim.webapp.assets.service.IInductorAssetsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.riozenc.cim.webapp.assets.domain.InductorAssetsDomain;
-import com.riozenc.cim.webapp.assets.service.IInductorAssetsService;
 import com.riozenc.titanTool.spring.web.http.HttpResult;
 
 /**

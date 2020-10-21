@@ -7,9 +7,10 @@ package org.fms.cim.webapp.archives.service.impl;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.dao.SystemCommonConfigDAO;
-import com.riozenc.cim.webapp.archives.domain.SystemCommonConfigDomain;
-import com.riozenc.cim.webapp.archives.service.ISystemCommonConfigService;
+import org.fms.cim.webapp.archives.dao.SystemCommonConfigDAO;
+import org.fms.cim.webapp.archives.domain.SystemCommonConfigDomain;
+import org.fms.cim.webapp.archives.service.ISystemCommonConfigService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 

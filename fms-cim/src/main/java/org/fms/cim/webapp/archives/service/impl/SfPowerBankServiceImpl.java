@@ -7,9 +7,10 @@ package org.fms.cim.webapp.archives.service.impl;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.dao.SfPowerBankDAO;
-import com.riozenc.cim.webapp.archives.domain.SfPowerBankDomain;
-import com.riozenc.cim.webapp.archives.service.ISfPowerBankService;
+import org.fms.cim.webapp.archives.dao.SfPowerBankDAO;
+import org.fms.cim.webapp.archives.domain.SfPowerBankDomain;
+import org.fms.cim.webapp.archives.service.ISfPowerBankService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 

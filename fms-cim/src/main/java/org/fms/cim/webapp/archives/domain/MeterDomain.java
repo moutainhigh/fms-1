@@ -4,12 +4,12 @@
  **/
 package org.fms.cim.webapp.archives.domain;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.riozenc.titanTool.annotation.TablePrimaryKey;
 import com.riozenc.titanTool.mybatis.MybatisEntity;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * 计量点 METER_INFO

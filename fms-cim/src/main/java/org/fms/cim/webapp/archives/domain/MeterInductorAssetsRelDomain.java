@@ -1,9 +1,9 @@
 package org.fms.cim.webapp.archives.domain;
 
+import java.util.Date;
+
 import com.riozenc.titanTool.annotation.TablePrimaryKey;
 import com.riozenc.titanTool.mybatis.MybatisEntity;
-
-import java.util.Date;
 
 /**
  * 计量点与互感器资产中间表

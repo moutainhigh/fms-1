@@ -7,7 +7,8 @@ package org.fms.cim.webapp.assets.dao;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsLogDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsLogDomain;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
 import com.riozenc.titanTool.spring.webapp.dao.BaseDAO;

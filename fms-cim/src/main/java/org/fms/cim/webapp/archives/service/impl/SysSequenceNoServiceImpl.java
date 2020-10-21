@@ -8,10 +8,11 @@ package org.fms.cim.webapp.archives.service.impl;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import org.fms.cim.webapp.archives.dao.SysSequenceNoDAO;
+import org.fms.cim.webapp.archives.domain.SysSequenceNoDomain;
+import org.fms.cim.webapp.archives.service.ISysSequenceNoService;
+
 import com.riozenc.cim.web.util.CommonUtil;
-import com.riozenc.cim.webapp.archives.dao.SysSequenceNoDAO;
-import com.riozenc.cim.webapp.archives.domain.SysSequenceNoDomain;
-import com.riozenc.cim.webapp.archives.service.ISysSequenceNoService;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 

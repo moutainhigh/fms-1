@@ -5,14 +5,6 @@
  **/
 package org.fms.cim.webapp.assets.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.riozenc.cim.webapp.archives.domain.ManagerParamEntity;
-import com.riozenc.titanTool.annotation.TablePrimaryKey;
-import com.riozenc.titanTool.mybatis.MybatisEntity;
-
-import java.util.Date;
-
 /**
  * 互感器资产传输实体 INDUCTOR_ASSETS_INFO
  *

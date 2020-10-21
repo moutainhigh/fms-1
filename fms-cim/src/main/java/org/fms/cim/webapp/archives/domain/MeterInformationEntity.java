@@ -6,11 +6,12 @@
 **/
 package org.fms.cim.webapp.archives.domain;
 
-import com.riozenc.cim.webapp.assets.domain.InductorAssetsEntity;
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsEntity;
-import com.riozenc.titanTool.mybatis.MybatisEntity;
-
 import java.util.List;
+
+import org.fms.cim.webapp.assets.domain.InductorAssetsEntity;
+import org.fms.cim.webapp.assets.domain.MeterAssetsEntity;
+
+import com.riozenc.titanTool.mybatis.MybatisEntity;
 
 public class MeterInformationEntity extends ManagerParamEntity implements MybatisEntity {
 		private Long id;// ID ID bigint TRUE FALSE TRUE

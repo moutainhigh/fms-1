@@ -2,10 +2,11 @@ package org.fms.cim.webapp.assets.service;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsDomain;
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsTestRecordDetailTpDomain;
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsTestRecordDetailUpDomain;
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsTestRecordDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsTestRecordDetailTpDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsTestRecordDetailUpDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsTestRecordDomain;
+
 import com.riozenc.titanTool.spring.web.http.HttpResult;
 import com.riozenc.titanTool.spring.webapp.service.BaseService;
 

@@ -9,12 +9,13 @@ package org.fms.cim.webapp.archives.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.dao.TransformerMeterRelationDAO;
-import com.riozenc.cim.webapp.archives.domain.MeterDomain;
-import com.riozenc.cim.webapp.archives.domain.TransformerDomain;
-import com.riozenc.cim.webapp.archives.domain.TransformerLineRelDomain;
-import com.riozenc.cim.webapp.archives.domain.TransformerMeterRelationDomain;
-import com.riozenc.cim.webapp.archives.service.ITransformerMeterRelationService;
+import org.fms.cim.webapp.archives.dao.TransformerMeterRelationDAO;
+import org.fms.cim.webapp.archives.domain.MeterDomain;
+import org.fms.cim.webapp.archives.domain.TransformerDomain;
+import org.fms.cim.webapp.archives.domain.TransformerLineRelDomain;
+import org.fms.cim.webapp.archives.domain.TransformerMeterRelationDomain;
+import org.fms.cim.webapp.archives.service.ITransformerMeterRelationService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 

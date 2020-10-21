@@ -7,8 +7,9 @@ package org.fms.cim.webapp.assets.dao;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsDomain;
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsTestRecordDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsTestRecordDomain;
+
 import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;

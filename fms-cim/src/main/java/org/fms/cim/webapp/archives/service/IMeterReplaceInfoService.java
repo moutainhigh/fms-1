@@ -7,8 +7,9 @@ package org.fms.cim.webapp.archives.service;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.domain.LastCodeEntity;
-import com.riozenc.cim.webapp.archives.domain.MeterReplaceDomain;
+import org.fms.cim.webapp.archives.domain.LastCodeEntity;
+import org.fms.cim.webapp.archives.domain.MeterReplaceDomain;
+
 import com.riozenc.titanTool.spring.web.http.HttpResult;
 import com.riozenc.titanTool.spring.webapp.service.BaseService;
 

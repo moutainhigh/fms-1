@@ -7,9 +7,10 @@ package org.fms.cim.webapp.archives.service.impl;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.dao.SubsDAO;
-import com.riozenc.cim.webapp.archives.domain.SubsDomain;
-import com.riozenc.cim.webapp.archives.service.ISubsService;
+import org.fms.cim.webapp.archives.dao.SubsDAO;
+import org.fms.cim.webapp.archives.domain.SubsDomain;
+import org.fms.cim.webapp.archives.service.ISubsService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 

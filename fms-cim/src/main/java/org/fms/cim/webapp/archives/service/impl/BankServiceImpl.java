@@ -7,9 +7,10 @@ package org.fms.cim.webapp.archives.service.impl;
 
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.dao.BankDAO;
-import com.riozenc.cim.webapp.archives.domain.BankDomain;
-import com.riozenc.cim.webapp.archives.service.IBankService;
+import org.fms.cim.webapp.archives.dao.BankDAO;
+import org.fms.cim.webapp.archives.domain.BankDomain;
+import org.fms.cim.webapp.archives.service.IBankService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 

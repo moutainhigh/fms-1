@@ -5,19 +5,26 @@
  **/
 package org.fms.cim.webapp.archives.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.ibatis.session.ExecutorType;
+import org.fms.cim.webapp.archives.domain.CustomerDomain;
+import org.fms.cim.webapp.archives.domain.MeterDomain;
+import org.fms.cim.webapp.archives.domain.MeterInformationEntity;
+import org.fms.cim.webapp.archives.domain.MeterRelationDomain;
+import org.fms.cim.webapp.archives.domain.SettlementDomain;
+import org.fms.cim.webapp.archives.domain.TransformerMeterRelationDomain;
+import org.fms.cim.webapp.archives.domain.UserDomain;
+import org.fms.cim.webapp.assets.domain.InductorAssetsDomain;
+import org.fms.cim.webapp.assets.domain.MeterAssetsDomain;
+
 import com.riozenc.cim.api.annotation.SynchronizeTrigger;
-import com.riozenc.cim.webapp.archives.domain.*;
-import com.riozenc.cim.webapp.assets.domain.InductorAssetsDomain;
-import com.riozenc.cim.webapp.assets.domain.MeterAssetsDomain;
 import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
 import com.riozenc.titanTool.spring.webapp.dao.BaseDAO;
-import org.apache.ibatis.session.ExecutorType;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 @TransactionDAO()
 public class MeterDAO extends AbstractTransactionDAOSupport implements BaseDAO<MeterDomain> {

@@ -9,18 +9,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.fms.cim.webapp.archives.dao.MeterDAO;
+import org.fms.cim.webapp.archives.dao.WriteSectDAO;
+import org.fms.cim.webapp.archives.domain.WriteSectDomain;
+import org.fms.cim.webapp.archives.service.IWriteSectService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.riozenc.cim.webapp.archives.dao.MeterDAO;
-import com.riozenc.cim.webapp.archives.dao.WriteSectDAO;
-import com.riozenc.cim.webapp.archives.domain.LineDomain;
-import com.riozenc.cim.webapp.archives.domain.TransformerDomain;
-import com.riozenc.cim.webapp.archives.domain.WriteSectDomain;
-import com.riozenc.cim.webapp.archives.service.IWriteSectService;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
-import com.riozenc.titanTool.common.json.utils.GsonUtils;
 import com.riozenc.titanTool.common.json.utils.JSONUtil;
 import com.riozenc.titanTool.spring.web.client.TitanTemplate;
 import com.riozenc.titanTool.spring.web.http.HttpResult;

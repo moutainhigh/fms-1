@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.fms.cim.webapp.archives.dao.CustomerDAO;
+import org.fms.cim.webapp.archives.domain.CustomerDomain;
+import org.fms.cim.webapp.archives.service.ICustomerService;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.riozenc.cim.webapp.archives.dao.CustomerDAO;
-import com.riozenc.cim.webapp.archives.domain.CustomerDomain;
-import com.riozenc.cim.webapp.archives.service.ICustomerService;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 

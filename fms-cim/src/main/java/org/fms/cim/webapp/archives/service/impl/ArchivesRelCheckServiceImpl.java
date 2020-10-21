@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.dao.ArchivesRelCheckDAO;
-import com.riozenc.cim.webapp.archives.dao.MeterMeterAssetsRelDAO;
-import com.riozenc.cim.webapp.archives.domain.MeterDomain;
-import com.riozenc.cim.webapp.archives.domain.MeterMeterAssetsRelDomain;
-import com.riozenc.cim.webapp.archives.service.IArchivesRelCheckService;
+import org.fms.cim.webapp.archives.dao.ArchivesRelCheckDAO;
+import org.fms.cim.webapp.archives.dao.MeterMeterAssetsRelDAO;
+import org.fms.cim.webapp.archives.domain.MeterDomain;
+import org.fms.cim.webapp.archives.domain.MeterMeterAssetsRelDomain;
+import org.fms.cim.webapp.archives.service.IArchivesRelCheckService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 import com.riozenc.titanTool.spring.web.http.HttpResult;

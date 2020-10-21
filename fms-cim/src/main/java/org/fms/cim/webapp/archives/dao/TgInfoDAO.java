@@ -1,13 +1,14 @@
 package org.fms.cim.webapp.archives.dao;
 
+import java.util.List;
+
+import org.fms.cim.webapp.archives.domain.TgInfoDomain;
+
 import com.riozenc.cim.api.annotation.SynchronizeTrigger;
-import com.riozenc.cim.webapp.archives.domain.TgInfoDomain;
 import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
 import com.riozenc.titanTool.spring.webapp.dao.BaseDAO;
-
-import java.util.List;
 
 @TransactionDAO()
 public class TgInfoDAO extends AbstractTransactionDAOSupport implements BaseDAO<TgInfoDomain> {

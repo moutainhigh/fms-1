@@ -1,9 +1,9 @@
 package org.fms.cim.webapp.archives.service;
 
-import com.riozenc.cim.webapp.archives.domain.MeterDomain;
-import com.riozenc.cim.webapp.archives.domain.TransformerMeterRelationDomain;
-
 import java.util.List;
+
+import org.fms.cim.webapp.archives.domain.MeterDomain;
+import org.fms.cim.webapp.archives.domain.TransformerMeterRelationDomain;
 
 public interface IMeterTransRelService {
 

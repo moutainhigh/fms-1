@@ -8,10 +8,10 @@ package org.fms.cim.webapp.archives.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.riozenc.cim.webapp.archives.dao.MeterRelationDAO;
-import com.riozenc.cim.webapp.archives.domain.MeterDomain;
-import com.riozenc.cim.webapp.archives.domain.MeterRelationDomain;
-import com.riozenc.cim.webapp.archives.service.IMeterRelationService;
+import org.fms.cim.webapp.archives.dao.MeterRelationDAO;
+import org.fms.cim.webapp.archives.domain.MeterRelationDomain;
+import org.fms.cim.webapp.archives.service.IMeterRelationService;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 

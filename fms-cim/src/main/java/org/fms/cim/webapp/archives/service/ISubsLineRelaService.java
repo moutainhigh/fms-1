@@ -5,7 +5,8 @@
  **/
 package org.fms.cim.webapp.archives.service;
 
-import com.riozenc.cim.webapp.archives.domain.SubsLineRelaDomain;
+import org.fms.cim.webapp.archives.domain.SubsLineRelaDomain;
+
 import com.riozenc.titanTool.spring.webapp.service.BaseService;
 
 public interface ISubsLineRelaService extends BaseService<SubsLineRelaDomain> {
