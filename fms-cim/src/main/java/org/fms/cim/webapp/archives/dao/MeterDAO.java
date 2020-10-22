@@ -20,7 +20,6 @@ import org.fms.cim.webapp.archives.domain.UserDomain;
 import org.fms.cim.webapp.assets.domain.InductorAssetsDomain;
 import org.fms.cim.webapp.assets.domain.MeterAssetsDomain;
 
-import com.riozenc.cim.api.annotation.SynchronizeTrigger;
 import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
@@ -30,7 +29,6 @@ import com.riozenc.titanTool.spring.webapp.dao.BaseDAO;
 public class MeterDAO extends AbstractTransactionDAOSupport implements BaseDAO<MeterDomain> {
 
 	@Override
-	@SynchronizeTrigger
 	public int insert(MeterDomain t) {
 		return getPersistanceManager().insert(getNamespace() + ".insert", t);
 	}
@@ -41,7 +39,6 @@ public class MeterDAO extends AbstractTransactionDAOSupport implements BaseDAO<M
 	}
 
 	@Override
-	@SynchronizeTrigger
 	public int update(MeterDomain t) {
 		return getPersistanceManager().update(getNamespace() + ".update", t);
 	}
@@ -78,14 +75,14 @@ public class MeterDAO extends AbstractTransactionDAOSupport implements BaseDAO<M
 
 	@PaginationSupport
 	public List<MeterDomain> getMeterByIds(List<Long> tl) {
-		if(tl==null||tl.size()==0) {
+		if (tl == null || tl.size() == 0) {
 			return new ArrayList<MeterDomain>();
 		}
 		return getPersistanceManager().find(getNamespace() + ".getMeterByIds", tl);
 	}
 
 	public List<MeterRelationDomain> getMeterRelByMeterIds(List<Long> sl) {
-		if(sl==null||sl.size()==0) {
+		if (sl == null || sl.size() == 0) {
 			return new ArrayList<MeterRelationDomain>();
 		}
 		return getPersistanceManager().find(getNamespace() + ".getMeterRelByMeterIds", sl);
@@ -101,10 +98,8 @@ public class MeterDAO extends AbstractTransactionDAOSupport implements BaseDAO<M
 
 	}
 
-
-
 	public List<MeterDomain> getMeterByUserIds(List<Long> userIds) {
-		if(userIds==null||userIds.size()==0) {
+		if (userIds == null || userIds.size() == 0) {
 			return new ArrayList<MeterDomain>();
 		}
 		return getPersistanceManager().find(getNamespace() + ".getMeterByUserIds", userIds);
@@ -131,8 +126,7 @@ public class MeterDAO extends AbstractTransactionDAOSupport implements BaseDAO<M
 		// TODO Auto-generated method stub
 		return getPersistanceManager().find(getNamespace() + ".meterNoDC", t);
 	}
-	
-	@SynchronizeTrigger
+
 	public int reUpdate(MeterDomain meter) {
 		// TODO Auto-generated method stub
 		return getPersistanceManager().update(getNamespace() + ".reUpdate", meter);
@@ -195,13 +189,13 @@ public class MeterDAO extends AbstractTransactionDAOSupport implements BaseDAO<M
 	}
 
 	public List<Long> getMeterIdsByMeterRel(List<Long> tl) {
-		if(tl==null||tl.size()==0) {
+		if (tl == null || tl.size() == 0) {
 			return new ArrayList<Long>();
 		}
 		return getPersistanceManager().find(getNamespace() + ".getMeterIdsByMeterRel", tl);
 	}
 
-	public List<HashMap<String,Long>> getMeterCountByWriteSect() {
+	public List<HashMap<String, Long>> getMeterCountByWriteSect() {
 		return getPersistanceManager().find(getNamespace() + ".getMeterCountByWriteSect", null);
 	}
 
@@ -209,10 +203,10 @@ public class MeterDAO extends AbstractTransactionDAOSupport implements BaseDAO<M
 		return getPersistanceManager(ExecutorType.BATCH).insertList(getNamespace() + ".insert", meterList);
 
 	}
-	
-	//只返回单表
+
+	// 只返回单表
 	public List<MeterDomain> getMeterByMeterIds(List<Long> tList) {
-		if(tList==null||tList.size()==0) {
+		if (tList == null || tList.size() == 0) {
 			return new ArrayList<MeterDomain>();
 		}
 		return getPersistanceManager().find(getNamespace() + ".getMeterByMeterIds", tList);
@@ -220,7 +214,7 @@ public class MeterDAO extends AbstractTransactionDAOSupport implements BaseDAO<M
 	}
 
 	public List<MeterDomain> getRelationMeterByWriteSectIds(List<Long> writeSectIds) {
-		if(writeSectIds==null||writeSectIds.size()==0) {
+		if (writeSectIds == null || writeSectIds.size() == 0) {
 			return new ArrayList<MeterDomain>();
 		}
 		return getPersistanceManager().find(getNamespace() + ".getRelationMeterByWriteSectIds", writeSectIds);
@@ -236,17 +230,16 @@ public class MeterDAO extends AbstractTransactionDAOSupport implements BaseDAO<M
 	}
 
 	public List<MeterDomain> getMeterByUserNos(List<UserDomain> userList) {
-		if(userList==null || userList.size()==0) {
+		if (userList == null || userList.size() == 0) {
 			return new ArrayList<MeterDomain>();
 		}
 		return getPersistanceManager().find(getNamespace() + ".getMeterByUserNos", userList);
 
 	}
 
-	public List<MeterDomain> getMeterAndUserByIds(List<Long> meterIds ) {
+	public List<MeterDomain> getMeterAndUserByIds(List<Long> meterIds) {
 		return getPersistanceManager().find(getNamespace() + ".getMeterAndUserByIds", meterIds);
 
 	}
-
 
 }

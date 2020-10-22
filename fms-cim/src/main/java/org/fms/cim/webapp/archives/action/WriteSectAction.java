@@ -6,17 +6,17 @@
 **/
 package org.fms.cim.webapp.archives.action;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.riozenc.cim.web.config.JsonGrid;
-import com.riozenc.cim.web.strategy.SequenceEnvironment;
-import com.riozenc.cim.web.strategy.SequenceStrategy;
-import com.riozenc.cim.webapp.archives.domain.WriteSectDomain;
-import com.riozenc.cim.webapp.archives.service.IWriteSectService;
-import com.riozenc.titanTool.common.json.utils.GsonUtils;
-import com.riozenc.titanTool.common.json.utils.JSONUtil;
-import com.riozenc.titanTool.spring.web.http.HttpResult;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+import org.fms.cim.common.strategy.no.SequenceEnvironment;
+import org.fms.cim.common.strategy.no.SequenceStrategy;
+import org.fms.cim.web.config.JsonGrid;
+import org.fms.cim.webapp.archives.domain.WriteSectDomain;
+import org.fms.cim.webapp.archives.service.IWriteSectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -24,13 +24,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
-import reactor.core.publisher.Mono;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.riozenc.titanTool.common.json.utils.GsonUtils;
+import com.riozenc.titanTool.common.json.utils.JSONUtil;
+import com.riozenc.titanTool.spring.web.http.HttpResult;
+
+import reactor.core.publisher.Mono;
 
 /**
  * 抄表区段管理

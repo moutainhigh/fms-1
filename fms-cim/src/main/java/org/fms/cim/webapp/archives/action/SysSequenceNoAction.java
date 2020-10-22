@@ -1,16 +1,17 @@
 package org.fms.cim.webapp.archives.action;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.riozenc.cim.web.strategy.SequenceEnvironment;
-import com.riozenc.cim.web.strategy.SequenceStrategy;
-import com.riozenc.cim.webapp.archives.service.ISysSequenceNoService;
+import org.fms.cim.common.strategy.no.SequenceEnvironment;
+import org.fms.cim.common.strategy.no.SequenceStrategy;
+import org.fms.cim.webapp.archives.service.ISysSequenceNoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 @ControllerAdvice
 @RequestMapping("sysSequenceNo")

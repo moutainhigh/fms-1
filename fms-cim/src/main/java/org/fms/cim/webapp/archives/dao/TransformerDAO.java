@@ -17,7 +17,6 @@ import org.fms.cim.webapp.archives.domain.UserDomain;
 import org.fms.cim.webapp.archives.domain.UserTransformerRelaDomain;
 import org.fms.cim.webapp.assets.domain.TransformerAssetsDomain;
 
-import com.riozenc.cim.api.annotation.SynchronizeTrigger;
 import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
@@ -27,7 +26,6 @@ import com.riozenc.titanTool.spring.webapp.dao.BaseDAO;
 public class TransformerDAO extends AbstractTransactionDAOSupport implements BaseDAO<TransformerDomain> {
 
 	@Override
-	@SynchronizeTrigger
 	public int insert(TransformerDomain t) {
 		return getPersistanceManager().insert(getNamespace() + ".insert", t);
 	}	
@@ -42,7 +40,6 @@ public class TransformerDAO extends AbstractTransactionDAOSupport implements Bas
 	}
 
 	@Override
-	@SynchronizeTrigger
 	public int update(TransformerDomain t) {
 		return getPersistanceManager().update(getNamespace() + ".update", t);
 	}

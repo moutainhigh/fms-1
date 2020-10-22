@@ -1,13 +1,10 @@
 package org.fms.cim.common.strategy.no;
 
-import com.riozenc.cim.webapp.archives.domain.SysSequenceNoDomain;
-import com.riozenc.cim.webapp.archives.service.ISysSequenceNoService;
+import org.fms.cim.webapp.archives.domain.SysSequenceNoDomain;
+import org.fms.cim.webapp.archives.service.ISysSequenceNoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 收费流水号 15位流水号 如000001

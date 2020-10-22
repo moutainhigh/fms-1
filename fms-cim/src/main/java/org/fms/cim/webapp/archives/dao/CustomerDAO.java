@@ -10,7 +10,6 @@ import java.util.List;
 import org.apache.ibatis.session.ExecutorType;
 import org.fms.cim.webapp.archives.domain.CustomerDomain;
 
-import com.riozenc.cim.api.annotation.SynchronizeTrigger;
 import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
@@ -20,11 +19,10 @@ import com.riozenc.titanTool.spring.webapp.dao.BaseDAO;
 public class CustomerDAO extends AbstractTransactionDAOSupport implements BaseDAO<CustomerDomain> {
 
 	@Override
-	@SynchronizeTrigger
 	public int insert(CustomerDomain t) {
 		return getPersistanceManager().insert(getNamespace() + ".insert", t);
 	}
-	
+
 	public int insertList(List<CustomerDomain> tl) {
 		return getPersistanceManager(ExecutorType.BATCH).insertList(getNamespace() + ".insert", tl);
 	}
@@ -35,7 +33,6 @@ public class CustomerDAO extends AbstractTransactionDAOSupport implements BaseDA
 	}
 
 	@Override
-	@SynchronizeTrigger
 	public int update(CustomerDomain t) {
 		return getPersistanceManager().update(getNamespace() + ".update", t);
 	}

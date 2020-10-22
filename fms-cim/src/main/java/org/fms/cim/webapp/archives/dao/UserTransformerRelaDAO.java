@@ -10,7 +10,6 @@ import java.util.List;
 import org.fms.cim.webapp.archives.domain.UserDomain;
 import org.fms.cim.webapp.archives.domain.UserTransformerRelaDomain;
 
-import com.riozenc.cim.api.annotation.SynchronizeTrigger;
 import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
@@ -20,7 +19,6 @@ import com.riozenc.titanTool.spring.webapp.dao.BaseDAO;
 public class UserTransformerRelaDAO extends AbstractTransactionDAOSupport implements BaseDAO<UserTransformerRelaDomain> {
 
 	@Override
-	@SynchronizeTrigger
 	public int insert(UserTransformerRelaDomain t) {
 
 		return getPersistanceManager().insert(getNamespace() + ".insert", t);
@@ -33,7 +31,6 @@ public class UserTransformerRelaDAO extends AbstractTransactionDAOSupport implem
 	}
 
 	@Override
-	@SynchronizeTrigger
 	public int update(UserTransformerRelaDomain t) {
 		return getPersistanceManager().update(getNamespace() + ".update", t);
 	}
@@ -53,7 +50,6 @@ public class UserTransformerRelaDAO extends AbstractTransactionDAOSupport implem
 		return getPersistanceManager().find(getNamespace() + ".getUserTransformerRelaByUser", t);
 	}
 
-	@SynchronizeTrigger
 	public int saveUserTransformerRela(UserTransformerRelaDomain tt) {
 		return getPersistanceManager().insert(getNamespace() + ".saveUserTransformerRela", tt);
 

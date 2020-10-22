@@ -5,24 +5,29 @@
  **/
 package org.fms.cim.webapp.archives.action;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.riozenc.cim.webapp.archives.domain.SettlementDomain;
-import com.riozenc.cim.webapp.archives.domain.SettlementMeterRelDomain;
-import com.riozenc.cim.webapp.archives.service.ISettlementMeterRelService;
-import com.riozenc.titanTool.common.json.utils.GsonUtils;
-import com.riozenc.titanTool.common.json.utils.JSONUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.*;
+import static java.util.stream.Collectors.toList;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
+import org.fms.cim.webapp.archives.domain.SettlementDomain;
+import org.fms.cim.webapp.archives.domain.SettlementMeterRelDomain;
+import org.fms.cim.webapp.archives.service.ISettlementMeterRelService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.riozenc.titanTool.common.json.utils.GsonUtils;
+import com.riozenc.titanTool.common.json.utils.JSONUtil;
 
 @ControllerAdvice
 @RequestMapping("settlementMeterRel")

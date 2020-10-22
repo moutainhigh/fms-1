@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.fms.cim.webapp.archives.domain.TgInfoDomain;
 
-import com.riozenc.cim.api.annotation.SynchronizeTrigger;
 import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
@@ -13,7 +12,6 @@ import com.riozenc.titanTool.spring.webapp.dao.BaseDAO;
 @TransactionDAO()
 public class TgInfoDAO extends AbstractTransactionDAOSupport implements BaseDAO<TgInfoDomain> {
     @Override
-	@SynchronizeTrigger
     public int insert(TgInfoDomain t) {
         return getPersistanceManager().insert(getNamespace() + ".insert", t);
     }
@@ -24,7 +22,6 @@ public class TgInfoDAO extends AbstractTransactionDAOSupport implements BaseDAO<
     }
 
     @Override
-	@SynchronizeTrigger
     public int update(TgInfoDomain t) {
         return getPersistanceManager().update(getNamespace() + ".update", t);
     }

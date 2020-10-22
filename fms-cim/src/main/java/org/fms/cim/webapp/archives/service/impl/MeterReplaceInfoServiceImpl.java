@@ -18,6 +18,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.fms.cim.common.strategy.mon.MonUtils;
 import org.fms.cim.webapp.archives.dao.MeterDAO;
 import org.fms.cim.webapp.archives.dao.MeterInductorAssetsRelDAO;
 import org.fms.cim.webapp.archives.dao.MeterMeterAssetsRelDAO;
@@ -43,8 +44,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.riozenc.cim.web.util.CommonUtil;
-import com.riozenc.cim.web.util.MonUtils;
+
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 import com.riozenc.titanTool.common.json.utils.GsonUtils;
@@ -169,7 +169,7 @@ public class MeterReplaceInfoServiceImpl implements IMeterReplaceInfoService {
 					httpResult.setMessage("该计量点下已经存在该相的电能表");
 					return httpResult;
 				}
-				//判断同一计量点下是否存在虚拟+有功表
+				// 判断同一计量点下是否存在虚拟+有功表
 
 				// 插入记录
 				meterMeterAssetsRelDomain.setCreateDate(new Date());
@@ -399,51 +399,40 @@ public class MeterReplaceInfoServiceImpl implements IMeterReplaceInfoService {
 	public HttpResult validityJudgment(MeterMeterAssetsRelDomain meterMeterAssetsRelDomain) {
 		HttpResult httpResult = new HttpResult<>();
 		httpResult.setStatusCode(HttpResult.ERROR);
-		
+
 		MeterMeterAssetsRelDomain testMeterAssetsRel = new MeterMeterAssetsRelDomain();
 		testMeterAssetsRel.setMeterId(meterMeterAssetsRelDomain.getMeterId());
-	
+
 		List<MeterMeterAssetsRelDomain> testList = meterMeterAssetsRelDAO.findByWhere(testMeterAssetsRel);
-		int a = 0; //A相
-		int b = 0; //B相
-		int c = 0; //C相
-		int d = 0; //D相
-		int v = 0; //虚拟表
-		int w = 0; //无功表
-		
+		int a = 0; // A相
+		int b = 0; // B相
+		int c = 0; // C相
+		int d = 0; // D相
+		int v = 0; // 虚拟表
+		int w = 0; // 无功表
+
 		/**
-		 * 1、虚拟表只能有一块
-		 * 2、无功表只能有一块，且为D相
-		 * 3、同相有功表只能有一块
-		 * 4、A/B/C和D有功不能共存
+		 * 1、虚拟表只能有一块 2、无功表只能有一块，且为D相 3、同相有功表只能有一块 4、A/B/C和D有功不能共存
 		 * 
-		 * */
-		for(MeterMeterAssetsRelDomain tt : testList) {
-			
+		 */
+		for (MeterMeterAssetsRelDomain tt : testList) {
+
 		}
 		/*
 		 * if() {
 		 * 
 		 * }
 		 */
-		
-		
-		
+
 		if (null != testList && testList.size() > 0) {
 			httpResult.setMessage("该计量点下已经存在该相的电能表");
 			return httpResult;
 		}
-		//判断同一计量点下是否存在虚拟+有功表
-		
-		
-		
+		// 判断同一计量点下是否存在虚拟+有功表
+
 		return httpResult;
 	}
 
-
-	
-	
-	
 	/**
 	 * 根据资产获得倍率 cjd
 	 */
@@ -913,7 +902,7 @@ public class MeterReplaceInfoServiceImpl implements IMeterReplaceInfoService {
 
 		HashMap<String, Object> monMap = getCurrentMon(meterReplaceDomain);
 		// 当前月份
-		String mon = CommonUtil.getYMD().get(0) + CommonUtil.getYMD().get(1);
+		String mon = MonUtils.getMon();
 		if ((boolean) monMap.get("result")) {
 			mon = monMap.get("mon").toString();
 		}
@@ -949,7 +938,7 @@ public class MeterReplaceInfoServiceImpl implements IMeterReplaceInfoService {
 
 		// 换表日期 大于上次抄表日期
 		if (replaceDate.after(writeDate)) {
-			writeFileList = CommonUtil.transCjToMis(meterReplaceLastCode);
+			writeFileList = transCjToMis(meterReplaceLastCode);
 		}
 
 		// 返回实体
@@ -1042,5 +1031,164 @@ public class MeterReplaceInfoServiceImpl implements IMeterReplaceInfoService {
 
 		return maxMeterSn;
 
+	}
+
+	private List<WriteFilesDomain> transCjToMis(MeterReplaceDomain meterReplaceLastCode) {
+		List<WriteFilesDomain> writeFilesDomains = new ArrayList<>();
+		// 总正有
+		WriteFilesDomain zzy = new WriteFilesDomain();
+		zzy.setTimeSeg((byte) 0);
+		zzy.setPowerDirection((byte) 1);
+		zzy.setFunctionCode((byte) 1);
+		zzy.setEndNum(meterReplaceLastCode.getP1r0());
+		// 总段反有
+		WriteFilesDomain zfy = new WriteFilesDomain();
+		zfy.setTimeSeg((byte) 0);
+		zfy.setPowerDirection((byte) 2);
+		zfy.setFunctionCode((byte) 1);
+		zfy.setEndNum(meterReplaceLastCode.getP2r0());
+
+		// 总正无
+		WriteFilesDomain zzw = new WriteFilesDomain();
+		zzw.setTimeSeg((byte) 0);
+		zzw.setPowerDirection((byte) 1);
+		zzw.setFunctionCode((byte) 2);
+		zzw.setEndNum(meterReplaceLastCode.getP3r0());
+		// 总反无
+		WriteFilesDomain zfw = new WriteFilesDomain();
+		zfw.setTimeSeg((byte) 0);
+		zfw.setPowerDirection((byte) 2);
+		zfw.setFunctionCode((byte) 2);
+		zfw.setEndNum(meterReplaceLastCode.getP4r0());
+
+		// 尖正有
+		WriteFilesDomain jzy = new WriteFilesDomain();
+		jzy.setTimeSeg((byte) 4);
+		jzy.setPowerDirection((byte) 1);
+		jzy.setFunctionCode((byte) 1);
+		jzy.setEndNum(meterReplaceLastCode.getP1r1());
+		// 尖反有
+		WriteFilesDomain jfy = new WriteFilesDomain();
+		jfy.setTimeSeg((byte) 4);
+		jfy.setPowerDirection((byte) 2);
+		jfy.setFunctionCode((byte) 1);
+		jfy.setEndNum(meterReplaceLastCode.getP2r1());
+
+		// 尖正无
+		WriteFilesDomain jzw = new WriteFilesDomain();
+		jzw.setTimeSeg((byte) 4);
+		jzw.setPowerDirection((byte) 1);
+		jzw.setFunctionCode((byte) 2);
+		jzw.setEndNum(meterReplaceLastCode.getP3r1());
+		// 尖反无
+		WriteFilesDomain jfw = new WriteFilesDomain();
+		jfw.setTimeSeg((byte) 4);
+		jfw.setPowerDirection((byte) 2);
+		jfw.setFunctionCode((byte) 2);
+		jfw.setEndNum(meterReplaceLastCode.getP4r1());
+
+		// 峰正有
+		WriteFilesDomain fzy = new WriteFilesDomain();
+		fzy.setTimeSeg((byte) 1);
+		fzy.setPowerDirection((byte) 1);
+		fzy.setFunctionCode((byte) 1);
+		fzy.setEndNum(meterReplaceLastCode.getP1r2());
+		// 峰反有
+		WriteFilesDomain ffy = new WriteFilesDomain();
+		ffy.setTimeSeg((byte) 1);
+		ffy.setPowerDirection((byte) 2);
+		ffy.setFunctionCode((byte) 1);
+		ffy.setEndNum(meterReplaceLastCode.getP2r2());
+
+		// 峰正无
+		WriteFilesDomain fzw = new WriteFilesDomain();
+		fzw.setTimeSeg((byte) 1);
+		fzw.setPowerDirection((byte) 1);
+		fzw.setFunctionCode((byte) 2);
+		fzw.setEndNum(meterReplaceLastCode.getP3r2());
+		// 峰反无
+		WriteFilesDomain ffw = new WriteFilesDomain();
+		ffw.setTimeSeg((byte) 1);
+		ffw.setPowerDirection((byte) 2);
+		ffw.setFunctionCode((byte) 2);
+		ffw.setEndNum(meterReplaceLastCode.getP4r2());
+
+		// 平正有
+		WriteFilesDomain pzy = new WriteFilesDomain();
+		pzy.setTimeSeg((byte) 2);
+		pzy.setPowerDirection((byte) 1);
+		pzy.setFunctionCode((byte) 1);
+		pzy.setEndNum(meterReplaceLastCode.getP1r3());
+		// 平反有
+		WriteFilesDomain pfy = new WriteFilesDomain();
+		pfy.setTimeSeg((byte) 2);
+		pfy.setPowerDirection((byte) 2);
+		pfy.setFunctionCode((byte) 1);
+		pfy.setEndNum(meterReplaceLastCode.getP2r3());
+
+		// 平正无
+		WriteFilesDomain pzw = new WriteFilesDomain();
+		pzw.setTimeSeg((byte) 2);
+		pzw.setPowerDirection((byte) 1);
+		pzw.setFunctionCode((byte) 2);
+		pzw.setEndNum(meterReplaceLastCode.getP3r3());
+		// 平反无
+		WriteFilesDomain pfw = new WriteFilesDomain();
+		pfw.setTimeSeg((byte) 2);
+		pfw.setPowerDirection((byte) 2);
+		pfw.setFunctionCode((byte) 2);
+		pfw.setEndNum(meterReplaceLastCode.getP4r3());
+
+		// 谷正有
+		WriteFilesDomain gzy = new WriteFilesDomain();
+		gzy.setTimeSeg((byte) 3);
+		gzy.setPowerDirection((byte) 1);
+		gzy.setFunctionCode((byte) 1);
+		gzy.setEndNum(meterReplaceLastCode.getP5r3());
+		// 谷反有
+		WriteFilesDomain gfy = new WriteFilesDomain();
+		gfy.setTimeSeg((byte) 3);
+		gfy.setPowerDirection((byte) 2);
+		gfy.setFunctionCode((byte) 1);
+		gfy.setEndNum(meterReplaceLastCode.getP5r3());
+
+		// 谷正无
+		WriteFilesDomain gzw = new WriteFilesDomain();
+		gzw.setTimeSeg((byte) 3);
+		gzw.setPowerDirection((byte) 1);
+		gzw.setFunctionCode((byte) 2);
+		gzw.setEndNum(meterReplaceLastCode.getP5r3());
+		// 谷反无
+		WriteFilesDomain gfw = new WriteFilesDomain();
+		gfw.setTimeSeg((byte) 3);
+		gfw.setPowerDirection((byte) 2);
+		gfw.setFunctionCode((byte) 2);
+		gfw.setEndNum(meterReplaceLastCode.getP5r3());
+
+		writeFilesDomains.add(zfw);
+		writeFilesDomains.add(zfy);
+		writeFilesDomains.add(zzw);
+		writeFilesDomains.add(zzy);
+
+		writeFilesDomains.add(jfw);
+		writeFilesDomains.add(jfy);
+		writeFilesDomains.add(jzw);
+		writeFilesDomains.add(jzy);
+
+		writeFilesDomains.add(ffw);
+		writeFilesDomains.add(ffy);
+		writeFilesDomains.add(fzw);
+		writeFilesDomains.add(fzy);
+
+		writeFilesDomains.add(pfw);
+		writeFilesDomains.add(pfy);
+		writeFilesDomains.add(pzw);
+		writeFilesDomains.add(pzy);
+
+		writeFilesDomains.add(gfw);
+		writeFilesDomains.add(gfy);
+		writeFilesDomains.add(gzw);
+		writeFilesDomains.add(gzy);
+		return writeFilesDomains;
 	}
 }

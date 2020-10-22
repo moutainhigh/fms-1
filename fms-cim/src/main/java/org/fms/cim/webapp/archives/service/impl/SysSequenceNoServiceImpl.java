@@ -8,11 +8,11 @@ package org.fms.cim.webapp.archives.service.impl;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import org.fms.cim.common.strategy.mon.MonUtils;
 import org.fms.cim.webapp.archives.dao.SysSequenceNoDAO;
 import org.fms.cim.webapp.archives.domain.SysSequenceNoDomain;
 import org.fms.cim.webapp.archives.service.ISysSequenceNoService;
 
-import com.riozenc.cim.web.util.CommonUtil;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 
@@ -65,7 +65,7 @@ public class SysSequenceNoServiceImpl implements ISysSequenceNoService {
 			maxNo = 0;
 			format = inputSys.getFormat();
 			if(null==inputSys.getMon()||"".equals(inputSys.getMon())){
-                inputSys.setMon(CommonUtil.getYMD().get(0)+CommonUtil.getYMD().get(1));
+                inputSys.setMon(MonUtils.getMon());
             }
 			sysSequenceNoDAO.insert(inputSys);
 		} else {
@@ -100,7 +100,7 @@ public class SysSequenceNoServiceImpl implements ISysSequenceNoService {
             maxNo = 0;
             format = inputSys.getFormat();
             if(null==inputSys.getMon()||"".equals(inputSys.getMon())){
-                inputSys.setMon(CommonUtil.getYMD().get(0)+CommonUtil.getYMD().get(1));
+                inputSys.setMon(MonUtils.getMon());
             }
             sysSequenceNoDAO.insert(inputSys);
         } else {

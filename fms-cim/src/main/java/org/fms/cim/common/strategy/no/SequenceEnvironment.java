@@ -1,7 +1,5 @@
 package org.fms.cim.common.strategy.no;
 
-import java.util.List;
-
 /**
  * 自定义号 环境角色
  */

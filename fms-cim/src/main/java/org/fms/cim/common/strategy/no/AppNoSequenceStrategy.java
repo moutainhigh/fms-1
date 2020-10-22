@@ -1,14 +1,11 @@
 package org.fms.cim.common.strategy.no;
 
-import com.riozenc.cim.web.util.CommonUtil;
-import com.riozenc.cim.webapp.archives.domain.SysSequenceNoDomain;
-import com.riozenc.cim.webapp.archives.service.ISysSequenceNoService;
-import com.riozenc.titanTool.annotation.TransactionService;
+import org.fms.cim.webapp.archives.domain.SysSequenceNoDomain;
+import org.fms.cim.webapp.archives.service.ISysSequenceNoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.riozenc.titanTool.annotation.TransactionService;
 
 /**
  * 互感器号生成规则 年份+6位流水号 如2019000001
