@@ -18,7 +18,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.fms.cim.common.strategy.mon.MonUtils;
+import org.fms.cim.common.mon.MonUtils;
 import org.fms.cim.webapp.archives.dao.MeterDAO;
 import org.fms.cim.webapp.archives.dao.MeterInductorAssetsRelDAO;
 import org.fms.cim.webapp.archives.dao.MeterMeterAssetsRelDAO;

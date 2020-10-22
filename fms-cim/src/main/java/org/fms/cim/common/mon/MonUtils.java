@@ -4,7 +4,7 @@
  * Title : org.fms.cim.common.strategy.mon.MonUtils.java
  *
 **/
-package org.fms.cim.common.strategy.mon;
+package org.fms.cim.common.mon;
 
 import java.util.Calendar;
 import java.util.List;

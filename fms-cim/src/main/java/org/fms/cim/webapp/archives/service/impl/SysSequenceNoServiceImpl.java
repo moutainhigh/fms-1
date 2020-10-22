@@ -8,7 +8,7 @@ package org.fms.cim.webapp.archives.service.impl;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import org.fms.cim.common.strategy.mon.MonUtils;
+import org.fms.cim.common.mon.MonUtils;
 import org.fms.cim.webapp.archives.dao.SysSequenceNoDAO;
 import org.fms.cim.webapp.archives.domain.SysSequenceNoDomain;
 import org.fms.cim.webapp.archives.service.ISysSequenceNoService;
@@ -52,21 +52,21 @@ public class SysSequenceNoServiceImpl implements ISysSequenceNoService {
 		return sysSequenceNoDAO.findByWhere(t);
 	}
 
-	//获得序列号
-    @Override
+	// 获得序列号
+	@Override
 	public String genSequenceNo(SysSequenceNoDomain inputSys) {
-		List<SysSequenceNoDomain> sysSequenceNo =sysSequenceNoDAO.findByWhere(inputSys);
+		List<SysSequenceNoDomain> sysSequenceNo = sysSequenceNoDAO.findByWhere(inputSys);
 		Integer maxNo = new Integer(0);
 		String outputValue = "";
 		String format = "";
-		//没有最大值则生成
-		if (null == sysSequenceNo || sysSequenceNo.size()<1) {
+		// 没有最大值则生成
+		if (null == sysSequenceNo || sysSequenceNo.size() < 1) {
 			inputSys.setMaxNo(new Integer(0));
 			maxNo = 0;
 			format = inputSys.getFormat();
-			if(null==inputSys.getMon()||"".equals(inputSys.getMon())){
-                inputSys.setMon(MonUtils.getMon());
-            }
+			if (null == inputSys.getMon() || "".equals(inputSys.getMon())) {
+				inputSys.setMon(MonUtils.getMon());
+			}
 			sysSequenceNoDAO.insert(inputSys);
 		} else {
 			SysSequenceNoDomain updateSys = new SysSequenceNoDomain();
@@ -86,38 +86,37 @@ public class SysSequenceNoServiceImpl implements ISysSequenceNoService {
 		return outputValue;
 	}
 
-
-    //获得批量序列号
-    @Override
-    public String genSequenceNo(SysSequenceNoDomain inputSys,int size) {
-        List<SysSequenceNoDomain> sysSequenceNo =sysSequenceNoDAO.findByWhere(inputSys);
-        Integer maxNo = new Integer(0);
-        String outputValue = "";
-        String format = "";
-        //没有最大值则生成
-        if (null == sysSequenceNo || sysSequenceNo.size()<1) {
-            inputSys.setMaxNo(size);
-            maxNo = 0;
-            format = inputSys.getFormat();
-            if(null==inputSys.getMon()||"".equals(inputSys.getMon())){
-                inputSys.setMon(MonUtils.getMon());
-            }
-            sysSequenceNoDAO.insert(inputSys);
-        } else {
-            SysSequenceNoDomain updateSys = new SysSequenceNoDomain();
-            updateSys.setId(sysSequenceNo.get(0).getId());
-            updateSys.setCode(sysSequenceNo.get(0).getCode());
-            updateSys.setMaxNo(sysSequenceNo.get(0).getMaxNo() + size);
-            maxNo = sysSequenceNo.get(0).getMaxNo() + 1;
-            format = sysSequenceNo.get(0).getFormat();
-            sysSequenceNoDAO.update(updateSys);
-        }
-        if (null != format) {
-            DecimalFormat df = new DecimalFormat(format);
-            outputValue = df.format(maxNo);
-        } else {
-            outputValue = maxNo.toString();
-        }
-        return outputValue;
-    }
+	// 获得批量序列号
+	@Override
+	public String genSequenceNo(SysSequenceNoDomain inputSys, int size) {
+		List<SysSequenceNoDomain> sysSequenceNo = sysSequenceNoDAO.findByWhere(inputSys);
+		Integer maxNo = new Integer(0);
+		String outputValue = "";
+		String format = "";
+		// 没有最大值则生成
+		if (null == sysSequenceNo || sysSequenceNo.size() < 1) {
+			inputSys.setMaxNo(size);
+			maxNo = 0;
+			format = inputSys.getFormat();
+			if (null == inputSys.getMon() || "".equals(inputSys.getMon())) {
+				inputSys.setMon(MonUtils.getMon());
+			}
+			sysSequenceNoDAO.insert(inputSys);
+		} else {
+			SysSequenceNoDomain updateSys = new SysSequenceNoDomain();
+			updateSys.setId(sysSequenceNo.get(0).getId());
+			updateSys.setCode(sysSequenceNo.get(0).getCode());
+			updateSys.setMaxNo(sysSequenceNo.get(0).getMaxNo() + size);
+			maxNo = sysSequenceNo.get(0).getMaxNo() + 1;
+			format = sysSequenceNo.get(0).getFormat();
+			sysSequenceNoDAO.update(updateSys);
+		}
+		if (null != format) {
+			DecimalFormat df = new DecimalFormat(format);
+			outputValue = df.format(maxNo);
+		} else {
+			outputValue = maxNo.toString();
+		}
+		return outputValue;
+	}
 }

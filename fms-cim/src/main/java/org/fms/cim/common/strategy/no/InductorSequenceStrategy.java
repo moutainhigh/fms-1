@@ -1,6 +1,6 @@
 package org.fms.cim.common.strategy.no;
 
-import org.fms.cim.common.strategy.mon.MonUtils;
+import org.fms.cim.common.mon.MonUtils;
 import org.fms.cim.webapp.archives.domain.SysSequenceNoDomain;
 import org.fms.cim.webapp.archives.service.ISysSequenceNoService;
 import org.springframework.beans.factory.annotation.Autowired;

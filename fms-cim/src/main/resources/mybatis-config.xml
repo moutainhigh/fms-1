@@ -22,12 +22,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 	<plugins>
 		<plugin
-			interceptor="com.riozenc.cim.api.interceptor.SynchronizeInterceptor">
+			interceptor="org.fms.cim.support.mybatis.PaginationInterceptor">
 		</plugin>
-		<plugin
-			interceptor="com.riozenc.cim.support.mybatis.PaginationInterceptor">
-		</plugin>
-
 	</plugins>
 
 </configuration>

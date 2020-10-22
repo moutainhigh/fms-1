@@ -7,9 +7,15 @@ package org.fms.cim.support.transaction;
 
 import org.springframework.context.annotation.Configuration;
 
+import com.riozenc.titanTool.properties.Global;
 import com.riozenc.titanTool.spring.transaction.registry.TransactionServiceRegistryPostProcessor;
 
 @Configuration
 public class TransactionServiceSupport extends TransactionServiceRegistryPostProcessor {
+
+	@Override
+	public String getNamespace() {
+		return Global.getConfig("namespace");
+	}
 
 }
