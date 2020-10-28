@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fms.cim.webapp.archives.dao.MeterMpedRelDAO">
+<select id="findByKey" parameterType="MeterMpedRelDomain" resultType="MeterMpedRelDomain" useCache="true">
+select ID,METER_ID,MPED_ID,PHASE_SEQ,FUNCTION_CODE,POWER_DIRECTION,TS_FLAG,CREATE_DATE,STATUS,FACTOR_NUM,WRITE_SN
+ from METER_MPED_REL_INFO<where>
+ and ID = #{id}
+
+</where>
+</select>
+<select id="findByWhere" parameterType="MeterMpedRelDomain" resultType="MeterMpedRelDomain" useCache="true">
+select ID,METER_ID,MPED_ID,PHASE_SEQ,FUNCTION_CODE,POWER_DIRECTION,TS_FLAG,CREATE_DATE,STATUS,FACTOR_NUM,WRITE_SN from METER_MPED_REL_INFO
+<where>
+	
+<if test="id !=null"> 
+ and ID = #{id}
+</if>
+<if test="meterId !=null"> 
+ and METER_ID = #{meterId}
+</if>
+<if test="mpedId !=null"> 
+ and MPED_ID = #{mpedId}
+</if>
+<if test="phaseSeq !=null"> 
+ and PHASE_SEQ = #{phaseSeq}
+</if>
+<if test="functionCode !=null"> 
+ and FUNCTION_CODE = #{functionCode}
+</if>
+<if test="powerDirection !=null"> 
+ and POWER_DIRECTION = #{powerDirection}
+</if>
+<if test="tsFlag !=null"> 
+ and TS_FLAG = #{tsFlag}
+</if>
+<if test="createDate !=null"> 
+ and CREATE_DATE = #{createDate}
+</if>
+<if test="status !=null"> 
+ and STATUS = #{status}
+</if>
+<if test="factorNum !=null"> 
+ and FACTOR_NUM = #{factorNum}
+</if>
+<if test="writeSn !=null"> 
+ and WRITE_SN = #{writeSn}
+</if>
+
+</where>
+</select>
+<insert id="insert" parameterType="MeterMpedRelDomain" flushCache="true">
+insert into METER_MPED_REL_INFO(ID,METER_ID,MPED_ID,PHASE_SEQ,FUNCTION_CODE,POWER_DIRECTION,TS_FLAG,CREATE_DATE,STATUS,FACTOR_NUM,WRITE_SN) values (#{id},#{meterId},#{mpedId},#{phaseSeq},#{functionCode},#{powerDirection},#{tsFlag},#{createDate},#{status},#{factorNum},#{writeSn})
+</insert>
+<update id="update" parameterType="MeterMpedRelDomain" flushCache="true">
+update METER_MPED_REL_INFO
+<set>
+
+<if test="meterId !=null"> 
+  METER_ID = #{meterId},
+</if>
+<if test="mpedId !=null"> 
+  MPED_ID = #{mpedId},
+</if>
+<if test="phaseSeq !=null"> 
+  PHASE_SEQ = #{phaseSeq},
+</if>
+<if test="functionCode !=null"> 
+  FUNCTION_CODE = #{functionCode},
+</if>
+<if test="powerDirection !=null"> 
+  POWER_DIRECTION = #{powerDirection},
+</if>
+<if test="tsFlag !=null"> 
+  TS_FLAG = #{tsFlag},
+</if>
+<if test="createDate !=null"> 
+ CREATE_DATE = #{createDate},
+</if>
+<if test="status !=null"> 
+STATUS = #{status},
+</if>
+<if test="factorNum !=null"> 
+  FACTOR_NUM = #{factorNum},
+</if>
+<if test="writeSn !=null"> 
+ WRITE_SN = #{writeSn},
+</if>
+</set>
+<where>
+ and ID = #{id}
+
+</where>
+</update>
+<delete id="delete" parameterType="MeterMpedRelDomain" flushCache="true">
+delete from METER_MPED_REL_INFO
+<where>
+ and ID = #{id}
+
+</where>
+</delete>
+</mapper>
