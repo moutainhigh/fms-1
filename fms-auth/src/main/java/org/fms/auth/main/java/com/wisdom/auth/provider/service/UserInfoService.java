@@ -1,9 +1,9 @@
-package com.wisdom.auth.provider.service;
+package org.fms.auth.main.java.com.wisdom.auth.provider.service;
 
-import com.wisdom.auth.autoconfigure.service.BaseService;
-import com.wisdom.auth.provider.mapper.model.UserInfo;
-import com.wisdom.auth.provider.mapper.model.UserRoleRel;
-import com.wisdom.auth.provider.mapper.mapper.UserInfoMapper;
+import org.fms.auth.main.java.com.wisdom.auth.autoconfigure.service.BaseService;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.UserInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.UserRoleRel;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.mapper.UserInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

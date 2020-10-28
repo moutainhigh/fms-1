@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.config.redis;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config.redis;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;

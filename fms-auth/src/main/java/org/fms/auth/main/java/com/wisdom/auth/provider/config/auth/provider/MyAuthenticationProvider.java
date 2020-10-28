@@ -1,7 +1,7 @@
-package com.wisdom.auth.provider.config.auth.provider;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.provider;
 
-import com.wisdom.auth.provider.config.auth.filter.MyLoginAuthenticationFilter;
-import com.wisdom.auth.provider.config.auth.token.MyAuthenticationToken;
+import org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.filter.MyLoginAuthenticationFilter;
+import org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.token.MyAuthenticationToken;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;

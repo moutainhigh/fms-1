@@ -1,20 +1,20 @@
-package com.wisdom.auth.provider.controller;
+package org.fms.auth.main.java.com.wisdom.auth.provider.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.wisdom.auth.autoconfigure.controller.CrudController;
-import com.wisdom.auth.provider.common.pojo.TableData;
-import com.wisdom.auth.provider.pojo.ResponseData;
+import org.fms.auth.main.java.com.wisdom.auth.autoconfigure.controller.CrudController;
+import org.fms.auth.main.java.com.wisdom.auth.provider.common.pojo.TableData;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.ResponseData;
 
-import com.wisdom.auth.provider.mapper.model.MenuInfo;
-import com.wisdom.auth.provider.mapper.model.MenuRightInfo;
-import com.wisdom.auth.provider.mapper.model.RoleMenuRel;
-import com.wisdom.auth.provider.mapper.model.UserInfo;
-import com.wisdom.auth.provider.pojo.ResponseCode;
-import com.wisdom.auth.provider.pojo.request.MenuInfoRequest;
-import com.wisdom.auth.provider.config.redis.AccessTokenUtils;
-import com.wisdom.auth.provider.service.MenuInfoService;
-import com.wisdom.auth.provider.service.MenuRightInfoService;
-import com.wisdom.auth.provider.service.RoleMenuRelService;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.MenuInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.MenuRightInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.RoleMenuRel;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.UserInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.ResponseCode;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.request.MenuInfoRequest;
+import org.fms.auth.main.java.com.wisdom.auth.provider.config.redis.AccessTokenUtils;
+import org.fms.auth.main.java.com.wisdom.auth.provider.service.MenuInfoService;
+import org.fms.auth.main.java.com.wisdom.auth.provider.service.MenuRightInfoService;
+import org.fms.auth.main.java.com.wisdom.auth.provider.service.RoleMenuRelService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

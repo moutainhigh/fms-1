@@ -1,4 +1,4 @@
-//package com.wisdom.auth.provider.config;
+//package org.fms.auth.main.java.com.wisdom.auth.provider.config;
 //
 //import org.springframework.web.cors.CorsConfiguration;
 //import org.springframework.web.cors.UrlBasedCorsConfigurationSource;

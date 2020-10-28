@@ -1,7 +1,7 @@
-package com.wisdom.auth.provider.mapper.mapper;
+package org.fms.auth.main.java.com.wisdom.auth.provider.mapper.mapper;
 
 
-import com.wisdom.auth.provider.mapper.model.RoleInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.RoleInfo;
 import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 

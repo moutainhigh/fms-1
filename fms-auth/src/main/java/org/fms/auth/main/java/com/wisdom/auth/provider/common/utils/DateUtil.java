@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.common.utils;
+package org.fms.auth.main.java.com.wisdom.auth.provider.common.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

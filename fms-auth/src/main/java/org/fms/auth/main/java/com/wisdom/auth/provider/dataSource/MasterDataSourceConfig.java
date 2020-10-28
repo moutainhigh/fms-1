@@ -1,4 +1,4 @@
-//package com.wisdom.auth.provider.dataSource;
+//package org.fms.auth.main.java.com.wisdom.auth.provider.dataSource;
 //
 //import org.apache.ibatis.session.SqlSessionFactory;
 //import org.mybatis.spring.SqlSessionFactoryBean;
@@ -16,7 +16,7 @@
 //import javax.sql.DataSource;
 //
 //@Configuration
-//@MapperScan(basePackages = "com.wisdom.auth.provider.mapper.mapper.master", sqlSessionTemplateRef  = "masterSqlSessionTemplate")
+//@MapperScan(basePackages = "org.fms.auth.main.java.com.wisdom.auth.provider.mapper.mapper.master", sqlSessionTemplateRef  = "masterSqlSessionTemplate")
 //public class MasterDataSourceConfig {
 //
 //    @Bean(name = "masterDataSource")

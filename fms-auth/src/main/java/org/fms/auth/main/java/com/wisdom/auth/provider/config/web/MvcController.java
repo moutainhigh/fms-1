@@ -1,8 +1,8 @@
-package com.wisdom.auth.provider.config.web;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config.web;
 
-import com.wisdom.auth.provider.pojo.ResponseData;
-import com.wisdom.auth.provider.controller.OauthClientDetailsController;
-import com.wisdom.auth.provider.pojo.ResponseCode;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.ResponseData;
+import org.fms.auth.main.java.com.wisdom.auth.provider.controller.OauthClientDetailsController;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.ResponseCode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;

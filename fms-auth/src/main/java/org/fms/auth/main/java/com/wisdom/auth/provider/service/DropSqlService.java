@@ -1,8 +1,8 @@
-package com.wisdom.auth.provider.service;
+package org.fms.auth.main.java.com.wisdom.auth.provider.service;
 
-import com.wisdom.auth.autoconfigure.service.BaseService;
-import com.wisdom.auth.provider.mapper.model.DropSql;
-import com.wisdom.auth.provider.mapper.mapper.DropSqlMapper;
+import org.fms.auth.main.java.com.wisdom.auth.autoconfigure.service.BaseService;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.DropSql;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.mapper.DropSqlMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;

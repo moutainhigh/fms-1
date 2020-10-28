@@ -1,4 +1,4 @@
-package com.wisdom.auth.autoconfigure.service;
+package org.fms.auth.main.java.com.wisdom.auth.autoconfigure.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

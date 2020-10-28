@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.config.auth.util;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.util;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;

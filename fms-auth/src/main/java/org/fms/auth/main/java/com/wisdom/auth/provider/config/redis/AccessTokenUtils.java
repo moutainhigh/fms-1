@@ -1,12 +1,12 @@
-package com.wisdom.auth.provider.config.redis;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config.redis;
 
-import com.wisdom.auth.provider.config.AccessTokenConfiguration;
+import org.fms.auth.main.java.com.wisdom.auth.provider.config.AccessTokenConfiguration;
 
-import com.wisdom.auth.provider.mapper.model.DeptInfo;
-import com.wisdom.auth.provider.mapper.model.MenuInfo;
-import com.wisdom.auth.provider.mapper.model.RoleInfo;
-import com.wisdom.auth.provider.mapper.model.UserInfo;
-import com.wisdom.auth.provider.util.JsonUtils;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.DeptInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.MenuInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.RoleInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.UserInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.util.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

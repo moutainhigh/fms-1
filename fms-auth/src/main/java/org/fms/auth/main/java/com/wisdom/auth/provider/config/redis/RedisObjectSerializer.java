@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.config.redis;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config.redis;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.serializer.support.DeserializingConverter;

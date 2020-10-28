@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.config;//package com.wisdom.auth.provider.config;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config;//package org.fms.auth.main.java.com.wisdom.auth.provider.config;
 //
 //import com.alibaba.druid.support.http.StatViewServlet;
 //import com.alibaba.druid.support.http.WebStatFilter;

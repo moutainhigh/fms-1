@@ -1,10 +1,10 @@
-package com.wisdom.auth.provider.service;
+package org.fms.auth.main.java.com.wisdom.auth.provider.service;
 
-import com.wisdom.auth.autoconfigure.service.BaseService;
-import com.wisdom.auth.provider.mapper.mapper.UserInfoMapper;
-import com.wisdom.auth.provider.mapper.model.DeptInfo;
-import com.wisdom.auth.provider.mapper.mapper.DeptInfoMapper;
-import com.wisdom.auth.provider.mapper.model.UserInfo;
+import org.fms.auth.main.java.com.wisdom.auth.autoconfigure.service.BaseService;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.mapper.UserInfoMapper;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.DeptInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.mapper.DeptInfoMapper;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.UserInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

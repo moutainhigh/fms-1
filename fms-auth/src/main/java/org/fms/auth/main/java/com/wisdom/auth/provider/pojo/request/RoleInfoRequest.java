@@ -1,8 +1,8 @@
-package com.wisdom.auth.provider.pojo.request;
+package org.fms.auth.main.java.com.wisdom.auth.provider.pojo.request;
 
 
-import com.wisdom.auth.provider.common.pojo.BaseRequestPojo;
-import com.wisdom.auth.provider.mapper.model.MenuInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.common.pojo.BaseRequestPojo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.MenuInfo;
 
 import javax.persistence.Column;
 import javax.persistence.Id;

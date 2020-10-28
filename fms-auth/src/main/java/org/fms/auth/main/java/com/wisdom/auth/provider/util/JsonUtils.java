@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.util;
+package org.fms.auth.main.java.com.wisdom.auth.provider.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;

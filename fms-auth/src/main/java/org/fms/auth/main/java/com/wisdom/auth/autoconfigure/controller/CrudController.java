@@ -1,8 +1,8 @@
-package com.wisdom.auth.autoconfigure.controller;
+package org.fms.auth.main.java.com.wisdom.auth.autoconfigure.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.wisdom.auth.provider.common.pojo.TableData;
-import com.wisdom.auth.provider.pojo.ResponseData;
+import org.fms.auth.main.java.com.wisdom.auth.provider.common.pojo.TableData;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.ResponseData;
 
 
 import java.util.List;

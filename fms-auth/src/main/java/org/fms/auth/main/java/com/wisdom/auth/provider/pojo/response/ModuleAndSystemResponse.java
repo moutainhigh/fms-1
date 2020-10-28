@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.pojo.response;
+package org.fms.auth.main.java.com.wisdom.auth.provider.pojo.response;
 
 
 import java.util.List;

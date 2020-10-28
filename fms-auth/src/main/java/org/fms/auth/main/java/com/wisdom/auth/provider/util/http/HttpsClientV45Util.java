@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.util.http;
+package org.fms.auth.main.java.com.wisdom.auth.provider.util.http;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;

@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.config;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config;
 
 /**
  * @version V1.0

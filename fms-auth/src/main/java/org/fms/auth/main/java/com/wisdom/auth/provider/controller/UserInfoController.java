@@ -1,15 +1,15 @@
-package com.wisdom.auth.provider.controller;
+package org.fms.auth.main.java.com.wisdom.auth.provider.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.wisdom.auth.autoconfigure.controller.CrudController;
-import com.wisdom.auth.provider.pojo.ResponseData;
-import com.wisdom.auth.provider.common.pojo.TableData;
-import com.wisdom.auth.provider.mapper.model.UserInfo;
-import com.wisdom.auth.provider.mapper.model.UserRoleRel;
-import com.wisdom.auth.provider.pojo.ResponseCode;
-import com.wisdom.auth.provider.pojo.request.UserInfoRequest;
-import com.wisdom.auth.provider.service.UserInfoService;
-import com.wisdom.auth.provider.service.UserRoleRelService;
+import org.fms.auth.main.java.com.wisdom.auth.autoconfigure.controller.CrudController;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.ResponseData;
+import org.fms.auth.main.java.com.wisdom.auth.provider.common.pojo.TableData;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.UserInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.UserRoleRel;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.ResponseCode;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.request.UserInfoRequest;
+import org.fms.auth.main.java.com.wisdom.auth.provider.service.UserInfoService;
+import org.fms.auth.main.java.com.wisdom.auth.provider.service.UserRoleRelService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

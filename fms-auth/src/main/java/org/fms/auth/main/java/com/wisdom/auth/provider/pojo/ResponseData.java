@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.pojo;
+package org.fms.auth.main.java.com.wisdom.auth.provider.pojo;
 
 public class ResponseData<T> {
     public static final int SUCCESS = 200;

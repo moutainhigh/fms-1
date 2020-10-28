@@ -1,6 +1,6 @@
-package com.wisdom.auth.provider.component;
+package org.fms.auth.main.java.com.wisdom.auth.provider.component;
 
-//import com.wisdom.auth.common.constant.MqQueueConstant;
+//import org.fms.auth.main.java.com.wisdom.auth.common.constant.MqQueueConstant;
 //import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 //import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;

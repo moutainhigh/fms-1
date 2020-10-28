@@ -1,6 +1,6 @@
-package com.wisdom.auth.provider.config;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config;
 
-//import com.wisdom.auth.common.constant.MqQueueConstant;
+//import org.fms.auth.main.java.com.wisdom.auth.common.constant.MqQueueConstant;
 //import org.springframework.amqp.core.Queue;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;

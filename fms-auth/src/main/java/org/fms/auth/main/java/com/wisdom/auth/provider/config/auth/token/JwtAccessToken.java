@@ -1,10 +1,10 @@
-package com.wisdom.auth.provider.config.auth.token;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.token;
 
 
-import com.wisdom.auth.provider.common.constant.Constant;
-import com.wisdom.auth.provider.util.JsonUtils;
-import com.wisdom.auth.provider.mapper.model.UserInfo;
-import com.wisdom.auth.provider.config.auth.pojo.BaseUserDetail;
+import org.fms.auth.main.java.com.wisdom.auth.provider.common.constant.Constant;
+import org.fms.auth.main.java.com.wisdom.auth.provider.util.JsonUtils;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.UserInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.pojo.BaseUserDetail;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;

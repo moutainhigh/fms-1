@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.common.pojo;
+package org.fms.auth.main.java.com.wisdom.auth.provider.common.pojo;
 
 
 import java.io.Serializable;

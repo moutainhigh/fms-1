@@ -1,6 +1,6 @@
-package com.wisdom.auth.provider.config.auth.filter;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.filter;
 
-import com.wisdom.auth.provider.config.auth.token.MyAuthenticationToken;
+import org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.token.MyAuthenticationToken;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;

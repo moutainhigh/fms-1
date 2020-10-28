@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.util.http;
+package org.fms.auth.main.java.com.wisdom.auth.provider.util.http;
 
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;

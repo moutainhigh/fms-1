@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.config.auth.util;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.util;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;

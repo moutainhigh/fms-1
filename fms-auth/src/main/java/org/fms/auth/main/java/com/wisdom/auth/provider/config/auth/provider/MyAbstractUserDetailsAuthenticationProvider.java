@@ -1,9 +1,9 @@
-package com.wisdom.auth.provider.config.auth.provider;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.provider;
 
 import com.alibaba.fastjson.JSONObject;
-import com.wisdom.auth.provider.config.auth.token.MyAuthenticationToken;
-import com.wisdom.auth.provider.config.auth.util.RsaClientUtils;
-import com.wisdom.auth.provider.util.http.HttpClientUtil;
+import org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.token.MyAuthenticationToken;
+import org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.util.RsaClientUtils;
+import org.fms.auth.main.java.com.wisdom.auth.provider.util.http.HttpClientUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.InitializingBean;

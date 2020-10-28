@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.common.utils;
+package org.fms.auth.main.java.com.wisdom.auth.provider.common.utils;
 
 /**
  * Created by fp295 on 2018/5/12.

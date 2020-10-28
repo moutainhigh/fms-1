@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.common.constant;
+package org.fms.auth.main.java.com.wisdom.auth.provider.common.constant;
 
 /**
  * Created by fp295 on 2018/6/26.

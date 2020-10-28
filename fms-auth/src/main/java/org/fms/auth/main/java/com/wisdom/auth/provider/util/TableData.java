@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.util;
+package org.fms.auth.main.java.com.wisdom.auth.provider.util;
 
 import java.util.List;
 

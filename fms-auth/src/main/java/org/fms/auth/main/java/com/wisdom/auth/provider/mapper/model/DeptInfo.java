@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.mapper.model;
+package org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model;
 
 import javax.persistence.Column;
 import javax.persistence.Id;

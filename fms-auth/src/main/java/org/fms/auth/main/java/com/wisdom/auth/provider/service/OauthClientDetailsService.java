@@ -1,7 +1,7 @@
-package com.wisdom.auth.provider.service;
+package org.fms.auth.main.java.com.wisdom.auth.provider.service;
 
-import com.wisdom.auth.autoconfigure.service.BaseService;
-import com.wisdom.auth.provider.mapper.model.OauthClientDetails;
+import org.fms.auth.main.java.com.wisdom.auth.autoconfigure.service.BaseService;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.OauthClientDetails;
 import org.springframework.stereotype.Service;
 
 

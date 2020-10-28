@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.config.web;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

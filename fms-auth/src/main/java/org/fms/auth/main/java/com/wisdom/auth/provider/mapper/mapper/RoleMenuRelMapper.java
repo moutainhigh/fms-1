@@ -1,7 +1,7 @@
-package com.wisdom.auth.provider.mapper.mapper;
+package org.fms.auth.main.java.com.wisdom.auth.provider.mapper.mapper;
 
 
-import com.wisdom.auth.provider.mapper.model.RoleMenuRel;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.RoleMenuRel;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;

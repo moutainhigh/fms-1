@@ -1,9 +1,9 @@
-package com.wisdom.auth.provider.config.web;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config.web;
 
-import com.wisdom.auth.provider.pojo.ResponseData;
-import com.wisdom.auth.provider.util.JsonUtils;
-import com.wisdom.auth.provider.mapper.model.UserInfo;
-import com.wisdom.auth.provider.pojo.ResponseCode;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.ResponseData;
+import org.fms.auth.main.java.com.wisdom.auth.provider.util.JsonUtils;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.UserInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.ResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.jwt.Jwt;
 import org.springframework.security.jwt.JwtHelper;

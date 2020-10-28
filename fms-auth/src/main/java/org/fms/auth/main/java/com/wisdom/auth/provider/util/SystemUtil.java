@@ -1,9 +1,9 @@
-package com.wisdom.auth.provider.util;
+package org.fms.auth.main.java.com.wisdom.auth.provider.util;
 
 
 
 import com.riozenc.titanTool.common.ClassDAOXmlUtil;
-import com.wisdom.auth.provider.mapper.model.DeptInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.DeptInfo;
 
 
 /**

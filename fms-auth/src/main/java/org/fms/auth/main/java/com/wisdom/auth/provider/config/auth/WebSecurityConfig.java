@@ -1,11 +1,11 @@
-package com.wisdom.auth.provider.config.auth;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config.auth;
 
 
-import com.wisdom.auth.provider.config.auth.filter.MyLoginAuthenticationFilter;
-import com.wisdom.auth.provider.config.auth.handler.MyLoginAuthSuccessHandler;
+import org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.filter.MyLoginAuthenticationFilter;
+import org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.handler.MyLoginAuthSuccessHandler;
 
-import com.wisdom.auth.provider.config.auth.provider.MyAuthenticationProvider;
-import com.wisdom.auth.provider.service.BaseUserDetailService;
+import org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.provider.MyAuthenticationProvider;
+import org.fms.auth.main.java.com.wisdom.auth.provider.service.BaseUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        System.out.println("===========================com.wisdom.auth.provider configure============================");
+        System.out.println("===========================org.fms.auth.main.java.com.wisdom.auth.provider configure============================");
 
         http
 //                .addFilterAt(getMyLoginAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
@@ -80,14 +80,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /*@Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(){
-        DaoAuthenticationProvider com.wisdom.auth.provider = new DaoAuthenticationProvider();
+        DaoAuthenticationProvider org.fms.auth.main.java.com.wisdom.auth.provider = new DaoAuthenticationProvider();
         // 设置userDetailsService
-        com.wisdom.auth.provider.setUserDetailsService(baseUserDetailService);
+        org.fms.auth.main.java.com.wisdom.auth.provider.setUserDetailsService(baseUserDetailService);
         // 禁止隐藏用户未找到异常
-        com.wisdom.auth.provider.setHideUserNotFoundExceptions(false);
+        org.fms.auth.main.java.com.wisdom.auth.provider.setHideUserNotFoundExceptions(false);
         // 使用BCrypt进行密码的hash
-        com.wisdom.auth.provider.setPasswordEncoder(new BCryptPasswordEncoder(6));
-        return com.wisdom.auth.provider;
+        org.fms.auth.main.java.com.wisdom.auth.provider.setPasswordEncoder(new BCryptPasswordEncoder(6));
+        return org.fms.auth.main.java.com.wisdom.auth.provider;
     }*/
 
     /**

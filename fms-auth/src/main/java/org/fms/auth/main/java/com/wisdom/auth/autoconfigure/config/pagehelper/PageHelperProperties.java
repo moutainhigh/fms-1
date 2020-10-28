@@ -1,4 +1,4 @@
-package com.wisdom.auth.autoconfigure.config.pagehelper;
+package org.fms.auth.main.java.com.wisdom.auth.autoconfigure.config.pagehelper;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

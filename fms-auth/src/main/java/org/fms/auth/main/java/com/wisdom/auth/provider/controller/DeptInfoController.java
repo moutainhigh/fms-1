@@ -1,15 +1,15 @@
-package com.wisdom.auth.provider.controller;
+package org.fms.auth.main.java.com.wisdom.auth.provider.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.wisdom.auth.autoconfigure.controller.CrudController;
-import com.wisdom.auth.provider.pojo.ResponseData;
-import com.wisdom.auth.provider.common.pojo.TableData;
-import com.wisdom.auth.provider.mapper.model.DeptInfo;
-import com.wisdom.auth.provider.mapper.model.UserInfo;
-import com.wisdom.auth.provider.pojo.ResponseCode;
-import com.wisdom.auth.provider.pojo.request.DeptInfoRequest;
-import com.wisdom.auth.provider.config.redis.AccessTokenUtils;
-import com.wisdom.auth.provider.service.DeptInfoService;
+import org.fms.auth.main.java.com.wisdom.auth.autoconfigure.controller.CrudController;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.ResponseData;
+import org.fms.auth.main.java.com.wisdom.auth.provider.common.pojo.TableData;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.DeptInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.UserInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.ResponseCode;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.request.DeptInfoRequest;
+import org.fms.auth.main.java.com.wisdom.auth.provider.config.redis.AccessTokenUtils;
+import org.fms.auth.main.java.com.wisdom.auth.provider.service.DeptInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

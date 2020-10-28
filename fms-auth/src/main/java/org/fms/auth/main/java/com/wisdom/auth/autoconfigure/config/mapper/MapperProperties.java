@@ -1,4 +1,4 @@
-package com.wisdom.auth.autoconfigure.config.mapper;
+package org.fms.auth.main.java.com.wisdom.auth.autoconfigure.config.mapper;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import tk.mybatis.mapper.entity.Config;

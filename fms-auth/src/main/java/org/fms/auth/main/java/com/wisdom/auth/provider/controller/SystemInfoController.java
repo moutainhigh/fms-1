@@ -1,14 +1,14 @@
-package com.wisdom.auth.provider.controller;
+package org.fms.auth.main.java.com.wisdom.auth.provider.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.wisdom.auth.autoconfigure.controller.CrudController;
-import com.wisdom.auth.provider.pojo.ResponseData;
-import com.wisdom.auth.provider.common.pojo.TableData;
-import com.wisdom.auth.provider.mapper.model.SystemInfo;
-import com.wisdom.auth.provider.pojo.ResponseCode;
-import com.wisdom.auth.provider.pojo.request.SystemInfoRequest;
-import com.wisdom.auth.provider.pojo.response.ModuleAndSystemResponse;
-import com.wisdom.auth.provider.service.SystemInfoService;
+import org.fms.auth.main.java.com.wisdom.auth.autoconfigure.controller.CrudController;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.ResponseData;
+import org.fms.auth.main.java.com.wisdom.auth.provider.common.pojo.TableData;
+import org.fms.auth.main.java.com.wisdom.auth.provider.mapper.model.SystemInfo;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.ResponseCode;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.request.SystemInfoRequest;
+import org.fms.auth.main.java.com.wisdom.auth.provider.pojo.response.ModuleAndSystemResponse;
+import org.fms.auth.main.java.com.wisdom.auth.provider.service.SystemInfoService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

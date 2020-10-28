@@ -1,4 +1,4 @@
-package com.wisdom.auth.provider.config.auth.exception;
+package org.fms.auth.main.java.com.wisdom.auth.provider.config.auth.exception;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

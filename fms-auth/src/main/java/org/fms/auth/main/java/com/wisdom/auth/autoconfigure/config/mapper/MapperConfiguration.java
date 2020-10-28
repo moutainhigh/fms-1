@@ -1,4 +1,4 @@
-package com.wisdom.auth.autoconfigure.config.mapper;
+package org.fms.auth.main.java.com.wisdom.auth.autoconfigure.config.mapper;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
