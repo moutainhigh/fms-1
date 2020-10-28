@@ -264,7 +264,7 @@
 		</where>
 	</select>
 
-	<select id="getUsersByCustomerNo" parameterType="com.riozenc.cim.webapp.archives.domain.UserDomain"
+	<select id="getUsersByCustomerNo" parameterType="UserDomain"
 			resultType="UserDomain" useCache="true">
 		select
 		C.ID CUSTOMER_ID,C.CUSTOMER_NO,C.CUSTOMER_NAME,C.CUSTOMER_NAME_SPELL,C.ADDRESS,C.ADDRESS_SPELL,C.CARD_TYPE,C.CARD_NO,C.LINK_MAN,C.CONTACT_INFORMATION,

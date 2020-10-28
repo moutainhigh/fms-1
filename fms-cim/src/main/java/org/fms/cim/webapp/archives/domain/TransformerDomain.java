@@ -52,6 +52,16 @@ public class TransformerDomain extends ManagerParamEntity implements MybatisEnti
 	private Long operator;// 操作人ID ID bigint TRUE FALSE TRUE
 	private Long lineId;// 线路ID ID bigint TRUE FALSE TRUE
 	private Byte transformerModelType; // 变压器型号
+	
+	private String address; // 地理位置
+	private Long consId; // 所属用户
+	private Long tgId; // 所属台区
+	private Long stationId; // 所属厂站
+	private Byte runStatusCode; // 状态
+	private Integer weight; // 显示顺序
+	private Long creatorId; // 创建者
+	private Long lastModifierId; // 最后修改者
+	private String lastModifierTime; // 最后修改时间
 
 	/*---------------------------------------------------------------------*/
 	private String transformerAssetsNo;
@@ -341,5 +351,79 @@ public class TransformerDomain extends ManagerParamEntity implements MybatisEnti
 	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Long getConsId() {
+		return consId;
+	}
+
+	public void setConsId(Long consId) {
+		this.consId = consId;
+	}
+
+	public Long getTgId() {
+		return tgId;
+	}
+
+	public void setTgId(Long tgId) {
+		this.tgId = tgId;
+	}
+
+	public Long getStationId() {
+		return stationId;
+	}
+
+	public void setStationId(Long stationId) {
+		this.stationId = stationId;
+	}
+
+	public Byte getRunStatusCode() {
+		return runStatusCode;
+	}
+
+	public void setRunStatusCode(Byte runStatusCode) {
+		this.runStatusCode = runStatusCode;
+	}
+
+	public Integer getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Integer weight) {
+		this.weight = weight;
+	}
+
+	public Long getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(Long creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	public Long getLastModifierId() {
+		return lastModifierId;
+	}
+
+	public void setLastModifierId(Long lastModifierId) {
+		this.lastModifierId = lastModifierId;
+	}
+
+	public String getLastModifierTime() {
+		return lastModifierTime;
+	}
+
+	public void setLastModifierTime(String lastModifierTime) {
+		this.lastModifierTime = lastModifierTime;
+	}
+	
+	
 
 }

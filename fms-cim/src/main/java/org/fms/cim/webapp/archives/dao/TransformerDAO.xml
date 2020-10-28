@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.riozenc.cim.webapp.archives.dao.TransformerDAO">
+<mapper namespace="org.fms.cim.webapp.archives.dao.TransformerDAO">
     <sql id="Base_Column_List">
-        ID,TRANSFORMER_ASSETS_ID,TRANSFORMER_NO,DESK_NAME,CAPACITY,TRANSFORMER_GROUP_NO,
+        <!-- ID,TRANSFORMER_ASSETS_ID,TRANSFORMER_NO,DESK_NAME,CAPACITY,TRANSFORMER_GROUP_NO,
 		IS_PUB_TYPE,TRANSFORMER_LOSS_TYPE,BUSINESS_PLACE_CODE,RUN_DATE,STAND_TIME,VOLT_TYPE,CHARGE_MAN,
 		PRODUCE_TEAM,SET_FORMAT,AREA_NO,SUPPLY_ROOM,VILLAGE_NO,TRANS_CHANGE,INPUT_NODE_CODE,CAPCITOR_CAPACITY,
-		COS_STD_CODE,CREATE_DATE,REMARK,STATUS,LINE_ID
-
+		COS_STD_CODE,CREATE_DATE,REMARK,STATUS,LINE_ID -->
+		ID,DESK_NAME,TRANSFORMER_NO,TRANSFORMER_MODEL_TYPE,ADDRESS,VOLT_TYPE,CONS_ID,TG_ID,
+		STATION_ID,LINE_ID,BUSINESS_PLACE_CODE,RUN_DATE,CAPACITY,RUN_STATUS_CODE,WEIGHT,
+		REMARK,CREATOR_ID,CREATE_DATE,LAST_MODIFIER_ID,LAST_MODIFIER_TIME,TRANSFORMER_ASSETS_ID,
+		IS_PUB_TYPE,TRANSFORMER_LOSS_TYPE,STAND_TIME,CHARGE_MAN,PRODUCE_TEAM,SET_FORMAT,
+		AREA_NO,SUPPLY_ROOM,VILLAGE_NO,TRANS_CHANGE,INPUT_NODE_CODE,CAPCITOR_CAPACITY,
+		COS_STD_CODE,STATUS,TRANSFORMER_GROUP_NO,LOSS_TYPE
     </sql>
 
     <select id="findByKey" parameterType="TransformerDomain"
@@ -56,6 +61,35 @@
             </if>
             <if test="standTime !=null">
                 and STAND_TIME = #{standTime}
+            </if>
+            
+            
+            <if test="address !=null">
+                and ADDRESS = #{address}
+            </if>
+            <if test="consId !=null">
+                and CONS_ID = #{consId}
+            </if>
+            <if test="tgId !=null">
+                and TG_ID = #{tgId}
+            </if>
+            <if test="stationId !=null">
+                and STATION_ID = #{stationId}
+            </if>
+            <if test="runStatusCode !=null">
+                and RUN_STATUS_CODE = #{runStatusCode}
+            </if>
+            <if test="weight !=null">
+                and WEIGHT = #{weight}
+            </if>
+            <if test="creatorId !=null">
+                and CREATOR_ID = #{creatorId}
+            </if>
+            <if test="lastModifierId !=null">
+                and LAST_MODIFIER_ID = #{lastModifierId}
+            </if>
+            <if test="lastModifierTime !=null">
+                and LAST_MODIFIER_TIME = #{lastModifierTime}
             </if>
 
             <if test="voltType !=null">
@@ -187,6 +221,34 @@
             <if test="standTime !=null">
                 and STAND_TIME = #{standTime}
             </if>
+            
+            <if test="address !=null">
+                and ADDRESS = #{address}
+            </if>
+            <if test="consId !=null">
+                and CONS_ID = #{consId}
+            </if>
+            <if test="tgId !=null">
+                and TG_ID = #{tgId}
+            </if>
+            <if test="stationId !=null">
+                and STATION_ID = #{stationId}
+            </if>
+            <if test="runStatusCode !=null">
+                and RUN_STATUS_CODE = #{runStatusCode}
+            </if>
+            <if test="weight !=null">
+                and WEIGHT = #{weight}
+            </if>
+            <if test="creatorId !=null">
+                and CREATOR_ID = #{creatorId}
+            </if>
+            <if test="lastModifierId !=null">
+                and LAST_MODIFIER_ID = #{lastModifierId}
+            </if>
+            <if test="lastModifierTime !=null">
+                and LAST_MODIFIER_TIME = #{lastModifierTime}
+            </if>
 
             <if test="voltType !=null">
                 and VOLT_TYPE = #{voltType}
@@ -253,10 +315,17 @@
         <include refid="Base_Column_List"/>
         )
         values
-        (#{id},#{transformerAssetsId},#{transformerNo},#{deskName},#{capacity},#{transformerGroupNo},
+        (<!-- #{id},#{transformerAssetsId},#{transformerNo},#{deskName},#{capacity},#{transformerGroupNo},
         #{isPubType},#{transformerLossType},#{businessPlaceCode},#{runDate},#{standTime},#{voltType},#{chargeMan},
         #{produceTeam},#{setFormat},#{areaNo},#{supplyRoom},#{villageNo},#{transChange},#{inputNodeCode},#{capcitorCapacity},
-        #{cosStdCode},#{createDate},#{remark},#{status},#{lineId})
+        #{cosStdCode},#{createDate},#{remark},#{status},#{lineId} -->
+        #{id},#{deskName},#{transformerNo},#{transformerModelType},#{address},
+        #{voltType},#{consId},#{tgId},#{stationId},#{lineId},#{businessPlaceCode},
+        #{runDate},#{capacity},#{runStatusCode},#{weight},#{remark},#{creatorId},
+        #{createDate},#{lastModifierId},#{lastModifierTime},#{transformerAssetsId},
+        #{isPubType},#{transformerLossType},#{standTime},#{chargeMan},#{produceTeam},
+        #{setFormat},#{areaNo},#{supplyRoom},#{villageNo},#{transChange},#{inputNodeCode},
+        #{capcitorCapacity},#{cosStdCode},#{status},#{transformerGroupNo},#{LOSS_TYPE})
     </insert>
 
     <insert id="insertList" parameterType="TransformerDomain" flushCache="true">
@@ -265,10 +334,13 @@
         <include refid="Base_Column_List"/>
         )
         values
-        (#{id},#{transformerAssetsId},#{transformerNo},#{deskName},#{capacity},#{transformerGroupNo},
-        #{isPubType},#{transformerLossType},#{businessPlaceCode},#{runDate},#{standTime},#{voltType},#{chargeMan},
-        #{produceTeam},#{setFormat},#{areaNo},#{supplyRoom},#{villageNo},#{transChange},#{inputNodeCode},#{capcitorCapacity},
-        #{cosStdCode},#{createDate},#{remark},#{status},#{lineId})
+        (#{id},#{deskName},#{transformerNo},#{transformerModelType},#{address},
+        #{voltType},#{consId},#{tgId},#{stationId},#{lineId},#{businessPlaceCode},
+        #{runDate},#{capacity},#{runStatusCode},#{weight},#{remark},#{creatorId},
+        #{createDate},#{lastModifierId},#{lastModifierTime},#{transformerAssetsId},
+        #{isPubType},#{transformerLossType},#{standTime},#{chargeMan},#{produceTeam},
+        #{setFormat},#{areaNo},#{supplyRoom},#{villageNo},#{transChange},#{inputNodeCode},
+        #{capcitorCapacity},#{cosStdCode},#{status},#{transformerGroupNo},#{LOSS_TYPE})
     </insert>
 
 
@@ -356,6 +428,34 @@
             </if>
             <if test="status !=null">
                 STATUS = #{status},
+            </if>
+            
+            <if test="address !=null">
+                ADDRESS = #{address},
+            </if>
+            <if test="consId !=null">
+                CONS_ID = #{consId},
+            </if>
+            <if test="tgId !=null">
+                TG_ID = #{tgId},
+            </if>
+            <if test="stationId !=null">
+                STATION_ID = #{stationId},
+            </if>
+            <if test="runStatusCode !=null">
+                RUN_STATUS_CODE = #{runStatusCode},
+            </if>
+            <if test="weight !=null">
+                WEIGHT = #{weight},
+            </if>
+            <if test="creatorId !=null">
+                CREATOR_ID = #{creatorId},
+            </if>
+            <if test="lastModifierId !=null">
+                LAST_MODIFIER_ID = #{lastModifierId},
+            </if>
+            <if test="lastModifierTime !=null">
+                LAST_MODIFIER_TIME = #{lastModifierTime},
             </if>
   
         </set>
@@ -446,6 +546,34 @@
             <if test="lineId !=null">
                 LINE_ID = #{lineId},
             </if>
+            
+            <if test="address !=null">
+                ADDRESS = #{address},
+            </if>
+            <if test="consId !=null">
+                CONS_ID = #{consId},
+            </if>
+            <if test="tgId !=null">
+                TG_ID = #{tgId},
+            </if>
+            <if test="stationId !=null">
+                STATION_ID = #{stationId},
+            </if>
+            <if test="runStatusCode !=null">
+                RUN_STATUS_CODE = #{runStatusCode},
+            </if>
+            <if test="weight !=null">
+                WEIGHT = #{weight},
+            </if>
+            <if test="creatorId !=null">
+                CREATOR_ID = #{creatorId},
+            </if>
+            <if test="lastModifierId !=null">
+                LAST_MODIFIER_ID = #{lastModifierId},
+            </if>
+            <if test="lastModifierTime !=null">
+                LAST_MODIFIER_TIME = #{lastModifierTime},
+            </if>
         </set>
         <where>
             and ID = #{id}
@@ -507,6 +635,17 @@
         T.CREATE_DATE,
         T.REMARK,
         T.STATUS,
+        
+        T.ADDRESS,
+        T.CONS_ID,
+        T.TG_ID,
+        T.STATION_ID,
+        T.RUN_STATUS_CODE,
+        T.WEIGHT,
+        T.CREATOR_ID,
+        T.LAST_MODIFIER_ID,
+        T.LAST_MODIFIER_TIME,
+        
         TA.TRANSFORMER_ASSETS_NO,
         TA.VOLTAGE_RATIO,
         TA.CURRENT_RATIO,
@@ -661,6 +800,36 @@
             <if test="standTime !=null">
                 and STAND_TIME = #{standTime}
             </if>
+            
+            
+            <if test="address !=null">
+                and ADDRESS = #{address}
+            </if>
+            <if test="consId !=null">
+                and CONS_ID = #{consId}
+            </if>
+            <if test="tgId !=null">
+                and TG_ID = #{tgId}
+            </if>
+            <if test="stationId !=null">
+                and STATION_ID = #{stationId}
+            </if>
+            <if test="runStatusCode !=null">
+                and RUN_STATUS_CODE = #{runStatusCode}
+            </if>
+            <if test="weight !=null">
+                and WEIGHT = #{weight}
+            </if>
+            <if test="creatorId !=null">
+                and CREATOR_ID = #{creatorId}
+            </if>
+            <if test="lastModifierId !=null">
+                and LAST_MODIFIER_ID = #{lastModifierId}
+            </if>
+            <if test="lastModifierTime !=null">
+                and LAST_MODIFIER_TIME = #{lastModifierTime}
+            </if>
+            
 
             <if test="voltType !=null">
                 and VOLT_TYPE = #{voltType}

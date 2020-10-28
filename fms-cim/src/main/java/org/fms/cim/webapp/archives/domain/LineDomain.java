@@ -38,7 +38,19 @@ public class LineDomain extends ManagerParamEntity implements MybatisEntity {
 	private String remark; //备注
 	private Byte status; //状态
     private Long businessPlaceCode;  //BUSINESS_PLACE_CODE
-
+    
+    private Long pId; //上级线路标识
+    private Long stationId; //首端厂站
+    private Long eStationId; //末端厂站
+    private Byte voltCode; //电压等级
+    private String address; //地理位置
+    private String guid; //接口标识
+    private Integer weight; //显示顺序
+    private Byte runStatusCode; //状态
+    private Long creatorId; //创建者
+    private Long lastModifierId; //最后修改者
+    private String lastModifierTime; //最后修改时间
+    
 	private Long beginSubsId;
 	private String beginSubsName; // 厂站名称
 	private Long endSubsId;
@@ -182,6 +194,94 @@ public class LineDomain extends ManagerParamEntity implements MybatisEntity {
 
 	public void setBusinessPlaceCode(Long businessPlaceCode) {
 		this.businessPlaceCode = businessPlaceCode;
+	}
+
+	public Long getpId() {
+		return pId;
+	}
+
+	public void setpId(Long pId) {
+		this.pId = pId;
+	}
+
+	public Long getStationId() {
+		return stationId;
+	}
+
+	public void setStationId(Long stationId) {
+		this.stationId = stationId;
+	}
+
+	public Long geteStationId() {
+		return eStationId;
+	}
+
+	public void seteStationId(Long eStationId) {
+		this.eStationId = eStationId;
+	}
+
+	public Byte getVoltCode() {
+		return voltCode;
+	}
+
+	public void setVoltCode(Byte voltCode) {
+		this.voltCode = voltCode;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getGuid() {
+		return guid;
+	}
+
+	public void setGuid(String guid) {
+		this.guid = guid;
+	}
+
+	public Integer getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Integer weight) {
+		this.weight = weight;
+	}
+
+	public Byte getRunStatusCode() {
+		return runStatusCode;
+	}
+
+	public void setRunStatusCode(Byte runStatusCode) {
+		this.runStatusCode = runStatusCode;
+	}
+
+	public Long getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(Long creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	public Long getLastModifierId() {
+		return lastModifierId;
+	}
+
+	public void setLastModifierId(Long lastModifierId) {
+		this.lastModifierId = lastModifierId;
+	}
+
+	public String getLastModifierTime() {
+		return lastModifierTime;
+	}
+
+	public void setLastModifierTime(String lastModifierTime) {
+		this.lastModifierTime = lastModifierTime;
 	}
 
 

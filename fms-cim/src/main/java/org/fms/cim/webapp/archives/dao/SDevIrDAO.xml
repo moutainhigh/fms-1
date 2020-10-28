@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fms.cim.webapp.archives.dao.SDevIrDAO">
+    <sql id="Base_Column_List">
+		ID,CP_ID,MPED_ID,EQUIP_TYPE_CODE,EQUIP_ID,TYPE_CODE,IR_DATE,EMP_NO,DEPT_ID,
+		BUSINESS_PLACE_CODE,REASON,REMARK,METER_ASSET_NO,TV_ASSET_NO,TA_ASSET_NO,
+		MODEL_CODE,MANUFACTURER,TA_RATIO,TA_VALUE,TV_RATIO,TV_VALUE,T_FACTOR,I_DIRECTION,
+		METER_NO,COEF,P1R0,P2R0,P3R0,P4R0,P5R0,P6R0,P7R0,P8R0,P1R1,P2R1,P3R1,P4R1,P5R1,
+		P6R1,P7R1,P8R1,P1R2,P2R2,P3R2,P4R2,P5R2,P6R2,P7R2,P8R2,P1R3,P2R3,P3R3,P4R3,P5R3,
+		P6R3,P7R3,P8R3,P1R4,P2R4,P3R4,P4R4,P5R4,P6R4,P7R4,P8R4,P1R5,P2R5,P3R5,P4R5,P5R5,
+		P6R5,P7R5,P8R5,REMCAP,CREATOR_ID,CREATE_DATE,LAST_MODIFIER_ID,LAST_MODIFY_TIME,
+		CURRENT_MON,CALC_MON
+    </sql>
+
+    <select id="findByKey" parameterType="SDevIrDomain"
+            resultType="SDevIrDomain" useCache="true">
+        select
+        <include refid="Base_Column_List"/>
+        from S_DEV_IR
+        <where>
+            and ID = #{id}
+
+        </where>
+    </select>
+    <select id="findByWhere" parameterType="SDevIrDomain"
+            resultType="SDevIrDomain" useCache="true">
+        select
+       <include refid="Base_Column_List"/>
+        from S_DEV_IR
+        <where>
+            <if test="cpId !=null">
+                and CP_ID = #{cpId}
+            </if>
+            <if test="mpedId !=null">
+                and MPED_ID = #{mpedId}
+            </if>
+            <if test="equipTypeCode !=null">
+                and EQUIP_TYPE_CODE = #{equipTypeCode}
+            </if>
+            <if test="equipId !=null">
+                and EQUIP_ID = #{equipId}
+            </if>
+            <if test="typeCode !=null">
+                and TYPE_CODE = #{typeCode}
+            </if>
+            <if test="irDate !=null">
+                and IR_DATE = #{irDate}
+            </if>
+            <if test="empNo !=null">
+                and EMP_NO = #{empNo}
+            </if>
+            <if test="deptId !=null">
+                and DEPT_ID = #{deptId}
+            </if>
+            <if test="businessPlaceCode !=null">
+                and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+            </if>
+            <if test="reason !=null">
+                and REASON = #{reason}
+            </if>
+            <if test="remark !=null">
+                and REMARK = #{remark}
+            </if>
+            <if test="meterAssetNo !=null">
+                and METER_ASSET_NO = #{meterAssetNo}
+            </if>
+            <if test="tvAssetNo !=null">
+                and TV_ASSET_NO = #{tvAssetNo}
+            </if>
+            <if test="taAssetNo !=null">
+                and TA_ASSET_NO = #{taAssetNo}
+            </if>
+            
+            <if test="modelCode !=null">
+                and MODEL_CODE = #{modelCode}
+            </if>
+            <if test="manufacturer !=null">
+                and MANUFACTURER = #{manufacturer}
+            </if>
+            <if test="taRatio !=null">
+                and TA_RATIO = #{taRatio}
+            </if>
+            <if test="taValue !=null">
+                and TA_VALUE = #{taValue}
+            </if>
+            <if test="tvRatio !=null">
+                and TV_RATIO = #{tvRatio}
+            </if>
+            <if test="tvValue !=null">
+                and TV_VALUE = #{tvValue}
+            </if>
+            <if test="tFactor !=null">
+                and T_FACTOR = #{tFactor}
+            </if>
+            <if test="iDirection !=null">
+                and I_DIRECTION = #{iDirection}
+            </if>
+            
+            <if test="meterNo !=null">
+                and METER_NO = #{meterNo}
+            </if>
+            <if test="coef !=null">
+                and COEF = #{coef}
+            </if>
+            <if test="remcap !=null">
+                and REMCAP = #{remcap}
+            </if>
+            <if test="creatorId !=null">
+                and CREATOR_ID = #{creatorId}
+            </if>
+            <if test="createDate !=null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="lastModifierId !=null">
+                and LAST_MODIFIER_ID = #{lastModifierId}
+            </if>
+            <if test="lastModifyTime !=null">
+                and LAST_MODIFY_TIME = #{lastModifyTime}
+            </if>
+            <if test="currentMon !=null">
+                and CURRENT_MON = #{currentMon}
+            </if>
+            <if test="calcMon !=null">
+                and CALC_MON = #{calcMon}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="SDevIrDomain" useGeneratedKeys="true" keyProperty="id" flushCache="true">
+        insert into
+        S_DEV_IR(
+        <include refid="Base_Column_List"/>
+        )
+        values
+        (#{id},#{cpId},#{mpedId},#{equipTypeCode},#{equipId},
+        #{typeCode},#{irDate},#{empNo},#{deptId},#{businessPlaceCode},#{reason},
+        #{remark},#{meterAssetNo},#{tvAssetNo},#{taAssetNo},
+        #{modelCode},#{manufacturer},#{taRatio},#{taValue},#{tvRatio},
+        #{tvValue},#{tFactor},#{iDirection},#{meterNo},#{coef},
+        #{p1r0},#{p2r0},#{p3r0},#{p4r0},#{p5r0},#{p6r0},#{p7r0},#{p8r0},
+		#{p1r1},#{p2r1},#{p3r1},#{p4r1},#{p5r1},#{p6r1},#{p7r1},#{p8r1},
+		#{p1r2},#{p2r2},#{p3r2},#{p4r2},#{p5r2},#{p6r2},#{p7r2},#{p8r2},
+		#{p1r3},#{p2r3},#{p3r3},#{p4r3},#{p5r3},#{p6r3},#{p7r3},#{p8r3},
+		#{p1r4},#{p2r4},#{p3r4},#{p4r4},#{p5r4},#{p6r4},#{p7r4},#{p8r4},
+		#{p1r5},#{p2r5},#{p3r5},#{p4r5},#{p5r5},#{p6r5},#{p7r5},#{p8r5},
+        #{remcap},#{creatorId},#{createDate},#{lastModifierId},
+        #{lastModifyTime},#{currentMon},#{calcMon})
+    </insert>
+    
+    <update id="update" parameterType="SDevIrDomain" flushCache="true">
+        update S_DEV_IR
+        <set>
+        	<if test="cpId !=null">
+                CP_ID = #{cpId},
+            </if>
+            <if test="mpedId !=null">
+                MPED_ID = #{mpedId},
+            </if>
+            <if test="equipTypeCode !=null">
+                EQUIP_TYPE_CODE = #{equipTypeCode},
+            </if>
+            <if test="equipId !=null">
+                EQUIP_ID = #{equipId},
+            </if>
+            <if test="typeCode !=null">
+                TYPE_CODE = #{typeCode},
+            </if>
+            <if test="irDate !=null">
+                IR_DATE = #{irDate},
+            </if>
+            <if test="empNo !=null">
+                EMP_NO = #{empNo},
+            </if>
+            <if test="deptId !=null">
+                DEPT_ID = #{deptId},
+            </if>
+            <if test="businessPlaceCode !=null">
+                BUSINESS_PLACE_CODE = #{businessPlaceCode},
+            </if>
+            <if test="reason !=null">
+                REASON = #{reason},
+            </if>
+            <if test="remark !=null">
+                REMARK = #{remark},
+            </if>
+            <if test="meterAssetNo !=null">
+                METER_ASSET_NO = #{meterAssetNo},
+            </if>
+            <if test="tvAssetNo !=null">
+                TV_ASSET_NO = #{tvAssetNo},
+            </if>
+            <if test="taAssetNo !=null">
+                TA_ASSET_NO = #{taAssetNo},
+            </if>
+            
+            <if test="modelCode !=null">
+                MODEL_CODE = #{modelCode},
+            </if>
+            <if test="manufacturer !=null">
+                MANUFACTURER = #{manufacturer},
+            </if>
+            <if test="taRatio !=null">
+                TA_RATIO = #{taRatio},
+            </if>
+            <if test="taValue !=null">
+                TA_VALUE = #{taValue},
+            </if>
+            <if test="tvRatio !=null">
+                TV_RATIO = #{tvRatio},
+            </if>
+            <if test="tvValue !=null">
+                TV_VALUE = #{tvValue},
+            </if>
+            <if test="tFactor !=null">
+                T_FACTOR = #{tFactor},
+            </if>
+            <if test="iDirection !=null">
+                I_DIRECTION = #{iDirection},
+            </if>
+            
+            <if test="meterNo !=null">
+                METER_NO = #{meterNo},
+            </if>
+            <if test="coef !=null">
+                COEF = #{coef},
+            </if>
+            
+            <if test="p1r0 !=null">
+				P1R0 = #{p1r0},
+			</if>
+			<if test="p2r0 !=null">
+				P2R0 = #{p2r0},
+			</if>
+			<if test="p3r0 !=null">
+				P3R0 = #{p3r0},
+			</if>
+			<if test="p4r0 !=null">
+				P4R0 = #{p4r0},
+			</if>
+			<if test="p5r0 !=null">
+				P5R0 = #{p5r0},
+			</if>
+			<if test="p6r0 !=null">
+				P6R0 = #{p6r0},
+			</if>
+			<if test="p7r0 !=null">
+				P7R0 = #{p7r0},
+			</if>
+			<if test="p8r0 !=null">
+				P8R0 = #{p8r0},
+			</if>
+			<if test="p1r1 !=null">
+				P1R1 = #{p1r1},
+			</if>
+			<if test="p2r1 !=null">
+				P2R1 = #{p2r1},
+			</if>
+			<if test="p3r1 !=null">
+				P3R1 = #{p3r1},
+			</if>
+			<if test="p4r1 !=null">
+				P4R1 = #{p4r1},
+			</if>
+			<if test="p5r1 !=null">
+				P5R1 = #{p5r1},
+			</if>
+			<if test="p6r1 !=null">
+				P6R1 = #{p6r1},
+			</if>
+			<if test="p7r1 !=null">
+				P7R1 = #{p7r1},
+			</if>
+			<if test="p8r1 !=null">
+				P8R1 = #{p8r1},
+			</if>
+			<if test="p1r2 !=null">
+				P1R2 = #{p1r2},
+			</if>
+			<if test="p2r2 !=null">
+				P2R2 = #{p2r2},
+			</if>
+			<if test="p3r2 !=null">
+				P3R2 = #{p3r2},
+			</if>
+			<if test="p4r2 !=null">
+				P4R2 = #{p4r2},
+			</if>
+			<if test="p5r2 !=null">
+				P5R2 = #{p5r2},
+			</if>
+			<if test="p6r2 !=null">
+				P6R2 = #{p6r2},
+			</if>
+			<if test="p7r2 !=null">
+				P7R2 = #{p7r2},
+			</if>
+			<if test="p8r2 !=null">
+				P8R2 = #{p8r2},
+			</if>
+			<if test="p1r3 !=null">
+				P1R3 = #{p1r3},
+			</if>
+			<if test="p2r3 !=null">
+				P2R3 = #{p2r3},
+			</if>
+			<if test="p3r3 !=null">
+				P3R3 = #{p3r3},
+			</if>
+			<if test="p4r3 !=null">
+				P4R3 = #{p4r3},
+			</if>
+			<if test="p5r3 !=null">
+				P5R3 = #{p5r3},
+			</if>
+			<if test="p6r3 !=null">
+				P6R3 = #{p6r3},
+			</if>
+			<if test="p7r3 !=null">
+				P7R3 = #{p7r3},
+			</if>
+			<if test="p8r3 !=null">
+				P8R3 = #{p8r3},
+			</if>
+			<if test="p1r4 !=null">
+				P1R4 = #{p1r4},
+			</if>
+			<if test="p2r4 !=null">
+				P2R4 = #{p2r4},
+			</if>
+			<if test="p3r4 !=null">
+				P3R4 = #{p3r4},
+			</if>
+			<if test="p4r4 !=null">
+				P4R4 = #{p4r4},
+			</if>
+			<if test="p5r4 !=null">
+				P5R4 = #{p5r4},
+			</if>
+			<if test="p6r4 !=null">
+				P6R4 = #{p6r4},
+			</if>
+			<if test="p7r4 !=null">
+				P7R4 = #{p7r4},
+			</if>
+			<if test="p8r4 !=null">
+				P8R4 = #{p8r4},
+			</if>
+			<if test="p1r5 !=null">
+				P1R5 = #{p1r5},
+			</if>
+			<if test="p2r5 !=null">
+				P2R5 = #{p2r5},
+			</if>
+			<if test="p3r5 !=null">
+				P3R5 = #{p3r5},
+			</if>
+			<if test="p4r5 !=null">
+				P4R5 = #{p4r5},
+			</if>
+			<if test="p5r5 !=null">
+				P5R5 = #{p5r5},
+			</if>
+			<if test="p6r5 !=null">
+				P6R5 = #{p6r5},
+			</if>
+			<if test="p7r5 !=null">
+				P7R5 = #{p7r5},
+			</if>
+			<if test="p8r5 !=null">
+				P8R5 = #{p8r5},
+			</if>
+            
+            <if test="remcap !=null">
+                REMCAP = #{remcap},
+            </if>
+            <if test="creatorId !=null">
+                CREATOR_ID = #{creatorId},
+            </if>
+            <if test="createDate !=null">
+                CREATE_DATE = #{createDate},
+            </if>
+            <if test="lastModifierId !=null">
+                LAST_MODIFIER_ID = #{lastModifierId},
+            </if>
+            <if test="lastModifyTime !=null">
+                LAST_MODIFY_TIME = #{lastModifyTime},
+            </if>
+            <if test="currentMon !=null">
+                CURRENT_MON = #{currentMon},
+            </if>
+            <if test="calcMon !=null">
+                CALC_MON = #{calcMon},
+            </if>
+        </set>
+        <where>
+            and ID = #{id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="SDevIrDomain"
+            flushCache="true">
+        delete from S_DEV_IR
+        <where>
+            and ID = #{id}
+
+        </where>
+    </delete>
+</mapper>
