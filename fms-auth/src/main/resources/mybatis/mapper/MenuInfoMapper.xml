@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wisdom.auth.provider.mapper.mapper.MenuInfoMapper">
-    <resultMap id="BaseResultMap" type="com.wisdom.auth.provider.mapper.model.MenuInfo">
+<mapper namespace="org.fms.auth.provider.mapper.mapper.MenuInfoMapper">
+    <resultMap id="BaseResultMap" type="org.fms.auth.provider.mapper.model.MenuInfo">
         <!--
           WARNING - @mbggenerated
         -->
@@ -19,7 +19,7 @@
         <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <resultMap id="menuRightMap" type="com.wisdom.auth.provider.mapper.model.MenuRightInfo">
+    <resultMap id="menuRightMap" type="org.fms.auth.provider.mapper.model.MenuRightInfo">
         <id column="ID" property="id" jdbcType="INTEGER"/>
         <result column="MENU_ID" property="menuId" jdbcType="INTEGER"/>
         <result column="RIGHT_NAME" property="rightName" jdbcType="VARCHAR"/>
@@ -30,7 +30,7 @@
     </resultMap>
 
 
-    <resultMap id="menuMap" type="com.wisdom.auth.provider.mapper.model.MenuInfo">
+    <resultMap id="menuMap" type="org.fms.auth.provider.mapper.model.MenuInfo">
         <id column="ID" property="id" jdbcType="INTEGER"/>
         <result column="MENU_CODE" property="menuCode" jdbcType="VARCHAR"/>
         <result column="MENU_NAME" property="menuName" jdbcType="VARCHAR"/>
@@ -50,7 +50,7 @@
         <collection column="{MENU_ID=ID,USER_ID=USER_ID}" property="operatings" select="selectOperatingsByMenuId"/>
     </resultMap>
 
-    <resultMap id="menuMapForTree" type="com.wisdom.auth.provider.mapper.model.MenuInfo">
+    <resultMap id="menuMapForTree" type="org.fms.auth.provider.mapper.model.MenuInfo">
         <id column="ID" property="id" jdbcType="INTEGER"/>
         <result column="MENU_CODE" property="menuCode" jdbcType="VARCHAR"/>
         <result column="MENU_NAME" property="menuName" jdbcType="VARCHAR"/>
@@ -70,7 +70,7 @@
     </resultMap>
 
 
-    <resultMap id="rolesMap" type="com.wisdom.auth.provider.mapper.model.MenuInfo">
+    <resultMap id="rolesMap" type="org.fms.auth.provider.mapper.model.MenuInfo">
         <!--
           WARNING - @mbg.generated
         -->
@@ -92,7 +92,7 @@
         <collection column="{ID=ID,USER_ID=USER_ID}" property="children" select="selectModuleByParentId"/>
     </resultMap>
 
-    <resultMap id="moduleTree" type="com.wisdom.auth.provider.mapper.model.MenuInfo">
+    <resultMap id="moduleTree" type="org.fms.auth.provider.mapper.model.MenuInfo">
         <!--
           WARNING - @mbg.generated
         -->
@@ -112,7 +112,7 @@
         <collection column="{ID=ID}" property="children" select="selectModuleTreeByParentId"/>
     </resultMap>
 
-    <resultMap id="ModuleAndSystemMap" type="com.wisdom.auth.provider.pojo.response.ModuleAndSystemResponse">
+    <resultMap id="ModuleAndSystemMap" type="org.fms.auth.provider.pojo.response.ModuleAndSystemResponse">
         <!--
           WARNING - @mbggenerated
         -->

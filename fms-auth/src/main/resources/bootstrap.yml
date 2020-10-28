@@ -78,7 +78,7 @@ security:
       id: ${spring.application.name}
       serviceId: ${spring.application.name}
 mybatis:
-  type-aliases-package: com.wisdom.auth.provider.mapper.model
+  type-aliases-package: org.fms.auth.provider.mapper.model
   mapper-locations: classpath:mybatis/mapper/*.xml
 
 
