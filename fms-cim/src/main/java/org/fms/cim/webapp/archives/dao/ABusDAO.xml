@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fms.cim.webapp.archives.dao.ABusDAO">
+    <sql id="Base_Column_List">
+		ID,NAME,CODE,TYPE,STATION_ID,BUSINESS_PLACE_CODE,
+		ADDRESS,RUN_DATE,REMARK,WEIGHT,RUN_STATUS_CODE,
+		CREATOR_ID,CREATE_DATE,LAST_MODIFIER_ID,LAST_MODIFIER_TIME
+    </sql>
+
+    <select id="findByKey" parameterType="ABusDomain"
+            resultType="ABusDomain" useCache="true">
+        select
+        <include refid="Base_Column_List"/>
+        from A_BUS
+        <where>
+            and ID = #{id}
+
+        </where>
+    </select>
+    <select id="findByWhere" parameterType="ABusDomain"
+            resultType="ABusDomain" useCache="true">
+        select
+       <include refid="Base_Column_List"/>
+        from A_BUS
+        <where>
+            <if test="name !=null">
+                and NAME = #{name}
+            </if>
+            <if test="code !=null">
+                and CODE = #{code}
+            </if>
+            <if test="type !=null">
+                and TYPE = #{type}
+            </if>
+            <if test="stationId !=null">
+                and STATION_ID = #{stationId}
+            </if>
+            <if test="businessPlaceCode !=null">
+                and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+            </if>
+            <if test="address !=null">
+                and ADDRESS = #{address}
+            </if>
+            <if test="runDate !=null">
+                and RUN_DATE = #{runDate}
+            </if>
+            <if test="remark !=null">
+                and REMARK = #{remark}
+            </if>
+            <if test="weight !=null">
+                and WEIGHT = #{weight}
+            </if>
+            <if test="runStatusCode !=null">
+                and RUN_STATUS_CODE = #{runStatusCode}
+            </if>
+            <if test="creatorId !=null">
+                and CREATOR_ID = #{creatorId}
+            </if>
+            <if test="createDate !=null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="lastModifierId !=null">
+                and LAST_MODIFIER_ID = #{lastModifierId}
+            </if>
+            <if test="lastModifierTime !=null">
+                and LAST_MODIFIER_TIME = #{lastModifierTime}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="ABusDomain" useGeneratedKeys="true" keyProperty="id" flushCache="true">
+        insert into
+        A_BUS(
+        <include refid="Base_Column_List"/>
+        )
+        values
+        (#{id},#{name},#{code},#{type},#{stationId},
+        #{businessPlaceCode},#{address},#{runDate},#{remark},#{weight},#{runStatusCode},
+        #{creatorId},#{createDate},#{lastModifierId},#{lastModifierTime})
+    </insert>
+    
+    <update id="update" parameterType="ABusDomain" flushCache="true">
+        update A_BUS
+        <set>
+        	<if test="name !=null">
+                NAME = #{name},
+            </if>
+            <if test="code !=null">
+                CODE = #{code},
+            </if>
+            <if test="type !=null">
+                TYPE = #{type},
+            </if>
+            <if test="stationId !=null">
+                STATION_ID = #{stationId},
+            </if>
+            <if test="businessPlaceCode !=null">
+                BUSINESS_PLACE_CODE = #{businessPlaceCode},
+            </if>
+            <if test="address !=null">
+                ADDRESS = #{address},
+            </if>
+            <if test="runDate !=null">
+                RUN_DATE = #{runDate},
+            </if>
+            <if test="remark !=null">
+                REMARK = #{remark},
+            </if>
+            <if test="weight !=null">
+               	WEIGHT = #{weight},
+            </if>
+            <if test="runStatusCode !=null">
+                RUN_STATUS_CODE = #{runStatusCode},
+            </if>
+            <if test="creatorId !=null">
+                CREATOR_ID = #{creatorId},
+            </if>
+            <if test="createDate !=null">
+                CREATE_DATE = #{createDate},
+            </if>
+            <if test="lastModifierId !=null">
+                LAST_MODIFIER_ID = #{lastModifierId},
+            </if>
+            <if test="lastModifierTime !=null">
+                LAST_MODIFIER_TIME = #{lastModifierTime},
+            </if>
+        </set>
+        <where>
+            and ID = #{id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="ABusDomain"
+            flushCache="true">
+        delete from A_BUS
+        <where>
+            and ID = #{id}
+
+        </where>
+    </delete>
+</mapper>

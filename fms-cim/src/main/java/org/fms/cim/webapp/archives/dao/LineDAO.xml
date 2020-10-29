@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.riozenc.cim.webapp.archives.dao.LineDAO">
+<mapper namespace="org.fms.cim.webapp.archives.dao.LineDAO">
 <select id="findByKey" parameterType="LineDomain" resultType="LineDomain" useCache="true">
 	select
 		ID,
@@ -8,8 +8,11 @@
 		LINE_NAME,
 		VOLT_TYPE,
 		LINE_TYPE,
+		P_ID,
 		RUN_DATE,
 		SWITCH_NO,
+		STATION_ID,
+		E_STATION_ID,
 		LINE_MODEL,
 		LINE_LENGHT,
 		RATING_CURNT,
@@ -17,7 +20,15 @@
 		CREATE_DATE,
 		REMARK,
 		STATUS,
-		BUSINESS_PLACE_CODE
+		BUSINESS_PLACE_CODE,
+		VOLT_CODE,
+		ADDRESS,
+		GUID,
+		WEIGHT,
+		RUN_STATUS_CODE,
+		CREATOR_ID,
+		LAST_MODIFIER_ID,
+		LAST_MODIFIER_TIME
 	from
 		LINE_INFO
 	<where>
@@ -33,13 +44,24 @@
 			l.LINE_NAME,
 			l.VOLT_TYPE,
 			l.LINE_TYPE,
+			l.P_ID,
 			l.RUN_DATE,
 			l.SWITCH_NO,
+			l.STATION_ID,
+			l.E_STATION_ID,
 			l.LINE_MODEL,
 			l.LINE_LENGHT,
 			l.RATING_CURNT,
 			l.RATING_VOL,
 			l.CREATE_DATE,
+			l.VOLT_CODE,
+			l.ADDRESS,
+			l.GUID,
+			l.WEIGHT,
+			l.RUN_STATUS_CODE,
+			l.CREATOR_ID,
+			l.LAST_MODIFIER_ID,
+			l.LAST_MODIFIER_TIME,
 			l.REMARK,
 			l.STATUS,
 			l.BUSINESS_PLACE_CODE
@@ -91,6 +113,42 @@
 			<if test="businessPlaceCode !=null">
 				 and l.BUSINESS_PLACE_CODE = #{businessPlaceCode}
 			</if>
+			
+			<if test="pId !=null">
+				 and l.P_ID = #{pId}
+			</if>
+			<if test="stationId !=null">
+				 and l.STATION_ID = #{stationId}
+			</if>
+			<if test="eStationId !=null">
+				 and l.E_STATION_ID = #{eStationId}
+			</if>
+			<if test="voltCode !=null">
+				 and l.VOLT_CODE = #{voltCode}
+			</if>
+			<if test="address !=null">
+				 and l.ADDRESS = #{address}
+			</if>
+			<if test="guid !=null">
+				 and l.GUID = #{guid}
+			</if>
+			<if test="weight !=null">
+				 and l.WEIGHT = #{weight}
+			</if>
+			<if test="runStatusCode !=null">
+				 and l.RUN_STATUS_CODE = #{runStatusCode}
+			</if>
+			<if test="creatorId !=null">
+				 and l.CREATOR_ID = #{creatorId}
+			</if>
+			<if test="lastModifierId !=null">
+				 and l.LAST_MODIFIER_ID = #{lastModifierId}
+			</if>
+			<if test="lastModifierTime !=null">
+				 and l.LAST_MODIFIER_TIME = #{lastModifierTime}
+			</if>
+			
+			
 		</where>
 
 	)L left join SUBS_LINE_REL R on L.id= R.line_id
@@ -106,8 +164,11 @@
 		LINE_NAME,
 		VOLT_TYPE,
 		LINE_TYPE,
+		P_ID,
 		RUN_DATE,
 		SWITCH_NO,
+		STATION_ID,
+		E_STATION_ID,
 		LINE_MODEL,
 		LINE_LENGHT,
 		RATING_CURNT,
@@ -115,7 +176,15 @@
 		CREATE_DATE,
 		REMARK,
 		STATUS,
-		BUSINESS_PLACE_CODE
+		BUSINESS_PLACE_CODE,
+		VOLT_CODE,
+		ADDRESS,
+		GUID,
+		WEIGHT,
+		RUN_STATUS_CODE,
+		CREATOR_ID,
+		LAST_MODIFIER_ID,
+		LAST_MODIFIER_TIME
 		from
 		LINE_INFO
 		<where>
@@ -139,7 +208,18 @@ insert into LINE_INFO
 		CREATE_DATE,
 		REMARK,
 		STATUS,
-		BUSINESS_PLACE_CODE
+		BUSINESS_PLACE_CODE,
+		P_ID,
+		STATION_ID,
+		E_STATION_ID,
+		VOLT_CODE,
+		ADDRESS,
+		GUID,
+		WEIGHT,
+		RUN_STATUS_CODE,
+		CREATOR_ID,
+		LAST_MODIFIER_ID,
+		LAST_MODIFIER_TIME
 	)
 values
 	(
@@ -156,7 +236,19 @@ values
 		#{createDate},
 		#{remark},
 		#{status},
-		#{businessPlaceCode}
+		#{businessPlaceCode},
+		
+		#{pId},
+		#{stationId},
+		#{eStationId},
+		#{voltCode},
+		#{address},
+		#{guid},
+		#{weight},
+		#{runStatusCode},
+		#{creatorId},
+		#{lastModifierId},
+		#{lastModifierTime}
 	)
 </insert>
 
@@ -206,6 +298,40 @@ values
 		<if test="businessPlaceCode !=null">
 			BUSINESS_PLACE_CODE = #{businessPlaceCode},
 		</if>
+		
+		<if test="pId !=null">
+			P_ID = #{pId},
+		</if>
+		<if test="stationId !=null">
+			STATION_ID = #{stationId},
+		</if>
+		<if test="eStationId !=null">
+			E_STATION_ID = #{eStationId},
+		</if>
+		<if test="voltCode !=null">
+			VOLT_CODE = #{voltCode},
+		</if>
+		<if test="address !=null">
+			ADDRESS = #{address},
+		</if>
+		<if test="guid !=null">
+			GUID = #{guid},
+		</if>
+		<if test="weight !=null">
+			WEIGHT = #{weight},
+		</if>
+		<if test="runStatusCode !=null">
+			RUN_STATUS_CODE = #{runStatusCode},
+		</if>
+		<if test="creatorId !=null">
+			CREATOR_ID = #{creatorId},
+		</if>
+		<if test="lastModifierId !=null">
+			LAST_MODIFIER_ID = #{lastModifierId},
+		</if>
+		<if test="lastModifierTime !=null">
+			LAST_MODIFIER_TIME = #{lastModifierTime},
+		</if>
 	</set>
 	<where>
  		and ID = #{id}
@@ -224,20 +350,31 @@ values
 			resultType="LineDomain" useCache="true">
 		select
 		l.ID,
-		l.LINE_CODE,
-		l.LINE_NAME,
-		l.VOLT_TYPE,
-		l.LINE_TYPE,
-		l.RUN_DATE,
-		l.SWITCH_NO,
-		l.LINE_MODEL,
-		l.LINE_LENGHT,
-		l.RATING_CURNT,
-		l.RATING_VOL,
-		l.CREATE_DATE,
-		l.REMARK,
-		l.STATUS,
-		l.BUSINESS_PLACE_CODE
+			l.LINE_CODE,
+			l.LINE_NAME,
+			l.VOLT_TYPE,
+			l.LINE_TYPE,
+			l.P_ID,
+			l.RUN_DATE,
+			l.SWITCH_NO,
+			l.STATION_ID,
+			l.E_STATION_ID,
+			l.LINE_MODEL,
+			l.LINE_LENGHT,
+			l.RATING_CURNT,
+			l.RATING_VOL,
+			l.CREATE_DATE,
+			l.VOLT_CODE,
+			l.ADDRESS,
+			l.GUID,
+			l.WEIGHT,
+			l.RUN_STATUS_CODE,
+			l.CREATOR_ID,
+			l.LAST_MODIFIER_ID,
+			l.LAST_MODIFIER_TIME,
+			l.REMARK,
+			l.STATUS,
+			l.BUSINESS_PLACE_CODE
 		from
 		LINE_INFO l
 		<where>
@@ -285,6 +422,39 @@ values
 			</if>
 			<if test="businessPlaceCode !=null">
 				and l.BUSINESS_PLACE_CODE = #{businessPlaceCode}
+			</if>
+			<if test="pId !=null">
+				 and l.P_ID = #{pId}
+			</if>
+			<if test="stationId !=null">
+				 and l.STATION_ID = #{stationId}
+			</if>
+			<if test="eStationId !=null">
+				 and l.E_STATION_ID = #{eStationId}
+			</if>
+			<if test="voltCode !=null">
+				 and l.VOLT_CODE = #{voltCode}
+			</if>
+			<if test="address !=null">
+				 and l.ADDRESS = #{address}
+			</if>
+			<if test="guid !=null">
+				 and l.GUID = #{guid}
+			</if>
+			<if test="weight !=null">
+				 and l.WEIGHT = #{weight}
+			</if>
+			<if test="runStatusCode !=null">
+				 and l.RUN_STATUS_CODE = #{runStatusCode}
+			</if>
+			<if test="creatorId !=null">
+				 and l.CREATOR_ID = #{creatorId}
+			</if>
+			<if test="lastModifierId !=null">
+				 and l.LAST_MODIFIER_ID = #{lastModifierId}
+			</if>
+			<if test="lastModifierTime !=null">
+				 and l.LAST_MODIFIER_TIME = #{lastModifierTime}
 			</if>
 			<if test="lineIds != null and lineIds.size>0">
 				and l.ID IN

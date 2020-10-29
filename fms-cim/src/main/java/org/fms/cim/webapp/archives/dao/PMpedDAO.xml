@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fms.cim.webapp.archives.dao.PMpedDAO">
+    <sql id="Base_Column_List">
+		ID,CODE,NAME,MPED_INDEX,CP_ID,MP_ID,METER_ID,MAIN_FLAG,M_MPED_ID,P_MPED_ID,E_MPED_ID,
+		VOLT_CODE,CONS_ID,TG_ID,LINE_ID,SUBS_ID,TRAN_ID,CAP_ID,BUSINESS_PLACE_CODE,MPED_PROP,
+		MP_TYPE,SIDE_CODE,SWITCH_ID,SWITCH_NO,METER_BOX_ID,MEAS_MODE,WIRING_MODE,STATUS_CODE,
+		VOLT_TYPE,DATAINTERVAL,INCREMENT_FLAG,CALC_TPL_ID,CALC_SCHEME,CHK_TPL_ID,Q_CALC_FLAG,
+		MP_CALC_MODE,GUID,DATA_SRC,DATA_ID,AREA_CODE,WEIGHT,MP_CALC_TYPE,SETTLE_MPED_ID,
+		METER_CLASS,CREATOR_ID,CREATE_DATE,LAST_MODIFIER_ID,LAST_MODIFY_TIME
+    </sql>
+
+    <select id="findByKey" parameterType="PMpedDomain"
+            resultType="PMpedDomain" useCache="true">
+        select
+        <include refid="Base_Column_List"/>
+        from P_MPED
+        <where>
+            and ID = #{id}
+
+        </where>
+    </select>
+    <select id="findByWhere" parameterType="PMpedDomain"
+            resultType="PMpedDomain" useCache="true">
+        select
+       <include refid="Base_Column_List"/>
+        from P_MPED
+        <where>
+            <if test="code !=null">
+                and CODE = #{code}
+            </if>
+            <if test="name !=null">
+                and NAME = #{name}
+            </if>
+            <if test="mpedIndex !=null">
+                and MPED_INDEX = #{mpedIndex}
+            </if>
+            <if test="cpId !=null">
+                and CP_ID = #{cpId}
+            </if>
+            <if test="mpId !=null">
+                and MP_ID = #{mpId}
+            </if>
+            <if test="meterId !=null">
+                and METER_ID = #{meterId}
+            </if>
+            <if test="mainFlag !=null">
+                and MAIN_FLAG = #{mainFlag}
+            </if>
+            <if test="mMpedId !=null">
+                and M_MPED_ID = #{mMpedId}
+            </if>
+            <if test="pMpedId !=null">
+                and P_MPED_ID = #{pMpedId}
+            </if>
+            <if test="pMpedId !=null">
+                and E_MPED_ID = #{pMpedId}
+            </if>            
+            <if test="voltCode !=null">
+                and VOLT_CODE = #{voltCode}
+            </if>
+            <if test="consId !=null">
+                and CONS_ID = #{consId}
+            </if>
+            <if test="tgId !=null">
+                and TG_ID = #{tgId}
+            </if>
+            <if test="lineId !=null">
+                and LINE_ID = #{lineId}
+            </if>
+            
+            <if test="subsId !=null">
+                and SUBS_ID = #{subsId}
+            </if>
+            <if test="tranId !=null">
+                and TRAN_ID = #{tranId}
+            </if>
+            <if test="capId !=null">
+                and CAP_ID = #{capId}
+            </if>
+            <if test="businessPlaceCode !=null">
+                and BUSINESS_PLACE_CODE = #{businessPlaceCode}
+            </if>
+            <if test="mpedProp !=null">
+                and MPED_PROP = #{mpedProp}
+            </if>
+            <if test="mpType !=null">
+                and MP_TYPE = #{mpType}
+            </if>
+            <if test="sideCode !=null">
+                and SIDE_CODE = #{sideCode}
+            </if>
+            <if test="switchId !=null">
+                and SWITCH_ID = #{switchId}
+            </if>
+            <if test="switchNo !=null">
+                and SWITCH_NO = #{switchNo}
+            </if>
+            <if test="meterBoxId !=null">
+                and METER_BOX_ID = #{meterBoxId}
+            </if>            
+            <if test="measMode !=null">
+                and MEAS_MODE = #{measMode}
+            </if>
+            <if test="wiringMode !=null">
+                and WIRING_MODE = #{wiringMode}
+            </if>
+            <if test="statusCode !=null">
+                and STATUS_CODE = #{statusCode}
+            </if>
+            <if test="voltType !=null">
+                and VOLT_TYPE = #{voltType}
+            </if>
+            
+            <if test="datainterval !=null">
+                and DATAINTERVAL = #{datainterval}
+            </if>
+            <if test="incrementFlag !=null">
+                and INCREMENT_FLAG = #{incrementFlag}
+            </if>
+            <if test="calcTplId !=null">
+                and CALC_TPL_ID = #{calcTplId}
+            </if>
+            <if test="calcScheme !=null">
+                and CALC_SCHEME = #{calcScheme}
+            </if>
+            <if test="chkTplId !=null">
+                and CHK_TPL_ID = #{chkTplId}
+            </if>
+            <if test="qCalcFlag !=null">
+                and Q_CALC_FLAG = #{qCalcFlag}
+            </if>
+            <if test="mpCalcMode !=null">
+                and MP_CALC_MODE = #{mpCalcMode}
+            </if>
+            <if test="guid !=null">
+                and GUID = #{guid}
+            </if>
+            <if test="dataSrc !=null">
+                and DATA_SRC = #{dataSrc}
+            </if>
+            <if test="dataId !=null">
+                and DATA_ID = #{dataId}
+            </if>            
+            <if test="areaCode !=null">
+                and AREA_CODE = #{areaCode}
+            </if>
+            <if test="weight !=null">
+                and WEIGHT = #{weight}
+            </if>
+            <if test="mpCalcType !=null">
+                and MP_CALC_TYPE = #{mpCalcType}
+            </if>
+            <if test="settleMpedId !=null">
+                and SETTLE_MPED_ID = #{settleMpedId}
+            </if>
+             <if test="meterClass !=null">
+                and METER_CLASS = #{meterClass}
+            </if>            
+            <if test="creatorId !=null">
+                and CREATOR_ID = #{creatorId}
+            </if>
+            <if test="createDate !=null">
+                and CREATE_DATE = #{createDate}
+            </if>
+            <if test="lastModifierId !=null">
+                and LAST_MODIFIER_ID = #{lastModifierId}
+            </if>
+            <if test="lastModifyTime !=null">
+                and LAST_MODIFY_TIME = #{lastModifyTime}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="PMpedDomain" useGeneratedKeys="true" keyProperty="id" flushCache="true">
+        insert into
+        P_MPED(
+        <include refid="Base_Column_List"/>
+        )
+        values
+        (#{id},#{code},#{name},#{mpedIndex},#{cpId},#{mpId},#{meterId},#{mainFlag},
+        #{mMpedId},#{pMpedId},#{eMpedId},#{voltCode},#{consId},#{tgId},#{lineId},
+        #{subsId},#{tranId},#{capId},#{businessPlaceCode},#{mpedProp},#{mpType},
+        #{sideCode},#{switchId},#{switchNo},#{meterBoxId},#{measMode},
+        #{wiringMode},#{statusCode},#{statusCode},#{voltType}, #{datainterval},
+        #{incrementFlag},#{calcTplId},#{calcScheme},#{chkTplId},
+        #{qCalcFlag},#{mpCalcMode},#{guid},#{dataSrc},#{dataId},#{areaCode},
+        #{weight},#{mpCalcType},#{settleMpedId},#{meterClass},#{creatorId},
+        #{createDate},#{lastModifierId},#{lastModifyTime})
+    </insert>
+    
+    <update id="update" parameterType="PMpedDomain" flushCache="true">
+        update P_MPED
+        <set>
+        	<if test="code !=null">
+                CODE = #{code},
+            </if>
+            <if test="name !=null">
+                NAME = #{name},
+            </if>
+            <if test="mpedIndex !=null">
+                MPED_INDEX = #{mpedIndex},
+            </if>
+            <if test="cpId !=null">
+                CP_ID = #{cpId},
+            </if>
+            <if test="mpId !=null">
+                MP_ID = #{mpId},
+            </if>
+            <if test="meterId !=null">
+                METER_ID = #{meterId},
+            </if>
+            <if test="mainFlag !=null">
+                MAIN_FLAG = #{mainFlag},
+            </if>
+            <if test="mMpedId !=null">
+                M_MPED_ID = #{mMpedId},
+            </if>
+            <if test="pMpedId !=null">
+                P_MPED_ID = #{pMpedId},
+            </if>
+            <if test="pMpedId !=null">
+                E_MPED_ID = #{pMpedId},
+            </if>            
+            <if test="voltCode !=null">
+                VOLT_CODE = #{voltCode},
+            </if>
+            <if test="consId !=null">
+                CONS_ID = #{consId},
+            </if>
+            <if test="tgId !=null">
+                TG_ID = #{tgId},
+            </if>
+            <if test="lineId !=null">
+                LINE_ID = #{lineId},
+            </if>
+            <if test="subsId !=null">
+                SUBS_ID = #{subsId},
+            </if>
+            <if test="tranId !=null">
+                TRAN_ID = #{tranId},
+            </if>
+            <if test="capId !=null">
+                CAP_ID = #{capId},
+            </if>
+            <if test="businessPlaceCode !=null">
+                BUSINESS_PLACE_CODE = #{businessPlaceCode},
+            </if>
+            <if test="mpedProp !=null">
+                MPED_PROP = #{mpedProp},
+            </if>
+            <if test="mpType !=null">
+                MP_TYPE = #{mpType},
+            </if>
+            <if test="sideCode !=null">
+                SIDE_CODE = #{sideCode},
+            </if>
+            <if test="switchId !=null">
+                SWITCH_ID = #{switchId},
+            </if>
+            <if test="switchNo !=null">
+                SWITCH_NO = #{switchNo},
+            </if>
+            <if test="meterBoxId !=null">
+                METER_BOX_ID = #{meterBoxId},
+            </if>            
+            <if test="measMode !=null">
+                MEAS_MODE = #{measMode},
+            </if>
+            <if test="wiringMode !=null">
+                WIRING_MODE = #{wiringMode},
+            </if>
+            <if test="statusCode !=null">
+                STATUS_CODE = #{statusCode},
+            </if>
+            <if test="voltType !=null">
+                VOLT_TYPE = #{voltType},
+            </if>
+            
+            <if test="datainterval !=null">
+                DATAINTERVAL = #{datainterval},
+            </if>
+            <if test="incrementFlag !=null">
+                INCREMENT_FLAG = #{incrementFlag},
+            </if>
+            <if test="calcTplId !=null">
+                CALC_TPL_ID = #{calcTplId},
+            </if>
+            <if test="calcScheme !=null">
+                CALC_SCHEME = #{calcScheme},
+            </if>
+            <if test="chkTplId !=null">
+                CHK_TPL_ID = #{chkTplId},
+            </if>
+            <if test="qCalcFlag !=null">
+                Q_CALC_FLAG = #{qCalcFlag},
+            </if>
+            <if test="mpCalcMode !=null">
+                MP_CALC_MODE = #{mpCalcMode},
+            </if>
+            <if test="guid !=null">
+                GUID = #{guid},
+            </if>
+            <if test="dataSrc !=null">
+                DATA_SRC = #{dataSrc},
+            </if>
+            <if test="dataId !=null">
+                DATA_ID = #{dataId},
+            </if>            
+            <if test="areaCode !=null">
+                AREA_CODE = #{areaCode},
+            </if>
+            <if test="weight !=null">
+                and WEIGHT = #{weight},
+            </if>
+            <if test="mpCalcType !=null">
+                MP_CALC_TYPE = #{mpCalcType},
+            </if>
+            <if test="settleMpedId !=null">
+                SETTLE_MPED_ID = #{settleMpedId},
+            </if>
+             <if test="meterClass !=null">
+                METER_CLASS = #{meterClass},
+            </if>            
+            <if test="creatorId !=null">
+                CREATOR_ID = #{creatorId},
+            </if>
+            <if test="createDate !=null">
+                CREATE_DATE = #{createDate},
+            </if>
+            <if test="lastModifierId !=null">
+                LAST_MODIFIER_ID = #{lastModifierId},
+            </if>
+            <if test="lastModifyTime !=null">
+                LAST_MODIFY_TIME = #{lastModifyTime},
+            </if>
+        </set>
+        <where>
+            and ID = #{id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="PMpedDomain"
+            flushCache="true">
+        delete from P_MPED
+        <where>
+            and ID = #{id}
+        </where>
+    </delete>
+</mapper>
