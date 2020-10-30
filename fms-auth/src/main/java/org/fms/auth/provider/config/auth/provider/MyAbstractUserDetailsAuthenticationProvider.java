@@ -3,6 +3,7 @@ package org.fms.auth.provider.config.auth.provider;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.riozenc.titanTool.properties.Global;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.fms.auth.provider.common.utils.http.HttpClientUtil;
@@ -81,6 +82,9 @@ public abstract class MyAbstractUserDetailsAuthenticationProvider implements Aut
         }
         if(user == null) {
             cacheWasUsed = false;
+            if("test".equals(Global.getConfig("env"))){
+
+            }else{
             String xinaoAuthorization=RsaClientUtils.encryptAuthInfo(myAuthenticationToken.getPrincipal().toString(),myAuthenticationToken.getCredentials().toString());
             Map<String,String> xinaoParamMap=new HashMap<String,String>();
             Map<String,String> xinaoHeaderMap=new HashMap<String,String>();
@@ -93,6 +97,7 @@ public abstract class MyAbstractUserDetailsAuthenticationProvider implements Aut
             JSONObject jsonObject=JSONObject.parseObject(HttpClientUtil.doGet("http://ennuser-api-pro.enncloud.cn/ennuser-api/s/api/account/auth",xinaoParamMap,xinaoHeaderMap));
             if("0".equals(jsonObject.get("status").toString())){
                 throw new InvalidGrantException("Bad credentials");
+            }
             }
             try {
                 user = this.retrieveUser(username, myAuthenticationToken);

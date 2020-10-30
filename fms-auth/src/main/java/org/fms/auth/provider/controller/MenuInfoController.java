@@ -122,12 +122,24 @@ public class MenuInfoController extends CrudController<MenuInfo, MenuInfoRequest
         List<MenuInfo> list;
         try {
             list = menuInfoService.getModuleTree(moduleResources.getId(), moduleResources.getSystemId(), moduleResources.getStatus());
+            formatMenu(list);
         } catch (Exception e) {
             logger.error("查询模块树异常" + e.getMessage());
             e.printStackTrace();
             return new ResponseData<>(ResponseCode.ERROR.getCode(), ResponseCode.ERROR.getMessage());
         }
         return new ResponseData<>(ResponseCode.SUCCESS.getCode(), ResponseCode.SUCCESS.getMessage(), list);
+    }
+
+    private List<MenuInfo> formatMenu(List<MenuInfo> list){
+        for (MenuInfo menuInfo: list){
+            if(1==menuInfo.getIsLeaf()){
+                menuInfo.setChildren(null);
+            }else{
+                formatMenu(menuInfo.getChildren());
+            }
+        }
+        return list;
     }
 
     @PostMapping(value = "/menu/roleMenuTree")

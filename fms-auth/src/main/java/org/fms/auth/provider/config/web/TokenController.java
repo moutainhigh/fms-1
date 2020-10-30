@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.riozenc.titanTool.properties.Global;
 import org.fms.auth.provider.common.utils.JsonUtils;
 import org.fms.auth.provider.mapper.model.UserInfo;
 import org.fms.auth.provider.pojo.ResponseCode;
@@ -52,7 +53,7 @@ public class TokenController {
                 Date date =new Date();
 //                5000
 //                1800000
-                if((date.getTime()-userDateMap.get(authHeaderValue).getTime())>1800000){
+                if((date.getTime()-userDateMap.get(authHeaderValue).getTime())>(Global.getConfig("tokenOutTime").equals("")?7200000:Long.parseLong(Global.getConfig("tokenOutTime")))){
                     userDateMap.remove(authHeaderValue);
                     return new ResponseData<>(401, "token超时", "token超时");
                 }else{
