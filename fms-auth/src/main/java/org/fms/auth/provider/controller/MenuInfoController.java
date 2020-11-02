@@ -1,22 +1,21 @@
 package org.fms.auth.provider.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonObject;
 import org.apache.commons.lang.StringUtils;
 import org.fms.auth.autoconfigure.controller.CrudController;
 import org.fms.auth.provider.common.pojo.TableData;
+import org.fms.auth.provider.common.utils.http.HttpClientUtil;
+import org.fms.auth.provider.config.auth.util.RsaClientUtils;
 import org.fms.auth.provider.config.redis.AccessTokenUtils;
-import org.fms.auth.provider.mapper.model.MenuInfo;
-import org.fms.auth.provider.mapper.model.MenuRightInfo;
-import org.fms.auth.provider.mapper.model.RoleMenuRel;
-import org.fms.auth.provider.mapper.model.UserInfo;
+import org.fms.auth.provider.mapper.model.*;
 import org.fms.auth.provider.pojo.ResponseCode;
 import org.fms.auth.provider.pojo.ResponseData;
 import org.fms.auth.provider.pojo.request.MenuInfoRequest;
@@ -400,5 +399,20 @@ public class MenuInfoController extends CrudController<MenuInfo, MenuInfoRequest
             return new ResponseData<>(ResponseCode.ERROR.getCode(), ResponseCode.ERROR.getMessage());
         }
         return new ResponseData<>(ResponseCode.SUCCESS.getCode(), ResponseCode.SUCCESS.getMessage());
+    }
+
+
+    @PostMapping("/menu/queryEnterprise")
+    protected JSONObject queryEnterprise(@RequestBody Enterprise enterprise) {
+//        测试环境地址：http://10.37.147.126:8090/bee/es/customer/searchEnterprise
+//        生产环境地址：http://es.rest-api.enn.cn:9289/bee/es/customer/searchEnterprise
+//        测试UserKey：3a56076c-c881-490c-964a-afbc73e9a603
+//        生产UserKey：26164167-cd9f-479f-ba1f-a42a6074b0c9
+        enterprise.setAppkey("26164167-cd9f-479f-ba1f-a42a6074b0c9");
+
+        JSONObject jsonObject = JSONObject.parseObject(HttpClientUtil.doPostJson("http://es.rest-api.enn.cn:9289/bee/es/customer/searchEnterprise", JSON.toJSONString(enterprise)));
+
+        return jsonObject;
+
     }
 }
